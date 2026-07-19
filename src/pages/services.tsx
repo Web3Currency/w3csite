@@ -1,0 +1,333 @@
+import { SEO } from "@/components/shared/seo";
+import { PageTransition } from "@/components/shared/page-transition";
+import { GlassCard } from "@/components/shared/glass-card";
+import { ServiceCard } from "@/components/shared/service-card";
+import { motion } from "framer-motion";
+import {
+  Wallet,
+  ArrowRight,
+  MessageCircle,
+  Search,
+  ClipboardList,
+  Rocket,
+  LifeBuoy,
+  Building2,
+  Mail,
+  PenTool,
+  MapPin,
+  Headphones,
+  Terminal,
+  Users,
+} from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Link } from "wouter";
+import { SiWhatsapp } from "react-icons/si";
+import { servicesContent } from "@/content/services";
+import { faqs } from "@/content/faq";
+import { contact } from "@/config/contact";
+import { branding } from "@/config/branding";
+
+export default function Services() {
+  const { hero, cores, extras, whyWorkWithMe, journey, cta, reassurance } = servicesContent;
+
+  const getCoreIcon = (name: string) => {
+    switch (name) {
+      case "headphones": return <Headphones className="w-6 h-6 text-green-400" />;
+      case "wallet": return <Wallet className="w-6 h-6 text-orange-400" />;
+      case "terminal": return <Terminal className="w-6 h-6 text-yellow-400" />;
+      default: return <Users className="w-6 h-6 text-primary" />;
+    }
+  };
+
+  const getExtraIcon = (name: string) => {
+    switch (name) {
+      case "building": return Building2;
+      case "mail": return Mail;
+      case "pentool": return PenTool;
+      default: return MapPin;
+    }
+  };
+
+  const getJourneyIcon = (name: string) => {
+    switch (name) {
+      case "message": return MessageCircle;
+      case "search": return Search;
+      case "clipboard": return ClipboardList;
+      case "rocket": return Rocket;
+      default: return LifeBuoy;
+    }
+  };
+
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": `Digital Services by ${branding.businessName}`,
+    "description": `Digital consulting, secure crypto P2P trading, AI-powered web development, and a Web3 community, all delivered personally by ${branding.founderName}.`,
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": branding.businessName,
+      "url": "https://w3cdigital.network"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "W3C Service Catalog",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "W3C DESK Crypto P2P",
+            "description": "Secure, fast, and confidential peer-to-peer cryptocurrency trades (buy/sell crypto with Naira)."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Digital Consulting & Strategy",
+            "description": "Personalized technical guidance and consulting on Web3, software setup, and digital strategy."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Web Development & Design",
+            "description": "Custom-built, fast, and elegant websites tailored to your specific requirements."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "W3C Community Hub",
+            "description": "Join our free WhatsApp community for Web3 learning, market insights, and daily opportunities."
+          }
+        }
+      ]
+    }
+  };
+
+  return (
+    <PageTransition>
+      <SEO
+        title={`Services | ${branding.businessName}`}
+        description={`Digital consulting, secure crypto P2P trading, AI-powered web development, and a Web3 community, all delivered personally by ${branding.founderName}. Find the right service for your situation.`}
+        path="/services"
+        schema={servicesSchema}
+      />
+
+      {/* SECTION 1: Hero */}
+      <section className="relative overflow-hidden bg-black border-b border-white/[0.06] pt-32 pb-20 md:pt-40 md:pb-24">
+        
+        {/* Animated Background Image covering the entire section */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <motion.div
+            animate={{
+              scale: [1.02, 1.06, 1.02],
+              x: [-2, 2, -2],
+              y: [-1, 1, -1]
+            }}
+            transition={{
+              duration: 20,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+            className="w-full h-full"
+          >
+            <img
+              src="https://i.imgur.com/CgM0hwC.png"
+              alt="Let's Figure It Out Together Background"
+              className="w-full h-full object-cover object-center select-none"
+            />
+          </motion.div>
+          
+          {/* Custom Bottom-to-Middle Gradient: fading smoothly from the bottom to the middle */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+        </div>
+
+        {/* Content Container */}
+        <div className="container max-w-6xl mx-auto px-6 relative z-10">
+          <div className="max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="bg-black/50 backdrop-blur-md p-6 sm:p-8 md:p-10 rounded-2xl border border-white/[0.06] shadow-2xl"
+            >
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4 leading-tight text-white">
+                {hero.title}
+              </h1>
+              <p className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed mb-4 font-medium">
+                {hero.description}
+              </p>
+              <p className="text-xs sm:text-sm text-white/60 leading-relaxed whitespace-pre-line">
+                {hero.subDescription}
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 2: The four core service cards */}
+      <section className="py-4 md:py-8 bg-black">
+        <div className="container max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            {cores.map((service) => (
+              <ServiceCard
+                key={service.title}
+                title={service.title}
+                tagline={service.tagline}
+                description={service.description}
+                whoFor={service.whoFor}
+                benefit={service.benefit}
+                icon={getCoreIcon(service.iconName)}
+                href={service.href}
+                accentColorClass={service.accentColorClass}
+                ctaText={service.ctaText}
+                delay={service.delay}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: Additional Services strip */}
+      <section className="py-20 md:py-24 bg-zinc-950 border-y border-white/[0.08] mt-16">
+        <div className="container max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <span className="text-xs uppercase tracking-widest font-medium text-muted-foreground block mb-2">{extras.title}</span>
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight mb-4">
+              {extras.subtitle}
+            </h2>
+            <p className="text-muted-foreground max-w-2xl leading-relaxed">
+              {extras.description}
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {extras.list.map((item, i) => {
+              const IconComponent = getExtraIcon(item.iconName);
+              return (
+                <motion.a
+                  key={item.title}
+                  href={contact.whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: i * 0.06 }}
+                  className="group block rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-primary/30 hover:bg-primary/[0.03] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:border-primary/30 transition-colors">
+                    <IconComponent className="w-5 h-5 text-white/70 group-hover:text-primary transition-colors" />
+                  </div>
+                  <h3 className="font-display font-bold text-white text-sm mb-2">{item.title}</h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed mb-4">{item.body}</p>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/60 group-hover:text-primary transition-colors">
+                    Ask on WhatsApp
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </motion.a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: Why Work With Me */}
+      <section id="services-why-work-with-me" className="py-20 md:py-24 bg-black border-t border-white/[0.08]">
+        <div className="container max-w-5xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="mb-14 text-center"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-[2.5rem] font-display font-bold text-white tracking-tight">
+              {whyWorkWithMe.title}
+            </h2>
+          </motion.div>
+
+          <div id="why-work-with-me-grid" className="grid md:grid-cols-2 gap-6">
+            {whyWorkWithMe.list.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className={i === 4 ? "md:col-span-2" : ""}
+              >
+                <GlassCard id={`why-work-card-${i}`} className="p-6 h-full border-white/10 bg-white/[0.02] hover:border-primary/20 transition-all">
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                      <span className="text-xs font-mono text-primary font-bold">{i + 1}</span>
+                    </div>
+                    <div className="text-left">
+                      <h3 className="font-display font-bold text-white text-base mb-1.5">{item.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed text-sm">{item.body}</p>
+                    </div>
+                  </div>
+                </GlassCard>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6: Final CTA */}
+      <section id="services-final-cta" className="py-24 md:py-32 relative overflow-hidden bg-black border-t border-white/[0.08]">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+        </div>
+        <div className="container max-w-4xl mx-auto px-6 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="relative rounded-[2.5rem] border border-white/[0.08] bg-white/[0.015] backdrop-blur-sm px-6 py-14 sm:px-16 sm:py-16"
+          >
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-8 tracking-tight">
+              {cta.title}
+            </h2>
+            <p className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+              {cta.description}
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5">
+              <Link
+                id="cta-contact-btn"
+                href="/contact"
+                className="w-full sm:w-auto glow-primary-hover inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-black font-bold text-lg active:scale-95 hover:bg-primary/95 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                Start the Conversation
+              </Link>
+              <Link
+                id="cta-projects-btn"
+                href="/projects"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-transparent border border-white/15 text-white font-semibold text-lg transition-all hover:bg-white/5 hover:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                View Recent Work
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </PageTransition>
+  );
+}
