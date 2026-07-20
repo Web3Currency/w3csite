@@ -26,5 +26,5 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-Sitemap: https://w3cdigital.network/sitemap.xml
+Sitemap: https://web3currency.online/sitemap.xml
 

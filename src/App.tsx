@@ -7,6 +7,7 @@ import { Layout } from "@/components/layout/layout";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { AnimatePresence } from "framer-motion";
 import { initAnalytics, trackPageView } from "@/lib/analytics";
+import { ErrorBoundary } from "@/components/shared/error-boundary";
 
 // Pages
 import Home from "@/pages/home";
@@ -81,7 +82,7 @@ function App() {
           <AnalyticsTracker />
           <ScrollToTop />
           <Layout>
-            <Router />
+            <ErrorBoundary><Router /></ErrorBoundary>
           </Layout>
         </WouterRouter>
         <Toaster />

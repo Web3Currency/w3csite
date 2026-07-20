@@ -2,37 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Main Pages -->
   <url>
-    <loc>https://w3cdigital.network/</loc>
+    <loc>https://web3currency.online/</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://w3cdigital.network/about</loc>
+    <loc>https://web3currency.online/about</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://w3cdigital.network/services</loc>
+    <loc>https://web3currency.online/services</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://w3cdigital.network/projects</loc>
+    <loc>https://web3currency.online/projects</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://w3cdigital.network/contact</loc>
+    <loc>https://web3currency.online/contact</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://w3cdigital.network/ledger</loc>
+    <loc>https://web3currency.online/ledger</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -40,25 +40,25 @@
   
   <!-- Services Subpages -->
   <url>
-    <loc>https://w3cdigital.network/services/crypto-p2p</loc>
+    <loc>https://web3currency.online/services/crypto-p2p</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://w3cdigital.network/services/digital-consulting</loc>
+    <loc>https://web3currency.online/services/digital-consulting</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://w3cdigital.network/services/web-development</loc>
+    <loc>https://web3currency.online/services/web-development</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://w3cdigital.network/services/community</loc>
+    <loc>https://web3currency.online/services/community</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -66,25 +66,25 @@
 
   <!-- Project Subpages -->
   <url>
-    <loc>https://w3cdigital.network/projects/w3c-digital-network</loc>
+    <loc>https://web3currency.online/projects/w3c-digital-network</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://w3cdigital.network/projects/gold-marine-group</loc>
+    <loc>https://web3currency.online/projects/gold-marine-group</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://w3cdigital.network/projects/w3c-test-token-tracker</loc>
+    <loc>https://web3currency.online/projects/w3c-test-token-tracker</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://w3cdigital.network/projects/ceecar</loc>
+    <loc>https://web3currency.online/projects/ceecar</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -92,13 +92,13 @@
 
   <!-- Legal & Preferences -->
   <url>
-    <loc>https://w3cdigital.network/privacy</loc>
+    <loc>https://web3currency.online/privacy</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://w3cdigital.network/terms</loc>
+    <loc>https://web3currency.online/terms</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
