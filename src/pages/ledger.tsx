@@ -237,7 +237,7 @@ export default function LedgerPage() {
     "@type": "WebPage",
     "name": "W3C DESK Transparency Ledger",
     "description": `Verify public execution histories, trace recorded naira transactions, or direct access ${branding.founderName}'s official Web3Currency Desk.`,
-    "url": "https://w3cdigital.network/ledger"
+    "url": "https://web3currency.online/ledger"
   };
 
   return (

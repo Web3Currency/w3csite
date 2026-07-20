@@ -417,8 +417,8 @@ export default function ProjectDetail() {
     "@type": "TechArticle",
     "headline": `${project.title} Case Study`,
     "description": project.shortDescription,
-    "image": "https://w3cdigital.network/opengraph.jpg",
-    "url": `https://w3cdigital.network/projects/${project.id}`,
+    "image": "https://web3currency.online/opengraph.jpg",
+    "url": `https://web3currency.online/projects/${project.id}`,
     "author": {
       "@type": "Person",
       "name": branding.founderName

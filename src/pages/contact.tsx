@@ -22,7 +22,7 @@ export default function Contact() {
     "@type": "ContactPage",
     "name": `Contact ${branding.founderName} - ${branding.businessName}`,
     "description": `Get in touch with ${branding.founderName} for consulting, development, crypto operations, or community access.`,
-    "url": "https://w3cdigital.network/contact"
+    "url": "https://web3currency.online/contact"
   };
 
   return (

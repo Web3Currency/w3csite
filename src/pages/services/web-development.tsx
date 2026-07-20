@@ -200,7 +200,7 @@ export default function WebDevelopment() {
     "provider": {
       "@type": "ProfessionalService",
       "name": branding.businessName,
-      "url": "https://w3cdigital.network"
+      "url": "https://web3currency.online"
     }
   };
 

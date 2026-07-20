@@ -131,7 +131,7 @@ export default function Projects() {
     "@type": "CollectionPage",
     "name": `Portfolio of ${branding.businessName}`,
     "description": "Real Work. Real Progress. Every project represents a problem solved, a skill improved, or an idea brought to life.",
-    "url": "https://w3cdigital.network/projects",
+    "url": "https://web3currency.online/projects",
     "about": {
       "@type": "Person",
       "name": branding.founderName

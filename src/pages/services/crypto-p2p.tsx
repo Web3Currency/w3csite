@@ -69,7 +69,7 @@ export default function CryptoP2P() {
     "provider": {
       "@type": "ProfessionalService",
       "name": branding.businessName,
-      "url": "https://w3cdigital.network"
+      "url": "https://web3currency.online"
     },
     "areaServed": {
       "@type": "Country",

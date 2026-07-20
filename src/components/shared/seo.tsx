@@ -42,7 +42,7 @@ export function SEO({
     setMetaTag("property", "og:type", ogType);
     
     // Build absolute URL for canonical / sharing
-    const canonicalHost = "https://w3cdigital.network";
+    const canonicalHost = "https://web3currency.online";
     // Normalize path to have leading slash and remove trailing slash unless it's just root
     const formattedPath = path.startsWith("/") ? path : `/${path}`;
     const absoluteUrl = `${canonicalHost}${formattedPath === "/" ? "" : formattedPath}`;
