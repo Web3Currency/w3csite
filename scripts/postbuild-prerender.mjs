@@ -1,13 +1,16 @@
+import path from 'path';
+import fs from 'fs';
+import http from 'http';
+import { fileURLToPath } from 'url';
+import chromium from '@sparticuz/chromium';
+import puppeteer from 'puppeteer-core';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 if (!process.env.VERCEL) {
   console.log('Skipping prerender (not a Vercel build).');
   process.exit(0);
 }
-
-const path = require('path');
-const fs = require('fs');
-const http = require('http');
-const chromium = require('@sparticuz/chromium');
-const puppeteer = require('puppeteer-core');
 
 const DIST = path.join(__dirname, '..', 'dist');
 const PORT = 5005;

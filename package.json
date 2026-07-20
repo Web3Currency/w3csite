@@ -9,7 +9,7 @@
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "npm run typecheck",
-    "postbuild": "node scripts/postbuild-prerender.cjs"
+    "postbuild": "node scripts/postbuild-prerender.mjs"
   },
   "dependencies": {
     "react": "19.1.0",
