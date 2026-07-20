@@ -7,6 +7,7 @@ import { Layout } from "@/components/layout/layout";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { AnimatePresence } from "framer-motion";
 import { initAnalytics, trackPageView } from "@/lib/analytics";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Pages
 import Home from "@/pages/home";
@@ -85,6 +86,7 @@ function App() {
           </Layout>
         </WouterRouter>
         <Toaster />
+        <SpeedInsights />
       </TooltipProvider>
     </QueryClientProvider>
   );
