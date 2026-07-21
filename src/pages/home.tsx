@@ -84,7 +84,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": branding.businessName,
-    "image": "https://web3currency.online/opengraph.jpg",
+    "image": "https://web3currency.online/opengraph.jpeg",
     "url": "https://web3currency.online",
     "description": branding.description,
     "founder": {

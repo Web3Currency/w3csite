@@ -14,7 +14,7 @@ export function SEO({
   description,
   path = "",
   ogType = "website",
-  ogImage = "/opengraph.jpg",
+  ogImage = "/opengraph.jpeg",
   schema,
 }: SEOProps) {
   useEffect(() => {
