@@ -342,7 +342,7 @@ export default function Projects() {
                             {project.id === "w3c-digital-network" && "web3currency.online"}
                             {project.id === "gold-marine-group" && "goldmarinegroup.com"}
                             {project.id === "w3c-test-token-tracker" && "tw3c-tracker.vercel.app"}
-                            {project.id === "ceecar" && "ceecar.tg.bot"}
+                            {project.id === "ceecar" && "t.me/ceecarbot"}
                           </span>
                         </div>
                         <div className="w-6 shrink-0" />
