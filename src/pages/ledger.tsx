@@ -229,7 +229,10 @@ export default function LedgerPage() {
   const maskPhoneNumber = (num: string) => {
     if (!num) return 'UNKNOWN';
     if (num.length < 7) return num;
-    return `${num.slice(0, 4)}***${num.slice(-3)}`;
+    if (num.startsWith('W3C-')) {
+      return `W3C-${num.slice(4, 5)}***${num.slice(-3)}`;
+    }
+    return `${num.slice(0, 1)}***${num.slice(-3)}`;
   };
 
   const ledgerSchema = {
@@ -524,7 +527,7 @@ export default function LedgerPage() {
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-3">
                       <div className="p-3 rounded-xl border bg-white/[0.02] border-white/[0.05]">
-                        <TerminalText className="text-white/60 block mb-1 text-[9px]">Phone Number</TerminalText>
+                        <TerminalText className="text-white/60 block mb-1 text-[9px]">Client ID</TerminalText>
                         <div className="font-bold text-xs truncate text-white">{maskPhoneNumber(viewingTrade.username)}</div>
                       </div>
                       <div className="p-3 rounded-xl border bg-white/[0.02] border-white/[0.05]">
