@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
+import "./ledger.css";
 
 // Prevent external chrome-extension and MetaMask runtime errors from triggering error overlay
 if (typeof window !== "undefined") {
@@ -19,7 +20,7 @@ if (typeof window !== "undefined") {
 
     if (isMetaMaskError(msgStr, srcStr, stackStr)) {
       console.warn("[Muted Extension Error]:", msgStr);
-      return true; // Prevents the fire of the default handler
+      return true;
     }
 
     if (originalOnerror) {
@@ -56,4 +57,3 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </StrictMode>
 );
-
