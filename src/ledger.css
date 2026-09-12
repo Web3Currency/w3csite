@@ -1,60 +1,58 @@
-/* W3C DESK ledger refinements: cleaner typography and less decorative UI chrome. */
+/* W3C DESK ledger typography foundation */
 
-/* The ledger should read like a financial record, not a terminal screen. */
+/* Keep the ledger readable and financial-record-like rather than terminal-like. */
 body:has(#transaction-history-log) {
   font-family: var(--app-font-sans), sans-serif;
 }
 
-/* TerminalText is used for labels throughout the ledger. Keep it crisp without monospace styling. */
+/* Small labels: DM Sans instead of monospace, normal capitalization, restrained tracking. */
 body:has(#transaction-history-log) span.font-mono {
   font-family: var(--app-font-sans), sans-serif !important;
   font-variant-numeric: normal;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
+  text-transform: none;
 }
 
-/* Keep actual transaction values and hashes monospaced for scanability. */
-body:has(#transaction-history-log) .font-mono:not(span) {
-  font-variant-numeric: tabular-nums;
-}
-
-/* Remove decorative icons that do not add meaning. Functional search, clear, and collapse controls remain. */
-body:has(#transaction-history-log) .lucide-history,
-body:has(#transaction-history-log) .lucide-clock,
-body:has(#transaction-history-log) .lucide-terminal {
-  display: none !important;
-}
-
-/* Remove transaction direction icons and their empty circular containers. */
-body:has(#transaction-history-log) #card-total-in-buys .lucide-arrow-right-left,
-body:has(#transaction-history-log) #card-total-out-sells .lucide-arrow-right-left {
-  display: none !important;
-}
-
-body:has(#transaction-history-log) #transaction-history-log button > div:first-child > div:first-child {
-  display: none !important;
-}
-
-body:has(#transaction-history-log) .fixed .rounded-full:has(> .lucide-arrow-right-left) {
-  display: none !important;
-}
-
-/* Rebalance spacing after removing the history heading icon. */
-body:has(#transaction-history-log) #transaction-history-log > div:first-child {
-  gap: 0;
-}
-
-/* Slightly more refined body copy and headings on the ledger. */
+/* Typography hierarchy */
 body:has(#transaction-history-log) h1 {
   font-family: var(--font-display), var(--app-font-sans), sans-serif;
+  font-weight: 700;
   letter-spacing: -0.025em;
+  line-height: 1.1;
 }
 
 body:has(#transaction-history-log) p {
   font-family: var(--app-font-sans), sans-serif;
+  line-height: 1.65;
 }
 
-/* Clean up the small uppercase labels without making them feel overly technical. */
-body:has(#transaction-history-log) .tracking-widest,
-body:has(#transaction-history-log) .tracking-wider {
+/* Summary values use clean, tabular numerals without the terminal aesthetic. */
+body:has(#transaction-history-log) .font-mono {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Keep transaction IDs and hashes genuinely monospace where they improve verification/readability. */
+body:has(.font-mono.break-all) .font-mono.break-all {
+  font-family: var(--app-font-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Give transaction dates a normal reading rhythm. */
+body:has(#transaction-history-log) #transaction-history-log .font-mono {
   font-family: var(--app-font-sans), sans-serif;
+  letter-spacing: 0;
+}
+
+/* The main NGN total gets a little more breathing room and stronger financial hierarchy. */
+body:has(#transaction-history-log) .text-4xl,
+body:has(#transaction-history-log) .text-5xl {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+}
+
+/* Month headings should read as section titles, not terminal commands. */
+body:has(#transaction-history-log) #transaction-history-log .text-lg.font-bold {
+  font-family: var(--app-font-sans), sans-serif;
+  letter-spacing: -0.01em;
 }
