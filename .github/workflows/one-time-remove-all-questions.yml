@@ -1,0 +1,44 @@
+name: One-time homepage FAQ cleanup
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Remove All Questions filter
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("src/pages/home.tsx")
+          text = path.read_text(encoding="utf-8")
+          target = '                    { id: "all", label: "All Questions" },\n'
+          if target in text:
+              path.write_text(text.replace(target, "", 1), encoding="utf-8")
+              print("Removed All Questions filter.")
+          else:
+              print("Target already absent; no source change needed.")
+          PY
+
+      - name: Commit homepage change and remove workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/pages/home.tsx
+          if git diff --cached --quiet; then
+            echo "No homepage change needed."
+            git rm .github/workflows/one-time-remove-all-questions.yml
+            git commit -m "Remove one-time cleanup workflow"
+          else
+            git rm .github/workflows/one-time-remove-all-questions.yml
+            git commit -m "Remove All Questions from homepage FAQ filter"
+          fi
+          git push
