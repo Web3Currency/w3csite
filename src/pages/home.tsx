@@ -570,7 +570,6 @@ export default function Home() {
                 <h3 className="text-xs font-mono uppercase tracking-wider text-white/40 font-bold">Filter by Category</h3>
                 <div className="flex flex-wrap gap-2">
                   {[
-                    { id: "all", label: "All Questions" },
                     { id: "about", label: "About" },
                     { id: "web-dev", label: "Web Dev" },
                     { id: "consulting", label: "Advisory" },
