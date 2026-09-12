@@ -199,3 +199,135 @@ body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > div:nt
     grid-template-columns: 1fr;
   }
 }
+
+/* Phase 4: turn transaction history into a clear, quiet financial record. */
+body:has(#transaction-history-log) #transaction-history-log {
+  padding-top: 1.5rem;
+}
+
+/* The section heading should be a title, not a terminal-style label. */
+body:has(#transaction-history-log) #transaction-history-log > div:first-child {
+  padding: 0 0.25rem;
+}
+
+body:has(#transaction-history-log) #transaction-history-log > div:first-child .font-mono {
+  font-family: var(--app-font-sans), sans-serif !important;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Keep months visually distinct without adding another card layer. */
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div {
+  border-top: 0;
+}
+
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:first-child {
+  padding: 0 0.25rem 0.55rem;
+}
+
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:first-child button {
+  gap: 0.4rem;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:first-child button .font-mono {
+  font-family: var(--app-font-sans), sans-serif !important;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Replace the old all-caps utility look with a simple record list. */
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:not(:first-child) {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 0.35rem;
+}
+
+/* Transaction row: stronger hierarchy, less pill-like, more ledger-like. */
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:not(:first-child) > button {
+  min-height: 4.25rem;
+  padding: 0.95rem 0.25rem;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+  background: transparent;
+}
+
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:not(:first-child) > button:last-child {
+  border-bottom: 0;
+}
+
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:not(:first-child) > button:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+/* Primary row description. */
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:not(:first-child) > button > div:first-child > div:last-child > div:first-child {
+  font-family: var(--app-font-sans), sans-serif;
+  font-size: 0.84rem;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Secondary row date. */
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:not(:first-child) > button > div:first-child > div:last-child > div:last-child {
+  margin-top: 0.2rem;
+  font-family: var(--app-font-sans), sans-serif !important;
+  font-size: 0.69rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+/* Financial amount: clear and restrained rather than neon. */
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:not(:first-child) > button > div:last-child > div:first-child {
+  font-family: var(--app-font-sans), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The sign still communicates direction without making BUY green / SELL red overpowering. */
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:not(:first-child) > button > div:last-child > div:first-child {
+  white-space: nowrap;
+}
+
+/* Status should communicate completion plainly. */
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:not(:first-child) > button > div:last-child > div:last-child {
+  font-family: var(--app-font-sans), sans-serif !important;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.42) !important;
+  text-transform: uppercase;
+}
+
+/* The current UI says "Success". Present it as a standard ledger status without changing the stored data. */
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:not(:first-child) > button > div:last-child > div:last-child {
+  font-size: 0 !important;
+}
+
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:not(:first-child) > button > div:last-child > div:last-child::after {
+  content: "COMPLETED";
+  font-size: 0.62rem;
+}
+
+/* Keep the list comfortable on narrow screens. */
+@media (max-width: 480px) {
+  body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:not(:first-child) > button {
+    min-height: 4rem;
+    padding: 0.85rem 0.25rem;
+  }
+
+  body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:not(:first-child) > button > div:first-child > div:last-child > div:first-child {
+    font-size: 0.8rem;
+  }
+
+  body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) > div > div:not(:first-child) > button > div:last-child > div:first-child {
+    font-size: 0.8rem;
+  }
+}
