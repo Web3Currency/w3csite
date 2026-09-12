@@ -109,3 +109,93 @@ body:has(#transaction-history-log) .glass-card {
 body:has(#transaction-history-log) .py-20 > div:first-child:has(.lucide-history) {
   display: none !important;
 }
+
+/* Phase 3: simplify the page header and make the overview read like a financial record. */
+body:has(#transaction-history-log) .container.max-w-2xl {
+  min-height: 0;
+}
+
+body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 {
+  gap: 2rem;
+}
+
+body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > div:first-child {
+  padding: 0 0.25rem;
+}
+
+body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > div:first-child h1 {
+  font-size: clamp(2rem, 5vw, 2.7rem);
+  line-height: 1.08;
+}
+
+body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > div:first-child p {
+  color: rgba(255, 255, 255, 0.62);
+  max-width: 36rem;
+}
+
+/* First glass card is the all-time overview. Flatten it and let the numbers do the work. */
+body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > .glass-card:first-of-type {
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.025);
+  box-shadow: none;
+}
+
+body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > .glass-card:first-of-type > div:first-child {
+  margin-bottom: 0.75rem;
+}
+
+body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > .glass-card:first-of-type > div:nth-child(2) {
+  align-items: baseline;
+}
+
+body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > .glass-card:first-of-type > div:nth-child(2) > span:first-child {
+  font-size: clamp(2.25rem, 8vw, 3.5rem);
+  letter-spacing: -0.045em;
+}
+
+body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > .glass-card:first-of-type > div:nth-child(3) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > .glass-card:first-of-type > div:nth-child(3) > div {
+  min-width: 0;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.018);
+  backdrop-filter: none;
+}
+
+body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > .glass-card:first-of-type > div:nth-child(3) span:last-child {
+  font-family: var(--app-font-sans), sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: 1rem;
+}
+
+/* The timeframe control should read as a quiet filter, not another dashboard module. */
+body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > div:nth-child(3) {
+  padding: 0 0.25rem;
+}
+
+body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > div:nth-child(3) select {
+  font-family: var(--app-font-sans), sans-serif;
+  font-weight: 600;
+  letter-spacing: 0;
+  border-radius: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.035);
+}
+
+@media (max-width: 480px) {
+  body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > .glass-card:first-of-type {
+    padding: 1.25rem;
+  }
+
+  body:has(#transaction-history-log) .container.max-w-2xl > div.space-y-8 > .glass-card:first-of-type > div:nth-child(3) {
+    grid-template-columns: 1fr;
+  }
+}
