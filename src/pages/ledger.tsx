@@ -238,7 +238,7 @@ export default function LedgerPage() {
   const ledgerSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "W3C DESK Transparency Ledger",
+    "name": "W3C DESK Ledger",
     "description": `Verify public execution histories, trace recorded naira transactions, or direct access ${branding.founderName}'s official Web3Currency Desk.`,
     "url": "https://web3currency.online/ledger"
   };
@@ -246,7 +246,7 @@ export default function LedgerPage() {
   return (
     <PageTransition>
       <SEO 
-        title="W3C DESK Transparency Ledger" 
+        title="W3C DESK Ledger" 
         description={`Verify public execution histories, trace recorded naira transactions, or direct access ${branding.founderName}'s official Web3Currency Desk.`}
         path="/ledger"
         schema={ledgerSchema}
@@ -261,14 +261,14 @@ export default function LedgerPage() {
         {/* Central Stage Wrapper */}
         <div className="container max-w-2xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col min-h-[75vh]">
           <div className="space-y-8">
-            <div className="space-y-2 text-center sm:text-left">
+            <header className="space-y-2 text-center sm:text-left">
               <h1 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
-                W3C DESK Transparency Ledger
+                W3C DESK Ledger
               </h1>
               <p className="text-xs sm:text-sm text-white/50 leading-relaxed max-w-xl">
                 We don't ask you to trust us blindly. Every completed trade is publicly logged below so you can verify our volume, rates, and transaction history.
               </p>
-            </div>
+            </header>
 
             {/* Total Volume Card */}
             <GlassCard className="p-8 relative overflow-hidden bg-gradient-to-br from-[#0A0A0A] to-[#0F0F0F] border border-white/5 shadow-2xl">
