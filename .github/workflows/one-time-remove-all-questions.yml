@@ -1,0 +1,39 @@
+name: One-time homepage FAQ cleanup
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  remove-all-questions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Remove All Questions filter
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("src/pages/home.tsx")
+          text = path.read_text()
+          target = '                    { id: "all", label: "All Questions" },\n'
+          if target in text:
+              path.write_text(text.replace(target, "", 1))
+          PY
+
+      - name: Commit and push
+        run: |
+          if git diff --quiet -- src/pages/home.tsx; then
+            echo "No change needed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/pages/home.tsx
+          git commit -m "Remove All Questions from homepage FAQ filter"
+          git push
