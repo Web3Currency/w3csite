@@ -56,3 +56,56 @@ body:has(#transaction-history-log) #transaction-history-log .text-lg.font-bold {
   font-family: var(--app-font-sans), sans-serif;
   letter-spacing: -0.01em;
 }
+
+/* Phase 2: reduce visual noise without removing functional controls. */
+
+/* Decorative status/section icons add little information here. Keep search, clear, close and collapse controls. */
+body:has(#transaction-history-log) .lucide-history,
+body:has(#transaction-history-log) .lucide-clock,
+body:has(#transaction-history-log) .lucide-terminal {
+  display: none !important;
+}
+
+/* The same arrow icon is repeated for both BUY and SELL summary cards and every transaction row. */
+body:has(#transaction-history-log) #card-total-in-buys .lucide-arrow-right-left,
+body:has(#transaction-history-log) #card-total-out-sells .lucide-arrow-right-left {
+  display: none !important;
+}
+
+/* Remove the now-empty transaction icon circle from each row. */
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) button > div:first-child > div:first-child {
+  display: none !important;
+}
+
+/* Keep row text aligned naturally after the icon is removed. */
+body:has(#transaction-history-log) #transaction-history-log > div:nth-child(3) button > div:first-child {
+  gap: 0.75rem;
+}
+
+/* Remove the large decorative trade icon in the transaction details modal. */
+body:has(#transaction-history-log) .fixed .rounded-full:has(> .lucide-arrow-right-left) {
+  display: none !important;
+}
+
+/* Remove excessive hover glow/scale from ledger-level cards, preserving simple interaction. */
+body:has(#transaction-history-log) .glow-primary-hover:hover,
+body:has(#transaction-history-log) .whatsapp-glow-hover:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+/* Reduce the background grid so it supports the page without competing with the records. */
+body:has(#transaction-history-log) .bg-grid-fade {
+  opacity: 0.12 !important;
+}
+
+/* Tone down heavy glass effects used by the ledger cards. */
+body:has(#transaction-history-log) .glass-card {
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+/* Keep the empty state compact and text-led. */
+body:has(#transaction-history-log) .py-20 > div:first-child:has(.lucide-history) {
+  display: none !important;
+}
