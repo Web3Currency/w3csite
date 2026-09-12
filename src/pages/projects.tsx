@@ -456,21 +456,12 @@ export default function Projects() {
           </div>
 
           {/* Carousel container */}
-          <div className="relative max-w-3xl mx-auto" id="tech-stack-carousel">
-            <div className="flex items-center gap-3 sm:gap-6 md:gap-8 justify-between">
+          <div className="relative max-w-4xl mx-auto" id="tech-stack-carousel">
+            <div className="w-full">
               
-              {/* Left Arrow */}
-              <button
-                onClick={handlePrev}
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/10 bg-white/[0.02] hover:bg-white/[0.08] hover:border-primary/40 text-white hover:text-primary flex items-center justify-center transition-all duration-300 shrink-0 shadow-lg group focus:outline-none focus:ring-1 focus:ring-primary/40"
-                aria-label="Previous Slide"
-              >
-                <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
-              </button>
-
               {/* Central Card Stage */}
               <div 
-                className="flex-1 min-w-0"
+                className="w-full"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
@@ -534,7 +525,40 @@ export default function Projects() {
                 </AnimatePresence>
               </div>
 
-              {/* Right Arrow */}
+            </div>
+
+            {/* Carousel controls and pagination below the card */}
+            <div className="flex items-center justify-center gap-3 sm:gap-5 mt-8">
+              <button
+                onClick={handlePrev}
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/10 bg-white/[0.02] hover:bg-white/[0.08] hover:border-primary/40 text-white hover:text-primary flex items-center justify-center transition-all duration-300 shrink-0 shadow-lg group focus:outline-none focus:ring-1 focus:ring-primary/40"
+                aria-label="Previous Slide"
+              >
+                <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
+              </button>
+
+              <div className="flex items-center justify-center gap-3">
+                {techStacks.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentIndex(idx)}
+                    className="relative h-2.5 focus:outline-none focus:ring-1 focus:ring-primary/40 rounded-full transition-all duration-300"
+                    style={{ width: currentIndex === idx ? "24px" : "10px" }}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  >
+                    <motion.div
+                      className={`absolute inset-0 rounded-full ${
+                        currentIndex === idx 
+                          ? "bg-primary" 
+                          : "bg-white/20 hover:bg-white/40"
+                      }`}
+                      layoutId="activeDot"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  </button>
+                ))}
+              </div>
+
               <button
                 onClick={handleNext}
                 className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/10 bg-white/[0.02] hover:bg-white/[0.08] hover:border-primary/40 text-white hover:text-primary flex items-center justify-center transition-all duration-300 shrink-0 shadow-lg group focus:outline-none focus:ring-1 focus:ring-primary/40"
@@ -542,30 +566,6 @@ export default function Projects() {
               >
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
               </button>
-
-            </div>
-
-            {/* Pagination dots below */}
-            <div className="flex items-center justify-center gap-3 mt-8">
-              {techStacks.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentIndex(idx)}
-                  className="relative h-2.5 focus:outline-none focus:ring-1 focus:ring-primary/40 rounded-full transition-all duration-300"
-                  style={{ width: currentIndex === idx ? "24px" : "10px" }}
-                  aria-label={`Go to slide ${idx + 1}`}
-                >
-                  <motion.div
-                    className={`absolute inset-0 rounded-full ${
-                      currentIndex === idx 
-                        ? "bg-primary" 
-                        : "bg-white/20 hover:bg-white/40"
-                    }`}
-                    layoutId="activeDot"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                </button>
-              ))}
             </div>
 
           </div>
