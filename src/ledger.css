@@ -1,0 +1,60 @@
+/* W3C DESK ledger refinements: cleaner typography and less decorative UI chrome. */
+
+/* The ledger should read like a financial record, not a terminal screen. */
+body:has(#transaction-history-log) {
+  font-family: var(--app-font-sans), sans-serif;
+}
+
+/* TerminalText is used for labels throughout the ledger. Keep it crisp without monospace styling. */
+body:has(#transaction-history-log) span.font-mono {
+  font-family: var(--app-font-sans), sans-serif !important;
+  font-variant-numeric: normal;
+  letter-spacing: 0.08em;
+}
+
+/* Keep actual transaction values and hashes monospaced for scanability. */
+body:has(#transaction-history-log) .font-mono:not(span) {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Remove decorative icons that do not add meaning. Functional search, clear, and collapse controls remain. */
+body:has(#transaction-history-log) .lucide-history,
+body:has(#transaction-history-log) .lucide-clock,
+body:has(#transaction-history-log) .lucide-terminal {
+  display: none !important;
+}
+
+/* Remove transaction direction icons and their empty circular containers. */
+body:has(#transaction-history-log) #card-total-in-buys .lucide-arrow-right-left,
+body:has(#transaction-history-log) #card-total-out-sells .lucide-arrow-right-left {
+  display: none !important;
+}
+
+body:has(#transaction-history-log) #transaction-history-log button > div:first-child > div:first-child {
+  display: none !important;
+}
+
+body:has(#transaction-history-log) .fixed .rounded-full:has(> .lucide-arrow-right-left) {
+  display: none !important;
+}
+
+/* Rebalance spacing after removing the history heading icon. */
+body:has(#transaction-history-log) #transaction-history-log > div:first-child {
+  gap: 0;
+}
+
+/* Slightly more refined body copy and headings on the ledger. */
+body:has(#transaction-history-log) h1 {
+  font-family: var(--font-display), var(--app-font-sans), sans-serif;
+  letter-spacing: -0.025em;
+}
+
+body:has(#transaction-history-log) p {
+  font-family: var(--app-font-sans), sans-serif;
+}
+
+/* Clean up the small uppercase labels without making them feel overly technical. */
+body:has(#transaction-history-log) .tracking-widest,
+body:has(#transaction-history-log) .tracking-wider {
+  font-family: var(--app-font-sans), sans-serif;
+}
