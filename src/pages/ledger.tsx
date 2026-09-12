@@ -535,10 +535,6 @@ export default function LedgerPage() {
 
                     <div className="p-4 rounded-2xl border bg-white/[0.02] border-white/[0.05] space-y-3">
                       <div className="flex justify-between items-center text-xs font-bold">
-                        <TerminalText className="text-white/60">Rate</TerminalText>
-                        <span className="font-mono text-white">₦{viewingTrade.rate.toLocaleString()}</span>
-                      </div>
-                      <div className="flex justify-between items-center text-xs font-bold">
                         <TerminalText className="text-white/60">Amount (USDT)</TerminalText>
                         <span className="font-mono text-white">${viewingTrade.amountUsdt.toLocaleString()}</span>
                       </div>
