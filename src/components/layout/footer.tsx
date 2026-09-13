@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Mail, Phone, Bookmark } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { SiWhatsapp, SiTelegram } from "react-icons/si";
 import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
@@ -15,7 +15,7 @@ export function Footer() {
           <div className="col-span-1 md:col-span-1 text-left">
             <Link href="/" className="flex items-center gap-2 group mb-6 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
               <img 
-                src="https://i.imugur.com/FwLZZ8d.png" 
+                src="https://i.imgur.com/FwLZZ8d.png" 
                 alt={branding.businessName} 
                 className="h-10 sm:h-12 w-auto min-w-[40px] max-w-[160px] object-contain transition-transform duration-300 group-hover:scale-105"
               />
