@@ -15,7 +15,7 @@ export function Footer() {
           <div className="col-span-1 md:col-span-1 text-left">
             <Link href="/" className="flex items-center gap-2 group mb-6 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
               <img 
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20%284%29-ie2R59jxk6ypBF6z9h8b2PGAo71RHQ.png" 
+                src="https://i.imugur.com/FwLZZ8d.png" 
                 alt={branding.businessName} 
                 className="h-10 sm:h-12 w-auto min-w-[40px] max-w-[160px] object-contain transition-transform duration-300 group-hover:scale-105"
               />
@@ -57,7 +57,7 @@ export function Footer() {
                 </div>
                 WhatsApp Chat
               </a>
-              <a href={contact.telegramUrl} target="_blank" rel="noreferrer" className="group flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0088cc] rounded-sm">
+              <a href={contact.telegramUrl} target="_blank" rel="noreferrer" className="group flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
                 <div className="w-8 h-8 rounded-full bg-[#0088cc]/10 border border-[#0088cc]/20 flex items-center justify-center group-hover:border-[#0088cc]/50 transition-colors">
                   <SiTelegram className="w-4 h-4 text-[#0088cc]" />
                 </div>
