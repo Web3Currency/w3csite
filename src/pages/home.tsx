@@ -726,7 +726,7 @@ export default function Home() {
                     <p className="text-xs text-muted-foreground mt-1">Try searching for keywords like "developer", "P2P", or "security".</p>
                     <button
                       id="faq-reset-btn"
-                      onClick={() => { setSearchQuery(""); setSelectedCategory("all"); }}
+                      onClick={() => { setSearchQuery(""); setSelectedCategory("about"); }}
                       className="mt-4 px-4 py-2 bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary rounded-xl text-xs font-bold transition-all"
                     >
                       Reset Filters
