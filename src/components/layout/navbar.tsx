@@ -42,7 +42,7 @@ export function Navbar() {
         <div className="container max-w-6xl mx-auto px-6 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group z-50 relative rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black">
             <img 
-              src="https://i.imugur.com/FwLZZ8d.png" 
+              src="https://i.imgur.com/FwLZZ8d.png" 
               alt={branding.businessName} 
               className="h-10 sm:h-12 w-auto min-w-[40px] max-w-[160px] object-contain transition-transform duration-300 group-hover:scale-105"
             />
