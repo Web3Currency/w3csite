@@ -304,20 +304,15 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-
-                <div className="mt-8">
-                  <Link
-                    href="/ledger"
-                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-primary text-black font-bold text-sm hover:bg-primary/90 transition-all shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                  >
-                    View W3C DESK Ledger
-                    <ArrowRight className="w-4 h-4" />
+                <div className="pt-6 mt-6 border-t border-white/[0.06]">
+                  <Link href="/ledger" className="inline-flex items-center text-sm font-bold text-primary hover:text-white transition-colors group">
+                    View public ledger <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </GlassCard>
             </motion.div>
 
-            {/* Card 2: Registered Business */}
+            {/* Card 2: Business Registration */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -329,22 +324,22 @@ export default function Home() {
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
                     <h3 className="font-display font-bold text-white text-xl">Registered Business</h3>
+                    <Shield className="w-5 h-5 text-primary" />
                   </div>
-
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-3xl font-display font-black text-primary">CAC Registered</p>
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider font-mono">RC 957908</p>
-                    </div>
-                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                      Operating under a registered business with transparent trading records and direct founder accountability.
-                    </p>
+                  <div>
+                    <p className="text-3xl font-display font-black text-white">{branding.rcNumber}</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider font-mono">Corporate Registration</p>
                   </div>
+                </div>
+                <div className="pt-6 mt-6 border-t border-white/[0.06]">
+                  <Link href="/about" className="inline-flex items-center text-sm font-bold text-primary hover:text-white transition-colors group">
+                    About W3C <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
               </GlassCard>
             </motion.div>
 
-            {/* Card 3: Founder-Led Service */}
+            {/* Card 3: Human Support */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -355,17 +350,18 @@ export default function Home() {
               <GlassCard className="h-full flex flex-col justify-between p-6 border-white/[0.06] bg-white/[0.01] hover:bg-white/[0.03] hover:border-primary/20 transition-all duration-300">
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-display font-bold text-white text-xl">Founder-Led Service</h3>
+                    <h3 className="font-display font-bold text-white text-xl">Real Human Support</h3>
+                    <Headset className="w-5 h-5 text-primary" />
                   </div>
-
-                  <div className="space-y-4">
-                    <p className="text-white/90 text-sm sm:text-base leading-relaxed font-medium">
-                      Every conversation, project, consultation, and trade is handled directly by me.
-                    </p>
-                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                      No support queues. No outsourced teams. No automated handoffs.
-                    </p>
+                  <div>
+                    <p className="text-xl font-display font-bold text-white">Direct access to {branding.founderName}</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider font-mono mt-2">Continuous learning & support</p>
                   </div>
+                </div>
+                <div className="pt-6 mt-6 border-t border-white/[0.06]">
+                  <Link href="/contact" className="inline-flex items-center text-sm font-bold text-primary hover:text-white transition-colors group">
+                    Get in touch <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
               </GlassCard>
             </motion.div>
@@ -373,144 +369,108 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects */}
-      <section className="py-20 bg-black">
+      {/* Projects Teaser */}
+      <section className="py-20 md:py-24 bg-black">
         <div className="container max-w-6xl mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mb-4 tracking-tight">{projectsTeaser.title}</h2>
-            <p className="text-lg sm:text-xl text-muted-foreground">{projectsTeaser.description}</p>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+            <div className="max-w-2xl">
+              <h2 className="text-3xl sm:text-4xl md:text-[2.5rem] font-display font-bold text-white mb-4 tracking-tight">{projectsTeaser.title}</h2>
+              <p className="text-lg sm:text-xl text-muted-foreground">{projectsTeaser.description}</p>
+            </div>
+            <Link href="/projects" className="inline-flex items-center text-sm font-bold text-primary hover:text-white transition-colors group shrink-0">
+              {projectsTeaser.ctaText} <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
-          
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-            {featuredProjects.map((project, i) => (
-              <MotionGlassCard 
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-                className="p-4 group rounded-2xl border-white/[0.08] hover:border-white/[0.15] transition-all duration-300 bg-white/[0.01]"
-              >
-                <div className="aspect-video rounded-2xl overflow-hidden mb-6 relative bg-zinc-950 border border-white/10 flex flex-col justify-between">
-                  {/* Browser Header */}
-                  <div className="bg-zinc-900/80 px-4 py-2 border-b border-white/5 flex items-center justify-between shrink-0">
-                    <div className="flex gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-red-500/60 inline-block" />
-                      <span className="w-2 h-2 rounded-full bg-yellow-500/60 inline-block" />
-                      <span className="w-2 h-2 rounded-full bg-green-500/60 inline-block" />
-                    </div>
-                    <div className="bg-black/40 border border-white/[0.04] rounded px-3 py-0.5 text-[9px] text-white/40 font-mono flex items-center gap-1">
-                      <span className="text-primary">●</span>
-                      <span>
-                        {project.id === "w3c-digital-network" && "web3currency.online"}
-                        {project.id === "gold-marine-group" && "goldmarinegroup.com"}
-                        {project.id === "w3c-test-token-tracker" && "tw3c-tracker.vercel.app"}
-                        {project.id === "ceecar" && "t.me/ceecarbot"}
-                      </span>
-                    </div>
-                    <div className="w-6 shrink-0" />
-                  </div>
 
-                  {/* Mockup Preview Area */}
-                  <div className="relative flex-1 w-full h-full overflow-hidden">
-                    <img 
-                      src={getProjectImage(project.id)} 
-                      alt={project.title} 
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          <div className="grid md:grid-cols-2 gap-6">
+            {featuredProjects.map((project) => (
+              <Link key={project.id} href={`/projects/${project.slug}`} className="group block">
+                <MotionGlassCard className="overflow-hidden h-full">
+                  <div className="relative aspect-video overflow-hidden bg-white/5">
+                    <img
+                      src={getProjectImage(project.id)}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
-                    
-                    {/* Interactive overlay text */}
-                    <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between z-10">
-                      <span className="text-[10px] font-mono font-bold text-white tracking-wider bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/10 uppercase">
-                        {project.id === "w3c-digital-network" && "W3C Digital"}
-                        {project.id === "gold-marine-group" && "Gold Marine"}
-                        {project.id === "w3c-test-token-tracker" && "Token Tracker"}
-                        {project.id === "ceecar" && "Ceecar"}
-                      </span>
-                      <span className="text-[8px] font-mono text-white/60 bg-black/60 backdrop-blur-sm px-1.5 py-0.5 rounded uppercase">
-                        Preview
-                      </span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-primary font-bold">{project.category}</span>
+                      </div>
+                      <h3 className="text-xl sm:text-2xl font-display font-bold text-white">{project.title}</h3>
                     </div>
                   </div>
-                </div>
-                <div className="px-4 pb-4">
-                  <h3 className="text-2xl font-display font-bold text-white mb-3 transition-colors">{project.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
-                    {project.shortDescription}
-                  </p>
-                </div>
-              </MotionGlassCard>
+                </MotionGlassCard>
+              </Link>
             ))}
-          </div>
-
-          <div className="flex flex-col items-center justify-center mt-12 gap-3">
-            <Link href="/projects" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/20 hover:text-primary text-white text-sm font-semibold transition-all duration-300">
-              {projectsTeaser.ctaText} <ArrowRight className="w-4 h-4" />
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 md:py-24 bg-black relative overflow-hidden border-t border-white/[0.08]">
-        <div className="container max-w-6xl mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-display font-bold text-white mb-4 tracking-tight">What People Say</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed">
-              Real feedback from people I've worked with across W3C DESK, website projects, and digital consulting.
-            </p>
-          </motion.div>
+      {/* Community Teaser */}
+      <section className="py-20 md:py-24 bg-zinc-950 border-y border-white/[0.08]">
+        <div className="container max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-7"
+            >
+              <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-bold tracking-wider mb-6">
+                {homepageContent.communityTeaser.badge}
+              </span>
+              <h2 className="text-4xl sm:text-5xl font-display font-bold text-white mb-6 tracking-tight">
+                {homepageContent.communityTeaser.title}
+              </h2>
+              <p className="text-lg sm:text-xl text-white/80 leading-relaxed mb-8">
+                {homepageContent.communityTeaser.description}
+              </p>
+              <Link href="/services/community" className="inline-flex items-center px-6 py-3 rounded-full bg-primary text-black font-bold hover:bg-primary/90 transition-colors group">
+                {homepageContent.communityTeaser.ctaText}
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((testi, idx) => {
-              const getServiceBadge = (service: string) => {
-                const brand = getServiceBrandColor(service);
-                return (
-                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full ${brand.twBg} ${brand.twBorder} text-[10px] font-mono font-medium ${brand.twText}`}>
-                    <span className={`w-1.5 h-1.5 rounded-full ${brand.twDot}`} />
-                    {service}
-                  </span>
-                );
-              };
-
-              return (
-                <MotionGlassCard
-                  key={testi.id}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.15 }}
-                  className="p-8 border-white/10 bg-white/[0.015] flex flex-col justify-between"
-                >
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="lg:col-span-5"
+            >
+              <GlassCard className="p-6 border-primary/20 bg-primary/[0.02]">
+                <div className="flex items-center justify-between mb-6">
                   <div>
-                    <div className="flex gap-0.5 mb-4 text-amber-400">
-                      {Array.from({ length: testi.rating }).map((_, i) => (
-                        <span key={i} className="text-sm font-bold">★</span>
-                      ))}
-                    </div>
-                    <p className="text-white/80 text-sm leading-relaxed mb-6 italic">
-                      "{testi.statement}"
-                    </p>
+                    <h3 className="font-display font-bold text-white text-xl">{homepageContent.communityTeaser.sidebarTitle}</h3>
+                    <p className="text-xs text-muted-foreground font-mono mt-1">{homepageContent.communityTeaser.sidebarSubtitle}</p>
                   </div>
-                  <div className="border-t border-white/[0.06] pt-4 flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-bold text-white leading-none mb-1">{testi.name}</p>
-                      <p className="text-[11px] text-muted-foreground">
-                        {testi.role}{testi.company ? `, ${testi.company}` : ""}
-                      </p>
-                    </div>
-                    {getServiceBadge(testi.serviceUsed)}
+                  <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    {homepageContent.communityTeaser.sidebarStatus}
                   </div>
-                </MotionGlassCard>
-              );
-            })}
+                </div>
+                <div className="space-y-4">
+                  {homepageContent.communityTeaser.sidebarItems.map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                        <Users className="w-4 h-4 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-white">{item.label}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{item.sub}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
+                  <span className="text-muted-foreground">{homepageContent.communityTeaser.sidebarMembers}</span>
+                  <span className="text-primary">{homepageContent.communityTeaser.sidebarPrice}</span>
+                </div>
+              </GlassCard>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -772,7 +732,7 @@ export default function Home() {
                   <div className="shrink-0">
                     <div className="w-12 h-12 rounded-full border border-primary/20 overflow-hidden bg-primary/5">
                       <img 
-                        src="https://i.imgur.com/cGKA8AC.png" 
+                        src="https://i.imugur.com/9q4rYyq.png" 
                         alt={branding.founderName} 
                         className="w-full h-full object-cover scale-110" 
                       />
