@@ -46,7 +46,7 @@ export default function Home() {
   };
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("about");
   const [expandedFaq, setExpandedFaq] = useState<string | null>(null);
 
   const filteredFaqs = faqs.filter((faq) => {
