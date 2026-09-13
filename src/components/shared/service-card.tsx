@@ -71,11 +71,11 @@ export function ServiceCard({ title, tagline, description, icon, href, ctaText =
 
       <Link 
         href={href} 
-        className={`flex items-center text-sm font-bold text-white transition-colors mt-auto w-fit py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-sm ${brand.twTextHover}`}
-        style={{ scrollbarWidth: "none" }}
+        className="inline-flex items-center justify-center gap-2 text-sm font-bold text-black transition-all duration-300 mt-auto w-fit px-4 py-2 rounded-full hover:brightness-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+        style={{ backgroundColor: brand.hex }}
       >
         <span>{ctaText}</span>
-        <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
       </Link>
     </MotionGlassCard>
   );
