@@ -22,7 +22,7 @@ export const contact: ContactConfig = {
   whatsappNumber: "2348149625496",
   whatsappUrl: "https://wa.me/2348149625496",
   whatsappCommunityUrl: "https://chat.whatsapp.com/EUEkJYcfSYB3aJuBSERi5N?s=cl&p=a&ilr=1&amv=2",
-  email: "web3currency.info@gmail.com",
+  email: "w3cdigitalnetwork@gmail.com",
   website: "https://ais-pre-wucefvxndodqpeeyarkx2k-7697597563.europe-west1.run.app", // Fallback URL / relative
   twitter: "@Web3CurrencyNG",
   twitterUrl: "https://x.com/Web3CurrencyNG",
