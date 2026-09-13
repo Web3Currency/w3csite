@@ -97,8 +97,8 @@ export default function Terms() {
               </p>
               <div className="p-4 rounded-xl border border-white/5 bg-white/[0.02] flex items-center gap-3 mt-2 w-fit">
                 <Mail className="w-5 h-5 text-[#f97316]" />
-                <a href="mailto:web3currency.info@gmail.com" className="font-mono text-white hover:underline">
-                  web3currency.info@gmail.com
+                <a href="mailto:w3cdigitalnetwork@gmail.com" className="font-mono text-white hover:underline">
+                  w3cdigitalnetwork@gmail.com
                 </a>
               </div>
             </div>
