@@ -2,6 +2,9 @@ export interface Project {
   id: string;
   title: string;
   category: string;
+  oneLiner: string;
+  image: string;
+  href: string;
   shortDescription: string;
   problem: string;
   role: string;
@@ -26,6 +29,9 @@ export const projects: Project[] = [
     id: "w3c-digital-network",
     title: "W3C Digital Network",
     category: "Personal Brand Website",
+    oneLiner: "The W3C workspace: DESK, sites, and community in one place.",
+    image: "https://i.imgur.com/by3IdeW.jpeg",
+    href: "/projects/w3c-digital-network",
     shortDescription: "The official digital workspace of W3C Digital Network. This project serves as the central platform for my services, community, and digital presence. It is continuously improved as I grow my skills, refine the brand, and expand what W3C offers.",
     problem: "To demonstrate operational capabilities and real-world skills transparently through a premium, high-performance web experience.",
     role: "Lead Architect, UI Designer & Core Developer",
@@ -64,6 +70,9 @@ export const projects: Project[] = [
     id: "gold-marine-group",
     title: "Gold Marine Group",
     category: "Corporate Website",
+    oneLiner: "Corporate site with live certificate verification.",
+    image: "https://i.imgur.com/qO5yasK.jpeg",
+    href: "/projects/gold-marine-group",
     shortDescription: "A modern corporate website built to strengthen the company's online presence and provide a professional platform for showcasing its services. The project includes a certificate verification system connected to a database, allowing users to verify issued certificates directly through the website.",
     problem: "Providing international clients with a secure, instant, and trustworthy platform to verify corporate safety and technical certifications offline-to-online.",
     role: "Full-Stack Developer & Database Lead",
@@ -98,6 +107,9 @@ export const projects: Project[] = [
     id: "w3c-test-token-tracker",
     title: "W3C Test Token Tracker",
     category: "Internal Web3 Tool",
+    oneLiner: "Pi testnet tracker for W3C test-token activity.",
+    image: "https://i.imgur.com/oFxxGhs.jpeg",
+    href: "/projects/w3c-test-token-tracker",
     shortDescription: "An internal utility built to monitor and visualize the activity of the W3C test token on the Pi Network testnet, providing insights into token distribution and ecosystem activity.",
     problem: "Visualizing and auditing token transactions and circulation parameters on emerging blockchain networks without dedicated public block explorer APIs.",
     role: "Blockchain Developer & Integration Engineer",
@@ -135,6 +147,9 @@ export const projects: Project[] = [
     id: "ceecar",
     title: "CEECAR",
     category: "Telegram Trading Assistant",
+    oneLiner: "Telegram assistant for balances, orders, and trade flow.",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
+    href: "/projects/ceecar",
     shortDescription: "A Telegram trading assistant currently under development to simplify trade execution, trade management, and automation while integrating with crypto trading workflows.",
     problem: "Reducing friction in remote order executions and risk management when active traders are away from their heavy desktop trading terminals.",
     role: "Backend & Systems API Developer",
