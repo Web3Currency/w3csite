@@ -778,8 +778,48 @@ export default function Home() {
         <div className="container max-w-6xl mx-auto px-6 relative z-10">
           <div className="relative rounded-[2.5rem] border border-white/[0.08] bg-white/[0.015] backdrop-blur-md px-8 py-12 md:p-16 overflow-hidden">
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/[0.01] rounded-full blur-3xl pointer-events-none" />
-            
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+            {/* Mobile Founder Consultation */}
+            <div className="md:hidden">
+              <h2 className="text-3xl font-display font-bold text-white tracking-tight leading-[1.15]">
+                {cta.title}
+              </h2>
+              <p className="mt-5 text-base text-muted-foreground leading-relaxed">
+                {cta.description}
+              </p>
+
+              <div className="relative mt-8 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
+                <div className="flex items-center gap-4">
+                  <div className="relative shrink-0">
+                    <div className="w-16 h-16 rounded-full border border-primary/20 overflow-hidden bg-primary/5">
+                      <img
+                        src="https://i.imgur.com/9q4rYyq.png"
+                        alt={branding.founderName}
+                        className="w-full h-full object-cover scale-110"
+                      />
+                    </div>
+                    <span className="absolute -right-0.5 -bottom-0.5 flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-[#0A0A0A]" />
+                    </span>
+                  </div>
+                  <div className="min-w-0 pr-10">
+                    <div className="font-display font-bold text-white text-base leading-tight">{branding.founderName}</div>
+                    <div className="text-xs text-muted-foreground font-mono mt-1">Founder, {branding.businessName}</div>
+                  </div>
+                </div>
+                <Link
+                  href="/contact"
+                  aria-label="Contact Jake"
+                  className="absolute right-4 bottom-4 w-9 h-9 rounded-full border border-primary/30 bg-primary/10 text-primary flex items-center justify-center hover:bg-primary/20 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary"
+                >
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Desktop / Tablet Founder Consultation */}
+            <div className="hidden md:grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
               {/* Left Column: Premium Pitch & Founder Info */}
               <div className="lg:col-span-7 space-y-6 text-left">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
