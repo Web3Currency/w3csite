@@ -472,60 +472,49 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="md:hidden"><div ref={testimonialsScrollRef} onScroll={handleTestimonialsScroll} className="flex overflow-x-auto snap-x snap-mandatory gap-4 touch-pan-x scrollbar-hide" style={{ scrollbarWidth: "none" }}>
-{testimonials.map((testi, idx) => {
-              const getServiceBadge = (service: string) => {
-                const brand = getServiceBrandColor(service);
+          <div className="md:hidden">
+            <div
+              ref={testimonialsScrollRef}
+              onScroll={handleTestimonialsScroll}
+              className="flex overflow-x-auto snap-x snap-mandatory gap-4 touch-pan-x scrollbar-hide"
+              style={{ scrollbarWidth: "none" }}
+            >
+              {testimonials.map((testi) => {
+                const brand = getServiceBrandColor(testi.serviceUsed);
                 return (
-                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full ${brand.twBg} ${brand.twBorder} text-[10px] font-mono font-medium ${brand.twText}`}>
-                    {service}
-                  </span>
-                );
-              };
-
-              return (
-                <MotionGlassCard
-                  key={testi.id}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.15 }}
-                  className="p-8 border-white/10 bg-white/[0.015] flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex gap-0.5 mb-4 text-amber-400">
-                      {Array.from({ length: testi.rating }).map((_, i) => (
-                        <span key={i} className="text-sm font-bold">★</span>
-                      ))}
-                    </div>
-                    <p className="text-white/80 text-sm leading-relaxed mb-6 italic">
-                      "{testi.statement}"
-                    </p>
-                  </div>
-                  <div className="border-t border-white/[0.06] pt-4 flex items-center justify-between">
+                  <MotionGlassCard
+                    key={testi.id}
+                    className="p-8 border-white/10 bg-white/[0.015] flex flex-col justify-between min-w-full snap-start"
+                  >
                     <div>
-                      <p className="text-sm font-bold text-white leading-none mb-1">{testi.name}</p>
-                      <p className="text-[11px] text-muted-foreground">
-                        {testi.role}{testi.company ? `, ${testi.company}` : ""}
-                      </p>
+                      <div className="flex gap-0.5 mb-4 text-amber-400">
+                        {Array.from({ length: testi.rating }).map((_, i) => (
+                          <span key={i} className="text-sm font-bold">★</span>
+                        ))}
+                      </div>
+                      <p className="text-white/80 text-sm leading-relaxed mb-6 italic">"{testi.statement}"</p>
                     </div>
-                    {getServiceBadge(testi.serviceUsed)}
-                  </div>
-                </MotionGlassCard>
-              );
-            })}
-          </div><div className="flex justify-center gap-1.5 mt-5">{testimonials.map((_, idx) => <span key={idx} className={"h-1.5 rounded-full transition-all duration-300 " + (activeTestimonial === idx ? "w-5 bg-white" : "w-1.5 bg-white/20")} aria-hidden="true" />)}</div></div>
+                    <div className="border-t border-white/[0.06] pt-4 flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-bold text-white leading-none mb-1">{testi.name}</p>
+                        <p className="text-[11px] text-muted-foreground">{testi.role}{testi.company ? `, ${testi.company}` : ""}</p>
+                      </div>
+                      <span className={"inline-flex items-center px-2.5 py-0.5 rounded-full " + brand.twBg + " " + brand.twBorder + " text-[10px] font-mono font-medium " + brand.twText}>{testi.serviceUsed}</span>
+                    </div>
+                  </MotionGlassCard>
+                );
+              })}
+            </div>
+            <div className="flex justify-center gap-1.5 mt-5">
+              {testimonials.map((_, idx) => (
+                <span key={idx} className={"h-1.5 rounded-full transition-all duration-300 " + (activeTestimonial === idx ? "w-5 bg-white" : "w-1.5 bg-white/20")} aria-hidden="true" />
+              ))}
+            </div>
+          </div>
+
           <div className="hidden md:grid md:grid-cols-3 gap-6">
             {testimonials.map((testi, idx) => {
-              const getServiceBadge = (service: string) => {
-                const brand = getServiceBrandColor(service);
-                return (
-                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full ${brand.twBg} ${brand.twBorder} text-[10px] font-mono font-medium ${brand.twText}`}>
-                    {service}
-                  </span>
-                );
-              };
-
+              const brand = getServiceBrandColor(testi.serviceUsed);
               return (
                 <MotionGlassCard
                   key={testi.id}
@@ -541,27 +530,21 @@ export default function Home() {
                         <span key={i} className="text-sm font-bold">★</span>
                       ))}
                     </div>
-                    <p className="text-white/80 text-sm leading-relaxed mb-6 italic">
-                      "{testi.statement}"
-                    </p>
+                    <p className="text-white/80 text-sm leading-relaxed mb-6 italic">"{testi.statement}"</p>
                   </div>
                   <div className="border-t border-white/[0.06] pt-4 flex items-center justify-between">
                     <div>
                       <p className="text-sm font-bold text-white leading-none mb-1">{testi.name}</p>
-                      <p className="text-[11px] text-muted-foreground">
-                        {testi.role}{testi.company ? `, ${testi.company}` : ""}
-                      </p>
+                      <p className="text-[11px] text-muted-foreground">{testi.role}{testi.company ? `, ${testi.company}` : ""}</p>
                     </div>
-                    {getServiceBadge(testi.serviceUsed)}
+                    <span className={"inline-flex items-center px-2.5 py-0.5 rounded-full " + brand.twBg + " " + brand.twBorder + " text-[10px] font-mono font-medium " + brand.twText}>{testi.serviceUsed}</span>
                   </div>
                 </MotionGlassCard>
               );
             })}
-
           </div>
         </div>
       </section>
-
 
 
       {/* Searchable Help Hub & FAQ Section */}
