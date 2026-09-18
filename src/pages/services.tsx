@@ -1,116 +1,166 @@
+import { useState } from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
-import { GlassCard } from "@/components/shared/glass-card";
-import { ServiceCard } from "@/components/shared/service-card";
 import { motion } from "framer-motion";
-import {
-  Wallet,
-  ArrowRight,
-  MessageCircle,
-  Search,
-  ClipboardList,
-  Rocket,
-  LifeBuoy,
-  Building2,
-  Mail,
-  PenTool,
-  MapPin,
-  Headphones,
-  Terminal,
-  Users,
-} from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { ArrowRight, Building2, Mail, PenTool, MapPin } from "lucide-react";
 import { Link } from "wouter";
-import { SiWhatsapp } from "react-icons/si";
 import { servicesContent } from "@/content/services";
-import { faqs } from "@/content/faq";
-import { contact } from "@/config/contact";
 import { branding } from "@/config/branding";
+import { contact } from "@/config/contact";
+import DigitalConsulting from "@/pages/services/digital-consulting";
+import CryptoP2P from "@/pages/services/crypto-p2p";
+import WebDevelopment from "@/pages/services/web-development";
+import CommunityService from "@/pages/services/community";
+
+type ServiceTab = "consulting" | "desk" | "web" | "community" | "others";
+
+const tabs: Array<{
+  id: ServiceTab;
+  label: string;
+  activeClass: string;
+}> = [
+  { id: "consulting", label: "Digital Consulting", activeClass: "border-green-400 text-white" },
+  { id: "desk", label: "W3C DESK", activeClass: "border-orange-400 text-white" },
+  { id: "web", label: "Web Design & Development", activeClass: "border-yellow-400 text-white" },
+  { id: "community", label: "W3C Community", activeClass: "border-purple-400 text-white" },
+  { id: "others", label: "Others", activeClass: "border-white text-white" },
+];
 
 export default function Services() {
-  const { hero, cores, extras, whyWorkWithMe, journey, cta, reassurance } = servicesContent;
-
-  const getCoreIcon = (name: string) => {
-    switch (name) {
-      case "headphones": return <Headphones className="w-6 h-6 text-green-400" />;
-      case "wallet": return <Wallet className="w-6 h-6 text-orange-400" />;
-      case "terminal": return <Terminal className="w-6 h-6 text-yellow-400" />;
-      default: return <Users className="w-6 h-6 text-primary" />;
-    }
-  };
+  const { hero, extras, cta } = servicesContent;
+  const [activeTab, setActiveTab] = useState<ServiceTab>("consulting");
 
   const getExtraIcon = (name: string) => {
     switch (name) {
-      case "building": return Building2;
-      case "mail": return Mail;
-      case "pentool": return PenTool;
-      default: return MapPin;
+      case "building":
+        return Building2;
+      case "mail":
+        return Mail;
+      case "pentool":
+        return PenTool;
+      default:
+        return MapPin;
     }
   };
 
-  const getJourneyIcon = (name: string) => {
-    switch (name) {
-      case "message": return MessageCircle;
-      case "search": return Search;
-      case "clipboard": return ClipboardList;
-      case "rocket": return Rocket;
-      default: return LifeBuoy;
+  const renderActiveService = () => {
+    switch (activeTab) {
+      case "consulting":
+        return <DigitalConsulting />;
+      case "desk":
+        return <CryptoP2P />;
+      case "web":
+        return <WebDevelopment />;
+      case "community":
+        return <CommunityService />;
+      case "others":
+        return (
+          <section className="py-20 md:py-24 bg-zinc-950 border-y border-white/[0.08]">
+            <div className="container max-w-6xl mx-auto px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6 }}
+                className="mb-12"
+              >
+                <span className="text-xs uppercase tracking-widest font-medium text-muted-foreground block mb-2">
+                  {extras.title}
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight mb-4">
+                  {extras.subtitle}
+                </h2>
+                <p className="text-muted-foreground max-w-2xl leading-relaxed">
+                  {extras.description}
+                </p>
+              </motion.div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {extras.list.map((item, i) => {
+                  const IconComponent = getExtraIcon(item.iconName);
+                  return (
+                    <motion.a
+                      key={item.title}
+                      href={contact.whatsappUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.5, delay: i * 0.06 }}
+                      className="group block rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-primary/30 hover:bg-primary/[0.03] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:border-primary/30 transition-colors">
+                        <IconComponent className="w-5 h-5 text-white/70 group-hover:text-primary transition-colors" />
+                      </div>
+                      <h3 className="font-display font-bold text-white text-sm mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-4">
+                        {item.body}
+                      </p>
+                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/60 group-hover:text-primary transition-colors">
+                        Ask on WhatsApp
+                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </motion.a>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        );
     }
   };
 
   const servicesSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": `Digital Services by ${branding.businessName}`,
-    "description": `Digital consulting, secure crypto P2P trading, AI-powered web development, and a Web3 community, all delivered personally by ${branding.founderName}.`,
-    "provider": {
+    name: `Digital Services by ${branding.businessName}`,
+    description: `Digital consulting, secure crypto P2P trading, AI-powered web development, and a Web3 community, all delivered personally by ${branding.founderName}.`,
+    provider: {
       "@type": "ProfessionalService",
-      "name": branding.businessName,
-      "url": "https://web3currency.online"
+      name: branding.businessName,
+      url: "https://web3currency.online",
     },
-    "hasOfferCatalog": {
+    hasOfferCatalog: {
       "@type": "OfferCatalog",
-      "name": "W3C Service Catalog",
-      "itemListElement": [
+      name: "W3C Service Catalog",
+      itemListElement: [
         {
           "@type": "Offer",
-          "itemOffered": {
+          itemOffered: {
             "@type": "Service",
-            "name": "W3C DESK Crypto P2P",
-            "description": "Secure, fast, and confidential peer-to-peer cryptocurrency trades (buy/sell crypto with Naira)."
-          }
+            name: "W3C DESK Crypto P2P",
+            description: "Secure, fast, and confidential peer-to-peer cryptocurrency trades (buy/sell crypto with Naira).",
+          },
         },
         {
           "@type": "Offer",
-          "itemOffered": {
+          itemOffered: {
             "@type": "Service",
-            "name": "Digital Consulting & Strategy",
-            "description": "Personalized technical guidance and consulting on Web3, software setup, and digital strategy."
-          }
+            name: "Digital Consulting & Strategy",
+            description: "Personalized technical guidance and consulting on Web3, software setup, and digital strategy.",
+          },
         },
         {
           "@type": "Offer",
-          "itemOffered": {
+          itemOffered: {
             "@type": "Service",
-            "name": "Web Development & Design",
-            "description": "Custom-built, fast, and elegant websites tailored to your specific requirements."
-          }
+            name: "Web Development & Design",
+            description: "Custom-built, fast, and elegant websites tailored to your specific requirements.",
+          },
         },
         {
           "@type": "Offer",
-          "itemOffered": {
+          itemOffered: {
             "@type": "Service",
-            "name": "W3C Community Hub",
-            "description": "Join our free WhatsApp community for Web3 learning, market insights, and daily opportunities."
-          }
-        }
-      ]
-    }
+            name: "W3C Community Hub",
+            description: "Join our free WhatsApp community for Web3 learning, market insights, and daily opportunities.",
+          },
+        },
+      ],
+    },
   };
 
   return (
@@ -122,16 +172,14 @@ export default function Services() {
         schema={servicesSchema}
       />
 
-      {/* SECTION 1: Hero */}
+      {/* Hero stays exactly as the existing Services hero */}
       <section className="relative overflow-hidden bg-black border-b border-white/[0.06] pt-32 pb-20 md:pt-40 md:pb-24">
-        
-        {/* Animated Background Image covering the entire section */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.div
             animate={{
               scale: [1.02, 1.06, 1.02],
               x: [-2, 2, -2],
-              y: [-1, 1, -1]
+              y: [-1, 1, -1],
             }}
             transition={{
               duration: 20,
@@ -147,12 +195,9 @@ export default function Services() {
               className="w-full h-full object-cover object-center select-none"
             />
           </motion.div>
-          
-          {/* Custom Bottom-to-Middle Gradient: fading smoothly from the bottom to the middle */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
         </div>
 
-        {/* Content Container */}
         <div className="container max-w-6xl mx-auto px-6 relative z-10">
           <div className="max-w-2xl">
             <motion.div
@@ -175,145 +220,33 @@ export default function Services() {
         </div>
       </section>
 
-      {/* SERVICE TABS */}
+      {/* Functional sticky service tabs */}
       <section className="sticky top-20 z-40 bg-black/95 backdrop-blur-md border-b border-white/[0.08]">
         <div className="container max-w-6xl mx-auto px-6">
-          <div className="flex items-center justify-between gap-6 overflow-x-auto scrollbar-hide whitespace-nowrap">
-            <div className="shrink-0 py-4 border-b-2 border-green-400 text-sm font-semibold text-white">
-              Digital Consulting
-            </div>
-            <div className="shrink-0 py-4 border-b-2 border-transparent text-sm font-semibold text-white/60">
-              W3C DESK
-            </div>
-            <div className="shrink-0 py-4 border-b-2 border-transparent text-sm font-semibold text-white/60">
-              Web Design &amp; Development
-            </div>
-            <div className="shrink-0 py-4 border-b-2 border-transparent text-sm font-semibold text-white/60">
-              W3C Community
-            </div>
-            <div className="shrink-0 py-4 border-b-2 border-transparent text-sm font-semibold text-white/60">
-              Others
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 2: The four core service cards */}
-      <section className="py-4 md:py-8 bg-black">
-        <div className="container max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            {cores.map((service) => (
-              <ServiceCard
-                key={service.title}
-                title={service.title}
-                tagline={service.tagline}
-                description={service.description}
-                whoFor={service.whoFor}
-                benefit={service.benefit}
-                icon={getCoreIcon(service.iconName)}
-                href={service.href}
-                accentColorClass={service.accentColorClass}
-                ctaText={service.ctaText}
-                delay={service.delay}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 3: Additional Services strip */}
-      <section className="py-20 md:py-24 bg-zinc-950 border-y border-white/[0.08] mt-16">
-        <div className="container max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="mb-12"
-          >
-            <span className="text-xs uppercase tracking-widest font-medium text-muted-foreground block mb-2">{extras.title}</span>
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight mb-4">
-              {extras.subtitle}
-            </h2>
-            <p className="text-muted-foreground max-w-2xl leading-relaxed">
-              {extras.description}
-            </p>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {extras.list.map((item, i) => {
-              const IconComponent = getExtraIcon(item.iconName);
+          <div className="flex items-center gap-6 overflow-x-auto scrollbar-hide whitespace-nowrap">
+            {tabs.map((tab) => {
+              const active = activeTab === tab.id;
               return (
-                <motion.a
-                  key={item.title}
-                  href={contact.whatsappUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: i * 0.06 }}
-                  className="group block rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-primary/30 hover:bg-primary/[0.03] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`shrink-0 py-4 border-b-2 text-sm sm:text-base font-bold transition-colors ${
+                    active ? tab.activeClass : "border-transparent text-white/60 hover:text-white"
+                  }`}
                 >
-                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:border-primary/30 transition-colors">
-                    <IconComponent className="w-5 h-5 text-white/70 group-hover:text-primary transition-colors" />
-                  </div>
-                  <h3 className="font-display font-bold text-white text-sm mb-2">{item.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed mb-4">{item.body}</p>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/60 group-hover:text-primary transition-colors">
-                    Ask on WhatsApp
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </motion.a>
+                  {tab.label}
+                </button>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* SECTION 4: Why Work With Me */}
-      <section id="services-why-work-with-me" className="py-20 md:py-24 bg-black border-t border-white/[0.08]">
-        <div className="container max-w-5xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="mb-14 text-center"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-[2.5rem] font-display font-bold text-white tracking-tight">
-              {whyWorkWithMe.title}
-            </h2>
-          </motion.div>
+      {/* The selected service content renders here. */}
+      <main>{renderActiveService()}</main>
 
-          <div id="why-work-with-me-grid" className="grid md:grid-cols-2 gap-6">
-            {whyWorkWithMe.list.map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={i === 4 ? "md:col-span-2" : ""}
-              >
-                <GlassCard id={`why-work-card-${i}`} className="p-6 h-full border-white/10 bg-white/[0.02] hover:border-primary/20 transition-all">
-                  <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                      <span className="text-xs font-mono text-primary font-bold">{i + 1}</span>
-                    </div>
-                    <div className="text-left">
-                      <h3 className="font-display font-bold text-white text-base mb-1.5">{item.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed text-sm">{item.body}</p>
-                    </div>
-                  </div>
-                </GlassCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 6: Final CTA */}
+      {/* Final CTA remains */}
       <section id="services-final-cta" className="py-24 md:py-32 relative overflow-hidden bg-black border-t border-white/[0.08]">
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
