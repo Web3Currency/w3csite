@@ -822,14 +822,6 @@ export default function Home() {
             <div className="hidden md:grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
               {/* Left Column: Premium Pitch & Founder Info */}
               <div className="lg:col-span-7 space-y-6 text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400">Direct Founder Consultation Active</span>
-                </div>
-                
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight leading-[1.15]">
                   {cta.title}
                 </h2>
@@ -839,7 +831,7 @@ export default function Home() {
                 </p>
                 
                 <div className="pt-6 border-t border-white/[0.06] flex flex-wrap items-center gap-4">
-                  <div className="shrink-0">
+                  <div className="relative shrink-0">
                     <div className="w-12 h-12 rounded-full border border-primary/20 overflow-hidden bg-primary/5">
                       <img 
                         src="https://i.imgur.com/9q4rYyq.png" 
@@ -847,6 +839,10 @@ export default function Home() {
                         className="w-full h-full object-cover scale-110" 
                       />
                     </div>
+                    <span className="absolute -right-0.5 -bottom-0.5 flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-[#0A0A0A]" />
+                    </span>
                   </div>
                   <div>
                     <div className="font-display font-bold text-white text-base leading-tight">{branding.founderName}</div>
