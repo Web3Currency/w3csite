@@ -246,7 +246,7 @@ export default function Home() {
             <p className="text-lg sm:text-xl text-muted-foreground">{features.description}</p>
           </div>
           
-          <div className="grid sm:grid-cols-2 gap-5 md:gap-6">
+          <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 -mx-1 px-1 sm:grid sm:grid-cols-2 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0 md:gap-6">
             {features.list.map((feature) => (
               <ServiceCard 
                 key={feature.title}
