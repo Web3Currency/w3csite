@@ -31,6 +31,7 @@ import { servicesContent } from "@/content/services";
 import { faqs } from "@/content/faq";
 import { contact } from "@/config/contact";
 import { branding } from "@/config/branding";
+import { contact } from "@/config/contact";
 
 export default function Services() {
   const { hero, cores, extras, whyWorkWithMe, journey, cta, reassurance } = servicesContent;
