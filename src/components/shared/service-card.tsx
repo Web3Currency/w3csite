@@ -30,7 +30,7 @@ export function ServiceCard({ title, tagline, description, icon, href, ctaText =
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay }}
       whileHover={{ y: -4 }}
-      className={`relative flex flex-col h-full min-w-[calc(100vw-3rem)] snap-start sm:min-w-0 group rounded-2xl bg-[#0A0A0A] border border-white/[0.06] p-8 backdrop-blur-none transition-all duration-300 hover:bg-[#0E0E0E] ${brand.twBorderHover}`}
+      className={`relative flex flex-col h-full min-w-full snap-start sm:min-w-0 group rounded-2xl bg-[#0A0A0A] border border-white/[0.06] p-8 backdrop-blur-none transition-all duration-300 hover:bg-[#0E0E0E] ${brand.twBorderHover}`}
     >
       <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true">
         <div 
