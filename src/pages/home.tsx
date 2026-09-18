@@ -2,7 +2,7 @@ import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { ServiceCard } from "@/components/shared/service-card";
 import { GlassCard, MotionGlassCard } from "@/components/shared/glass-card";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import { ArrowRight, ChevronRight, ChevronDown, Globe, Headset, Shield, Users, Wallet, Mail, MessageCircle, Terminal, Send, MessageSquare, Search, HelpCircle, X } from "lucide-react";
@@ -33,6 +33,31 @@ const getProjectImage = (id: string) => {
 
 export default function Home() {
   const { totalTrades, totalVolumeFormatted, avgMonthlyVolumeFormatted } = useLiveMetrics();
+
+  const testimonialsScrollRef = useRef<HTMLDivElement>(null);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+
+  const handleTestimonialsScroll = () => {
+    const container = testimonialsScrollRef.current;
+    if (!container) return;
+    const index = Math.round(container.scrollLeft / container.clientWidth);
+    setActiveTestimonial(Math.min(index, testimonials.length - 1));
+  };
+
+  useEffect(() => {
+    const container = testimonialsScrollRef.current;
+    if (!container || testimonials.length < 2) return;
+
+    const interval = window.setInterval(() => {
+      const nextIndex = (activeTestimonial + 1) % testimonials.length;
+      container.scrollTo({
+        left: nextIndex * container.clientWidth,
+        behavior: "smooth",
+      });
+    }, 4000);
+
+    return () => window.clearInterval(interval);
+  }, [activeTestimonial]);
   const { hero, features, trust, projectsTeaser, cta } = homepageContent;
   const servicesScrollRef = useRef<HTMLDivElement>(null);
   const [activeService, setActiveService] = useState(0);
@@ -453,12 +478,70 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="md:hidden">
+            <div
+              ref={testimonialsScrollRef}
+              onScroll={handleTestimonialsScroll}
+              className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-4 touch-pan-x"
+              style={{ scrollbarWidth: "none" }}
+            >
+              {testimonials.map((testi, idx) => {
+                const getServiceBadge = (service: string) => {
+                  const brand = getServiceBrandColor(service);
+                  return (
+                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full ${brand.twBg} ${brand.twBorder} text-[10px] font-mono font-medium ${brand.twText}`}>
+                      {service}
+                    </span>
+                  );
+                };
+
+                return (
+                  <MotionGlassCard
+                    key={testi.id}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="p-8 border-white/10 bg-white/[0.015] flex flex-col justify-between min-w-full snap-start"
+                  >
+                    <div>
+                      <div className="flex gap-0.5 mb-4 text-amber-400">
+                        {Array.from({ length: testi.rating }).map((_, i) => (
+                          <span key={i} className="text-sm font-bold">★</span>
+                        ))}
+                      </div>
+                      <p className="text-white/80 text-sm leading-relaxed mb-6 italic">
+                        "{testi.statement}"
+                      </p>
+                    </div>
+                    <div className="border-t border-white/[0.06] pt-4 flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-bold text-white leading-none mb-1">{testi.name}</p>
+                        <p className="text-[11px] text-muted-foreground">
+                          {testi.role}{testi.company ? `, ${testi.company}` : ""}
+                        </p>
+                      </div>
+                      {getServiceBadge(testi.serviceUsed)}
+                    </div>
+                  </MotionGlassCard>
+                );
+              })}
+            </div>
+            <div className="flex justify-center gap-1.5 mt-5">
+              {testimonials.map((_, idx) => (
+                <span
+                  key={idx}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${activeTestimonial === idx ? "w-5 bg-white" : "w-1.5 bg-white/20"}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="hidden md:grid md:grid-cols-3 gap-6">
             {testimonials.map((testi, idx) => {
               const getServiceBadge = (service: string) => {
                 const brand = getServiceBrandColor(service);
                 return (
-                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full ${brand.twBg} ${brand.twBorder} text-[10px] font-mono font-medium ${brand.twText}`}>
+                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full ${brand.twBg} ${brand.twBorder} text-[10px] font-mono font-medium ${brand.twText}`}>
                     {service}
                   </span>
                 );
