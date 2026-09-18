@@ -459,7 +459,6 @@ export default function Home() {
                 const brand = getServiceBrandColor(service);
                 return (
                   <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full ${brand.twBg} ${brand.twBorder} text-[10px] font-mono font-medium ${brand.twText}`}>
-                    <span className={`w-1.5 h-1.5 rounded-full ${brand.twDot}`} />
                     {service}
                   </span>
                 );
