@@ -204,7 +204,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
-              className="relative order-2 md:order-1"
+              className="relative order-2 md:order-1 hidden md:block"
             >
               <div className="absolute -inset-6 bg-primary/5 rounded-[3rem] blur-2xl opacity-70" aria-hidden="true" />
               <div className="relative rounded-[2rem] overflow-hidden border border-white/[0.08] bg-[#0A0A0A] shadow-2xl flex items-center justify-center">
