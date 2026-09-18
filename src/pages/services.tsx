@@ -175,6 +175,29 @@ export default function Services() {
         </div>
       </section>
 
+      {/* SERVICE TABS */}
+      <section className="sticky top-20 z-40 bg-black/95 backdrop-blur-md border-b border-white/[0.08]">
+        <div className="container max-w-6xl mx-auto px-6">
+          <div className="flex items-center justify-between gap-6 overflow-x-auto scrollbar-hide whitespace-nowrap">
+            <div className="shrink-0 py-4 border-b-2 border-green-400 text-sm font-semibold text-white">
+              Digital Consulting
+            </div>
+            <div className="shrink-0 py-4 border-b-2 border-transparent text-sm font-semibold text-white/60">
+              W3C DESK
+            </div>
+            <div className="shrink-0 py-4 border-b-2 border-transparent text-sm font-semibold text-white/60">
+              Web Design &amp; Development
+            </div>
+            <div className="shrink-0 py-4 border-b-2 border-transparent text-sm font-semibold text-white/60">
+              W3C Community
+            </div>
+            <div className="shrink-0 py-4 border-b-2 border-transparent text-sm font-semibold text-white/60">
+              Others
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION 2: The four core service cards */}
       <section className="py-4 md:py-8 bg-black">
         <div className="container max-w-6xl mx-auto px-6">
