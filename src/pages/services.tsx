@@ -246,8 +246,9 @@ export default function Services() {
       {/* The selected service content renders here. */}
       <main>{renderActiveService()}</main>
 
-      {/* Final CTA remains */}
-      <section id="services-final-cta" className="py-24 md:py-32 relative overflow-hidden bg-black border-t border-white/[0.08]">
+      {/* Final CTA remains only for the Others tab */}
+      {activeTab === "others" && (
+        <section id="services-final-cta" className="py-24 md:py-32 relative overflow-hidden bg-black border-t border-white/[0.08]">
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
         </div>
@@ -284,6 +285,7 @@ export default function Services() {
           </motion.div>
         </div>
       </section>
+      )}
     </PageTransition>
   );
 }
