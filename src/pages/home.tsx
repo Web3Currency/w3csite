@@ -283,11 +283,11 @@ export default function Home() {
         <div className="container max-w-6xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-[2.5rem] font-display font-bold text-white mb-4">Why People Trust W3C</h2>
-            <p className="text-muted-foreground text-base sm:text-lg">The trust isn't built on promises. It's built on transparency, consistency, and direct communication.</p>
+
           </div>
 
-          {/* Trust Cards with Equal Weight */}
-          <div className="grid md:grid-cols-3 gap-6">
+          {/* Trust Cards */}
+          <div className="grid md:grid-cols-2 gap-6">
             {/* Card 1: Trading Record */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -302,18 +302,18 @@ export default function Home() {
                     <h3 className="font-display font-bold text-white text-xl">Trading Record</h3>
                   </div>
                   
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-3xl font-display font-black text-white">{totalTrades}</p>
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider font-mono">Completed Trades</p>
+                  <div className="grid grid-cols-3 divide-x divide-white/10 rounded-xl border border-white/[0.06] overflow-hidden">
+                    <div className="min-w-0 px-2 py-4 sm:px-4 text-center">
+                      <p className="text-xl sm:text-3xl font-display font-black text-white">{totalTrades}</p>
+                      <p className="mt-1 text-[9px] sm:text-xs text-muted-foreground uppercase tracking-wide sm:tracking-wider font-mono leading-tight">Completed Trades</p>
                     </div>
-                    <div>
-                      <p className="text-3xl font-display font-black text-primary">{totalVolumeFormatted}</p>
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider font-mono">Total Trading Volume</p>
+                    <div className="min-w-0 px-2 py-4 sm:px-4 text-center">
+                      <p className="text-xl sm:text-3xl font-display font-black text-primary">{totalVolumeFormatted}</p>
+                      <p className="mt-1 text-[9px] sm:text-xs text-muted-foreground uppercase tracking-wide sm:tracking-wider font-mono leading-tight">Total Trading Volume</p>
                     </div>
-                    <div>
-                      <p className="text-3xl font-display font-black text-white">{avgMonthlyVolumeFormatted}</p>
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider font-mono">Average Monthly Volume</p>
+                    <div className="min-w-0 px-2 py-4 sm:px-4 text-center">
+                      <p className="text-xl sm:text-3xl font-display font-black text-white">{avgMonthlyVolumeFormatted}</p>
+                      <p className="mt-1 text-[9px] sm:text-xs text-muted-foreground uppercase tracking-wide sm:tracking-wider font-mono leading-tight">Average Monthly Volume</p>
                     </div>
                   </div>
                 </div>
@@ -357,31 +357,6 @@ export default function Home() {
               </GlassCard>
             </motion.div>
 
-            {/* Card 3: Founder-Led Service */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="h-full"
-            >
-              <GlassCard className="h-full flex flex-col justify-between p-6 border-white/[0.06] bg-white/[0.01] hover:bg-white/[0.03] hover:border-primary/20 transition-all duration-300">
-                <div className="space-y-6">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-display font-bold text-white text-xl">Founder-Led Service</h3>
-                  </div>
-
-                  <div className="space-y-4">
-                    <p className="text-white/90 text-sm sm:text-base leading-relaxed font-medium">
-                      Every conversation, project, consultation, and trade is handled directly by me.
-                    </p>
-                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                      No support queues. No outsourced teams. No automated handoffs.
-                    </p>
-                  </div>
-                </div>
-              </GlassCard>
-            </motion.div>
           </div>
         </div>
       </section>
