@@ -36,26 +36,18 @@ export default function Home() {
 
   const testimonialsScrollRef = useRef<HTMLDivElement>(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-
   const handleTestimonialsScroll = () => {
     const container = testimonialsScrollRef.current;
     if (!container) return;
-    const index = Math.round(container.scrollLeft / container.clientWidth);
-    setActiveTestimonial(Math.min(index, testimonials.length - 1));
+    setActiveTestimonial(Math.max(0, Math.min(Math.round(container.scrollLeft / container.clientWidth), testimonials.length - 1)));
   };
-
   useEffect(() => {
     const container = testimonialsScrollRef.current;
     if (!container || testimonials.length < 2) return;
-
     const interval = window.setInterval(() => {
-      const nextIndex = (activeTestimonial + 1) % testimonials.length;
-      container.scrollTo({
-        left: nextIndex * container.clientWidth,
-        behavior: "smooth",
-      });
+      const next = (activeTestimonial + 1) % testimonials.length;
+      container.scrollTo({ left: next * container.clientWidth, behavior: "smooth" });
     }, 4000);
-
     return () => window.clearInterval(interval);
   }, [activeTestimonial]);
   const { hero, features, trust, projectsTeaser, cta } = homepageContent;
@@ -222,7 +214,8 @@ export default function Home() {
 
       {/* Meet Jake Section */}
       <section className="py-20 md:py-24 bg-zinc-950 relative border-y border-white/[0.08]">
-        <div className="container max-w-6xl mx-auto px-6">          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div className="container max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -421,6 +414,7 @@ export default function Home() {
                     </div>
                     <div className="w-6 shrink-0" />
                   </div>
+
                   {/* Mockup Preview Area */}
                   <div className="relative flex-1 w-full h-full overflow-hidden">
                     <img 
@@ -478,70 +472,12 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="md:hidden">
-            <div
-              ref={testimonialsScrollRef}
-              onScroll={handleTestimonialsScroll}
-              className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-4 touch-pan-x"
-              style={{ scrollbarWidth: "none" }}
-            >
-              {testimonials.map((testi, idx) => {
-                const getServiceBadge = (service: string) => {
-                  const brand = getServiceBrandColor(service);
-                  return (
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full ${brand.twBg} ${brand.twBorder} text-[10px] font-mono font-medium ${brand.twText}`}>
-                      {service}
-                    </span>
-                  );
-                };
-
-                return (
-                  <MotionGlassCard
-                    key={testi.id}
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="p-8 border-white/10 bg-white/[0.015] flex flex-col justify-between min-w-full snap-start"
-                  >
-                    <div>
-                      <div className="flex gap-0.5 mb-4 text-amber-400">
-                        {Array.from({ length: testi.rating }).map((_, i) => (
-                          <span key={i} className="text-sm font-bold">★</span>
-                        ))}
-                      </div>
-                      <p className="text-white/80 text-sm leading-relaxed mb-6 italic">
-                        "{testi.statement}"
-                      </p>
-                    </div>
-                    <div className="border-t border-white/[0.06] pt-4 flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-bold text-white leading-none mb-1">{testi.name}</p>
-                        <p className="text-[11px] text-muted-foreground">
-                          {testi.role}{testi.company ? `, ${testi.company}` : ""}
-                        </p>
-                      </div>
-                      {getServiceBadge(testi.serviceUsed)}
-                    </div>
-                  </MotionGlassCard>
-                );
-              })}
-            </div>
-            <div className="flex justify-center gap-1.5 mt-5">
-              {testimonials.map((_, idx) => (
-                <span
-                  key={idx}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${activeTestimonial === idx ? "w-5 bg-white" : "w-1.5 bg-white/20"}`}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="hidden md:grid md:grid-cols-3 gap-6">
-            {testimonials.map((testi, idx) => {
+          <div className="md:hidden"><div ref={testimonialsScrollRef} onScroll={handleTestimonialsScroll} className="flex overflow-x-auto snap-x snap-mandatory gap-4 touch-pan-x scrollbar-hide" style={{ scrollbarWidth: "none" }}>
+{testimonials.map((testi, idx) => {
               const getServiceBadge = (service: string) => {
                 const brand = getServiceBrandColor(service);
                 return (
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full ${brand.twBg} ${brand.twBorder} text-[10px] font-mono font-medium ${brand.twText}`}>
+                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full ${brand.twBg} ${brand.twBorder} text-[10px] font-mono font-medium ${brand.twText}`}>
                     {service}
                   </span>
                 );
@@ -578,6 +514,50 @@ export default function Home() {
                 </MotionGlassCard>
               );
             })}
+          </div><div className="flex justify-center gap-1.5 mt-5">{testimonials.map((_, idx) => <span key={idx} className={"h-1.5 rounded-full transition-all duration-300 " + (activeTestimonial === idx ? "w-5 bg-white" : "w-1.5 bg-white/20")} aria-hidden="true" />)}</div></div>
+          <div className="hidden md:grid md:grid-cols-3 gap-6">
+            {testimonials.map((testi, idx) => {
+              const getServiceBadge = (service: string) => {
+                const brand = getServiceBrandColor(service);
+                return (
+                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full ${brand.twBg} ${brand.twBorder} text-[10px] font-mono font-medium ${brand.twText}`}>
+                    {service}
+                  </span>
+                );
+              };
+
+              return (
+                <MotionGlassCard
+                  key={testi.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.15 }}
+                  className="p-8 border-white/10 bg-white/[0.015] flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex gap-0.5 mb-4 text-amber-400">
+                      {Array.from({ length: testi.rating }).map((_, i) => (
+                        <span key={i} className="text-sm font-bold">★</span>
+                      ))}
+                    </div>
+                    <p className="text-white/80 text-sm leading-relaxed mb-6 italic">
+                      "{testi.statement}"
+                    </p>
+                  </div>
+                  <div className="border-t border-white/[0.06] pt-4 flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-bold text-white leading-none mb-1">{testi.name}</p>
+                      <p className="text-[11px] text-muted-foreground">
+                        {testi.role}{testi.company ? `, ${testi.company}` : ""}
+                      </p>
+                    </div>
+                    {getServiceBadge(testi.serviceUsed)}
+                  </div>
+                </MotionGlassCard>
+              );
+            })}
+
           </div>
         </div>
       </section>
@@ -676,7 +656,8 @@ export default function Home() {
                 {filteredFaqs.length > 0 ? (
                   filteredFaqs.map((faq, index) => {
                     const isOpen = expandedFaq === faq.q;
-                    return (                      <motion.div
+                    return (
+                      <motion.div
                         key={faq.q}
                         layout
                         initial={{ opacity: 0, y: 10 }}
@@ -876,3 +857,52 @@ export default function Home() {
                   href={contact.telegramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="group relative flex items-center gap-4 p-5 rounded-2xl border border-sky-500/10 bg-sky-500/[0.02] hover:bg-sky-500/[0.06] hover:border-sky-500/30 transition-all duration-300 overflow-hidden"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-sky-500/15 border border-sky-500/25 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                    <Send className="w-5 h-5 text-sky-400" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-sm font-bold text-white flex items-center gap-1.5">
+                      Connect on Telegram
+                      <ArrowRight className="w-3.5 h-3.5 opacity-40 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                    </div>
+                    <div className="text-xs text-muted-foreground mt-0.5">Secure messaging, private inquiries</div>
+                  </div>
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-sky-500/[0.02] rounded-full blur-xl pointer-events-none group-hover:bg-sky-500/[0.05] transition-all" />
+                </a>
+
+                <a 
+                  href={`mailto:${contact.email}`}
+                  className="group relative flex items-center gap-4 p-5 rounded-2xl border border-primary/10 bg-primary/[0.02] hover:bg-primary/[0.06] hover:border-primary/30 transition-all duration-300 overflow-hidden"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-primary/15 border border-primary/25 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                    <Mail className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-sm font-bold text-white flex items-center gap-1.5">
+                      Send an Email
+                      <ArrowRight className="w-3.5 h-3.5 opacity-40 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                    </div>
+                    <div className="text-xs text-muted-foreground mt-0.5">Detailed queries, project briefs</div>
+                  </div>
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-primary/[0.02] rounded-full blur-xl pointer-events-none group-hover:bg-primary/[0.05] transition-all" />
+                </a>
+
+                <div className="pt-2 text-center lg:text-left">
+                  <Link 
+                    href="/contact" 
+                    className="inline-flex items-center text-xs font-mono font-medium text-white/50 hover:text-primary transition-colors group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded"
+                  >
+                    <span className="border-b border-white/20 group-hover:border-primary pb-0.5">View all contact channels</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-1 text-white/30 group-hover:text-primary transition-all group-hover:translate-x-0.5" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </PageTransition>
+  );
+}
