@@ -34,6 +34,15 @@ const getProjectImage = (id: string) => {
 export default function Home() {
   const { totalTrades, totalVolumeFormatted, avgMonthlyVolumeFormatted } = useLiveMetrics();
   const { hero, features, trust, projectsTeaser, cta } = homepageContent;
+  const servicesScrollRef = useRef<HTMLDivElement>(null);
+  const [activeService, setActiveService] = useState(0);
+
+  const handleServicesScroll = () => {
+    const el = servicesScrollRef.current;
+    if (!el) return;
+    const index = Math.round(el.scrollLeft / el.clientWidth);
+    setActiveService(Math.max(0, Math.min(index, features.list.length - 1)));
+  };
   const [, setLocation] = useLocation();
 
   const heroRef = useRef<HTMLElement>(null);
@@ -246,7 +255,7 @@ export default function Home() {
             <p className="text-lg sm:text-xl text-muted-foreground">{features.description}</p>
           </div>
           
-          <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 -mx-1 px-1 sm:grid sm:grid-cols-2 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0 md:gap-6">
+          <div ref={servicesScrollRef} onScroll={handleServicesScroll} className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 -mx-1 px-1 sm:grid sm:grid-cols-2 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0 md:gap-6">
             {features.list.map((feature) => (
               <ServiceCard 
                 key={feature.title}
@@ -260,6 +269,11 @@ export default function Home() {
                 delay={feature.delay}
                 iconStyle={feature.iconStyle}
               />
+            ))}
+          </div>
+          <div className="flex sm:hidden items-center justify-center gap-2 mt-4" aria-label="Service card position">
+            {features.list.map((feature, index) => (
+              <span key={feature.title} className={"h-1.5 rounded-full transition-all duration-200 " + (index === activeService ? "w-5 bg-white" : "w-1.5 bg-white/30")} aria-hidden="true" />
             ))}
           </div>
         </div>
