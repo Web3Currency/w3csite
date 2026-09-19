@@ -321,7 +321,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trust Metrics */}
+      {/* Why People Trust W3C */}
       <section className="py-20 md:py-24 bg-zinc-950 border-y border-white/[0.08]">
         <div className="container max-w-6xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
@@ -403,6 +403,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
 
       {/* Featured Projects */}
       <section className="py-20 bg-black">
