@@ -23,7 +23,7 @@ export function Footer() {
                 {branding.businessName.replace("W3C ", "")}
               </span>
             </Link>
-            <p className="text-muted-foreground text-sm leading-relaxed">
+            <p className="text-muted-foreground text-sm leading-relaxed md:block hidden">
               {branding.mission}
             </p>
           </div>
@@ -43,38 +43,38 @@ export function Footer() {
 
           <div className="col-span-1">
             <h4 className="font-display font-semibold text-white mb-6 uppercase tracking-wider text-sm">Social & Community</h4>
-            <div className="flex flex-col gap-4">
-              <a href={`tel:${contact.phoneNumber}`} className="group flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
+            <div className="flex flex-row items-center gap-3 flex-nowrap md:flex-col md:items-start md:gap-4">
+              <a href={`tel:${contact.phoneNumber}`} className="group flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm md:flex">
                 <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-colors">
                   <Phone className="w-4 h-4 text-white/50" />
                 </div>
-                {contact.phoneNumberFormatted}
+                <span className="md:inline hidden">{contact.phoneNumberFormatted}</span>
               </a>
-              <a href={contact.whatsappUrl} target="_blank" rel="noreferrer" className="group flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] rounded-sm">
+              <a href={contact.whatsappUrl} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="group flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] rounded-sm">
                 <div className="w-8 h-8 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 flex items-center justify-center group-hover:border-[#25D366]/50 transition-colors">
                   <SiWhatsapp className="w-4 h-4 text-[#25D366]" />
                 </div>
-                WhatsApp Chat
+                <span className="md:inline hidden">WhatsApp Chat</span>
               </a>
-              <a href={contact.telegramUrl} target="_blank" rel="noreferrer" className="group flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
+              <a href={contact.telegramUrl} target="_blank" rel="noreferrer" aria-label="Telegram" className="group flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
                 <div className="w-8 h-8 rounded-full bg-[#0088cc]/10 border border-[#0088cc]/20 flex items-center justify-center group-hover:border-[#0088cc]/50 transition-colors">
                   <SiTelegram className="w-4 h-4 text-[#0088cc]" />
                 </div>
-                Telegram
+                <span className="md:inline hidden">Telegram</span>
               </a>
-              <a href={contact.twitterUrl} target="_blank" rel="noreferrer" className="group flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
+              <a href={contact.twitterUrl} target="_blank" rel="noreferrer" aria-label="X" className="group flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
                 <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/30 transition-colors">
                   <svg className="w-3.5 h-3.5 fill-current text-white/60" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
                 </div>
-                X
+                <span className="md:inline hidden">X</span>
               </a>
-              <a href={`mailto:${contact.email}`} className="group flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
+              <a href={`mailto:${contact.email}`} aria-label="Email" className="group flex items-center gap-3 text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
                 <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-colors">
                   <Mail className="w-4 h-4 text-white/50" />
                 </div>
-                Email
+                <span className="md:inline hidden">Email</span>
               </a>
             </div>
           </div>
