@@ -219,56 +219,6 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Introduction Section & Case Study Vision */}
-      <section className="py-20 bg-zinc-950 border-y border-white/[0.08]">
-        <div className="container max-w-5xl mx-auto px-6">
-          <div className="grid md:grid-cols-12 gap-10 items-start">
-            
-            {/* Left Box: Building Solutions That Matter */}
-            <div className="md:col-span-7 space-y-6">
-              <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
-                Building Solutions That Matter
-              </h2>
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                I believe the best way to demonstrate capability is through real work. Instead of making promises, I prefer to build, improve, experiment, and continuously refine digital solutions that solve practical problems.
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                {[
-                  "Some projects are commercial.",
-                  "Some are internal tools.",
-                  "Some support the W3C community.",
-                  "Every project contributes to my experience as a builder."
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-1" />
-                    <span className="text-white/80 text-sm">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Box: The Evolution to Case Studies */}
-            <div className="md:col-span-5">
-              <GlassCard className="p-6 border border-white/5 bg-white/[0.01] relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full blur-xl" />
-                <h3 className="text-sm font-mono uppercase tracking-widest text-primary font-bold mb-3">Our Core Standard</h3>
-                <h4 className="text-white font-display font-bold text-lg mb-2">Evolving into Case Studies</h4>
-                <p className="text-xs text-muted-foreground leading-relaxed space-y-2">
-                  <span>
-                    A project shows what was built. A <strong>Case Study</strong> explains the client's problem, my direct approach, the engineered solution, and the actual real-world outcome.
-                  </span>
-                  <span className="block mt-2">
-                    As client engagements and custom builds are finalized, each placeholder card below will transform into a comprehensive case study. This ensures complete transparency and shows exactly how W3C creates measurable value.
-                  </span>
-                </p>
-              </GlassCard>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
       {/* Featured Projects Section */}
       <section className="py-20 md:py-24 bg-black">
         <div className="container max-w-5xl mx-auto px-6">
