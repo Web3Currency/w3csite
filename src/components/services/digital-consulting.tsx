@@ -140,135 +140,28 @@ export default function DigitalConsulting() {
       {/* Main Core Content Grid */}
       <section className="py-20 md:py-24 bg-zinc-950 border-y border-white/[0.08]">
         <div className="container max-w-5xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
-            
-            {/* Left Column: Talk about & Who it's for */}
-            <div className="space-y-12">
-              <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5 }}>
-                <SectionLabel text="What We Can Talk About" />
-                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-6">
-                  There isn't a fixed checklist. Every conversation is different, but people usually reach out when they need help with things like:
-                </p>
-                <ul className="space-y-3">
-                  {[
-                    "Understanding a Web3 project before getting involved",
-                    "Choosing the right tools for their business",
-                    "Planning a website before hiring a developer",
-                    "Improving an existing digital workflow",
-                    "Getting a second opinion before spending money",
-                    "Solving a technical problem they can't figure out alone",
-                    "Learning how to approach a new digital opportunity"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#f97316] shrink-0 mt-2.5" />
-                      <span className="text-white/80 text-sm sm:text-base leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5, delay: 0.1 }}>
-                <SectionLabel text="Who It's For" />
-                <div className="space-y-4">
-                  <div className="flex flex-wrap gap-2">
-                    {["Business Owners", "Creators", "Freelancers", "Students", "Crypto Users"].map((user) => (
-                      <span key={user} className="px-3.5 py-1.5 rounded-xl border border-white/10 bg-white/[0.02] text-xs font-mono font-medium text-white/90">
-                        {user}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="text-white/70 text-sm sm:text-base leading-relaxed">
-                    Anyone who wants honest advice before making an important digital decision.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Right Column: Reach Out If & What You'll Leave With */}
-            <div className="space-y-12">
-              <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5, delay: 0.05 }}>
-                <SectionLabel text="You Might Reach Out If..." />
-                <ul className="space-y-3">
-                  {[
-                    "You're not sure if a crypto opportunity is genuine.",
-                    "You're overwhelmed by different tools and opinions.",
-                    "You want someone to explain things without unnecessary jargon.",
-                    "You're planning a digital project and want a second opinion.",
-                    "You know where you want to go but aren't sure of the next step."
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-amber-500/40 shrink-0 mt-2.5" />
-                      <span className="text-muted-foreground text-sm sm:text-base leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5, delay: 0.15 }}>
-                <SectionLabel text="What You'll Leave With" />
-                <ul className="space-y-3.5">
-                  {[
-                    "A clearer understanding of your options.",
-                    "A practical action plan.",
-                    "Recommended tools or platforms.",
-                    "Answers to questions you've been stuck on.",
-                    "More confidence in your next decision."
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 p-3.5 rounded-xl border border-[#f97316]/10 bg-[#f97316]/[0.01]">
-                      <Check className="w-4 h-4 shrink-0 mt-1 text-[#f97316]" />
-                      <span className="text-white/90 text-sm sm:text-base font-medium leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* How Our Conversation Works */}
-      <section className="py-20 md:py-24 bg-black">
-        <div className="container max-w-5xl mx-auto px-6">
-          <div className="text-center sm:text-left mb-12">
-            <SectionLabel text="How Our Conversation Works" />
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">Direct human-to-human process</h2>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                step: "1",
-                title: "Tell me what's going on",
-                body: "Start by explaining your situation on WhatsApp. No forms. No complicated booking process."
-              },
-              {
-                step: "2",
-                title: "We'll figure it out together",
-                body: "I'll ask questions, understand your situation, and identify where you actually need help."
-              },
-              {
-                step: "3",
-                title: "I'll recommend the best path",
-                body: "If there's a simple solution, I'll tell you. If something isn't worth your time, I'll tell you that too."
-              },
-              {
-                step: "4",
-                title: "Keep moving forward",
-                body: "If you need more guidance afterwards, you can always reach out again."
-              }
-            ].map((step, i) => (
-              <GlassCard key={step.step} className="p-6 border-white/5 bg-white/[0.01] hover:bg-white/[0.02] flex flex-col justify-between">
-                <div>
-                  <span className={`text-2xl font-mono font-black ${brand.twText} block mb-4`}>
-                    0{step.step}
-                  </span>
-                  <h3 className="font-display font-bold text-white text-base mb-2">{step.title}</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{step.body}</p>
-                </div>
-              </GlassCard>
-            ))}
-          </div>
+          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5 }}>
+            <SectionLabel text="What We Can Talk About" />
+            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-6">
+              There isn't a fixed checklist. Every conversation is different, but people usually reach out when they need help with things like:
+            </p>
+            <ul className="space-y-3">
+              {[
+                "Understanding a Web3 project before getting involved",
+                "Choosing the right tools for their business",
+                "Planning a website before hiring a developer",
+                "Improving an existing digital workflow",
+                "Getting a second opinion before spending money",
+                "Solving a technical problem they can't figure out alone",
+                "Learning how to approach a new digital opportunity"
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#f97316] shrink-0 mt-2.5" />
+                  <span className="text-white/80 text-sm sm:text-base leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
       </section>
 
