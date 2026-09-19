@@ -1,9 +1,9 @@
-import { useMemo } from "react";
+import { useState, useEffect } from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { motion } from "framer-motion";
 import { ArrowRight, Building2, Mail, PenTool, MapPin } from "lucide-react";
-import { Link, useLocation } from "wouter";
+import { Link } from "wouter";
 import { servicesContent } from "@/content/services";
 import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
@@ -28,11 +28,25 @@ const tabs: Array<{
 
 export default function Services() {
   const { hero, extras, cta } = servicesContent;
-  const [location, setLocation] = useLocation();
-  const activeTab = useMemo<ServiceTab>(() => {
-    const value = new URLSearchParams(location.split("?")[1] || "").get("tab");
+  const getTabFromUrl = (): ServiceTab => {
+    const value = new URLSearchParams(window.location.search).get("tab");
     return tabs.some((tab) => tab.id === value) ? (value as ServiceTab) : "consulting";
-  }, [location]);
+  };
+
+  const [activeTab, setActiveTab] = useState<ServiceTab>(getTabFromUrl);
+
+  useEffect(() => {
+    const handleUrlChange = () => setActiveTab(getTabFromUrl());
+    window.addEventListener("popstate", handleUrlChange);
+    return () => window.removeEventListener("popstate", handleUrlChange);
+  }, []);
+
+  const selectTab = (tab: ServiceTab) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("tab", tab);
+    window.history.pushState({}, "", url);
+    setActiveTab(tab);
+  };
 
   const getExtraIcon = (name: string) => {
     switch (name) {
@@ -234,7 +248,7 @@ export default function Services() {
                 <button
                   key={tab.id}
                   type="button"
-                  onClick={() => setLocation(`/services?tab=${tab.id}`)}
+                  onClick={() => selectTab(tab.id)}
                   className={`shrink-0 py-4 border-b-2 text-sm sm:text-base font-bold transition-colors ${
                     active ? tab.activeClass : "border-transparent text-white/60 hover:text-white"
                   }`}
