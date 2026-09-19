@@ -42,8 +42,8 @@ export const projects: Project[] = [
     keyHighlights: ["Pi-powered marketplace", "Digital service booking", "Provider onboarding", "Pi payment flow", "Real database-backed services"],
     keyFeatures: ["Pi-compatible service booking", "Provider onboarding", "Pi payment flow", "Real database-backed services"],
     relatedServices: [
-      { label: "Website Design & Development", href: "/services/web-development" },
-      { label: "Digital Consulting & Strategy", href: "/services/digital-consulting" }
+      { label: "Website Design & Development", href: "/services?tab=web" },
+      { label: "Digital Consulting & Strategy", href: "/services?tab=consulting" }
     ]
   },
   {
@@ -80,8 +80,8 @@ export const projects: Project[] = [
       "Expanding the interactive showcase with Web3 simulation widgets"
     ],
     relatedServices: [
-      { label: "Website Design & Development", href: "/services/web-development" },
-      { label: "Digital Consulting & Strategy", href: "/services/digital-consulting" }
+      { label: "Website Design & Development", href: "/services?tab=web" },
+      { label: "Digital Consulting & Strategy", href: "/services?tab=consulting" }
     ]
   },
   {
@@ -114,8 +114,8 @@ export const projects: Project[] = [
       "Instant mobile-responsive page navigation and high-contrast tables"
     ],
     relatedServices: [
-      { label: "Website Design & Development", href: "/services/web-development" },
-      { label: "Digital Consulting & Strategy", href: "/services/digital-consulting" }
+      { label: "Website Design & Development", href: "/services?tab=web" },
+      { label: "Digital Consulting & Strategy", href: "/services?tab=consulting" }
     ]
   },
   {
@@ -152,7 +152,7 @@ export const projects: Project[] = [
     ],
     relatedServices: [
       { label: "W3C Community Hub", href: "/community" },
-      { label: "Digital Consulting & Strategy", href: "/services/digital-consulting" }
+      { label: "Digital Consulting & Strategy", href: "/services?tab=consulting" }
     ]
   },
 ];
