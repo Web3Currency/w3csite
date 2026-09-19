@@ -5,7 +5,7 @@ import { GlassCard, MotionGlassCard } from "@/components/shared/glass-card";
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
-import { ArrowRight, ChevronRight, ChevronDown, Globe, Headset, Shield, ShieldCheck, Users, Wallet, Mail, MessageCircle, Terminal, Send, MessageSquare, Search, HelpCircle, X, CheckCircle2, TrendingUp, Compass, BookOpen, Clock } from "lucide-react";
+import { ArrowRight, ChevronRight, ChevronLeft, ChevronDown, Globe, Headset, Shield, ShieldCheck, Users, Wallet, Mail, MessageCircle, Terminal, Send, MessageSquare, Search, HelpCircle, X, CheckCircle2, TrendingUp, Compass, BookOpen, Clock } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { homepageContent } from "@/content/homepage";
 import { contact } from "@/config/contact";
@@ -68,6 +68,17 @@ export default function Home() {
     if (!el) return;
     const index = Math.round(el.scrollLeft / el.clientWidth);
     setActiveService(Math.max(0, Math.min(index, features.list.length - 1)));
+  };
+
+  const scrollServices = (direction: "next" | "previous") => {
+    const el = servicesScrollRef.current;
+    if (!el) return;
+    const currentIndex = Math.round(el.scrollLeft / el.clientWidth);
+    const nextIndex = Math.max(
+      0,
+      Math.min(currentIndex + (direction === "next" ? 1 : -1), features.list.length - 1)
+    );
+    el.scrollTo({ left: nextIndex * el.clientWidth, behavior: "smooth" });
   };
   const [, setLocation] = useLocation();
 
@@ -298,21 +309,41 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl md:text-[2.5rem] font-display font-bold text-white mb-4 tracking-tight">{features.title}</h2>
           </div>
           
-          <div ref={servicesScrollRef} onScroll={handleServicesScroll} className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 -mx-1 px-1 sm:grid sm:grid-cols-2 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0 md:gap-6">
-            {features.list.map((feature) => (
-              <ServiceCard 
-                key={feature.title}
-                title={feature.title}
-                tagline={feature.tagline}
-                description={feature.description}
-                icon={getFeatureIcon(feature.iconName)}
-                href={feature.href}
-                accentColorClass={feature.accentColorClass}
-                ctaText={feature.ctaText}
-                delay={feature.delay}
-                iconStyle={feature.iconStyle}
-              />
-            ))}
+          <div className="relative">
+            <div ref={servicesScrollRef} onScroll={handleServicesScroll} className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 -mx-1 px-1 sm:grid sm:grid-cols-2 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0 md:gap-6">
+              {features.list.map((feature) => (
+                <ServiceCard 
+                  key={feature.title}
+                  title={feature.title}
+                  tagline={feature.tagline}
+                  description={feature.description}
+                  icon={getFeatureIcon(feature.iconName)}
+                  href={feature.href}
+                  accentColorClass={feature.accentColorClass}
+                  ctaText={feature.ctaText}
+                  delay={feature.delay}
+                  iconStyle={feature.iconStyle}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => scrollServices("previous")}
+              aria-label="Previous service"
+              className={`sm:hidden absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-white/15 bg-black/30 backdrop-blur-sm text-white/80 flex items-center justify-center transition-all duration-200 hover:bg-black/50 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${activeService > 0 ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+            >
+              <ChevronLeft className="w-6 h-6" aria-hidden="true" />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => scrollServices("next")}
+              aria-label="Next service"
+              className={`sm:hidden absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-white/15 bg-black/30 backdrop-blur-sm text-white/80 flex items-center justify-center transition-all duration-200 hover:bg-black/50 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${activeService < features.list.length - 1 ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+            >
+              <ChevronRight className="w-6 h-6" aria-hidden="true" />
+            </button>
           </div>
           <div className="flex sm:hidden items-center justify-center gap-2 mt-4" aria-label="Service card position">
             {features.list.map((feature, index) => (
