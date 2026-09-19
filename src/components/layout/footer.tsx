@@ -24,7 +24,6 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              {branding.tagline}<br />
               {branding.mission}
             </p>
           </div>
