@@ -39,13 +39,21 @@ export default function Home() {
   const handleTestimonialsScroll = () => {
     const container = testimonialsScrollRef.current;
     if (!container) return;
-    setActiveTestimonial(Math.max(0, Math.min(Math.round(container.scrollLeft / container.clientWidth), testimonials.length - 1)));
+    const index = Math.round(container.scrollLeft / container.clientWidth);
+    if (index >= testimonials.length) {
+      setActiveTestimonial(0);
+      window.requestAnimationFrame(() => {
+        container.scrollTo({ left: 0, behavior: "auto" });
+      });
+      return;
+    }
+    setActiveTestimonial(Math.max(0, index));
   };
   useEffect(() => {
     const container = testimonialsScrollRef.current;
     if (!container || testimonials.length < 2) return;
     const interval = window.setInterval(() => {
-      const next = (activeTestimonial + 1) % testimonials.length;
+      const next = activeTestimonial + 1;
       container.scrollTo({ left: next * container.clientWidth, behavior: "smooth" });
     }, 4000);
     return () => window.clearInterval(interval);
@@ -480,11 +488,11 @@ export default function Home() {
               className="flex overflow-x-auto snap-x snap-mandatory gap-4 touch-pan-x scrollbar-hide"
               style={{ scrollbarWidth: "none" }}
             >
-              {testimonials.map((testi) => {
+              {[...testimonials, testimonials[0]].map((testi, idx) => {
                 const brand = getServiceBrandColor(testi.serviceUsed);
                 return (
                   <MotionGlassCard
-                    key={testi.id}
+                    key={`${testi.id}-${idx}`}
                     className="p-8 border-white/10 bg-white/[0.015] flex flex-col justify-between min-w-full snap-start"
                   >
                     <div>
