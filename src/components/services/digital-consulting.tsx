@@ -116,7 +116,7 @@ export default function DigitalConsulting() {
         </div>
         <div className="container max-w-4xl mx-auto px-6 relative z-10 text-center sm:text-left">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: "easeOut" }} className="space-y-6">
-            <div className="flex flex-col sm:flex-row items-center gap-3 justify-center sm:justify-start">
+            <div className="flex flex-row items-center gap-3 justify-center sm:justify-start">
               <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border ${brand.twBg} ${brand.twBorder}`}>
                 <Headphones className={`w-6 h-6 ${brand.twText}`} />
               </div>
@@ -328,18 +328,6 @@ export default function DigitalConsulting() {
               </button>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Authentic Positioning Section */}
-      <section className="py-20 md:py-24 bg-black border-t border-white/[0.08]">
-        <div className="container max-w-4xl mx-auto px-6 text-center">
-          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5 }}>
-            <p className="text-lg sm:text-xl md:text-2xl text-white/95 leading-relaxed font-display italic max-w-3xl mx-auto">
-              "People have been coming to me for advice on websites, Web3, crypto, and digital tools for years. Digital Consulting is simply a way to make that guidance available in a more structured way."
-            </p>
-            <p className="text-xs font-mono uppercase tracking-widest text-[#f97316] mt-4 font-bold">— Jake, Founder</p>
-          </motion.div>
         </div>
       </section>
 
