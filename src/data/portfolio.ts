@@ -86,7 +86,7 @@ export const projects: Project[] = [
   },
   {
     id: "gold-marine-group",
-    title: "Gold Marine Group",
+    title: "Gold Marine Energy Service",
     category: "Corporate Website",
     shortDescription: "A modern corporate website built to strengthen the company's online presence and provide a professional platform for showcasing its services. The project includes a certificate verification system connected to a database, allowing users to verify issued certificates directly through the website.",
     problem: "Providing international clients with a secure, instant, and trustworthy platform to verify corporate safety and technical certifications offline-to-online.",
