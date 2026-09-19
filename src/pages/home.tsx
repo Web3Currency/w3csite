@@ -251,14 +251,32 @@ export default function Home() {
               className="order-1 md:order-2"
             >
               <h2 className="text-4xl sm:text-5xl font-display font-bold text-white mb-6 tracking-tight">
-                Hi, I'm {branding.founderName.toUpperCase()}.
+                Hi, I'm JAKE.
               </h2>
               <div className="space-y-5 text-[1.125rem] text-white/90 leading-[1.6]">
                 <p>
-                  I created {branding.businessName} as one place where I can bring together everything I do in the digital space. Over the years, I have helped people through crypto P2P trading, built a growing Web3 community, developed modern websites using AI-powered workflows, and provided practical digital guidance.
+                  I created W3C Digital Network as one place where I can bring together the things I do in the digital space.
+                </p>
+                <p>
+                  Over the years, I've explored and worked across crypto, Web3, AI, digital art, websites and digital solutions. I've helped people through crypto P2P trading, built a growing Web3 community, designed and built websites and digital products, and provided practical digital guidance.
+                </p>
+                <p>
+                  I don't like limiting myself to just one thing. I enjoy learning, creating, solving problems and finding new ways to use technology.
+                </p>
+                <p>
+                  My goal is simple: to make digital opportunities easier to understand, easier to access, and easier to use.
+                </p>
+                <p>
+                  W3C is a reflection of that journey.
+                </p>
+                <p>
+                  It's where my interests in creativity, technology, crypto, Web3 and AI come together to create something useful for other people.
                 </p>
                 <p className="text-muted-foreground">
-                  My goal is simple: to make digital opportunities easier to understand, easier to access, and easier to use. I believe in being approachable, explaining complex things clearly, and keeping myself genuinely available to help you make sense of the digital world.
+                  I believe digital should feel practical and approachable, not complicated or intimidating.
+                </p>
+                <p className="text-muted-foreground">
+                  That's what I'm building with W3C Digital Network.
                 </p>
               </div>
               <div className="mt-10">
