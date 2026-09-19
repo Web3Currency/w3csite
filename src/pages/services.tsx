@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useMemo } from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { motion } from "framer-motion";
 import { ArrowRight, Building2, Mail, PenTool, MapPin } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { servicesContent } from "@/content/services";
 import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
-import DigitalConsulting from "@/pages/services/digital-consulting";
-import CryptoP2P from "@/pages/services/crypto-p2p";
-import WebDevelopment from "@/pages/services/web-development";
-import CommunityService from "@/pages/services/community";
+import DigitalConsulting from "@/components/services/digital-consulting";
+import CryptoP2P from "@/components/services/crypto-p2p";
+import WebDevelopment from "@/components/services/web-development";
+import CommunityService from "@/components/services/community";
 
 type ServiceTab = "consulting" | "desk" | "web" | "community" | "others";
 
@@ -28,7 +28,11 @@ const tabs: Array<{
 
 export default function Services() {
   const { hero, extras, cta } = servicesContent;
-  const [activeTab, setActiveTab] = useState<ServiceTab>("consulting");
+  const [location, setLocation] = useLocation();
+  const activeTab = useMemo<ServiceTab>(() => {
+    const value = new URLSearchParams(location.split("?")[1] || "").get("tab");
+    return tabs.some((tab) => tab.id === value) ? (value as ServiceTab) : "consulting";
+  }, [location]);
 
   const getExtraIcon = (name: string) => {
     switch (name) {
@@ -230,7 +234,7 @@ export default function Services() {
                 <button
                   key={tab.id}
                   type="button"
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => setLocation(`/services?tab=${tab.id}`)}
                   className={`shrink-0 py-4 border-b-2 text-sm sm:text-base font-bold transition-colors ${
                     active ? tab.activeClass : "border-transparent text-white/60 hover:text-white"
                   }`}
