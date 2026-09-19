@@ -102,8 +102,8 @@ export default function Home() {
 
   // Featured projects on the homepage (Gold Marine Group and CEECAR Bot)
   const featuredProjects = [
-    projects.find(p => p.id === "gold-marine-group"),
-    projects.find(p => p.id === "ceecar")
+    projects.find(p => p.id === "w3c-pi-bookings"),
+    projects.find(p => p.id === "gold-marine-group")
   ].filter((p): p is typeof projects[0] => !!p);
 
   const schemaOrg = {
@@ -409,6 +409,7 @@ export default function Home() {
                         {project.id === "w3c-digital-network" && "web3currency.online"}
                         {project.id === "gold-marine-group" && "goldmarinegroup.com"}
                         {project.id === "w3c-test-token-tracker" && "tw3c-tracker.vercel.app"}
+                        {project.id === "w3c-pi-bookings" && "app.web3currency.online"}
                         {project.id === "ceecar" && "t.me/ceecarbot"}
                       </span>
                     </div>
