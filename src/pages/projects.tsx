@@ -294,6 +294,7 @@ export default function Projects() {
                             {project.id === "w3c-digital-network" && "web3currency.online"}
                             {project.id === "gold-marine-group" && "goldmarinegroup.com"}
                             {project.id === "w3c-test-token-tracker" && "tw3c-tracker.vercel.app"}
+                        {project.id === "w3c-pi-bookings" && "app.web3currency.online"}
                             {project.id === "ceecar" && "t.me/ceecarbot"}
                           </span>
                         </div>
