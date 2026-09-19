@@ -10,6 +10,7 @@ import { SiWhatsapp } from "react-icons/si";
 import { homepageContent } from "@/content/homepage";
 import { contact } from "@/config/contact";
 import { branding } from "@/config/branding";
+import { metrics } from "@/config/metrics";
 import { projects } from "@/data/portfolio";
 import { testimonials } from "@/content/testimonials";
 import { getServiceBrandColor } from "@/config/theme";
@@ -32,7 +33,7 @@ const getProjectImage = (id: string) => {
 };
 
 export default function Home() {
-  const { totalTrades, totalVolumeFormatted, avgMonthlyVolumeFormatted } = useLiveMetrics();
+  const { totalTrades, totalVolumeFormatted, avgMonthlyVolumeFormatted, lastTradeDate } = useLiveMetrics();
 
   const testimonialsScrollRef = useRef<HTMLDivElement>(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -404,6 +405,65 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* By the Numbers */}
+      <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
+        <div className="container max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
+              By the Numbers
+            </h2>
+            <p className="text-muted-foreground mt-3 max-w-xl mx-auto text-sm">
+              Live, dynamic metrics pulled from our centralized content management system.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { label: "Total Trading Volume", value: totalVolumeFormatted, icon: Wallet },
+              { label: "Trades Completed", value: totalTrades.toString(), icon: CheckCircle2 },
+              { label: "Community Members", value: metrics.communitySize, icon: Users },
+              { label: "Protocol Explored", value: metrics.testnetsCompleted, icon: Globe },
+              { label: "People Supported", value: metrics.clientsSupported, icon: Globe },
+              { label: "Year Founded", value: metrics.activeSince, icon: BookOpen },
+              { label: "Officially Registered", value: branding.cacStatus, subValue: branding.rcNumber, icon: Shield },
+              { label: "Last Updated", value: lastTradeDate, icon: Clock },
+            ].map((sc, idx) => {
+              const Icon = sc.icon;
+              return (
+                <motion.div
+                  key={sc.label}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.05 }}
+                >
+                  <GlassCard className="p-6 h-full flex flex-col justify-between border-white/5 bg-white/[0.015] hover:border-primary/10 transition-colors">
+                    <div>
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <span className="text-[10px] font-mono uppercase text-muted-foreground tracking-wider block mb-2">{sc.label}</span>
+                    </div>
+                    <div>
+                      <div className="text-2xl sm:text-3xl font-display font-bold text-white leading-none">{sc.value}</div>
+                      {sc.subValue && (
+                        <div className="text-[10px] font-mono text-muted-foreground mt-1">{sc.subValue}</div>
+                      )}
+                    </div>
+                  </GlassCard>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* Featured Projects */}
       <section className="py-20 bg-black">
