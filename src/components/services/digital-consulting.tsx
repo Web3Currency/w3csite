@@ -116,7 +116,7 @@ export default function DigitalConsulting() {
         </div>
         <div className="container max-w-4xl mx-auto px-6 relative z-10 text-center sm:text-left">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: "easeOut" }} className="space-y-6">
-            <div className="flex flex-row items-center gap-3 justify-center sm:justify-start">
+            <div className="flex flex-row items-center gap-3 justify-start">
               <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border ${brand.twBg} ${brand.twBorder}`}>
                 <Headphones className={`w-6 h-6 ${brand.twText}`} />
               </div>
