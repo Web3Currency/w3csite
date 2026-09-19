@@ -132,6 +132,41 @@ export const projects: Project[] = [
     ]
   },
   {
+    id: "w3c-pi-bookings",
+    title: "W3C Pi Bookings",
+    category: "Internal Web3 Tool",
+    shortDescription: "A Pi-powered digital services marketplace where clients can discover, book, and pay for services from digital service providers.",
+    problem: "Creating a simple way for clients to discover digital services, connect with providers, and complete bookings using Pi.",
+    role: "Product Designer & Core Developer",
+    tags: ["React", "TypeScript", "Supabase", "Pi Network", "Pi Payments", "Vercel"],
+    status: "In Development",
+    statusColorClass: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+    colorClass: "text-orange-400 bg-orange-400/10",
+    externalLink: "https://app.web3currency.online",
+    overview: "W3C Pi Bookings is a Pi-powered marketplace for digital services, connecting clients with service providers through a simple booking and payment experience.",
+    challenge: "Bringing service discovery, provider onboarding, booking, and Pi payments into one focused experience without making the marketplace unnecessarily complex.",
+    approach: "Build a lightweight marketplace experience with real database-backed services, provider profiles, booking flows, and Pi-compatible payments.",
+    solution: "A responsive digital services marketplace where users can explore service categories, review providers, book services, and pay in Pi.",
+    lessonsLearned: "A marketplace becomes easier to use when discovery, provider information, booking, and payment are kept within a clear flow.",
+    keyHighlights: [
+      "Pi-powered marketplace",
+      "Digital service booking",
+      "Provider onboarding",
+      "Pi payment flow",
+      "Real database-backed services"
+    ],
+    keyFeatures: [
+      "Pi-compatible service booking",
+      "Provider onboarding",
+      "Pi payment flow",
+      "Real database-backed services"
+    ],
+    relatedServices: [
+      { label: "Website Design & Development", href: "/services/web-development" },
+      { label: "Digital Consulting & Strategy", href: "/services/digital-consulting" }
+    ]
+  },
+  {
     id: "ceecar",
     title: "CEECAR",
     category: "Telegram Trading Assistant",
