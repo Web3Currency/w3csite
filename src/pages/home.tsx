@@ -24,10 +24,10 @@ const getProjectImage = (id: string) => {
       return "https://i.imgur.com/qO5yasK.jpeg";
     case "w3c-test-token-tracker":
       return "https://i.imgur.com/oFxxGhs.jpeg";
-    case "ceecar":
-      return "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80";
+    case "w3c-pi-bookings":
+      return "https://i.imgur.com/UofCtfk.jpeg";
     default:
-      return "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80";
+      return "";
   }
 };
 
