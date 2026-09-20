@@ -74,7 +74,7 @@ export default function Services() {
       case "others":
         return (
           <section className="py-20 md:py-24 bg-zinc-950 border-y border-white/[0.08]">
-            <div className="container max-w-6xl mx-auto px-6">
+            <div className="site-container">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -216,7 +216,7 @@ export default function Services() {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
         </div>
 
-        <div className="container max-w-6xl mx-auto px-6 relative z-10">
+        <div className="site-container relative z-10">
           <div className="max-w-2xl">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -240,7 +240,7 @@ export default function Services() {
 
       {/* Functional sticky service tabs */}
       <section className="sticky top-20 z-40 bg-black/95 backdrop-blur-md border-b border-white/[0.08]">
-        <div className="container max-w-6xl mx-auto px-6">
+        <div className="site-container">
           <div className="flex items-center gap-6 overflow-x-auto scrollbar-hide whitespace-nowrap">
             {tabs.map((tab) => {
               const active = activeTab === tab.id;
@@ -270,7 +270,7 @@ export default function Services() {
         <div className="absolute inset-0">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
         </div>
-        <div className="container max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <div className="site-container relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
