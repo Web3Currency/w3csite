@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { motion } from "framer-motion";
@@ -21,7 +21,7 @@ const tabs: Array<{
 }> = [
   { id: "consulting", label: "Digital Consulting", activeClass: "border-green-400 text-white" },
   { id: "desk", label: "W3C DESK", activeClass: "border-orange-400 text-white" },
-  { id: "web", label: "Web Design & Development", activeClass: "border-yellow-400 text-white" },
+  { id: "web", label: "Web Dev", activeClass: "border-yellow-400 text-white" },
   { id: "community", label: "W3C Community", activeClass: "border-purple-400 text-white" },
   { id: "others", label: "Others", activeClass: "border-white text-white" },
 ];
@@ -34,12 +34,43 @@ export default function Services() {
   };
 
   const [activeTab, setActiveTab] = useState<ServiceTab>(getTabFromUrl);
+  const tabsContainerRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<Record<ServiceTab, HTMLButtonElement | null>>({
+    consulting: null,
+    desk: null,
+    web: null,
+    community: null,
+    others: null,
+  });
 
   useEffect(() => {
     const handleUrlChange = () => setActiveTab(getTabFromUrl());
     window.addEventListener("popstate", handleUrlChange);
     return () => window.removeEventListener("popstate", handleUrlChange);
   }, []);
+
+  useEffect(() => {
+    if (window.innerWidth >= 768) return;
+
+    const container = tabsContainerRef.current;
+    const tab = tabRefs.current[activeTab];
+    if (!container || !tab) return;
+
+    requestAnimationFrame(() => {
+      const maxScrollLeft = container.scrollWidth - container.clientWidth;
+      const targetScrollLeft =
+        tab.offsetLeft - (container.clientWidth - tab.offsetWidth) / 2;
+      const clampedScrollLeft = Math.max(
+        0,
+        Math.min(targetScrollLeft, maxScrollLeft),
+      );
+
+      container.scrollTo({
+        left: clampedScrollLeft,
+        behavior: "smooth",
+      });
+    });
+  }, [activeTab]);
 
   const selectTab = (tab: ServiceTab) => {
     const url = new URL(window.location.href);
@@ -241,12 +272,18 @@ export default function Services() {
       {/* Functional sticky service tabs */}
       <section className="sticky top-20 z-40 bg-black/95 backdrop-blur-md border-b border-white/[0.08]">
         <div className="site-container">
-          <div className="flex items-center gap-6 overflow-x-auto scrollbar-hide whitespace-nowrap">
+          <div
+            ref={tabsContainerRef}
+            className="flex items-center gap-6 overflow-x-auto scrollbar-hide whitespace-nowrap"
+          >
             {tabs.map((tab) => {
               const active = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
+                  ref={(element) => {
+                    tabRefs.current[tab.id] = element;
+                  }}
                   type="button"
                   onClick={() => selectTab(tab.id)}
                   className={`shrink-0 py-4 border-b-2 text-sm sm:text-base font-bold transition-colors ${
