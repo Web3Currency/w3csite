@@ -97,6 +97,23 @@ export default function Services() {
       case "consulting":
         return (
           <>
+            <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden bg-black">
+              <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-grid-fade" aria-hidden="true" />
+                <div
+                  className="absolute inset-0 opacity-25 pointer-events-none"
+                  style={{ background: "radial-gradient(circle at 50% 50%, #22C55E15, transparent 70%)" }}
+                />
+              </div>
+              <div className="container max-w-5xl mx-auto px-6 relative z-10">
+                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-black leading-[1.1] tracking-tight max-w-4xl text-[#22C55E]">
+                  Let&apos;s find the right digital solution for you.
+                </h1>
+                <p className="text-lg sm:text-xl text-white/90 leading-relaxed font-medium max-w-3xl mt-6">
+                  I help individuals, creators, and businesses figure out what they need, improve what they already have, and turn digital ideas into practical solutions.
+                </p>
+              </div>
+            </section>
             <DigitalSolutions />
             <section className="py-16 md:py-20 bg-black border-t border-white/[0.08]">
               <div className="container max-w-4xl mx-auto px-6">
