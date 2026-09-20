@@ -167,14 +167,10 @@ export default function CryptoP2P() {
   };
 
   const goBack = () => {
-    if (confirming && !complete) {
+    if (confirming) {
     return (
       <PageTransition>
-        <SEO
-          title={"Confirm W3C DESK Trade Request | " + branding.businessName}
-          description={"Review your W3C DESK trade request before continuing to WhatsApp."}
-          path="/services"
-        />
+        <SEO title={"Confirm W3C DESK Trade Request | " + branding.businessName} description={"Review your W3C DESK trade request before continuing to WhatsApp."} path="/services" />
         <section className="py-20 md:py-28 bg-zinc-950 border-y border-white/[0.08]">
           <div className="container max-w-2xl mx-auto px-6">
             <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 sm:p-10">
@@ -189,12 +185,10 @@ export default function CryptoP2P() {
                 {answers.note && <SummaryRow label="Note" value={answers.note} />}
               </div>
               <button type="button" onClick={sendToWhatsApp} className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#25D366] text-black font-bold text-sm hover:brightness-110 transition-all">
-                <SiWhatsapp className="w-4 h-4" />
-                Confirm Request & Continue to WhatsApp
+                <SiWhatsapp className="w-4 h-4" /> Confirm Request & Continue to WhatsApp
               </button>
               <button type="button" onClick={goBack} className="mt-5 inline-flex w-full items-center justify-center gap-2 text-sm font-semibold text-muted-foreground hover:text-white transition-colors">
-                <ArrowLeft className="w-4 h-4" />
-                Back
+                <ArrowLeft className="w-4 h-4" /> Back
               </button>
             </motion.div>
           </div>
@@ -208,13 +202,11 @@ export default function CryptoP2P() {
       setConfirming(true);
       return;
     }
-
     if (confirming) {
       setConfirming(false);
       setStep(questions.length - 1);
       return;
     }
-
     if (step > 0) setStep(step - 1);
   };
 
