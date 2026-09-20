@@ -17,7 +17,7 @@ export default function Terms() {
         {/* Ambient background glows */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#f97316]/5 rounded-full blur-[120px] pointer-events-none" />
         
-        <div className="container max-w-3xl mx-auto px-6 relative z-10">
+        <div className="site-container relative z-10">
           <div className="space-y-4 text-center sm:text-left mb-12 border-b border-white/[0.08] pb-10">
             <div className="flex items-center gap-2 justify-center sm:justify-start text-[#f97316] font-mono text-xs font-bold tracking-widest uppercase">
               <Scale className="w-4 h-4" />
