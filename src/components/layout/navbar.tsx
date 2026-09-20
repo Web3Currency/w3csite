@@ -94,7 +94,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 md:hidden h-[100dvh]"
+            className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 md:hidden h-[100dvh]"
           >
             <nav className="flex flex-col items-center gap-8 w-full px-6">
               {navigation.headerLinks.map((link, i) => (
