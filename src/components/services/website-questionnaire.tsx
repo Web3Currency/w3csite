@@ -272,12 +272,9 @@ export default function WebsiteQuestionnaire() {
   return (
     <section className="py-20 md:py-28 bg-zinc-950 border-y border-white/[0.08]">
       <div className="container max-w-2xl mx-auto px-6">
-        <div className="flex items-center justify-between gap-4 mb-8">
+        <div className="flex items-center justify-center mb-8">
           <span className={`text-xs uppercase tracking-widest font-mono font-bold ${brand.twText}`}>
             LET'S FIGURE IT OUT
-          </span>
-          <span className="text-xs text-muted-foreground font-mono">
-            {step + 1} of {questions.length}
           </span>
         </div>
 
@@ -323,9 +320,7 @@ export default function WebsiteQuestionnaire() {
                     <span className="flex items-center justify-between gap-4">
                       <span className="text-sm sm:text-base font-semibold">{option}</span>
                       <ArrowRight
-                        className={`w-4 h-4 shrink-0 transition-transform group-hover:translate-x-1 ${
-                          selected ? brand.twText : "text-white/30"
-                        }`}
+                        className={`w-4 h-4 shrink-0 transition-transform group-hover:translate-x-1 ${brand.twText}`}
                       />
                     </span>
                   </button>
