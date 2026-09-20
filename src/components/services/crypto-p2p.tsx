@@ -167,63 +167,18 @@ export default function CryptoP2P() {
   };
 
   const goBack = () => {
-    if (confirming && !complete) {
-    return (
-      <PageTransition>
-        <SEO
-          title={"Confirm W3C DESK Trade Request | " + branding.businessName}
-          description={"Review your W3C DESK trade request before continuing to WhatsApp."}
-          path="/services"
-        />
-        <section className="py-20 md:py-28 bg-zinc-950 border-y border-white/[0.08]">
-          <div className="container max-w-2xl mx-auto px-6">
-            <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 sm:p-10">
-              <span className={"text-xs uppercase tracking-widest font-mono font-bold " + brand.twText}>
-                FINAL STEP
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mt-3">
-                Confirm your trade request.
-              </h2>
-              <p className="text-muted-foreground mt-4 leading-relaxed">
-                Review your details below. When you continue, your request will open in WhatsApp for Jake to review.
-              </p>
-
-              <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.02] divide-y divide-white/[0.08]">
-                <SummaryRow label="Trade" value={answers.tradeType === "Buy crypto" ? "Buy crypto" : "Sell crypto"} />
-                <SummaryRow label="Asset" value={answers.assetName || answers.asset} />
-                <SummaryRow label="Amount" value={answers.amount} />
-                <SummaryRow
-                  label={answers.tradeType === "Buy crypto" ? "Receive in" : "Sending from"}
-                  value={answers.tradeType === "Buy crypto" ? answers.destination : answers.source}
-                />
-                {answers.note && <SummaryRow label="Note" value={answers.note} />}
-              </div>
-
-              <button
-                type="button"
-                onClick={sendToWhatsApp}
-                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#25D366] text-black font-bold text-sm hover:brightness-110 transition-all"
-              >
-                <SiWhatsapp className="w-4 h-4" />
-                Confirm Request & Continue to WhatsApp
-              </button>
-            </motion.div>
-          </div>
-        </section>
-      </PageTransition>
-    );
-  }
-
-  if (complete) {
+    if (complete) {
       setComplete(false);
       setConfirming(true);
       return;
     }
+
     if (confirming) {
       setConfirming(false);
       setStep(questions.length - 1);
       return;
     }
+
     if (step > 0) setStep(step - 1);
   };
 
