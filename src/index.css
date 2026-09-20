@@ -197,6 +197,20 @@
  * Automatic contrast adjustment.
  */
 @layer utilities {
+  /* Shared responsive content container used across all website sections. */
+  .site-container {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .site-container {
+      padding-inline: 1.5rem;
+    }
+  }
+
 
   input[type="search"]::-webkit-search-cancel-button {
     @apply hidden;
