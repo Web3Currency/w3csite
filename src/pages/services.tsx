@@ -7,7 +7,7 @@ import { Link } from "wouter";
 import { servicesContent } from "@/content/services";
 import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
-import DigitalConsulting from "@/components/services/digital-consulting";
+import DigitalSolutions from "@/components/services/digital-consulting";
 import CryptoP2P from "@/components/services/crypto-p2p";
 import WebDevelopment from "@/components/services/web-development";
 import CommunityService from "@/components/services/community";
@@ -19,7 +19,7 @@ const tabs: Array<{
   label: string;
   activeClass: string;
 }> = [
-  { id: "consulting", label: "Digital Consulting", activeClass: "border-green-400 text-white" },
+  { id: "consulting", label: "Digital Solutions", activeClass: "border-green-400 text-white" },
   { id: "desk", label: "W3C DESK", activeClass: "border-orange-400 text-white" },
   { id: "web", label: "Web Dev", activeClass: "border-yellow-400 text-white" },
   { id: "community", label: "W3C Community", activeClass: "border-purple-400 text-white" },
@@ -95,7 +95,7 @@ export default function Services() {
   const renderActiveService = () => {
     switch (activeTab) {
       case "consulting":
-        return <DigitalConsulting />;
+        return <DigitalSolutions />;
       case "desk":
         return <CryptoP2P />;
       case "web":
