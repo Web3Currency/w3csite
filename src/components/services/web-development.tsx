@@ -1,7 +1,7 @@
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { Link } from "wouter";
-import { Code, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
 import { getServiceBrandColor } from "@/config/theme";
@@ -42,16 +42,7 @@ export default function WebDevelopment() {
         </div>
 
         <div className="container max-w-5xl mx-auto px-6 relative z-10">
-          <div className="flex items-center gap-3 mb-6">
-            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border ${brand.twBg} ${brand.twBorder}`}>
-              <Code className={`w-6 h-6 ${brand.twText}`} />
-            </div>
-            <span className={`text-xs uppercase tracking-widest font-mono font-bold ${brand.twText}`}>
-              Website Design & Development
-            </span>
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-black leading-[1.1] tracking-tight text-white max-w-4xl">
+          <h1 className={`text-4xl sm:text-6xl lg:text-7xl font-display font-black leading-[1.1] tracking-tight max-w-4xl ${brand.twText}`}>
             Let&apos;s build the right website for you.
           </h1>
 
