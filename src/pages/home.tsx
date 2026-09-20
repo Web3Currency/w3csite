@@ -5,7 +5,7 @@ import { GlassCard, MotionGlassCard } from "@/components/shared/glass-card";
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
-import { ArrowRight, ChevronRight, ChevronLeft, ChevronDown, Globe, Headset, Shield, ShieldCheck, Users, Wallet, Mail, MessageCircle, Terminal, Send, MessageSquare, Search, HelpCircle, X, CheckCircle2, TrendingUp, Compass, BookOpen, Clock } from "lucide-react";
+import { ArrowRight, ChevronRight, ChevronLeft, ChevronDown, Globe, Headset, Shield, ShieldCheck, Users, Wallet, Mail, MessageCircle, Terminal, Send, MessageSquare, HelpCircle, CheckCircle2, TrendingUp, Compass, BookOpen, Clock } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { homepageContent } from "@/content/homepage";
 import { contact } from "@/config/contact";
@@ -144,17 +144,10 @@ export default function Home() {
     heroRef.current?.nextElementSibling?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("about");
   const [expandedFaq, setExpandedFaq] = useState<string | null>(null);
 
-  const filteredFaqs = faqs.filter((faq) => {
-    const matchesCategory = selectedCategory === "all" || faq.category === selectedCategory;
-    const matchesSearch =
-      faq.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      faq.a.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  const filteredFaqs = faqs.filter((faq) => faq.category === selectedCategory);
 
   const getFeatureIcon = (name: string) => {
     switch (name) {
@@ -628,94 +621,49 @@ export default function Home() {
       </section>
 
 
-      {/* Searchable Help Hub & FAQ Section */}
+      {/* Help Hub & FAQ Section */}
       <section id="homepage-faq-section" className="py-20 md:py-24 bg-black border-t border-white/[0.08] relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
         </div>
-
         <div className="site-container relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-14">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
               How can I help you today?
             </h2>
-            <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-              Search or browse the most common questions. If you don't find what you're looking for, send me a message.
-            </p>
           </div>
-
-          <div className="grid lg:grid-cols-12 gap-8 items-start">
-            {/* Left side: Search & filters */}
-            <div className="lg:col-span-5 space-y-6">
-              <div className="relative">
-                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-white/40">
-                  <Search className="w-5 h-5" />
-                </div>
-                <input
-                  id="help-search-input"
-                  type="text"
-                  placeholder="Search questions or keywords..."
-                  value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value);
-                    setExpandedFaq(null);
-                  }}
-                  className="w-full bg-white/[0.02] border border-white/10 rounded-xl py-3.5 pl-12 pr-10 text-white placeholder-white/40 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all text-sm font-sans"
-                />
-                {searchQuery && (
+          <div className="max-w-4xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-2 mb-10">
+              {[
+                { id: "about", label: "About" },
+                { id: "web-dev", label: "Web Dev" },
+                { id: "consulting", label: "Advisory" },
+                { id: "p2p", label: "W3C DESK" },
+                { id: "community", label: "Community" },
+                { id: "communication", label: "Channels" },
+                { id: "projects", label: "Projects" }
+              ].map((cat) => {
+                const isSelected = selectedCategory === cat.id;
+                return (
                   <button
-                    id="help-search-clear-btn"
+                    key={cat.id}
+                    id={`help-cat-btn-${cat.id}`}
                     onClick={() => {
-                      setSearchQuery("");
+                      setSelectedCategory(cat.id);
                       setExpandedFaq(null);
                     }}
-                    className="absolute inset-y-0 right-3 flex items-center text-white/40 hover:text-white transition-colors"
+                    className={`text-xs font-mono px-3.5 py-1.5 rounded-full transition-all duration-300 border ${
+                      isSelected
+                        ? "bg-primary text-black font-bold border-primary"
+                        : "bg-white/[0.02] text-white/60 hover:text-white border-white/10 hover:bg-white/[0.05]"
+                    }`}
                   >
-                    <X className="w-4 h-4" />
+                    {cat.label}
                   </button>
-                )}
-              </div>
-
-              {/* Category pills */}
-              <div className="space-y-2">
-                <h3 className="text-xs font-mono uppercase tracking-wider text-white/40 font-bold">Filter by Category</h3>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    { id: "about", label: "About" },
-                    { id: "web-dev", label: "Web Dev" },
-                    { id: "consulting", label: "Advisory" },
-                    { id: "p2p", label: "W3C DESK" },
-                    { id: "community", label: "Community" },
-                    { id: "communication", label: "Channels" },
-                    { id: "projects", label: "Projects" }
-                  ].map((cat) => {
-                    const isSelected = selectedCategory === cat.id;
-                    return (
-                      <button
-                        key={cat.id}
-                        id={`help-cat-btn-${cat.id}`}
-                        onClick={() => {
-                          setSelectedCategory(cat.id);
-                          setExpandedFaq(null);
-                        }}
-                        className={`text-xs font-mono px-3.5 py-1.5 rounded-full transition-all duration-300 border ${
-                          isSelected
-                            ? "bg-primary text-black font-bold border-primary"
-                            : "bg-white/[0.02] text-white/60 hover:text-white border-white/10 hover:bg-white/[0.05]"
-                        }`}
-                      >
-                        {cat.label}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-
+                );
+              })}
             </div>
-
-            {/* Right side: Accordion of matched FAQs */}
-            <div className="lg:col-span-7 space-y-3">
+            <div className="space-y-1">
               <AnimatePresence mode="popLayout">
                 {filteredFaqs.length > 0 ? (
                   filteredFaqs.map((faq, index) => {
@@ -728,43 +676,23 @@ export default function Home() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.98 }}
                         transition={{ duration: 0.3 }}
+                        className="border-b border-white/[0.08]"
                       >
                         <button
                           id={`faq-toggle-btn-${index}`}
                           onClick={() => setExpandedFaq(isOpen ? null : faq.q)}
-                          className="w-full text-left p-5 rounded-xl border border-white/10 bg-white/[0.015] hover:bg-white/[0.03] hover:border-white/20 transition-all flex items-start justify-between gap-4 focus:outline-none focus:ring-1 focus:ring-primary/30"
+                          className="w-full text-left py-5 flex items-start justify-between gap-4 focus:outline-none focus-visible:ring-1 focus-visible:ring-primary/30"
                         >
                           <div className="space-y-1">
-                            <span className="text-[9px] font-mono uppercase tracking-widest text-primary font-bold px-2 py-0.5 bg-primary/10 border border-primary/20 rounded">
-                              {faq.category === "web-dev" 
-                                ? "Web Dev" 
-                                : faq.category === "p2p" 
-                                ? "Crypto P2P" 
-                                : faq.category === "consulting" 
-                                ? "Advisory" 
-                                : faq.category === "about" 
-                                ? "About"
-                                : faq.category === "community"
-                                ? "Community"
-                                : faq.category === "communication"
-                                ? "Channels"
-                                : faq.category === "projects"
-                                ? "Projects"
-                                : faq.category || "General"}
+                            <span className="text-[9px] font-mono uppercase tracking-widest text-primary font-bold">
+                              {faq.category === "web-dev" ? "Web Dev" : faq.category === "p2p" ? "Crypto P2P" : faq.category === "consulting" ? "Advisory" : faq.category === "about" ? "About" : faq.category === "community" ? "Community" : faq.category === "communication" ? "Channels" : faq.category === "projects" ? "Projects" : faq.category || "General"}
                             </span>
-                            <h4 className="font-display font-bold text-white text-sm sm:text-base md:text-md pt-2">
-                              {faq.q}
-                            </h4>
+                            <h4 className="font-display font-bold text-white text-sm sm:text-base md:text-md pt-2">{faq.q}</h4>
                           </div>
                           <div className="mt-1 shrink-0">
-                            <ChevronDown
-                              className={`w-4 h-4 text-white/50 transition-transform duration-300 ${
-                                isOpen ? "rotate-180 text-primary" : ""
-                              }`}
-                            />
+                            <ChevronDown className={`w-4 h-4 text-white/50 transition-transform duration-300 ${isOpen ? "rotate-180 text-primary" : ""}`} />
                           </div>
                         </button>
-                        
                         <AnimatePresence initial={false}>
                           {isOpen && (
                             <motion.div
@@ -775,47 +703,22 @@ export default function Home() {
                               transition={{ duration: 0.25, ease: "easeInOut" }}
                               className="overflow-hidden"
                             >
-                              <div className="p-5 border-x border-b border-white/5 bg-white/[0.005] rounded-b-xl text-xs sm:text-sm text-muted-foreground leading-relaxed space-y-4">
+                              <div className="pb-5 text-xs sm:text-sm text-muted-foreground leading-relaxed space-y-4">
                                 <p className="whitespace-pre-line">{faq.a}</p>
-                                
                                 <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-white/[0.04]">
-                                  {/* Left/Contextual CTA Trigger Button */}
                                   {faq.action ? (
                                     faq.action.isExternal ? (
-                                      <a
-                                        id={`faq-action-${index}`}
-                                        href={faq.action.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-black font-mono font-bold text-xs hover:bg-opacity-90 hover:shadow-[0_0_15px_rgba(var(--primary-rgb),0.4)] transition-all duration-300"
-                                      >
-                                        {faq.action.label}
-                                        <ArrowRight className="w-3.5 h-3.5 text-black" />
+                                      <a id={`faq-action-${index}`} href={faq.action.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-black font-mono font-bold text-xs hover:bg-opacity-90 transition-all duration-300">
+                                        {faq.action.label}<ArrowRight className="w-3.5 h-3.5 text-black" />
                                       </a>
                                     ) : (
-                                      <Link
-                                        id={`faq-action-${index}`}
-                                        href={faq.action.url}
-                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-black font-mono font-bold text-xs hover:bg-opacity-90 hover:shadow-[0_0_15px_rgba(var(--primary-rgb),0.4)] transition-all duration-300"
-                                      >
-                                        {faq.action.label}
-                                        <ArrowRight className="w-3.5 h-3.5 text-black" />
+                                      <Link id={`faq-action-${index}`} href={faq.action.url} className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-black font-mono font-bold text-xs hover:bg-opacity-90 transition-all duration-300">
+                                        {faq.action.label}<ArrowRight className="w-3.5 h-3.5 text-black" />
                                       </Link>
                                     )
-                                  ) : (
-                                    <div />
-                                  )}
-
-                                  {/* Right WhatsApp Support */}
-                                  <a
-                                    id={`faq-whatsapp-link-${index}`}
-                                    href={contact.whatsappUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1.5 text-xs text-primary font-bold hover:underline"
-                                  >
-                                    Ask about this on WhatsApp
-                                    <ArrowRight className="w-3.5 h-3.5" />
+                                  ) : <div />}
+                                  <a id={`faq-whatsapp-link-${index}`} href={contact.whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs text-primary font-bold hover:underline">
+                                    Ask about this on WhatsApp<ArrowRight className="w-3.5 h-3.5" />
                                   </a>
                                 </div>
                               </div>
@@ -826,22 +729,9 @@ export default function Home() {
                     );
                   })
                 ) : (
-                  <motion.div
-                    key="no-results"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="text-center py-12 border border-dashed border-white/10 rounded-2xl bg-white/[0.01]"
-                  >
+                  <motion.div key="no-results" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-12">
                     <HelpCircle className="w-10 h-10 text-white/20 mx-auto mb-3" />
-                    <h4 className="font-display font-bold text-white text-base">No matches found</h4>
-                    <p className="text-xs text-muted-foreground mt-1">Try searching for keywords like "developer", "P2P", or "security".</p>
-                    <button
-                      id="faq-reset-btn"
-                      onClick={() => { setSearchQuery(""); setSelectedCategory("about"); }}
-                      className="mt-4 px-4 py-2 bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary rounded-xl text-xs font-bold transition-all"
-                    >
-                      Reset Filters
-                    </button>
+                    <h4 className="font-display font-bold text-white text-base">No questions found</h4>
                   </motion.div>
                 )}
               </AnimatePresence>
