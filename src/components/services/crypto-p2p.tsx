@@ -89,6 +89,7 @@ export default function CryptoP2P() {
   const [answers, setAnswers] = useState<AnswerMap>({});
   const [step, setStep] = useState(0);
   const [complete, setComplete] = useState(false);
+  const [confirming, setConfirming] = useState(false);
 
   const questions = useMemo(() => {
     const amountQuestion: Question = {
@@ -105,7 +106,7 @@ export default function CryptoP2P() {
       options: [],
     };
 
-    if (!answers.tradeType) return [rootQuestion, assetQuestion, amountQuestion, sourceQuestions.buy, noteQuestion];
+    if (!answers.tradeType) return [rootQuestion];
 
     const action = answers.tradeType === "Buy crypto" ? "buy" : "sell";
 
@@ -123,6 +124,11 @@ export default function CryptoP2P() {
   const advance = (nextAnswers: AnswerMap) => {
     setAnswers(nextAnswers);
     if (step < questions.length - 1) setStep(step + 1);
+  };
+
+  const openConfirmation = (nextAnswers: AnswerMap) => {
+    setAnswers(nextAnswers);
+    setConfirming(true);
   };
 
   const selectAnswer = (value: string) => {
@@ -143,8 +149,12 @@ export default function CryptoP2P() {
       delete nextAnswers.amount;
     }
 
-    if (currentQuestion.id === "noteChoice" && value === "No, that’s all") {
-      delete nextAnswers.note;
+    if (currentQuestion.id === "noteChoice") {
+      if (value === "No, that’s all") {
+        delete nextAnswers.note;
+      }
+      openConfirmation(nextAnswers);
+      return;
     }
 
     advance(nextAnswers);
@@ -157,8 +167,60 @@ export default function CryptoP2P() {
   };
 
   const goBack = () => {
-    if (complete) {
+    if (confirming && !complete) {
+    return (
+      <PageTransition>
+        <SEO
+          title={"Confirm W3C DESK Trade Request | " + branding.businessName}
+          description={"Review your W3C DESK trade request before continuing to WhatsApp."}
+          path="/services"
+        />
+        <section className="py-20 md:py-28 bg-zinc-950 border-y border-white/[0.08]">
+          <div className="container max-w-2xl mx-auto px-6">
+            <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 sm:p-10">
+              <span className={"text-xs uppercase tracking-widest font-mono font-bold " + brand.twText}>
+                FINAL STEP
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mt-3">
+                Confirm your trade request.
+              </h2>
+              <p className="text-muted-foreground mt-4 leading-relaxed">
+                Review your details below. When you continue, your request will open in WhatsApp for Jake to review.
+              </p>
+
+              <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.02] divide-y divide-white/[0.08]">
+                <SummaryRow label="Trade" value={answers.tradeType === "Buy crypto" ? "Buy crypto" : "Sell crypto"} />
+                <SummaryRow label="Asset" value={answers.assetName || answers.asset} />
+                <SummaryRow label="Amount" value={answers.amount} />
+                <SummaryRow
+                  label={answers.tradeType === "Buy crypto" ? "Receive in" : "Sending from"}
+                  value={answers.tradeType === "Buy crypto" ? answers.destination : answers.source}
+                />
+                {answers.note && <SummaryRow label="Note" value={answers.note} />}
+              </div>
+
+              <button
+                type="button"
+                onClick={sendToWhatsApp}
+                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#25D366] text-black font-bold text-sm hover:brightness-110 transition-all"
+              >
+                <SiWhatsapp className="w-4 h-4" />
+                Confirm Request & Continue to WhatsApp
+              </button>
+            </motion.div>
+          </div>
+        </section>
+      </PageTransition>
+    );
+  }
+
+  if (complete) {
       setComplete(false);
+      setConfirming(true);
+      return;
+    }
+    if (confirming) {
+      setConfirming(false);
       setStep(questions.length - 1);
       return;
     }
@@ -169,6 +231,7 @@ export default function CryptoP2P() {
     setAnswers({});
     setStep(0);
     setComplete(false);
+    setConfirming(false);
   };
 
   const sendToWhatsApp = () => {
@@ -183,17 +246,6 @@ export default function CryptoP2P() {
     const whatsappUrl = contact.whatsappUrl + "?text=" + encodeURIComponent(message);
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     setComplete(true);
-  };
-
-  const handleNoteContinue = (value: string) => {
-    const nextAnswers = { ...answers, noteChoice: value };
-    if (value === "No, that’s all") {
-      setAnswers(nextAnswers);
-      setStep(step + 1);
-      return;
-    }
-    setAnswers(nextAnswers);
-    setStep(step + 1);
   };
 
   if (complete) {
@@ -293,6 +345,7 @@ export default function CryptoP2P() {
 
               {currentQuestion.id === "amount" && (
                 <InputStep
+                  inputMode={inputMode}
                   value={currentAnswer || ""}
                   placeholder={
                     answers.asset === "BTC"
@@ -308,7 +361,7 @@ export default function CryptoP2P() {
               )}
 
               {currentQuestion.id === "assetName" && (
-                <InputStep value={currentAnswer || ""} placeholder="e.g. TOKEN" onContinue={submitInput} />
+                <InputStep inputMode="text" value={currentAnswer || ""} placeholder="e.g. TOKEN" onContinue={submitInput} />
               )}
 
               {currentQuestion.id === "noteChoice" && (
@@ -317,7 +370,7 @@ export default function CryptoP2P() {
                     <button
                       key={option}
                       type="button"
-                      onClick={() => handleNoteContinue(option)}
+                      onClick={() => selectAnswer(option)}
                       className={
                         "group w-full text-left rounded-2xl border px-5 py-4 sm:px-6 sm:py-5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 " +
                         (currentAnswer === option
@@ -335,9 +388,10 @@ export default function CryptoP2P() {
                     <NoteComposer
                       value={answers.note || ""}
                       onContinue={(note) => {
-                        if (!note.trim()) return;
-                        setAnswers({ ...answers, note: note.trim() });
-                        setStep(step + 1);
+                        const nextAnswers = { ...answers };
+                        if (note.trim()) nextAnswers.note = note.trim();
+                        else delete nextAnswers.note;
+                        openConfirmation(nextAnswers);
                       }}
                     />
                   )}
@@ -350,6 +404,21 @@ export default function CryptoP2P() {
                   <div className="grid gap-3 mt-8">
                     {currentQuestion.options.map((option) => {
                       const selected = currentAnswer === option;
+                      const isTradeType = currentQuestion.id === "tradeType";
+                      const isBuy = option === "Buy crypto";
+                      const optionTone = isTradeType
+                        ? isBuy
+                          ? selected
+                            ? "border-emerald-400 bg-emerald-500/20 text-white"
+                            : "border-emerald-500/40 bg-emerald-500/10 text-white/90 hover:border-emerald-400/70 hover:bg-emerald-500/15"
+                          : selected
+                            ? "border-red-400 bg-red-500/20 text-white"
+                            : "border-red-500/40 bg-red-500/10 text-white/90 hover:border-red-400/70 hover:bg-red-500/15"
+                        : selected
+                          ? brand.twBorder + " " + brand.twBg + " text-white"
+                          : "border-white/10 bg-white/[0.02] text-white/90 hover:border-white/25 hover:bg-white/[0.05])";
+                      const arrowTone = isTradeType ? (isBuy ? "text-emerald-400" : "text-red-400") : brand.twText;
+
                       return (
                         <button
                           key={option}
@@ -357,14 +426,12 @@ export default function CryptoP2P() {
                           onClick={() => selectAnswer(option)}
                           className={
                             "group w-full text-left rounded-2xl border px-5 py-4 sm:px-6 sm:py-5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 " +
-                            (selected
-                              ? brand.twBorder + " " + brand.twBg + " text-white"
-                              : "border-white/10 bg-white/[0.02] text-white/90 hover:border-white/25 hover:bg-white/[0.05]")
+                            optionTone
                           }
                         >
                           <span className="flex items-center justify-between gap-4">
                             <span className="text-sm sm:text-base font-semibold">{option}</span>
-                            <ArrowRight className={"w-4 h-4 shrink-0 transition-transform group-hover:translate-x-1 " + brand.twText} />
+                            <ArrowRight className={"w-4 h-4 shrink-0 transition-transform group-hover:translate-x-1 " + arrowTone} />
                           </span>
                         </button>
                       );
@@ -404,13 +471,24 @@ export default function CryptoP2P() {
   );
 }
 
+function SummaryRow({ label, value }: { label: string; value?: string }) {
+  return (
+    <div className="flex items-start justify-between gap-5 px-5 py-4">
+      <span className="text-sm text-muted-foreground">{label}</span>
+      <span className="text-sm font-semibold text-white text-right">{value || "Not provided"}</span>
+    </div>
+  );
+}
+
 function InputStep({
   value,
   placeholder,
+  inputMode,
   onContinue,
 }: {
   value: string;
   placeholder: string;
+  inputMode: "text" | "decimal";
   onContinue: (value: string) => void;
 }) {
   const [draft, setDraft] = useState(value);
