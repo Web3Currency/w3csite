@@ -32,8 +32,61 @@ const getProjectImage = (id: string) => {
   }
 };
 
+
+const CountUpValue = ({ value, start }: { value: string; start: boolean }) => {
+  const match = value.match(/^([^\d]*)([\d,.]+)(.*)$/);
+
+  if (!match) {
+    return <span>{value}</span>;
+  }
+
+  const [, prefix, numericValue, suffix] = match;
+  const target = Number(numericValue.replace(/,/g, ""));
+  const decimalPlaces = (numericValue.split(".")[1] || "").length;
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (!start || !Number.isFinite(target)) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      setDisplayValue(target);
+      return;
+    }
+
+    let frame = 0;
+    const startTime = performance.now();
+    const duration = 1200;
+
+    const animate = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      setDisplayValue(target * easedProgress);
+
+      if (progress < 1) {
+        frame = window.requestAnimationFrame(animate);
+      } else {
+        setDisplayValue(target);
+      }
+    };
+
+    setDisplayValue(0);
+    frame = window.requestAnimationFrame(animate);
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [start, target]);
+
+  const formatted = displayValue.toLocaleString(undefined, {
+    minimumFractionDigits: decimalPlaces,
+    maximumFractionDigits: decimalPlaces,
+  });
+
+  return <span aria-label={value}>{prefix}{formatted}{suffix}</span>;
+};
+
 export default function Home() {
-  const { totalTrades, totalVolumeFormatted, avgMonthlyVolumeFormatted, lastTradeDate } = useLiveMetrics();
+  const { totalTrades, totalVolumeFormatted, avgMonthlyVolumeFormatted, lastTradeDate, loading } = useLiveMetrics();
+  const [metricsVisible, setMetricsVisible] = useState(false);
 
   const testimonialsScrollRef = useRef<HTMLDivElement>(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -359,6 +412,9 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            onViewportEnter={() => {
+              if (!loading) setMetricsVisible(true);
+            }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
@@ -390,7 +446,9 @@ export default function Home() {
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
                       <Icon className="w-5 h-5 md:w-6 md:h-6" />
                     </div>
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-none">{sc.value}</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-none">
+                      <CountUpValue value={sc.value} start={metricsVisible && !loading} />
+                    </div>
                     <span className="text-[10px] md:text-xs font-mono uppercase text-muted-foreground tracking-wider block mt-3">{sc.label}</span>
                     {sc.subValue && (
                       <div className="text-[10px] font-mono text-muted-foreground mt-1">{sc.subValue}</div>
