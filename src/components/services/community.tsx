@@ -1,224 +1,252 @@
+import { useState } from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
-import { GlassCard, MotionGlassCard } from "@/components/shared/glass-card";
-import { motion } from "framer-motion";
-import { Link } from "wouter";
-import {
-  Users,
-  CheckCircle2,
-  ArrowRight,
-  GraduationCap,
-  ShieldCheck,
-  Compass,
-  Wallet,
-  Wrench,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ShieldCheck } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
 import { getServiceBrandColor } from "@/config/theme";
 import { trackCommunityJoin } from "@/lib/analytics";
 
-function SectionLabel({ text }: { text: string }) {
-  const brand = getServiceBrandColor("Web3 Community & Learning");
-  return (
-    <span className={`text-xs uppercase tracking-widest font-medium ${brand.twText} block mb-2`}>
-      {text}
-    </span>
-  );
-}
+type Answer = { question: string; answer: string };
 
-const learn = [
-  { icon: Compass, title: "Web3 Navigation", body: "Blockchain fundamentals, secure wallet setup, and how to evaluate new networks and projects." },
-  { icon: ShieldCheck, title: "Scam & Risk Awareness", body: "How to spot common Web3 scams, hype-driven traps, and unsafe token launches before they cost you." },
-  { icon: Wrench, title: "Testnet & Airdrop Research", body: "Curated, active testnet participation and airdrop research shared as a group, not chased alone." },
-  { icon: Wallet, title: "Practical Crypto Skills", body: "Safe day-to-day handling of digital assets, including how the W3C DESK P2P process actually works." },
-];
+const questions = [
+  {
+    id: "reason",
+    question: "What brought you here?",
+    options: [
+      "I want to learn Web3",
+      "I'm interested in crypto",
+      "I want to learn about AI",
+      "I want to meet people and connect",
+      "I want W3C updates",
+      "I'm looking for opportunities",
+      "I need help with something",
+      "I'm just exploring",
+    ],
+  },
+  {
+    id: "web3",
+    question: "Where are you with Web3?",
+    options: ["I'm completely new", "I know the basics", "I've been learning for a while", "I'm already active in Web3"],
+  },
+  {
+    id: "crypto",
+    question: "What part of crypto interests you most?",
+    options: ["Bitcoin and major cryptocurrencies", "Trading", "Pi Network", "DeFi and Web3", "I'm still learning the basics"],
+  },
+  {
+    id: "ai",
+    question: "What are you most interested in learning about AI?",
+    options: ["Using AI for everyday work", "AI for business", "AI tools", "Building with AI", "I'm just getting started"],
+  },
+  {
+    id: "connect",
+    question: "What kind of connection are you looking for?",
+    options: ["People learning like me", "Builders and creators", "Crypto/Web3 people", "AI-focused people", "General digital community"],
+  },
+  {
+    id: "updates",
+    question: "What updates do you want?",
+    options: ["W3C news and projects", "Web3 and crypto", "AI and digital technology", "All W3C updates"],
+  },
+  {
+    id: "opportunity",
+    question: "What kind of opportunity are you looking for?",
+    options: ["Learning opportunities", "Work or freelance opportunities", "Web3 opportunities", "AI/digital opportunities", "I'm not sure yet"],
+  },
+  {
+    id: "help",
+    question: "What do you need help with?",
+    options: ["Learning", "Crypto/Web3", "AI", "A digital project", "Finding the right W3C community", "Something else"],
+  },
+  {
+    id: "exploring",
+    question: "What sounds most useful to you?",
+    options: ["Learning", "Crypto", "AI", "Meeting people", "W3C updates", "I'm not sure yet"],
+  },
+  {
+    id: "experience",
+    question: "How experienced are you?",
+    options: ["Just starting", "Some experience", "Experienced", "It depends on the topic"],
+  },
+] as const;
 
-const culture = [
-  "No hype, no financial advice, just real Web3 knowledge and honest discussion.",
-  "Education first: nothing is gatekept, and questions from total beginners are welcome.",
-  "Members share research and ask questions openly; no one learns alone.",
-  "Safety and risk-mitigation are prioritized over chasing trends.",
-];
+const nextQuestion = (index: number, answers: Answer[]) => {
+  if (index === 0) {
+    const reason = answers.find((item) => item.question === questions[0].question)?.answer;
+    const map: Record<string, number> = {
+      "I want to learn Web3": 1,
+      "I'm interested in crypto": 2,
+      "I want to learn about AI": 3,
+      "I want to meet people and connect": 4,
+      "I want W3C updates": 5,
+      "I'm looking for opportunities": 6,
+      "I need help with something": 7,
+      "I'm just exploring": 8,
+    };
+    return map[reason ?? ""] ?? 1;
+  }
+  return 9;
+};
 
 export default function CommunityService() {
   const brand = getServiceBrandColor("Web3 Community & Learning");
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState<Answer[]>([]);
+  const [safety, setSafety] = useState(false);
 
-  const communitySchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "W3C Community Hub",
-    "description": `A free, WhatsApp-based Web3 learning community founded by ${branding.founderName}, built to make crypto and Web3 easy, safe, and educational.`,
-    "provider": {
-      "@type": "ProfessionalService",
-      "name": branding.businessName,
-      "url": "https://web3currency.online"
-    }
+  const currentQuestion = questions[step];
+
+  const selectAnswer = (answer: string) => {
+    const updated = [...answers.filter((item) => item.question !== currentQuestion.question), { question: currentQuestion.question, answer }];
+    setAnswers(updated);
+
+    const next = nextQuestion(step, updated);
+    setTimeout(() => setStep(next), 160);
   };
+
+  const goBack = () => {
+    if (safety) {
+      setSafety(false);
+      setStep(9);
+      return;
+    }
+    if (step === 0) return;
+    if (step === 9) {
+      const first = answers.find((item) => item.question === questions[0].question);
+      const previous = nextQuestion(0, answers);
+      setStep(first ? previous : 0);
+      return;
+    }
+    setStep(0);
+  };
+
+  const restart = () => {
+    setAnswers([]);
+    setSafety(false);
+    setStep(0);
+  };
+
+  const proceedToJoin = () => {
+    trackCommunityJoin("Community Questionnaire");
+    window.open(contact.whatsappCommunityUrl, "_blank", "noopener,noreferrer");
+  };
+
+  if (safety) {
+    return (
+      <PageTransition>
+        <SEO
+          title={`W3C Community | ${branding.businessName}`}
+          description="Join the W3C WhatsApp Community for practical Web3, crypto, AI, and digital learning."
+          path="/services"
+        />
+        <section className="min-h-[70vh] py-20 md:py-28 bg-zinc-950 border-y border-white/[0.08]">
+          <div className="container max-w-3xl mx-auto px-6">
+            <div className="text-center mb-10">
+              <ShieldCheck className={`w-12 h-12 mx-auto mb-5 ${brand.twText}`} />
+              <p className={`text-xs uppercase tracking-widest font-medium ${brand.twText} mb-3`}>Before you join</p>
+              <h1 className="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">W3C Community Safety Rules</h1>
+              <p className="text-base sm:text-lg text-white/70 leading-relaxed mt-5">Please read these rules before joining. They help keep the community useful and safe for everyone.</p>
+            </div>
+
+            <div className="space-y-3">
+              {[
+                "No spam or scams.",
+                "No impersonation of Jake, W3C, admins, or other members.",
+                "Admins will not DM members first.",
+                "No hype or guaranteed returns.",
+                "Keep the community respectful and useful.",
+              ].map((rule) => (
+                <div key={rule} className={`flex items-start gap-3 rounded-2xl border ${brand.twBorder} ${brand.twBg} p-5`}>
+                  <Check className={`w-5 h-5 shrink-0 mt-0.5 ${brand.twText}`} />
+                  <p className="text-white/85 leading-relaxed">{rule}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8">
+              <button type="button" onClick={goBack} className="inline-flex items-center gap-2 px-4 py-2 text-sm text-white/70 hover:text-white transition-colors">
+                <ArrowLeft className="w-4 h-4" /> Back
+              </button>
+              <button
+                type="button"
+                onClick={proceedToJoin}
+                className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#25D366] text-black font-bold hover:brightness-110 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+              >
+                <SiWhatsapp className="w-5 h-5" />
+                Proceed to Join Community
+              </button>
+            </div>
+          </div>
+        </section>
+      </PageTransition>
+    );
+  }
 
   return (
     <PageTransition>
       <SEO
         title={`W3C Community | ${branding.businessName}`}
-        description={`A free, WhatsApp-based Web3 learning community founded by ${branding.founderName}, built to make crypto and Web3 easy, safe, and educational.`}
+        description="Join the W3C WhatsApp Community for practical Web3, crypto, AI, and digital learning."
         path="/services"
-        schema={communitySchema}
       />
-
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden bg-black">
+      <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden bg-black">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-grid-fade" aria-hidden="true" />
-          <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ background: `radial-gradient(circle at 50% 50%, ${brand.hex}15, transparent 70%)` }} />
+          <div className="absolute inset-0 opacity-15 pointer-events-none" style={{ background: `radial-gradient(circle at 50% 50%, ${brand.hex}15, transparent 70%)` }} />
         </div>
-        <div className="container max-w-5xl mx-auto px-6 relative z-10">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: "easeOut" }}>
-            <div className="flex items-center gap-3 mb-6">
-              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border ${brand.twBg} ${brand.twBorder}`}>
-                <Users className={`w-6 h-6 ${brand.twText}`} />
-              </div>
-              <span className={`inline-flex items-center gap-1.5 text-xs uppercase tracking-widest font-medium ${brand.twText}`}>
-                Service: W3C Community
-              </span>
-              <span className={`hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[0.65rem] font-mono font-semibold tracking-widest border ${brand.twBg} ${brand.twBorder} ${brand.twText}`}>
-                LEARN • EXPLORE • EARN
-              </span>
-            </div>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold mb-6 leading-[1.1] tracking-tight text-gradient-hero">
-              Learn Web3, together, for free.
-            </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-2xl">
-              W3C Community is a free, WhatsApp-based learning space focused on making Web3 easy, safe, and educational, especially for beginners. It's the same standard for Web3 navigation {branding.founderName} built at Web3 Currency, now folded into {branding.businessName}.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Why it exists + why WhatsApp */}
-      <section className="py-20 md:py-24 bg-zinc-950 border-y border-white/[0.08]">
-        <div className="container max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-12 gap-10 md:gap-14">
-            <div className="md:col-span-7 space-y-8">
-              <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5 }}>
-                <SectionLabel text="Why the Community Exists" />
-                <p className="text-white/80 leading-[1.75] text-[1.05rem]">
-                  The digital asset landscape is fragmented and full of noise. W3C Community exists to cut through it, a structured environment where people learn Web3 fundamentals, ask questions without judgment, and build digital confidence together, without hype or empty promises.
-                </p>
-              </motion.div>
-
-              <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5, delay: 0.05 }}>
-                <SectionLabel text="Why It Operates on WhatsApp" />
-                <p className="text-muted-foreground leading-[1.75]">
-                  While the W3C website serves as our central business headquarters, the community operates on WhatsApp because of its direct, everyday accessibility. There's no app to download, no confusing forum to navigate, and no algorithm deciding what you see. Just a direct, real-time space where members and {branding.founderName} talk plainly, and questions get real answers.
-                </p>
-              </motion.div>
-
-              <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5, delay: 0.1 }}>
-                <SectionLabel text="What Members Learn" />
-                <div className="grid sm:grid-cols-2 gap-4 mt-4">
-                  {learn.map((item) => (
-                    <div key={item.title} className="flex items-start gap-3">
-                      <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 border ${brand.twBg} ${brand.twBorder}`}>
-                        <item.icon className={`w-4 h-4 ${brand.twText}`} />
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-white">{item.title}</p>
-                        <p className="text-xs text-muted-foreground leading-relaxed">{item.body}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-
-            <div className="md:col-span-5">
-              <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5, delay: 0.1 }} className="sticky top-32">
-                <GlassCard 
-                  className="flex flex-col gap-6 p-8 border transition-all duration-300"
-                  style={{ borderColor: `${brand.hex}33`, backgroundColor: `${brand.hex}0A` }}
-                >
-                  <div>
-                    <p className={`text-xs uppercase tracking-widest font-medium ${brand.twText} mb-3`}>Community Culture</p>
-                    <ul className="space-y-3">
-                      {culture.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2.5">
-                          <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${brand.twText}`} />
-                          <span className="text-sm text-white/80 leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="border-t border-white/[0.08] pt-6">
-                    <p className={`text-xs uppercase tracking-widest font-medium ${brand.twText} mb-2`}>Join Process</p>
-                    <p className="text-sm text-white/80 leading-relaxed mb-4">
-                      The W3C Community is part of W3C Digital Network and currently operates primarily on WhatsApp. Joining is free and takes one tap.
-                    </p>
-                    <a
-                      href={contact.whatsappCommunityUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={() => trackCommunityJoin('Community Service Page Card')}
-                      className="whatsapp-glow-hover flex items-center justify-center gap-3 w-full px-6 py-3.5 rounded-full bg-[#25D366] text-black font-bold hover:bg-[#20c05a] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                    >
-                      <SiWhatsapp className="w-5 h-5" />
-                      Join W3C Community
-                    </a>
-                  </div>
-                </GlassCard>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Content shared + benefits */}
-      <section className="py-20 md:py-24 bg-black">
-        <div className="container max-w-6xl mx-auto px-6">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }} className="mb-12 flex items-center gap-4">
-            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border ${brand.twBg} ${brand.twBorder}`}>
-              <GraduationCap className={`w-7 h-7 ${brand.twText}`} />
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">Content Shared & Benefits of Joining</h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { title: "Curated Web3 News", body: "Real-time updates and research on emerging protocols and networks, filtered for relevance, not hype." },
-              { title: "Direct Access to JAKE", body: `Ask questions and get answers from ${branding.founderName} directly, without layers of support tiers.` },
-              { title: "A Vetted, Serious Network", body: "Connect with other members who are actually building, learning, and trading, not just lurking." },
-            ].map((item, i) => (
-              <MotionGlassCard key={item.title} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.5, delay: i * 0.08 }} className="p-6 border-white/10 bg-white/[0.02]">
-                <h3 className="font-display font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.body}</p>
-              </MotionGlassCard>
-            ))}
-          </div>
-
-
-        </div>
-      </section>
-
-      <section className="py-16 md:py-20 bg-zinc-950 border-t border-white/[0.08]">
-        <div className="container max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="text-muted-foreground">
-            Curious about trading once you've learned the basics?{" "}
-            <Link href="/services?tab=desk" className="text-white font-medium hover:text-purple-400 transition-colors underline underline-offset-4">
-              See W3C DESK
-            </Link>{" "}
-            or{" "}
-            <Link href="/services" className="text-white font-medium hover:text-purple-400 transition-colors underline underline-offset-4">
-              browse all services
-            </Link>
-            .
+        <div className="container max-w-4xl mx-auto px-6 relative z-10 text-center">
+          <p className={`text-xs uppercase tracking-widest font-medium ${brand.twText} mb-3`}>W3C Community</p>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tight text-white">
+            Learn Web3, crypto and AI together.
+          </h1>
+          <p className="text-lg sm:text-xl text-white/75 leading-relaxed max-w-2xl mx-auto mt-6">
+            A free WhatsApp community for practical learning, useful discussions, and people exploring the digital space together. No hype, no guaranteed returns, and no need to be an expert.
           </p>
-          <Link
-            href="/contact"
-            style={{ backgroundColor: brand.hex }}
-            className={`shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full text-black font-bold hover:brightness-110 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${brand.twRingFocus}`}
-          >
-            Contact {branding.founderName}
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-zinc-950 border-y border-white/[0.08]">
+        <div className="container max-w-3xl mx-auto px-6">
+          <div className="flex items-center justify-between gap-4 mb-8">
+            <div>
+              <p className={`text-xs uppercase tracking-widest font-medium ${brand.twText}`}>Let&apos;s get to know you</p>
+              <p className="text-sm text-white/55 mt-1">A few quick questions. Your answers stay on this page.</p>
+            </div>
+            <button type="button" onClick={restart} className="text-sm text-white/60 hover:text-white transition-colors">Restart</button>
+          </div>
+
+          <div className="h-1 rounded-full bg-white/10 overflow-hidden mb-8" aria-hidden="true">
+            <div className={`h-full rounded-full transition-all duration-300 ${brand.twBg}`} style={{ width: `${((step + 1) / 10) * 100}%` }} />
+          </div>
+
+          <div key={currentQuestion.id} className="transition-all duration-200">
+            <p className={`text-sm font-medium ${brand.twText} mb-3`}>Question {step + 1}</p>
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-white leading-tight mb-7">{currentQuestion.question}</h2>
+            <div className="grid gap-3">
+              {currentQuestion.options.map((option) => {
+                const selected = answers.some((item) => item.question === currentQuestion.question && item.answer === option);
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => selectAnswer(option)}
+                    className={`w-full text-left rounded-2xl border p-5 text-base sm:text-lg font-medium transition-all duration-150 hover:-translate-y-0.5 ${selected ? `${brand.twBorder} ${brand.twBg} text-white` : "border-white/10 bg-white/[0.02] text-white/85 hover:border-white/25"}`}
+                  >
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between mt-8">
+            <button type="button" onClick={goBack} disabled={step === 0} className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed">
+              <ArrowLeft className="w-4 h-4" /> Back
+            </button>
+            <span className="text-xs text-white/45">No account or form to submit.</span>
+          </div>
         </div>
       </section>
     </PageTransition>
