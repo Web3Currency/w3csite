@@ -120,7 +120,7 @@ function buildMessage(answers: AnswerMap) {
         : `What the website is mainly for: ${answers.purpose}`,
     `Main goal: ${answers.goal}`,
     `Content: ${answers.content}`,
-    `Start time: ${answers.timeline}`,\n    `Preferred contact: ${answers.contact}`,
+    `Start time: ${answers.timeline}`,
   ].join("\n");
 }
 
@@ -196,7 +196,7 @@ export default function WebsiteQuestionnaire() {
   const message = buildMessage(answers);
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `${contact.whatsappUrl}?text=${encodedMessage}`;
-  const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent("https://web3currency.online/services/web-development")}&text=${encodedMessage}`;\n  const telegramShareUrl = `https://t.me/share/url?url=${encodeURIComponent("https://web3currency.online/services/web-development")}&text=${encodedMessage}`;
+  const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent("https://web3currency.online/services/web-development")}&text=${encodedMessage}`;
   const emailUrl = `mailto:${contact.email}?subject=${encodeURIComponent("Website Project Enquiry")}&body=${encodedMessage}`;
 
   if (complete) {
