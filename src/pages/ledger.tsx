@@ -81,7 +81,7 @@ export default function LedgerPage() {
   
   const [searchTerm, setSearchTerm] = useState('');
   const [analyticsPeriod, setAnalyticsPeriod] = useState<string>('CURRENT');
-  const [collapsedMonths, setCollapsedMonths] = useState<Record<string, boolean>>({});
+  const [openMonth, setOpenMonth] = useState<string | null>(null);
   const [userData, setUserData] = useState<UserData>(INITIAL_DATA);
   const [viewingTrade, setViewingTrade] = useState<Trade | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -222,8 +222,22 @@ export default function LedgerPage() {
     return Object.entries(groups).sort((a, b) => b[0].localeCompare(a[0]));
   }, [userData.trades, searchTerm]);
 
+  const currentMonthKey = useMemo(() => {
+    const now = new Date();
+    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+  }, []);
+
+  useEffect(() => {
+    if (groupedTrades.length > 0) {
+      const latestMonthKey = groupedTrades[0][0];
+      setOpenMonth(prev => prev ?? latestMonthKey);
+    } else {
+      setOpenMonth(null);
+    }
+  }, [groupedTrades]);
+
   const toggleMonth = (key: string) => {
-    setCollapsedMonths(prev => ({ ...prev, [key]: !prev[key] }));
+    setOpenMonth(prev => prev === key ? null : key);
   };
 
   const maskPhoneNumber = (num: string) => {
@@ -419,14 +433,15 @@ export default function LedgerPage() {
                           <button 
                             onClick={() => toggleMonth(monthKey)}
                             className="flex items-center gap-1 text-lg font-bold tracking-tight text-white"
+                            aria-expanded={openMonth === monthKey}
                           >
                             <TerminalText className="text-inherit">{group.label}</TerminalText>
-                            <ChevronDown className={`w-4 h-4 transform transition-transform text-white/40 ${collapsedMonths[monthKey] ? '-rotate-90' : ''}`} />
+                            <ChevronDown className={`w-4 h-4 transform transition-transform text-white/40 ${openMonth === monthKey ? '' : '-rotate-90'}`} />
                           </button>
                         </div>
                       </div>
 
-                      {!collapsedMonths[monthKey] && (
+                      {openMonth === monthKey && (
                         <div className="space-y-1 border-t border-white/5 pt-4">
                           {group.trades.map((trade) => (
                             <button 
