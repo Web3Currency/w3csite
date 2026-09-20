@@ -166,7 +166,7 @@ export default function Services() {
     "@context": "https://schema.org",
     "@type": "Service",
     name: `Digital Services by ${branding.businessName}`,
-    description: `Digital consulting, secure crypto P2P trading, AI-powered web development, and a Web3 community, all delivered personally by ${branding.founderName}.`,
+    description: `Digital solutions, secure crypto P2P trading, website design and development, and a Web3 community, all delivered personally by ${branding.founderName}.`,
     provider: {
       "@type": "ProfessionalService",
       name: branding.businessName,
@@ -188,8 +188,8 @@ export default function Services() {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Digital Consulting & Strategy",
-            description: "Personalized technical guidance and consulting on Web3, software setup, and digital strategy.",
+            name: "Digital Solutions",
+            description: "Practical help with digital problems, ideas, AI, websites, and online presence.",
           },
         },
         {
@@ -216,7 +216,7 @@ export default function Services() {
     <PageTransition>
       <SEO
         title={`Services | ${branding.businessName}`}
-        description={`Digital consulting, secure crypto P2P trading, AI-powered web development, and a Web3 community, all delivered personally by ${branding.founderName}. Find the right service for your situation.`}
+        description={`Digital solutions, secure crypto P2P trading, website design and development, and a Web3 community, all delivered personally by ${branding.founderName}. Find the right service for your situation.`}
         path="/services"
         schema={servicesSchema}
       />
