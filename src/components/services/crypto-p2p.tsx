@@ -152,8 +152,11 @@ export default function CryptoP2P() {
     if (currentQuestion.id === "noteChoice") {
       if (value === "No, that’s all") {
         delete nextAnswers.note;
+        openConfirmation(nextAnswers);
+        return;
       }
-      openConfirmation(nextAnswers);
+
+      setAnswers(nextAnswers);
       return;
     }
 
@@ -494,15 +497,17 @@ function InputStep({
         className="w-full rounded-2xl bg-white/[0.02] border border-white/10 px-5 py-4 sm:px-6 sm:py-5 text-white text-base placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-2 focus:ring-white/10"
         autoFocus
       />
+      <div className="mt-3 flex justify-end">
       <button
         type="button"
         onClick={() => onContinue(draft)}
         disabled={!draft.trim()}
-        className={"mt-3 inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 " + getServiceBrandColor("W3C DESK").twBg + " " + getServiceBrandColor("W3C DESK").twText + " border " + getServiceBrandColor("W3C DESK").twBorder + " font-bold text-sm disabled:opacity-30 disabled:pointer-events-none hover:brightness-125 transition-all"}
+        className={"inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 " + getServiceBrandColor("W3C DESK").twBg + " " + getServiceBrandColor("W3C DESK").twText + " border " + getServiceBrandColor("W3C DESK").twBorder + " font-bold text-sm disabled:opacity-30 disabled:pointer-events-none hover:brightness-125 transition-all"}
       >
         Continue
         <ArrowRight className="w-4 h-4" />
-      </button>
+        </button>
+      </div>
     </div>
   );
 }
@@ -526,15 +531,17 @@ function NoteComposer({
         autoFocus
         className="w-full rounded-2xl bg-white/[0.02] border border-white/10 px-5 py-4 text-white text-sm placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-2 focus:ring-white/10 resize-none"
       />
+      <div className="mt-3 flex justify-end">
       <button
         type="button"
         onClick={() => onContinue(draft)}
         disabled={!draft.trim()}
-        className={"mt-3 inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 " + getServiceBrandColor("W3C DESK").twBg + " " + getServiceBrandColor("W3C DESK").twText + " border " + getServiceBrandColor("W3C DESK").twBorder + " font-bold text-sm disabled:opacity-30 disabled:pointer-events-none hover:brightness-125 transition-all"}
+        className={"inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 " + getServiceBrandColor("W3C DESK").twBg + " " + getServiceBrandColor("W3C DESK").twText + " border " + getServiceBrandColor("W3C DESK").twBorder + " font-bold text-sm disabled:opacity-30 disabled:pointer-events-none hover:brightness-125 transition-all"}
       >
         Continue
         <ArrowRight className="w-4 h-4" />
-      </button>
+        </button>
+      </div>
     </div>
   );
 }
