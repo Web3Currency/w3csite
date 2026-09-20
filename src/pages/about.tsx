@@ -140,7 +140,7 @@ export default function About() {
 
       {/* SECTION 2: Before W3C */}
       <section className="py-20 md:py-28 bg-zinc-950 border-b border-white/[0.08]">
-        <div className="container max-w-3xl mx-auto px-6">
+        <div className="container max-w-5xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -181,7 +181,7 @@ export default function About() {
 
       {/* SECTION 3: Then Came the Digital World */}
       <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
-        <div className="container max-w-3xl mx-auto px-6">
+        <div className="container max-w-5xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -215,7 +215,7 @@ export default function About() {
 
       {/* SECTION 4: From Learning to Helping */}
       <section className="py-20 md:py-28 bg-zinc-950 border-b border-white/[0.08]">
-        <div className="container max-w-3xl mx-auto px-6">
+        <div className="container max-w-5xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -251,7 +251,7 @@ export default function About() {
 
       {/* SECTION 5: W3C DESK */}
       <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
-        <div className="container max-w-3xl mx-auto px-6">
+        <div className="container max-w-5xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -286,7 +286,7 @@ export default function About() {
 
       {/* SECTION 6: Websites, AI & Building Things */}
       <section className="py-20 md:py-28 bg-zinc-950 border-b border-white/[0.08]">
-        <div className="container max-w-3xl mx-auto px-6">
+        <div className="container max-w-5xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -331,7 +331,7 @@ export default function About() {
 
       {/* SECTION 7: Why W3C Exists */}
       <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
-        <div className="container max-w-3xl mx-auto px-6">
+        <div className="container max-w-5xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -370,7 +370,7 @@ export default function About() {
 
       {/* SECTION 8: How I Think About My Work */}
       <section className="py-20 md:py-28 bg-zinc-950 border-b border-white/[0.08]">
-        <div className="container max-w-3xl mx-auto px-6">
+        <div className="container max-w-5xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -457,7 +457,7 @@ export default function About() {
 
       {/* SECTION 10: How I Work */}
       <section className="py-20 md:py-28 bg-zinc-950 border-b border-white/[0.08]">
-        <div className="container max-w-3xl mx-auto px-6">
+        <div className="container max-w-5xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -545,7 +545,7 @@ export default function About() {
 
       {/* SECTION 12: W3C Is Still Growing */}
       <section className="py-20 md:py-28 bg-zinc-950 border-b border-white/[0.08]">
-        <div className="container max-w-3xl mx-auto px-6">
+        <div className="container max-w-5xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -583,7 +583,7 @@ export default function About() {
 
       {/* SECTION 13: A Note From Jake */}
       <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
-        <div className="container max-w-3xl mx-auto px-6">
+        <div className="container max-w-5xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
