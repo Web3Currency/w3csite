@@ -1,256 +1,335 @@
-import { useState } from "react";
-import { SEO } from "@/components/shared/seo";
-import { PageTransition } from "@/components/shared/page-transition";
-import { GlassCard } from "@/components/shared/glass-card";
-import { motion } from "framer-motion";
-import { Link } from "wouter";
-import {
-  Headphones,
-  Check,
-  CheckCircle2,
-  ArrowRight,
-  MessageCircle,
-} from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
+import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowLeft, ArrowRight, Check, RotateCcw } from "lucide-react";
+import { SiTelegram, SiWhatsapp } from "react-icons/si";
 import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
 import { getServiceBrandColor } from "@/config/theme";
+import { trackContactClick } from "@/lib/analytics";
 
-function SectionLabel({ text }: { text: string }) {
-  const brand = getServiceBrandColor("Digital Consulting");
-  return (
-    <span className={`text-xs uppercase tracking-widest font-mono font-bold ${brand.twText} block mb-3`}>
-      {text}
-    </span>
-  );
-}
+type AnswerMap = Record<string, string>;
 
-interface ConsultingTopic {
+type Question = {
   id: string;
-  label: string;
-  emoji: string;
-  colorClass: string;
-  activeColorClass: string;
-  message: string;
+  title: string;
+  helper?: string;
+  options: string[];
+};
+
+const rootQuestion: Question = {
+  id: "need",
+  title: "What do you need help with?",
+  helper: "Pick the option that feels closest to your situation.",
+  options: [
+    "I want to build something",
+    "I already have something that needs fixing or improving",
+    "I want to use AI for my work or business",
+    "I want to improve my online presence",
+    "I have an idea but don't know how to turn it into something real",
+    "I'm not sure what solution I need",
+  ],
+};
+
+const branches: Record<string, Question> = {
+  build: {
+    id: "build",
+    title: "What do you want to build?",
+    options: [
+      "A website",
+      "A landing page",
+      "An online store",
+      "A web app or platform",
+      "A digital tool for my business",
+      "Something else",
+    ],
+  },
+  improve: {
+    id: "improve",
+    title: "What needs improving?",
+    options: [
+      "Website design",
+      "Website speed or mobile experience",
+      "A feature or function",
+      "An existing digital process",
+      "Something is not working",
+      "I'm not sure",
+    ],
+  },
+  ai: {
+    id: "ai",
+    title: "Where would you like to use AI?",
+    options: [
+      "Content and writing",
+      "Customer support",
+      "Business processes",
+      "Research or information",
+      "A website or digital product",
+      "I'm not sure yet",
+    ],
+  },
+  presence: {
+    id: "presence",
+    title: "What do you want to improve?",
+    options: [
+      "How my business looks online",
+      "Getting more enquiries",
+      "Showing my services clearly",
+      "Making it easier for people to contact me",
+      "Creating a better website",
+      "I'm not sure",
+    ],
+  },
+  direction: {
+    id: "direction",
+    title: "Tell me where you are right now.",
+    options: [
+      "I have an idea",
+      "I have a rough plan",
+      "I already started something",
+      "I have something that needs direction",
+      "I just know I need a better solution",
+    ],
+  },
+};
+
+const resultQuestion: Question = {
+  id: "result",
+  title: "What is the main result you want?",
+  options: [
+    "Get more customers",
+    "Save time",
+    "Make work easier",
+    "Create something new",
+    "Look more professional online",
+    "Solve a specific problem",
+    "I'm still figuring it out",
+  ],
+};
+
+function getBranchKey(value: string) {
+  if (value === "I want to build something") return "build";
+  if (value === "I already have something that needs fixing or improving") return "improve";
+  if (value === "I want to use AI for my work or business") return "ai";
+  if (value === "I want to improve my online presence") return "presence";
+  return "direction";
 }
 
-const topics: ConsultingTopic[] = [
-  {
-    id: "web3",
-    label: "Web3 & Crypto",
-    emoji: "🟣",
-    colorClass: "border-purple-500/20 bg-purple-500/[0.02] text-purple-400 hover:bg-purple-500/[0.05] hover:border-purple-500/40",
-    activeColorClass: "border-purple-500 bg-purple-500/[0.08] text-purple-300 ring-2 ring-purple-500/20",
-    message: "Hi Jake, I'm reaching out from your website and would like some consulting advice on Web3 & Crypto."
-  },
-  {
-    id: "websites",
-    label: "Websites",
-    emoji: "🟡",
-    colorClass: "border-amber-500/20 bg-amber-500/[0.02] text-amber-400 hover:bg-amber-500/[0.05] hover:border-amber-500/40",
-    activeColorClass: "border-amber-500 bg-amber-500/[0.08] text-amber-300 ring-2 ring-amber-500/20",
-    message: "Hi Jake, I'm reaching out from your website and would like some consulting advice on Website planning or development."
-  },
-  {
-    id: "ai",
-    label: "AI Tools",
-    emoji: "🟢",
-    colorClass: "border-emerald-500/20 bg-emerald-500/[0.02] text-emerald-400 hover:bg-emerald-500/[0.05] hover:border-emerald-500/40",
-    activeColorClass: "border-emerald-500 bg-emerald-500/[0.08] text-emerald-300 ring-2 ring-emerald-500/20",
-    message: "Hi Jake, I'm reaching out from your website and would like some consulting advice on choosing or using AI tools."
-  },
-  {
-    id: "strategy",
-    label: "Digital Strategy",
-    emoji: "🔵",
-    colorClass: "border-blue-500/20 bg-blue-500/[0.02] text-blue-400 hover:bg-blue-500/[0.05] hover:border-blue-500/40",
-    activeColorClass: "border-blue-500 bg-blue-500/[0.08] text-blue-300 ring-2 ring-blue-500/20",
-    message: "Hi Jake, I'm reaching out from your website and would like some consulting advice on digital strategy or workflows."
-  },
-  {
-    id: "other",
-    label: "Something Else",
-    emoji: "⚪",
-    colorClass: "border-zinc-500/20 bg-zinc-500/[0.02] text-zinc-400 hover:bg-zinc-500/[0.05] hover:border-zinc-500/40",
-    activeColorClass: "border-zinc-500 bg-zinc-500/[0.08] text-zinc-300 ring-2 ring-zinc-500/20",
-    message: "Hi Jake, I'm reaching out from your website and have a digital question about something else."
-  }
-];
+function buildMessage(answers: AnswerMap) {
+  const branchQuestion = branches[getBranchKey(answers.need)];
+
+  return [
+    `Hi ${branding.founderName}, I'd like to discuss a digital solution.`,
+    "",
+    "Here is what I'm trying to do:",
+    `What I need help with: ${answers.need}`,
+    `${branchQuestion.title}: ${answers[branchQuestion.id]}`,
+    `Main result I want: ${answers.result}`,
+  ].join("\n");
+}
 
 export default function DigitalConsulting() {
-  const brand = getServiceBrandColor("Digital Consulting");
-  const [selectedTopic, setSelectedTopic] = useState<ConsultingTopic>(topics[0]);
+  const brand = getServiceBrandColor("Digital Solutions");
+  const [answers, setAnswers] = useState<AnswerMap>({});
+  const [step, setStep] = useState(0);
+  const [complete, setComplete] = useState(false);
 
-  const handleWhatsAppRedirect = (customMessage?: string) => {
-    const textToSend = customMessage || selectedTopic.message;
-    const url = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(textToSend)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
+  const questions = useMemo(() => {
+    if (!answers.need) return [rootQuestion, resultQuestion];
+    return [rootQuestion, branches[getBranchKey(answers.need)], resultQuestion];
+  }, [answers.need]);
 
-  const consultingSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Digital Consulting & Strategy",
-    "description": "Clear answers for digital decisions. Independent, honest advisory and strategy without the corporate jargon.",
-    "provider": {
-      "@type": "ProfessionalService",
-      "name": branding.businessName,
-      "url": "https://web3currency.online"
+  const currentQuestion = questions[step];
+  const currentAnswer = currentQuestion ? answers[currentQuestion.id] : undefined;
+  const progress = Math.round(((step + 1) / questions.length) * 100);
+
+  const selectAnswer = (value: string) => {
+    const nextAnswers = { ...answers, [currentQuestion.id]: value };
+
+    if (currentQuestion.id === "need") {
+      Object.keys(branches).forEach((key) => {
+        delete nextAnswers[branches[key].id];
+      });
+      delete nextAnswers.result;
+    }
+
+    setAnswers(nextAnswers);
+
+    if (step < questions.length - 1) {
+      setStep(step + 1);
+    } else {
+      setComplete(true);
     }
   };
 
+  const goBack = () => {
+    if (complete) {
+      setComplete(false);
+      setStep(questions.length - 1);
+      return;
+    }
+
+    if (step === 0) return;
+
+    const previousStep = step - 1;
+    setStep(previousStep);
+
+    if (questions[previousStep].id === "need") {
+      const nextAnswers = { ...answers };
+      Object.keys(branches).forEach((key) => {
+        delete nextAnswers[branches[key].id];
+      });
+      delete nextAnswers.result;
+      setAnswers(nextAnswers);
+    }
+  };
+
+  const restart = () => {
+    setAnswers({});
+    setStep(0);
+    setComplete(false);
+  };
+
+  const message = buildMessage(answers);
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappUrl = `${contact.whatsappUrl}?text=${encodedMessage}`;
+  const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent("https://web3currency.online/services?tab=consulting")}&text=${encodedMessage}`;
+  const emailUrl = `mailto:${contact.email}?subject=${encodeURIComponent("Digital Solutions Enquiry")}&body=${encodedMessage}`;
+
+  if (complete) {
+    return (
+      <section className="py-20 md:py-28 bg-zinc-950 border-y border-white/[0.08]">
+        <div className="container max-w-2xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 sm:p-10"
+          >
+            <div className="flex justify-center mb-6">
+              <Check className={`w-16 h-16 sm:w-20 sm:h-20 ${brand.twText}`} strokeWidth={1.75} />
+            </div>
+            <h2 className={`text-3xl sm:text-4xl font-display font-bold text-center ${brand.twText}`}>
+              You&apos;ve given me the context I need.
+            </h2>
+            <p className="text-muted-foreground mt-4 leading-relaxed">
+              Your answers are ready. Choose where you would like to continue.
+            </p>
+
+            <div className="grid gap-3 mt-8">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackContactClick("WhatsApp", "Digital Solutions Questionnaire")}
+                className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#25D366] text-black font-bold text-sm hover:brightness-110 transition-all"
+              >
+                <SiWhatsapp className="w-4 h-4" />
+                Continue on WhatsApp
+              </a>
+              <a
+                href={telegramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackContactClick("Telegram", "Digital Solutions Questionnaire")}
+                className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#229ED9] text-white font-bold text-sm hover:brightness-110 transition-all"
+              >
+                <SiTelegram className="w-4 h-4" />
+                Continue on Telegram
+              </a>
+              <a
+                href={emailUrl}
+                onClick={() => trackContactClick("Email", "Digital Solutions Questionnaire")}
+                className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-red-500 text-white font-bold text-sm hover:brightness-110 transition-all"
+              >
+                Continue by Email
+              </a>
+            </div>
+
+            <button
+              type="button"
+              onClick={restart}
+              className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors"
+            >
+              <RotateCcw className="w-4 h-4" />
+              Start again
+            </button>
+          </motion.div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <PageTransition>
-      <SEO
-        title={`Digital Consulting | ${branding.businessName}`}
-        description={`Clear answers for digital decisions. Independent, honest advisory and strategy without the corporate jargon.`}
-        path="/services"
-        schema={consultingSchema}
-      />
-
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden bg-black">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-grid-fade" aria-hidden="true" />
-          <div className="absolute inset-0 opacity-25 pointer-events-none" style={{ background: `radial-gradient(circle at 50% 50%, ${brand.hex}10, transparent 70%)` }} />
+    <section className="py-20 md:py-28 bg-zinc-950 border-y border-white/[0.08]">
+      <div className="container max-w-2xl mx-auto px-6">
+        <div className="flex items-center justify-center mb-8">
+          <span className={`text-xs uppercase tracking-widest font-mono font-bold ${brand.twText}`}>
+            LET&apos;S FIGURE IT OUT
+          </span>
         </div>
-        <div className="container max-w-4xl mx-auto px-6 relative z-10 text-center sm:text-left">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: "easeOut" }} className="space-y-6">
-            <div className="flex flex-row items-center gap-3 justify-start">
-              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border ${brand.twBg} ${brand.twBorder}`}>
-                <Headphones className={`w-6 h-6 ${brand.twText}`} />
-              </div>
-              <span className={`text-xs uppercase tracking-widest font-mono font-bold ${brand.twText}`}>Digital Consulting</span>
-            </div>
-            <h1 className="text-4xl sm:text-6xl font-display font-black leading-[1.1] tracking-tight text-white">
-              Clear answers for digital decisions.
-            </h1>
-            <div className="space-y-4 max-w-3xl">
-              <p className="text-lg sm:text-xl text-white/90 leading-relaxed font-medium">
-                Sometimes you don't need someone to build anything. You just need someone you can trust to help you make the right decision.
+
+        <div className="h-1 rounded-full bg-white/10 overflow-hidden mb-10">
+          <motion.div
+            className={`h-full ${brand.twBg}`}
+            animate={{ width: `${progress}%` }}
+            transition={{ duration: 0.25 }}
+          />
+        </div>
+
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={currentQuestion.id}
+            initial={{ opacity: 0, x: 18 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -18 }}
+            transition={{ duration: 0.2 }}
+          >
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-white leading-tight">
+              {currentQuestion.title}
+            </h2>
+            {currentQuestion.helper && (
+              <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
+                {currentQuestion.helper}
               </p>
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                Whether you're exploring Web3, planning a website, choosing digital tools, or trying to solve a technical problem, I'll help you understand your options and recommend the most practical way forward.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            )}
 
-      {/* Main Core Content Grid */}
-      <section className="py-20 md:py-24 bg-zinc-950 border-y border-white/[0.08]">
-        <div className="container max-w-5xl mx-auto px-6">
-          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5 }}>
-            <SectionLabel text="What We Can Talk About" />
-            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-6">
-              There isn't a fixed checklist. Every conversation is different, but people usually reach out when they need help with things like:
-            </p>
-            <ul className="space-y-3">
-              {[
-                "Understanding a Web3 project before getting involved",
-                "Choosing the right tools for their business",
-                "Planning a website before hiring a developer",
-                "Improving an existing digital workflow",
-                "Getting a second opinion before spending money",
-                "Solving a technical problem they can't figure out alone",
-                "Learning how to approach a new digital opportunity"
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#f97316] shrink-0 mt-2.5" />
-                  <span className="text-white/80 text-sm sm:text-base leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Topic selector (Simplified Interactive diagnosis) */}
-      <section className="py-20 md:py-24 bg-zinc-950 border-t border-white/[0.08]">
-        <div className="container max-w-3xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <span className={`text-xs uppercase tracking-widest font-mono font-bold ${brand.twText} block mb-2`}>Get Started</span>
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-white">What do you need help with?</h2>
-            <p className="text-muted-foreground mt-2 text-sm sm:text-base">
-              Choose the topic closest to your situation to instantly tailor our starting discussion.
-            </p>
-          </div>
-
-          <div className="space-y-8">
-            {/* Quick selectors */}
-            <div className="flex flex-wrap gap-3 justify-center">
-              {topics.map((t) => {
-                const isSelected = selectedTopic.id === t.id;
+            <div className="grid gap-3 mt-8">
+              {currentQuestion.options.map((option) => {
+                const selected = currentAnswer === option;
                 return (
                   <button
-                    key={t.id}
+                    key={option}
                     type="button"
-                    onClick={() => setSelectedTopic(t)}
-                    className={`py-3 px-5 rounded-2xl text-sm font-semibold transition-all duration-200 border flex items-center gap-2 ${
-                      isSelected ? t.activeColorClass : `${t.colorClass} border-white/5`
+                    onClick={() => selectAnswer(option)}
+                    className={`group w-full text-left rounded-2xl border px-5 py-4 sm:px-6 sm:py-5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 ${
+                      selected
+                        ? `${brand.twBorder} ${brand.twBg} text-white`
+                        : "border-white/10 bg-white/[0.02] text-white/90 hover:border-white/25 hover:bg-white/[0.05]"
                     }`}
                   >
-                    <span>{t.emoji}</span>
-                    <span>{t.label}</span>
+                    <span className="flex items-center justify-between gap-4">
+                      <span className="text-sm sm:text-base font-semibold">{option}</span>
+                      <ArrowRight className={`w-4 h-4 shrink-0 transition-transform group-hover:translate-x-1 ${brand.twText}`} />
+                    </span>
                   </button>
                 );
               })}
             </div>
+          </motion.div>
+        </AnimatePresence>
 
-            {/* Message Preview Box */}
-            <motion.div 
-              key={selectedTopic.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="p-6 rounded-2xl border border-white/5 bg-black/40 text-left space-y-4"
-            >
-              <div className="flex items-center justify-between border-b border-white/5 pb-3">
-                <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest">WhatsApp Starter Message</span>
-                <span className="text-[10px] font-mono text-[#f97316] font-bold uppercase tracking-wider">Ready to send</span>
-              </div>
-              <p className="text-sm font-mono text-white/80 leading-relaxed bg-black/50 p-4 rounded-xl border border-white/[0.02]">
-                {selectedTopic.message}
-              </p>
-              
-              <button
-                onClick={() => handleWhatsAppRedirect()}
-                className="w-full whatsapp-glow-hover flex items-center justify-center gap-2.5 py-4 rounded-xl bg-[#25D366] text-black font-bold text-sm hover:bg-[#20c05a] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
-              >
-                <SiWhatsapp className="w-5 h-5" />
-                Consult regarding {selectedTopic.label}
-              </button>
-            </motion.div>
-          </div>
+        <div className="flex items-center justify-between mt-8 pt-6 border-t border-white/[0.08]">
+          <button
+            type="button"
+            onClick={goBack}
+            disabled={step === 0}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-white disabled:opacity-30 disabled:pointer-events-none transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back
+          </button>
+          <span className="text-xs text-muted-foreground">Tap an answer to continue</span>
         </div>
-      </section>
-
-      {/* Final Refined CTA */}
-      <section className="py-20 md:py-28 bg-zinc-950 border-t border-white/[0.08]">
-        <div className="container max-w-3xl mx-auto px-6 text-center space-y-8">
-          <div className="space-y-4">
-            <SectionLabel text="Still wondering?" />
-            <h2 className="text-3xl sm:text-4xl font-display font-black text-white">Not sure if this is the right service?</h2>
-            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
-              That's okay. Send me a message anyway. If Digital Consulting isn't the right fit, I'll point you to the service that is. Sometimes the best advice is simply knowing where to start.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <button
-              onClick={() => handleWhatsAppRedirect("Hi Jake, I saw your digital consulting page. I'm not sure if my problem fits consulting, but I'd like to ask a quick question.")}
-              className="whatsapp-glow-hover inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#25D366] text-black font-bold text-sm hover:bg-[#20c05a] transition-all w-full sm:w-auto justify-center"
-            >
-              <SiWhatsapp className="w-5 h-5" />
-              Start a Conversation
-            </button>
-            <Link
-              href="/services"
-              className="px-8 py-4 rounded-xl border border-white/10 bg-white/[0.02] text-white font-bold text-sm hover:bg-white/[0.05] transition-all w-full sm:w-auto block text-center"
-            >
-              Explore Other Services
-            </Link>
-          </div>
-        </div>
-      </section>
-    </PageTransition>
+      </div>
+    </section>
   );
 }
