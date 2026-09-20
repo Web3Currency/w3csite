@@ -80,11 +80,11 @@ export const servicesContent: ServicesContent = {
   },
   cores: [
     {
-      title: "Digital Consulting",
-      tagline: "Need a second opinion before making an important digital decision?",
-      description: "I help individuals, creators, and businesses understand their options, avoid costly mistakes, and choose practical solutions across Web3, AI tools, websites, and digital systems.",
-      whoFor: "Anyone who wants honest guidance before investing time, money, or effort into a digital project.",
-      benefit: "Clear advice, practical recommendations, and a plan you can move forward with confidently.",
+      title: "Digital Solutions",
+      tagline: "Need help figuring out the right digital solution?",
+      description: "I help individuals, creators, and businesses figure out what they need, improve what they already have, and turn digital ideas into practical solutions.",
+      whoFor: "Anyone who has a digital problem, idea, or goal and wants help figuring out the right way forward.",
+      benefit: "A clearer direction, practical recommendations, and a solution that fits your situation.",
       iconName: "headphones",
       href: "/services/digital-consulting",
       accentColorClass: "bg-green-500/20 text-green-400 border-green-500/30",
