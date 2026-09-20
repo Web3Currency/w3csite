@@ -345,7 +345,7 @@ export default function CryptoP2P() {
 
               {currentQuestion.id === "amount" && (
                 <InputStep
-                  inputMode={inputMode}
+                  inputMode="decimal"
                   value={currentAnswer || ""}
                   placeholder={
                     answers.asset === "BTC"
