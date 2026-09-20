@@ -435,7 +435,7 @@ export default function ProjectDetail() {
       />
       
       <section className="pt-32 pb-24 bg-black min-h-screen">
-        <div className="container max-w-6xl mx-auto px-6">
+        <div className="site-container">
           
           {/* Back to Projects */}
           <Link href="/projects" className="group inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors mb-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
