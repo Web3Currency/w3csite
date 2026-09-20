@@ -1,11 +1,8 @@
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { Link } from "wouter";
-import { ArrowRight } from "lucide-react";
 import { branding } from "@/config/branding";
-import { contact } from "@/config/contact";
 import { getServiceBrandColor } from "@/config/theme";
-import { trackContactClick } from "@/lib/analytics";
 import WebsiteQuestionnaire from "@/components/services/website-questionnaire";
 
 export default function WebDevelopment() {
@@ -55,28 +52,17 @@ export default function WebDevelopment() {
       <WebsiteQuestionnaire />
 
       <section className="py-16 md:py-20 bg-black border-t border-white/[0.08]">
-        <div className="container max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+        <div className="container max-w-4xl mx-auto px-6">
+          <p className="text-base sm:text-lg leading-relaxed font-semibold text-white/90">
             Not sure what your business needs yet?{" "}
             <Link
               href="/services?tab=consulting"
-              className="text-white font-medium hover:text-primary transition-colors underline underline-offset-4"
+              className="text-white font-bold hover:text-primary transition-colors underline underline-offset-4"
             >
               Start with Digital Consulting
             </Link>
             {" "}and we&apos;ll figure it out together before building anything.
           </p>
-          <a
-            href={contact.whatsappUrl}
-            target="_blank"
-            rel="noreferrer"
-            style={{ backgroundColor: brand.hex }}
-            onClick={() => trackContactClick("WhatsApp", "WebDev - Bottom Banner")}
-            className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full text-black font-bold hover:brightness-110 transition-all transform hover:-translate-y-0.5"
-          >
-            Message {branding.founderName}
-            <ArrowRight className="w-4 h-4" />
-          </a>
         </div>
       </section>
     </PageTransition>
