@@ -416,7 +416,7 @@ export default function CryptoP2P() {
                             : "border-red-500/40 bg-red-500/10 text-white/90 hover:border-red-400/70 hover:bg-red-500/15"
                         : selected
                           ? brand.twBorder + " " + brand.twBg + " text-white"
-                          : "border-white/10 bg-white/[0.02] text-white/90 hover:border-white/25 hover:bg-white/[0.05])";
+                          : "border-white/10 bg-white/[0.02] text-white/90 hover:border-white/25 hover:bg-white/[0.05]";
                       const arrowTone = isTradeType ? (isBuy ? "text-emerald-400" : "text-red-400") : brand.twText;
 
                       return (
@@ -497,7 +497,7 @@ function InputStep({
     <div className="mt-8">
       <input
         type="text"
-        inputMode="decimal"
+        inputMode={inputMode}
         value={draft}
         onChange={(event) => setDraft(event.target.value)}
         placeholder={placeholder}
