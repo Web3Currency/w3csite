@@ -366,9 +366,6 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
               By the Numbers
             </h2>
-            <p className="text-muted-foreground mt-3 max-w-xl mx-auto text-sm">
-              Live, dynamic metrics pulled from our centralized content management system.
-            </p>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -379,8 +376,6 @@ export default function Home() {
               { label: "Protocol Explored", value: metrics.testnetsCompleted, icon: Compass },
               { label: "People Supported", value: metrics.clientsSupported, icon: Globe },
               { label: "Year Founded", value: metrics.activeSince, icon: BookOpen },
-              { label: "Officially Registered", value: branding.cacStatus, subValue: branding.rcNumber, icon: ShieldCheck },
-              { label: "Last Updated", value: lastTradeDate, icon: Clock },
             ].map((sc, idx) => {
               const Icon = sc.icon;
               return (
