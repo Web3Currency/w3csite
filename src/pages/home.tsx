@@ -305,7 +305,7 @@ export default function Home() {
       {/* Services Grid (Four Pillars) */}
       <section className="py-20 md:py-24 bg-black relative">
         <div className="container max-w-6xl mx-auto px-6 relative z-10">
-          <div className="max-w-2xl mb-14 md:mb-16">
+          <div className="max-w-2xl mx-auto mb-14 md:mb-16 text-center">
             <h2 className="text-3xl sm:text-4xl md:text-[2.5rem] font-display font-bold text-white mb-4 tracking-tight">{features.title}</h2>
           </div>
           
@@ -368,7 +368,7 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {[
               { label: "Total Trading Volume", value: totalVolumeFormatted, icon: TrendingUp },
               { label: "Trades Completed", value: totalTrades.toString(), icon: CheckCircle2 },
@@ -386,19 +386,15 @@ export default function Home() {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
                 >
-                  <GlassCard className="p-6 h-full flex flex-col justify-between border-white/5 bg-white/[0.015] hover:border-primary/10 transition-colors">
-                    <div>
-                      <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
-                        <Icon className="w-4 h-4" />
-                      </div>
-                      <span className="text-[10px] font-mono uppercase text-muted-foreground tracking-wider block mb-2">{sc.label}</span>
+                  <GlassCard className="p-6 md:p-8 h-full flex flex-col items-center justify-center text-center border-white/5 bg-white/[0.015] hover:border-primary/10 transition-colors">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
+                      <Icon className="w-5 h-5 md:w-6 md:h-6" />
                     </div>
-                    <div>
-                      <div className="text-2xl sm:text-3xl font-display font-bold text-white leading-none">{sc.value}</div>
-                      {sc.subValue && (
-                        <div className="text-[10px] font-mono text-muted-foreground mt-1">{sc.subValue}</div>
-                      )}
-                    </div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-none">{sc.value}</div>
+                    <span className="text-[10px] md:text-xs font-mono uppercase text-muted-foreground tracking-wider block mt-3">{sc.label}</span>
+                    {sc.subValue && (
+                      <div className="text-[10px] font-mono text-muted-foreground mt-1">{sc.subValue}</div>
+                    )}
                   </GlassCard>
                 </motion.div>
               );
@@ -497,9 +493,6 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-display font-bold text-white mb-4 tracking-tight">What People Say</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed">
-              Real feedback from people I've worked with across W3C DESK, website projects, and digital consulting.
-            </p>
           </motion.div>
 
           <div className="md:hidden">
