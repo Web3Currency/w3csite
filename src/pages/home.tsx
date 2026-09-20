@@ -881,73 +881,7 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* Right Column: Direct High-Fidelity Quick Contact Tiles */}
-              <div className="lg:col-span-5 space-y-4">
-                <a 
-                  href={`https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(`Hi ${branding.founderName}, I'm reaching out from your website. Let's start a conversation.`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex items-center gap-4 p-5 rounded-2xl border border-emerald-500/10 bg-emerald-500/[0.02] hover:bg-emerald-500/[0.06] hover:border-emerald-500/30 transition-all duration-300 overflow-hidden"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
-                    <SiWhatsapp className="w-6 h-6 text-emerald-400" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                      Message on WhatsApp
-                      <ArrowRight className="w-3.5 h-3.5 opacity-40 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-                    </div>
-                    <div className="text-xs text-muted-foreground mt-0.5">Instant chat, direct consultation</div>
-                  </div>
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/[0.02] rounded-full blur-xl pointer-events-none group-hover:bg-emerald-500/[0.05] transition-all" />
-                </a>
-
-                <a 
-                  href={contact.telegramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex items-center gap-4 p-5 rounded-2xl border border-sky-500/10 bg-sky-500/[0.02] hover:bg-sky-500/[0.06] hover:border-sky-500/30 transition-all duration-300 overflow-hidden"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-sky-500/15 border border-sky-500/25 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
-                    <Send className="w-5 h-5 text-sky-400" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                      Connect on Telegram
-                      <ArrowRight className="w-3.5 h-3.5 opacity-40 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-                    </div>
-                    <div className="text-xs text-muted-foreground mt-0.5">Secure messaging, private inquiries</div>
-                  </div>
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-sky-500/[0.02] rounded-full blur-xl pointer-events-none group-hover:bg-sky-500/[0.05] transition-all" />
-                </a>
-
-                <a 
-                  href={`mailto:${contact.email}`}
-                  className="group relative flex items-center gap-4 p-5 rounded-2xl border border-primary/10 bg-primary/[0.02] hover:bg-primary/[0.06] hover:border-primary/30 transition-all duration-300 overflow-hidden"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-primary/15 border border-primary/25 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
-                    <Mail className="w-5 h-5 text-primary" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                      Send an Email
-                      <ArrowRight className="w-3.5 h-3.5 opacity-40 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
-                    </div>
-                    <div className="text-xs text-muted-foreground mt-0.5">Detailed queries, project briefs</div>
-                  </div>
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-primary/[0.02] rounded-full blur-xl pointer-events-none group-hover:bg-primary/[0.05] transition-all" />
-                </a>
-
-                <div className="pt-2 text-center lg:text-left">
-                  <Link 
-                    href="/contact" 
-                    className="inline-flex items-center text-xs font-mono font-medium text-white/50 hover:text-primary transition-colors group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary rounded"
-                  >
-                    <span className="border-b border-white/20 group-hover:border-primary pb-0.5">View all contact channels</span>
-                    <ArrowRight className="w-3.5 h-3.5 ml-1 text-white/30 group-hover:text-primary transition-all group-hover:translate-x-0.5" />
-                  </Link>
-                </div>
-              </div>
+            </div>
             </div>
           </div>
         </div>
