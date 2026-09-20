@@ -198,7 +198,8 @@ export default function DigitalConsulting() {
 
   if (complete) {
     return (
-      <section className="py-20 md:py-28 bg-zinc-950 border-y border-white/[0.08]">
+      <>
+        <section className="py-20 md:py-28 bg-zinc-950 border-y border-white/[0.08]">
         <div className="container max-w-2xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -287,6 +288,7 @@ export default function DigitalConsulting() {
           </div>
         </div>
       </section>
+      </>
     );
   }
 
