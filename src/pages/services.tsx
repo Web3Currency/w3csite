@@ -223,10 +223,10 @@ export default function Services() {
 
       {/* Functional sticky service tabs */}
       <section className="sticky top-20 z-40 bg-black/95 backdrop-blur-md border-b border-white/[0.08]" aria-label="Service navigation">
-        <div className="site-container">
+        <div className="w-full">
           <div
             ref={tabsContainerRef}
-            className="flex items-center gap-6 overflow-x-auto scrollbar-hide whitespace-nowrap"
+            className="flex items-stretch overflow-x-auto scrollbar-hide whitespace-nowrap"
           >
             {tabs.map((tab) => {
               const active = activeTab === tab.id;
@@ -238,7 +238,7 @@ export default function Services() {
                   }}
                   type="button"
                   onClick={() => selectTab(tab.id)}
-                  className={`shrink-0 py-4 border-b-2 text-sm sm:text-base font-bold transition-colors ${
+                  className={`shrink-0 md:flex-1 px-5 py-4 md:py-5 border-b-2 text-base sm:text-lg font-bold uppercase tracking-wide transition-colors ${
                     active ? tab.activeClass : "border-transparent text-white/60 hover:text-white"
                   }`}
                 >
