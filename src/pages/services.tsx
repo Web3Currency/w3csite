@@ -27,7 +27,7 @@ const tabs: Array<{
 ];
 
 export default function Services() {
-  const { hero, extras, cta } = servicesContent;
+  const { extras, cta } = servicesContent;
   const getTabFromUrl = (): ServiceTab => {
     const value = new URLSearchParams(window.location.search).get("tab");
     return tabs.some((tab) => tab.id === value) ? (value as ServiceTab) : "consulting";
@@ -221,56 +221,8 @@ export default function Services() {
         schema={servicesSchema}
       />
 
-      {/* Hero stays exactly as the existing Services hero */}
-      <section className="relative overflow-hidden bg-black border-b border-white/[0.06] pt-32 pb-20 md:pt-40 md:pb-24">
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <motion.div
-            animate={{
-              scale: [1.02, 1.06, 1.02],
-              x: [-2, 2, -2],
-              y: [-1, 1, -1],
-            }}
-            transition={{
-              duration: 20,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-            className="w-full h-full"
-          >
-            <img
-              src="https://i.imgur.com/CgM0hwC.png"
-              alt="Let's Figure It Out Together Background"
-              className="w-full h-full object-cover object-center select-none"
-            />
-          </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-        </div>
-
-        <div className="site-container relative z-10">
-          <div className="max-w-2xl">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="bg-black/50 backdrop-blur-md p-6 sm:p-8 md:p-10 rounded-2xl border border-white/[0.06] shadow-2xl"
-            >
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-4 leading-tight text-white">
-                {hero.title}
-              </h1>
-              <p className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed mb-4 font-medium">
-                {hero.description}
-              </p>
-              <p className="text-xs sm:text-sm text-white/60 leading-relaxed whitespace-pre-line">
-                {hero.subDescription}
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* Functional sticky service tabs */}
-      <section className="sticky top-20 z-40 bg-black/95 backdrop-blur-md border-b border-white/[0.08]">
+      <section className="sticky top-20 z-40 bg-black/95 backdrop-blur-md border-b border-white/[0.08]" aria-label="Service navigation">
         <div className="site-container">
           <div
             ref={tabsContainerRef}
