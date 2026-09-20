@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, RotateCcw } from "lucide-react";
 import { SiTelegram, SiWhatsapp } from "react-icons/si";
+import { Link } from "wouter";
 import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
 import { getServiceBrandColor } from "@/config/theme";
@@ -253,6 +254,37 @@ export default function DigitalConsulting() {
               Start again
             </button>
           </motion.div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 bg-black border-t border-white/[0.08]">
+        <div className="container max-w-4xl mx-auto px-6">
+          <div className="text-center">
+            <h2 className={`text-2xl sm:text-3xl font-display font-bold ${brand.twText}`}>
+              Still wondering?
+            </h2>
+            <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mt-2">
+              Not sure if this is the right service?
+            </h3>
+            <p className="text-base sm:text-lg leading-relaxed text-white/80 max-w-2xl mx-auto mt-5">
+              That&apos;s okay. Send me a message anyway. If Digital Solutions isn&apos;t the right fit, I&apos;ll point you to the service that is. Sometimes the best advice is simply knowing where to start.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+              <Link
+                href="/contact"
+                className={`w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 ${brand.twBg} ${brand.twText} font-bold text-sm border ${brand.twBorder} hover:brightness-125 transition-all`}
+              >
+                Start a Conversation
+              </Link>
+              <Link
+                href="/services"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 border border-white/15 bg-white/[0.02] text-white font-semibold text-sm hover:bg-white/[0.05] hover:border-white/30 transition-all"
+              >
+                Explore Other Services
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     );
