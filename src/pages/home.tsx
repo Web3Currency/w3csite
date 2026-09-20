@@ -181,7 +181,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-grid-fade opacity-20 z-[2]" aria-hidden="true" />
         </div>
         
-        <div className="container max-w-5xl mx-auto px-6 relative z-10 text-center">
+        <div className="site-container relative z-10 text-center">
           <div className="flex flex-col items-center">
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
@@ -234,7 +234,7 @@ export default function Home() {
 
       {/* Meet Jake Section */}
       <section className="py-20 md:py-24 bg-zinc-950 relative border-y border-white/[0.08]">
-        <div className="container max-w-6xl mx-auto px-6">
+        <div className="site-container">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -304,7 +304,7 @@ export default function Home() {
 
       {/* Services Grid (Four Pillars) */}
       <section className="py-20 md:py-24 bg-black relative">
-        <div className="container max-w-6xl mx-auto px-6 relative z-10">
+        <div className="site-container relative z-10">
           <div className="max-w-2xl mx-auto mb-14 md:mb-16 text-center">
             <h2 className="text-3xl sm:text-4xl md:text-[2.5rem] font-display font-bold text-white mb-4 tracking-tight">{features.title}</h2>
           </div>
@@ -355,7 +355,7 @@ export default function Home() {
 
       {/* By the Numbers */}
       <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
-        <div className="container max-w-6xl mx-auto px-6">
+        <div className="site-container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -405,7 +405,7 @@ export default function Home() {
 
       {/* Featured Projects */}
       <section className="py-20 bg-black">
-        <div className="container max-w-6xl mx-auto px-6">
+        <div className="site-container">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mb-4 tracking-tight">{projectsTeaser.title}</h2>
           </div>
@@ -485,7 +485,7 @@ export default function Home() {
 
       {/* Testimonials */}
       <section className="py-20 md:py-24 bg-black relative overflow-hidden border-t border-white/[0.08]">
-        <div className="container max-w-6xl mx-auto px-6 relative z-10">
+        <div className="site-container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -576,7 +576,7 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
         </div>
 
-        <div className="container max-w-6xl mx-auto px-6 relative z-10">
+        <div className="site-container relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
               How can I help you today?
@@ -798,7 +798,7 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
         </div>
         
-        <div className="container max-w-6xl mx-auto px-6 relative z-10">
+        <div className="site-container relative z-10">
           <div className="relative rounded-[2.5rem] border border-white/[0.08] bg-white/[0.015] backdrop-blur-md px-8 py-12 md:p-16 overflow-hidden">
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/[0.01] rounded-full blur-3xl pointer-events-none" />
 
