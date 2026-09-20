@@ -447,7 +447,7 @@ export default function Home() {
                       <Icon className="w-5 h-5 md:w-6 md:h-6" />
                     </div>
                     <div className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-none">
-                      <CountUpValue value={sc.value} start={metricsVisible && !loading} />
+                      {sc.label === "Year Founded" ? sc.value : <CountUpValue value={sc.value} start={metricsVisible && !loading} />}
                     </div>
                     <span className="text-[10px] md:text-xs font-mono uppercase text-muted-foreground tracking-wider block mt-3">{sc.label}</span>
                     {sc.subValue && (
