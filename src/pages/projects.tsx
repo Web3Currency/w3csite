@@ -180,7 +180,7 @@ export default function Projects() {
         </div>
 
         {/* Content Container */}
-        <div className="container max-w-6xl mx-auto px-6 relative z-10 text-center sm:text-left">
+        <div className="site-container relative z-10 text-center sm:text-left">
           <div className="max-w-3xl">
             <motion.div 
               initial={{ opacity: 0, y: 15 }} 
@@ -223,7 +223,7 @@ export default function Projects() {
 
       {/* Featured Projects Section */}
       <section className="py-20 md:py-24 bg-black">
-        <div className="container max-w-5xl mx-auto px-6">
+        <div className="site-container">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div className="text-center md:text-left">
               <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
@@ -398,7 +398,7 @@ export default function Projects() {
         {/* Decorative background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
         
-        <div className="container max-w-5xl mx-auto px-6 relative z-10">
+        <div className="site-container relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight animate-fade-in">
               Technology Stack
@@ -527,7 +527,7 @@ export default function Projects() {
 
       {/* Looking Ahead Section */}
       <section className="py-20 md:py-24 bg-zinc-950 border-t border-white/[0.08]">
-        <div className="container max-w-4xl mx-auto px-6 text-center space-y-6">
+        <div className="site-container text-center space-y-6">
           <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
             More Projects Are On The Way
           </h2>
@@ -544,7 +544,7 @@ export default function Projects() {
 
       {/* Final Refined CTA */}
       <section className="py-20 md:py-28 bg-black border-t border-white/[0.08]">
-        <div className="container max-w-3xl mx-auto px-6 text-center space-y-8">
+        <div className="site-container text-center space-y-8">
           <div className="space-y-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white leading-tight">
               Let's Build Something Useful Together
