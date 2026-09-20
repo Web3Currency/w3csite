@@ -40,7 +40,7 @@ export default function Contact() {
           <div className="absolute inset-0 bg-grid-fade opacity-30" />
         </div>
 
-        <div className="container max-w-5xl mx-auto px-6 relative z-10 space-y-24">
+        <div className="site-container relative z-10 space-y-24">
           
           {/* 1. Hero Section */}
           <div id="contact-hero" className="max-w-3xl">
