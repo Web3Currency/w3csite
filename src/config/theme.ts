@@ -134,7 +134,7 @@ export function getServiceBrandColor(serviceName: string) {
   if (normalized.includes("dev") || normalized.includes("web") || normalized.includes("site") || normalized.includes("design")) {
     return serviceBrandColors.webDev;
   }
-  if (normalized.includes("consult") || normalized.includes("guidance")) {
+  if (normalized.includes("consult") || normalized.includes("guidance") || normalized.includes("solution")) {
     return serviceBrandColors.consulting;
   }
   return serviceBrandColors.community;
