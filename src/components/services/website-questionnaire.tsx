@@ -208,16 +208,14 @@ export default function WebsiteQuestionnaire() {
             animate={{ opacity: 1, y: 0 }}
             className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 sm:p-10"
           >
-            <div
-              className={`w-12 h-12 rounded-2xl border ${brand.twBg} ${brand.twBorder} flex items-center justify-center mb-6`}
-            >
-              <Check className={`w-6 h-6 ${brand.twText}`} />
+            <div className="flex justify-center mb-6">
+              <Check
+                className={`w-16 h-16 sm:w-20 sm:h-20 ${brand.twText}`}
+                strokeWidth={1.75}
+              />
             </div>
-            <span className={`text-xs uppercase tracking-widest font-mono font-bold ${brand.twText}`}>
-              READY TO TALK
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mt-2">
-              That gives me a good starting point.
+            <h2 className={`text-3xl sm:text-4xl font-display font-bold text-center ${brand.twText}`}>
+              You&apos;ve given me the context I need.
             </h2>
             <p className="text-muted-foreground mt-4 leading-relaxed">
               Your answers are ready. Choose where you would like to continue.
@@ -239,7 +237,7 @@ export default function WebsiteQuestionnaire() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackContactClick("Telegram", "WebDev Questionnaire")}
-                className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 border border-white/10 bg-white/5 text-white font-bold text-sm hover:bg-white/10 transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#229ED9] text-white font-bold text-sm hover:brightness-110 transition-all"
               >
                 <SiTelegram className="w-4 h-4" />
                 Continue on Telegram
@@ -247,13 +245,11 @@ export default function WebsiteQuestionnaire() {
               <a
                 href={emailUrl}
                 onClick={() => trackContactClick("Email", "WebDev Questionnaire")}
-                className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 border border-white/10 bg-white/5 text-white font-bold text-sm hover:bg-white/10 transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-red-500 text-white font-bold text-sm hover:brightness-110 transition-all"
               >
                 Continue by Email
               </a>
             </div>
-
-            
 
             <button
               type="button"
