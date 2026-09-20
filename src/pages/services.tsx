@@ -95,7 +95,40 @@ export default function Services() {
   const renderActiveService = () => {
     switch (activeTab) {
       case "consulting":
-        return <DigitalSolutions />;
+        return (
+          <>
+            <DigitalSolutions />
+            <section className="py-16 md:py-20 bg-black border-t border-white/[0.08]">
+              <div className="container max-w-4xl mx-auto px-6">
+                <div className="text-center">
+                  <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#22C55E]">
+                    Still wondering?
+                  </h2>
+                  <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mt-2">
+                    Not sure if this is the right service?
+                  </h3>
+                  <p className="text-base sm:text-lg leading-relaxed text-white/80 max-w-2xl mx-auto mt-5">
+                    That&apos;s okay. Send me a message anyway. If Digital Solutions isn&apos;t the right fit, I&apos;ll point you to the service that is. Sometimes the best advice is simply knowing where to start.
+                  </p>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+                    <Link
+                      href="/contact"
+                      className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 bg-[#22C55E]/10 text-[#22C55E] font-bold text-sm border border-[#22C55E]/20 hover:bg-[#22C55E]/20 transition-all"
+                    >
+                      Start a Conversation
+                    </Link>
+                    <Link
+                      href="/services"
+                      className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 border border-white/15 bg-white/[0.02] text-white font-semibold text-sm hover:bg-white/[0.05] hover:border-white/30 transition-all"
+                    >
+                      Explore Other Services
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </>
+        );
       case "desk":
         return <CryptoP2P />;
       case "web":
