@@ -446,15 +446,43 @@ export default function CryptoP2P() {
         </div>
       </section>
 
-      <section className="py-14 md:py-16 bg-black border-t border-white/[0.08]">
-        <div className="container max-w-2xl mx-auto px-6">
-          <p className="text-base sm:text-lg leading-relaxed font-semibold text-white/90">
-            Want to see the trade history?{" "}
-            <Link href="/ledger" className={"font-bold " + brand.twText + " hover:brightness-125 transition-colors underline underline-offset-4"}>
-              View the W3C DESK Transparency Ledger
-            </Link>
-            .
-          </p>
+      <section className="py-16 md:py-20 bg-black border-t border-white/[0.08]">
+        <div className="container max-w-3xl mx-auto px-6">
+          <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 sm:p-8">
+            <p className={"text-xs uppercase tracking-widest font-mono font-bold " + brand.twText + " mb-5"}>
+              W3C DESK
+            </p>
+            <div className="grid gap-5 md:grid-cols-2">
+              <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
+                <h2 className="text-lg sm:text-xl font-display font-bold text-white">
+                  Not ready to trade yet?
+                </h2>
+                <p className="text-sm text-muted-foreground leading-relaxed mt-2">
+                  Join W3C Community to learn first.
+                </p>
+                <Link
+                  href="/services?tab=community"
+                  className={"mt-4 inline-flex items-center gap-2 text-sm font-bold " + brand.twText + " hover:brightness-125 transition-colors"}
+                >
+                  Learn with W3C Community <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+              <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
+                <h2 className="text-lg sm:text-xl font-display font-bold text-white">
+                  Want to see the trade history?
+                </h2>
+                <p className="text-sm text-muted-foreground leading-relaxed mt-2">
+                  See completed W3C DESK activity through the public transparency ledger.
+                </p>
+                <Link
+                  href="/ledger"
+                  className={"mt-4 inline-flex items-center gap-2 text-sm font-bold " + brand.twText + " hover:brightness-125 transition-colors"}
+                >
+                  View the Transparency Ledger <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </PageTransition>
