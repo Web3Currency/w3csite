@@ -24,7 +24,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed md:block hidden">
-              {branding.mission}
+              Built around Web3, crypto and the wider digital economy.
             </p>
             <div className="mt-2 flex flex-row items-center gap-3 flex-nowrap md:hidden">
               <a href={`tel:${contact.phoneNumber}`} aria-label="Phone" className="group flex items-center justify-center text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
