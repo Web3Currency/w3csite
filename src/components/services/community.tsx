@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
-import { ArrowLeft, ArrowRight, Check, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Check, ShieldCheck } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
@@ -103,7 +103,13 @@ export default function CommunityService() {
     setAnswers(updated);
 
     const next = nextQuestion(step, updated);
-    setTimeout(() => setStep(next), 160);
+    setTimeout(() => {
+      if (step === 9) {
+        setSafety(true);
+      } else {
+        setStep(next);
+      }
+    }, 160);
   };
 
   const goBack = () => {
