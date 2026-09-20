@@ -50,12 +50,6 @@ const commonQuestions: Question[] = [
       "I'm just exploring for now",
     ],
   },
-  {
-    id: "contact",
-    title: "How should Jake contact you?",
-    helper: "Your answers will be included in the message so you do not have to explain everything again.",
-    options: ["WhatsApp", "Telegram", "Email"],
-  },
 ];
 
 const firstQuestions: Record<string, Question> = {
@@ -202,7 +196,7 @@ export default function WebsiteQuestionnaire() {
   const message = buildMessage(answers);
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `${contact.whatsappUrl}?text=${encodedMessage}`;
-  const telegramUrl = `${contact.telegramUrl}?text=${encodedMessage}`;
+  const telegramUrl = `${contact.telegramUrl}?text=${encodedMessage}`;\n  const telegramShareUrl = `https://t.me/share/url?url=${encodeURIComponent("https://web3currency.online/services/web-development")}&text=${encodedMessage}`;
   const emailUrl = `mailto:${contact.email}?subject=${encodeURIComponent("Website Project Enquiry")}&body=${encodedMessage}`;
 
   if (complete) {
@@ -226,51 +220,42 @@ export default function WebsiteQuestionnaire() {
               That gives me a good starting point.
             </h2>
             <p className="text-muted-foreground mt-4 leading-relaxed">
-              Choose how you would like to continue. Your answers will be included so you can start the conversation without repeating everything.
+              Your answers are ready. Choose where you would like to continue.
             </p>
 
-            <div className="grid sm:grid-cols-3 gap-3 mt-8">
-              {answers.contact === "WhatsApp" && (
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackContactClick("WhatsApp", "WebDev Questionnaire")}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#25D366] text-black font-bold text-sm hover:brightness-110 transition-all"
-                >
-                  <SiWhatsapp className="w-4 h-4" />
-                  Continue on WhatsApp
-                </a>
-              )}
-              {answers.contact === "Telegram" && (
-                <a
-                  href={telegramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackContactClick("Telegram", "WebDev Questionnaire")}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 border border-white/10 bg-white/5 text-white font-bold text-sm hover:bg-white/10 transition-all"
-                >
-                  <SiTelegram className="w-4 h-4" />
-                  Continue on Telegram
-                </a>
-              )}
-              {answers.contact === "Email" && (
-                <a
-                  href={emailUrl}
-                  onClick={() => trackContactClick("Email", "WebDev Questionnaire")}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 border border-white/10 bg-white/5 text-white font-bold text-sm hover:bg-white/10 transition-all"
-                >
-                  Continue by Email
-                </a>
-              )}
+            <div className="grid gap-3 mt-8">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackContactClick("WhatsApp", "WebDev Questionnaire")}
+                className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#25D366] text-black font-bold text-sm hover:brightness-110 transition-all"
+              >
+                <SiWhatsapp className="w-4 h-4" />
+                Continue on WhatsApp
+              </a>
+              <a
+                href={telegramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackContactClick("Telegram", "WebDev Questionnaire")}
+                className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 border border-white/10 bg-white/5 text-white font-bold text-sm hover:bg-white/10 transition-all"
+              >
+                <SiTelegram className="w-4 h-4" />
+                Continue on Telegram
+              </a>
+              <a
+                href={emailUrl}
+                onClick={() => trackContactClick("Email", "WebDev Questionnaire")}
+                className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 border border-white/10 bg-white/5 text-white font-bold text-sm hover:bg-white/10 transition-all"
+              >
+                Continue by Email
+              </a>
             </div>
 
-            <div className="flex flex-wrap gap-4 mt-5 text-sm">
-              <span className="text-muted-foreground">Want to use another option?</span>
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-4">WhatsApp</a>
-              <a href={telegramUrl} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-4">Telegram</a>
-              <a href={emailUrl} className="text-white underline underline-offset-4">Email</a>
-            </div>
+            <p className="text-xs text-muted-foreground mt-5">
+              If Telegram does not open the chat directly, use <a href={telegramShareUrl} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-4">Telegram Share</a> to open Telegram with the message ready to send.
+            </p>
 
             <button
               type="button"
