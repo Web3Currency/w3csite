@@ -259,7 +259,7 @@ export default function LedgerPage() {
         </div>
 
         {/* Central Stage Wrapper */}
-        <div className="container max-w-2xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col min-h-[75vh]">
+        <div className="site-container relative z-10 flex flex-col min-h-[75vh]">
           <div className="space-y-8">
             <header className="space-y-2 text-center sm:text-left">
               <h1 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
