@@ -331,7 +331,7 @@ export default function Home() {
                   It's where my interests in creativity, technology, crypto, Web3 and AI come together to create something useful for other people.
                 </p>
                 <p className="text-muted-foreground">
-                  I believe digital should feel practical and approachable, not complicated or intimidating.
+                  I believe using technology should feel practical and approachable, not complicated or intimidating.
                 </p>
                 <p className="text-muted-foreground">
                   That's what I'm building with W3C Digital Network.
