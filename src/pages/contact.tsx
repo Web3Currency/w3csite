@@ -1,22 +1,14 @@
 import React from "react";
-import { Link } from "wouter";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { GlassCard, MotionGlassCard } from "@/components/shared/glass-card";
-import { Mail, ArrowRight, Users, ShieldAlert, GraduationCap, Flame, CheckCircle2, Bookmark } from "lucide-react";
+import { Mail, ArrowRight, CheckCircle2, Bookmark } from "lucide-react";
 import { SiWhatsapp, SiTelegram } from "react-icons/si";
 import { contact } from "@/config/contact";
 import { branding } from "@/config/branding";
-import { communityContent } from "@/content/community";
-import { trackContactClick, trackCommunityJoin } from "@/lib/analytics";
+import { trackContactClick } from "@/lib/analytics";
 
 export default function Contact() {
-  const getCommunityIcon = (name: string) => {
-    if (name === "flame") return <Flame className="w-7 h-7 text-primary" />;
-    if (name === "graduation") return <GraduationCap className="w-7 h-7 text-primary" />;
-    return <ShieldAlert className="w-7 h-7 text-primary" />;
-  };
-
   const contactSchema = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
@@ -286,134 +278,6 @@ export default function Contact() {
                 </div>
               </div>
             </GlassCard>
-          </div>
-
-          {/* 5. W3C Community (Title & Intro) */}
-          <div id="community" className="border-t border-white/[0.08] pt-20">
-            <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 tracking-tight">
-                Learn with the <span className="text-primary italic">operators.</span>
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {communityContent.hero.description}
-              </p>
-            </div>
-          </div>
-
-          {/* 6. Community Benefits */}
-          <div id="community-benefits">
-            <div className="grid md:grid-cols-3 gap-6">
-              {communityContent.modules.map((module, i) => (
-                <MotionGlassCard 
-                  key={module.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="text-center border-white/10 bg-white/[0.02] p-6"
-                >
-                  <div className="w-14 h-14 mx-auto bg-primary/10 border border-primary/20 rounded-2xl flex items-center justify-center mb-6">
-                    {getCommunityIcon(module.iconName)}
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{module.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{module.description}</p>
-                </MotionGlassCard>
-              ))}
-            </div>
-          </div>
-
-          {/* 7. Membership */}
-          <div id="community-membership" className="max-w-3xl">
-            <h3 className="text-3xl font-display font-bold text-white mb-4">
-              {communityContent.membership.title}
-            </h3>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              {communityContent.membership.description}
-            </p>
-          </div>
-
-          {/* 8. Community Card */}
-          <div id="community-card" className="max-w-xl mx-auto w-full">
-            <div className="relative p-8 rounded-3xl border border-white/15 bg-gradient-to-br from-zinc-900 via-neutral-950 to-zinc-900 shadow-[0_0_50px_rgba(168,85,247,0.06)] overflow-hidden flex flex-col justify-between min-h-[340px] group hover:border-purple-500/30 transition-all duration-500">
-              
-              {/* Card Hologram & Mesh Grid Background Overlay */}
-              <div className="absolute inset-0 bg-grid-fade opacity-10 pointer-events-none" />
-              <div className="absolute -right-24 -top-24 w-56 h-56 bg-purple-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-purple-500/15 transition-all duration-500" />
-              <div className="absolute -left-24 -bottom-24 w-56 h-56 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
-              
-              {/* Premium Header */}
-              <div className="relative z-10 flex items-start justify-between">
-                <div>
-                  <div className="font-display font-black text-white text-base sm:text-lg tracking-wider bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent uppercase flex items-center gap-2">
-                    <span className="text-purple-400">W3C</span> OPERATOR
-                  </div>
-                  <div className="text-[9px] font-mono uppercase tracking-[0.15em] text-white/40 mt-1">
-                    {communityContent.sidebar.subtitle}
-                  </div>
-                </div>
-
-                {/* Micro SIM Chip for Credential Look */}
-                <div className="w-12 h-9 rounded-lg bg-gradient-to-br from-amber-400/25 via-amber-300/35 to-amber-500/15 border border-amber-500/35 p-1.5 flex flex-col justify-between shadow-inner shrink-0">
-                  <div className="grid grid-cols-3 gap-0.5 h-full opacity-70">
-                    <div className="border-r border-b border-amber-500/20" />
-                    <div className="border-r border-b border-amber-500/20" />
-                    <div className="border-b border-amber-500/20" />
-                    <div className="border-r border-amber-500/20" />
-                    <div className="border-r border-amber-500/20" />
-                    <div className="opacity-0" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Benefits list (middle part of card) */}
-              <div className="relative z-10 my-6 space-y-3">
-                {communityContent.sidebar.items.map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <div className="w-4 h-4 rounded-full bg-purple-500/10 border border-purple-500/30 flex items-center justify-center shrink-0">
-                      <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-                    </div>
-                    <span className="text-xs sm:text-sm font-medium text-white/80 tracking-wide">{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Card Footer */}
-              <div className="relative z-10 pt-4 border-t border-white/[0.08] flex items-end justify-between">
-                <div>
-                  <span className="block text-[8px] font-mono text-white/30 uppercase tracking-widest mb-1.5">MEMBERSHIP TYPE</span>
-                  <span className="text-[10px] font-mono font-bold text-purple-400 uppercase tracking-wider bg-purple-500/10 px-2.5 py-0.5 rounded border border-purple-500/20">
-                    {communityContent.sidebar.footerLeft}
-                  </span>
-                </div>
-              </div>
-              
-              {/* Watermark Signature overlay */}
-              <div className="absolute right-6 bottom-16 opacity-[0.03] group-hover:opacity-[0.06] pointer-events-none select-none transition-all duration-500">
-                <span className="font-serif italic text-4xl text-white font-light tracking-widest">
-                  Jake W3C
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* 9. Join Community CTA */}
-          <div id="community-join-cta" className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <a 
-              href={contact.whatsappCommunityUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackCommunityJoin('Contact Page CTA')}
-              className="whatsapp-glow-hover w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-primary text-black font-bold rounded-full hover:bg-primary/95 transition-all hover:scale-[1.02] active:scale-95 text-base shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-            >
-              <SiWhatsapp className="w-6 h-6 text-black" />
-              {communityContent.membership.ctaText}
-            </a>
-            <Link 
-              href="/services/community"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white font-bold text-base transition-all hover:scale-[1.02] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-            >
-              Learn More <ArrowRight className="w-5 h-5 text-white/60" />
-            </Link>
           </div>
 
         </div>
