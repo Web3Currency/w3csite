@@ -203,11 +203,10 @@ export default function CommunityService() {
           <div className="absolute inset-0 opacity-15 pointer-events-none" style={{ background: `radial-gradient(circle at 50% 50%, ${brand.hex}15, transparent 70%)` }} />
         </div>
         <div className="container max-w-4xl mx-auto px-6 relative z-10 text-center">
-          <p className={`text-xs uppercase tracking-widest font-medium ${brand.twText} mb-3`}>W3C Community</p>
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tight text-white">
+          <h1 className={"text-4xl sm:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tight max-w-4xl " + brand.twText}>
             Learn Web3, crypto and AI together.
           </h1>
-          <p className="text-lg sm:text-xl text-white/75 leading-relaxed max-w-2xl mx-auto mt-6">
+          <p className="text-lg sm:text-xl text-white/75 leading-relaxed max-w-3xl mt-6">
             A free WhatsApp community for practical learning, useful discussions, and people exploring the digital space together. No hype, no guaranteed returns, and no need to be an expert.
           </p>
         </div>
@@ -215,12 +214,8 @@ export default function CommunityService() {
 
       <section className="py-16 md:py-24 bg-zinc-950 border-y border-white/[0.08]">
         <div className="container max-w-3xl mx-auto px-6">
-          <div className="flex items-center justify-between gap-4 mb-8">
-            <div>
-              <p className={`text-xs uppercase tracking-widest font-medium ${brand.twText}`}>Let&apos;s get to know you</p>
-              <p className="text-sm text-white/55 mt-1">A few quick questions. Your answers stay on this page.</p>
-            </div>
-            <button type="button" onClick={restart} className="text-sm text-white/60 hover:text-white transition-colors">Restart</button>
+          <div className="mb-8 text-center">
+            <p className={`text-xs uppercase tracking-widest font-medium ${brand.twText}`}>Let&apos;s get to know you</p>
           </div>
 
           <div className="h-1 rounded-full bg-white/10 overflow-hidden mb-8" aria-hidden="true">
@@ -228,7 +223,6 @@ export default function CommunityService() {
           </div>
 
           <div key={currentQuestion.id} className="transition-all duration-200">
-            <p className={`text-sm font-medium ${brand.twText} mb-3`}>Question {step + 1}</p>
             <h2 className="text-3xl sm:text-4xl font-display font-bold text-white leading-tight mb-7">{currentQuestion.question}</h2>
             <div className="grid gap-3">
               {currentQuestion.options.map((option) => {
