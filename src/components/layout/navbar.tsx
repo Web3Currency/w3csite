@@ -1,10 +1,42 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, ArrowLeft } from "lucide-react";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { navigation } from "@/config/navigation";
 import { branding } from "@/config/branding";
+
+function MenuArrowIcon({
+  direction,
+  className = "",
+}: {
+  direction: "left" | "right";
+  className?: string;
+}) {
+  const isLeft = direction === "left";
+
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className={className}
+    >
+      <rect
+        x={isLeft ? "16" : "5"}
+        y="3"
+        width="3"
+        height="18"
+        rx="0.5"
+        fill="currentColor"
+      />
+      <path
+        d={isLeft ? "M13 5L4 12L13 19V5Z" : "M11 5L20 12L11 19V5Z"}
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
 
 export function Navbar() {
   const [location] = useLocation();
@@ -81,7 +113,7 @@ export function Navbar() {
             aria-label="Toggle Menu"
             aria-expanded={isOpen}
           >
-            <Menu className="w-6 h-6" />
+            <MenuArrowIcon direction="left" className="w-7 h-7" />
           </button>
         </div>
       </header>
@@ -100,9 +132,9 @@ export function Navbar() {
               type="button"
               onClick={toggleMenu}
               aria-label="Close menu"
-              className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-14 rounded-r-full border border-l-0 border-white/10 bg-white/[0.06] text-white/80 flex items-center justify-center hover:bg-white/10 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-14 text-white/80 flex items-center justify-center hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              <ArrowLeft className="w-5 h-5" aria-hidden="true" />
+              <MenuArrowIcon direction="right" className="w-7 h-7" />
             </button>
             <nav className="flex flex-col items-center gap-8 w-full px-6">
               {navigation.headerLinks.map((link, i) => (
