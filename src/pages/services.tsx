@@ -134,12 +134,6 @@ export default function Services() {
                     >
                       Start a Conversation
                     </Link>
-                    <Link
-                      href="/services"
-                      className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl px-6 py-3 border border-white/15 bg-white/[0.02] text-white font-semibold text-sm hover:bg-white/[0.05] hover:border-white/30 transition-all"
-                    >
-                      Explore Other Services
-                    </Link>
                   </div>
                 </div>
               </div>
