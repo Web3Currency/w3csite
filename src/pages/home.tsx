@@ -15,6 +15,7 @@ import { testimonials } from "@/content/testimonials";
 import { getServiceBrandColor } from "@/config/theme";
 import { useLiveMetrics } from "@/hooks/useLiveMetrics";
 import { faqs } from "@/content/faq";
+import { FounderAvatar } from "@/components/shared/founder-avatar";
 
 const getProjectImage = (id: string) => {
   switch (id) {
@@ -756,19 +757,7 @@ export default function Home() {
               </p>
 
               <div className="relative mt-8 pt-6 border-t border-white/[0.06] flex items-center gap-4">
-                <div className="relative shrink-0">
-                  <div className="w-16 h-16 rounded-full border border-primary/20 overflow-hidden bg-primary/5">
-                    <img
-                      src="https://i.imgur.com/9q4rYyq.png"
-                      alt={branding.founderName}
-                      className="w-full h-full object-cover scale-110"
-                    />
-                  </div>
-                  <span className="absolute -right-0.5 -bottom-0.5 flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-[#0A0A0A]" />
-                  </span>
-                </div>
+                <FounderAvatar />
                 <div className="min-w-0 flex-1">
                   <div className="font-display font-bold text-white text-base leading-tight">{branding.founderName}</div>
                   <div className="text-xs text-muted-foreground font-mono mt-1">Founder, {branding.businessName}</div>
@@ -796,19 +785,7 @@ export default function Home() {
                 </p>
                 
                 <div className="pt-6 border-t border-white/[0.06] flex flex-wrap items-center gap-4">
-                  <div className="relative shrink-0">
-                    <div className="w-12 h-12 rounded-full border border-primary/20 overflow-hidden bg-primary/5">
-                      <img 
-                        src="https://i.imgur.com/9q4rYyq.png" 
-                        alt={branding.founderName} 
-                        className="w-full h-full object-cover scale-110" 
-                      />
-                    </div>
-                    <span className="absolute -right-0.5 -bottom-0.5 flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-[#0A0A0A]" />
-                    </span>
-                  </div>
+                  <FounderAvatar sizeClass="w-12 h-12" />
                   <div>
                     <div className="font-display font-bold text-white text-base leading-tight">{branding.founderName}</div>
                     <div className="text-xs text-muted-foreground font-mono mt-0.5">Founder, {branding.businessName}</div>
