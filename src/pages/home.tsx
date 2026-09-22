@@ -635,8 +635,8 @@ export default function Home() {
             <div className="flex flex-wrap justify-center gap-2 mb-10">
               {[
                 { id: "about", label: "About" },
-                { id: "web-dev", label: "Web Dev" },
-                { id: "consulting", label: "Advisory" },
+                { id: "web-dev", label: "Web Design & Development" },
+                { id: "consulting", label: "Digital Solutions" },
                 { id: "p2p", label: "W3C DESK" },
                 { id: "community", label: "Community" },
                 { id: "communication", label: "Channels" },
@@ -684,7 +684,7 @@ export default function Home() {
                         >
                           <div className="space-y-1">
                             <span className="text-[9px] font-mono uppercase tracking-widest text-primary font-bold">
-                              {faq.category === "web-dev" ? "Web Dev" : faq.category === "p2p" ? "Crypto P2P" : faq.category === "consulting" ? "Advisory" : faq.category === "about" ? "About" : faq.category === "community" ? "Community" : faq.category === "communication" ? "Channels" : faq.category === "projects" ? "Projects" : faq.category || "General"}
+                              {faq.category === "web-dev" ? "Web Design & Development" : faq.category === "p2p" ? "Crypto P2P" : faq.category === "consulting" ? "Digital Solutions" : faq.category === "about" ? "About" : faq.category === "community" ? "Community" : faq.category === "communication" ? "Channels" : faq.category === "projects" ? "Projects" : faq.category || "General"}
                             </span>
                             <h4 className="font-display font-bold text-white text-sm sm:text-base md:text-md pt-2">{faq.q}</h4>
                           </div>
