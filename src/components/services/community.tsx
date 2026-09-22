@@ -202,7 +202,7 @@ export default function CommunityService() {
           <div className="absolute inset-0 bg-grid-fade" aria-hidden="true" />
           <div className="absolute inset-0 opacity-15 pointer-events-none" style={{ background: `radial-gradient(circle at 50% 50%, ${brand.hex}15, transparent 70%)` }} />
         </div>
-        <div className="container max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <div className="container max-w-4xl mx-auto px-6 relative z-10">
           <h1 className={"text-4xl sm:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tight max-w-4xl " + brand.twText}>
             Learn Web3, crypto and AI together.
           </h1>
