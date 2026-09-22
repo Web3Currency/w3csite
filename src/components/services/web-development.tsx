@@ -1,11 +1,10 @@
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
-import { Link } from "wouter";
 import { branding } from "@/config/branding";
 import { getServiceBrandColor } from "@/config/theme";
 import WebsiteQuestionnaire from "@/components/services/website-questionnaire";
 
-export default function WebDevelopment() {
+export default function WebDevelopment({ onNavigateToTab }: { onNavigateToTab: (tab: "consulting" | "desk" | "web" | "community" | "others") => void }) {
   const brand = getServiceBrandColor("Website Design & Development");
 
   const devSchema = {
@@ -55,12 +54,13 @@ export default function WebDevelopment() {
         <div className="container max-w-4xl mx-auto px-6">
           <p className="text-base sm:text-lg leading-relaxed font-semibold text-white/90">
             Not sure what your business needs yet?{" "}
-            <Link
-              href="/services?tab=consulting"
+            <button
+              type="button"
+              onClick={() => onNavigateToTab("consulting")}
               className="text-[#22C55E] font-bold hover:brightness-125 transition-colors no-underline"
             >
               Start with Digital Solutions
-            </Link>
+            </button>
             {" "}and we&apos;ll figure it out together before building anything.
           </p>
         </div>
