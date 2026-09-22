@@ -121,7 +121,7 @@ export const faqs: FAQItem[] = [
     q: "Is the W3C DESK an exchange?",
     a: `No. The W3C DESK is not an automated crypto exchange. It simply connects you directly with a verified merchant, ${branding.founderName}, through WhatsApp if you want to buy or sell any publicly tradable cryptocurrency. All trades are coordinated manually, person to person.`,
     action: {
-      label: "Start a Trade",
+      label: "Start a Trade Request",
       url: "/services?tab=desk"
     }
   },
@@ -130,7 +130,7 @@ export const faqs: FAQItem[] = [
     q: "What currency is used for transactions?",
     a: "The desk mainly works with Nigerian Naira (NGN). You can buy crypto with Naira, or sell crypto and receive payment in Naira.",
     action: {
-      label: "Start a Trade",
+      label: "Start a Trade Request",
       url: "/services?tab=desk"
     }
   },
@@ -148,7 +148,7 @@ export const faqs: FAQItem[] = [
     q: "Is the P2P desk secure and registered?",
     a: `Yes. ${branding.businessName} is an officially registered business (${branding.rcNumber}), with a clean operational record, substantial total peer-to-peer volume, and consistent daily liquidity.`,
     action: {
-      label: "Start a Trade",
+      label: "Start a Trade Request",
       url: "/services?tab=desk"
     }
   },
@@ -191,7 +191,7 @@ export const faqs: FAQItem[] = [
     q: "Does W3C guarantee profit?",
     a: "No. The desk facilitates fair, transparent asset conversion, it does not offer investment advice or promise returns. You are always encouraged to make your own informed decisions.",
     action: {
-      label: "Book a Consultation",
+      label: "Explore Digital Solutions",
       url: "/services?tab=consulting"
     }
   },
@@ -225,7 +225,7 @@ export const faqs: FAQItem[] = [
     q: "Do I have to trade to be part of W3C?",
     a: "No. Many people join the W3C Community just to learn, network, and explore Web3. Trading through the desk is entirely optional.",
     action: {
-      label: "Apply to Join the Community",
+      label: "Join W3C Community",
       url: "/services?tab=community"
     }
   },
