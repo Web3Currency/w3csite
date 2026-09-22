@@ -447,41 +447,20 @@ export default function CryptoP2P() {
       </section>
 
       <section className="py-16 md:py-20 bg-black border-t border-white/[0.08]">
-        <div className="container max-w-3xl mx-auto px-6">
-          <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 sm:p-8">
-            <p className={"text-xs uppercase tracking-widest font-mono font-bold " + brand.twText + " mb-5"}>
-              W3C DESK
+        <div className="container max-w-4xl mx-auto px-6">
+          <div className="text-center">
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-white">
+              Not ready to trade yet?
+            </h2>
+            <p className="text-base sm:text-lg leading-relaxed text-white/80 max-w-2xl mx-auto mt-5">
+              That&apos;s okay. You can take your time to understand how crypto works, ask questions, and learn before you decide to trade. Join W3C Community to learn with others, follow practical conversations around crypto and Web3, and build your understanding first. When you&apos;re ready, you can come back to W3C DESK and start your trade request.
             </p>
-            <div className="grid gap-5 md:grid-cols-2">
-              <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
-                <h2 className="text-lg sm:text-xl font-display font-bold text-white">
-                  Not ready to trade yet?
-                </h2>
-                <p className="text-sm text-muted-foreground leading-relaxed mt-2">
-                  Join W3C Community to learn first.
-                </p>
-                <Link
-                  href="/services?tab=community"
-                  className={"mt-4 inline-flex items-center gap-2 text-sm font-bold " + brand.twText + " hover:brightness-125 transition-colors"}
-                >
-                  Learn with W3C Community <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-              <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
-                <h2 className="text-lg sm:text-xl font-display font-bold text-white">
-                  Want to see the trade history?
-                </h2>
-                <p className="text-sm text-muted-foreground leading-relaxed mt-2">
-                  See completed W3C DESK activity through the public transparency ledger.
-                </p>
-                <Link
-                  href="/ledger"
-                  className={"mt-4 inline-flex items-center gap-2 text-sm font-bold " + brand.twText + " hover:brightness-125 transition-colors"}
-                >
-                  View the Transparency Ledger <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
+            <Link
+              href="/services?tab=community"
+              className={"mt-8 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-bold text-sm no-underline " + brand.twText + " " + brand.twBorder + " border hover:brightness-125 transition-all"}
+            >
+              Learn with W3C Community <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
