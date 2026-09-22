@@ -141,9 +141,9 @@ export default function Services() {
           </>
         );
       case "desk":
-        return <CryptoP2P />;
+        return <CryptoP2P onNavigateToTab={selectTab} />;
       case "web":
-        return <WebDevelopment />;
+        return <WebDevelopment onNavigateToTab={selectTab} />;
       case "community":
         return <CommunityService />;
       case "others":
