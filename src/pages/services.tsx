@@ -77,6 +77,7 @@ export default function Services() {
     url.searchParams.set("tab", tab);
     window.history.pushState({}, "", url);
     setActiveTab(tab);
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   };
 
   const getExtraIcon = (name: string) => {
