@@ -219,7 +219,7 @@ export default function Projects() {
             </div>
 
             {/* Premium Category Filter Pills */}
-            <div className="flex flex-wrap justify-center md:justify-start gap-2 bg-white/[0.02] border border-white/[0.06] p-1.5 rounded-full backdrop-blur-md">
+            <div className="flex flex-wrap justify-center md:justify-start gap-2">
               {filterOptions.map((opt) => {
                 const isActive = selectedProjectCategory === opt.id;
                 return (
