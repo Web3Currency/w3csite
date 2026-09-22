@@ -7,6 +7,7 @@ export interface Principle {
 export interface BrandingConfig {
   businessName: string;
   founderName: string;
+  founderImage: string;
   tagline: string;
   description: string;
   rcNumber: string;
@@ -22,6 +23,7 @@ export interface BrandingConfig {
 export const branding: BrandingConfig = {
   businessName: "W3C Digital Network",
   founderName: "JAKE",
+  founderImage: "https://i.imgur.com/9q4rYyq.png",
   tagline: "Consult. Trade. Build. Grow.",
   description: "Practical digital solutions built around your needs. Consulting, crypto P2P trading, AI-powered web development, and a Web3 community.",
   rcNumber: "RC: 9579098",
