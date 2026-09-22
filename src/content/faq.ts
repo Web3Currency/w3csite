@@ -63,7 +63,7 @@ export const faqs: FAQItem[] = [
     a: "Yes. If your current website feels outdated or no longer reflects your business, I can redesign and modernize it while preserving important content where appropriate.",
     action: {
       label: "Request a Website Redesign",
-      url: "/services/web-development"
+      url: "/services?tab=web"
     }
   },
   {
@@ -122,7 +122,7 @@ export const faqs: FAQItem[] = [
     a: `No. The W3C DESK is not an automated crypto exchange. It simply connects you directly with a verified merchant, ${branding.founderName}, through WhatsApp if you want to buy or sell any publicly tradable cryptocurrency. All trades are coordinated manually, person to person.`,
     action: {
       label: "Start a Trade",
-      url: "/services/crypto-p2p"
+      url: "/services?tab=desk"
     }
   },
   {
@@ -131,7 +131,7 @@ export const faqs: FAQItem[] = [
     a: "The desk mainly works with Nigerian Naira (NGN). You can buy crypto with Naira, or sell crypto and receive payment in Naira.",
     action: {
       label: "Start a Trade",
-      url: "/services/crypto-p2p"
+      url: "/services?tab=desk"
     }
   },
   {
@@ -149,7 +149,7 @@ export const faqs: FAQItem[] = [
     a: `Yes. ${branding.businessName} is an officially registered business (${branding.rcNumber}), with a clean operational record, substantial total peer-to-peer volume, and consistent daily liquidity.`,
     action: {
       label: "Start a Trade",
-      url: "/services/crypto-p2p"
+      url: "/services?tab=desk"
     }
   },
   {
@@ -158,7 +158,7 @@ export const faqs: FAQItem[] = [
     a: "Supported assets may include: BTC, ETH, USDT, USDC, BNB, PI, and other supported digital assets. Availability depends on market conditions.",
     action: {
       label: "Explore W3C DESK",
-      url: "/services/crypto-p2p"
+      url: "/services?tab=desk"
     }
   },
   {
@@ -192,7 +192,7 @@ export const faqs: FAQItem[] = [
     a: "No. The desk facilitates fair, transparent asset conversion, it does not offer investment advice or promise returns. You are always encouraged to make your own informed decisions.",
     action: {
       label: "Book a Consultation",
-      url: "/services/digital-consulting"
+      url: "/services?tab=consulting"
     }
   },
 
@@ -217,7 +217,7 @@ export const faqs: FAQItem[] = [
     a: "The community is currently invite-only or application-based to maintain quality discussions.",
     action: {
       label: "Join W3C Community",
-      url: "/services/community"
+      url: "/services?tab=community"
     }
   },
   {
@@ -226,7 +226,7 @@ export const faqs: FAQItem[] = [
     a: "No. Many people join the W3C Community just to learn, network, and explore Web3. Trading through the desk is entirely optional.",
     action: {
       label: "Apply to Join the Community",
-      url: "/services/community"
+      url: "/services?tab=community"
     }
   },
   {
