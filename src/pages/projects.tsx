@@ -49,32 +49,32 @@ export default function Projects() {
     {
       title: "AI-Assisted Development",
       icon: Cpu,
-      tags: ["Google AI Studio", "Replit", "Claude Code", "ChatGPT", "Gemini", "V0"],
-      description: "AI-powered tools that accelerate planning, prototyping, coding, debugging, and delivery while keeping human decision-making at the center."
+      tags: ["Planning & Prototyping", "Code Assistance", "Debugging & Testing", "Content & Research", "Workflow Support"],
+      description: "AI-assisted methods I use to plan, explore ideas, solve problems, and speed up parts of the build process while keeping the final decisions human-led."
     },
     {
       title: "Modern Web",
       icon: Code,
-      tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js"],
-      description: "Modern technologies used to build responsive, scalable, and production-ready websites and digital experiences."
+      tags: ["Responsive Websites", "Web Applications", "Interactive Interfaces", "Performance", "Accessibility"],
+      description: "A modern web approach focused on responsive websites, useful web applications, clear interfaces, and reliable experiences across devices."
     },
     {
       title: "Development & Deployment",
       icon: FolderGit2,
-      tags: ["Git", "GitHub", "Vercel", "Supabase", "REST APIs"],
-      description: "Tools used for version control, deployment, backend integration, database management, and reliable project delivery."
+      tags: ["Version Control", "Deployment", "Database Integration", "API Integration", "Data Management"],
+      description: "The supporting systems behind reliable delivery, including version control, deployment, data storage, databases, and connections between digital services."
     },
     {
       title: "Design & Experience",
       icon: Layers,
-      tags: ["Responsive Design", "Landing Page Design", "Business Website Design", "Design Systems", "AI-Assisted Design"],
-      description: "A practical design workflow focused on clarity, usability, consistency, and helping businesses communicate effectively online."
+      tags: ["Visual Direction", "Responsive Design", "User Flows", "Business Websites", "Clear Interfaces"],
+      description: "A practical design approach focused on visual direction, clarity, usability, consistency, and helping people understand what a digital product offers."
     },
     {
       title: "Web3 Experience",
       icon: ShieldCheck,
-      tags: ["Crypto P2P Operations", "Testnet Participation", "Community Building", "Digital Asset Research", "Blockchain Ecosystem Support"],
-      description: "Hands-on experience gained through operating W3C Digital Network, supporting users, researching blockchain ecosystems, and participating in Web3 communities."
+      tags: ["Crypto Operations", "Blockchain Projects", "Testnet Work", "Web3 Communities", "Digital Asset Research"],
+      description: "Hands-on experience across crypto operations, blockchain projects, testnet work, digital asset research, and Web3 community tools."
     }
   ];
 
@@ -189,32 +189,16 @@ export default function Projects() {
               className="bg-black/50 backdrop-blur-md p-6 sm:p-8 md:p-10 rounded-2xl border border-white/[0.06] shadow-2xl space-y-6"
             >
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-black leading-tight tracking-tight text-white">
-                Real Work. Real Progress.
+                A look at what I build
               </h1>
               
               <div className="space-y-4">
                 <p className="text-base sm:text-lg text-white/95 leading-relaxed font-medium">
-                  Every project represents a problem solved, a skill improved, or an idea brought to life.
+                  Explore websites, web applications, internal W3C tools, and Web3 projects built to solve real problems and turn ideas into something useful.
                 </p>
                 <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
-                  Some projects were built for my own business, while others were created to explore modern web development, AI-assisted workflows, and practical digital solutions. As {branding.businessName} continues to grow, this portfolio will grow with it.
+                  You’ll find client work, W3C Digital Network projects, and practical experiments across websites, digital tools, and blockchain.
                 </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center gap-4 pt-2 justify-center sm:justify-start">
-                <Link 
-                  href="/contact"
-                  className="glow-primary-hover inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-primary text-black font-bold text-sm hover:bg-primary/95 transition-all w-full sm:w-auto shadow-md"
-                >
-                  Start the Conversation
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link 
-                  href="/services" 
-                  className="px-6 py-3.5 rounded-xl border border-white/10 bg-white/[0.02] text-white font-bold text-sm hover:bg-white/[0.05] transition-all w-full sm:w-auto block text-center"
-                >
-                  View Services
-                </Link>
               </div>
             </motion.div>
           </div>
@@ -358,16 +342,6 @@ export default function Projects() {
                           </ul>
                         </div>
 
-                        <div className="pt-3 border-t border-white/[0.04]">
-                          <h4 className="text-[10px] font-mono text-white/40 uppercase tracking-widest font-bold mb-1.5">Technologies</h4>
-                          <div className="flex flex-wrap gap-1.5">
-                            {project.tags.map((tag) => (
-                              <span key={tag} className="text-[9px] font-mono text-white/60 bg-white/5 border border-white/10 px-2 py-0.5 rounded">
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
                       </div>
 
                       <div className="pt-4 border-t border-white/[0.04]">
@@ -558,12 +532,19 @@ export default function Projects() {
               </p>
             </div>
           </div>
-          <div className="pt-4">
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Link
               href="/contact"
-              className="glow-primary-hover inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-primary text-black font-bold text-sm hover:bg-primary/95 transition-all justify-center shadow-lg"
+              className="glow-primary-hover inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-primary text-black font-bold text-sm hover:bg-primary/95 transition-all justify-center shadow-lg w-full sm:w-auto"
             >
               Start the Conversation
+              <ArrowRight className="w-4.5 h-4.5" />
+            </Link>
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-xl border border-white/10 bg-white/[0.02] text-white font-bold text-sm hover:bg-white/[0.05] transition-all justify-center w-full sm:w-auto"
+            >
+              Explore Services
               <ArrowRight className="w-4.5 h-4.5" />
             </Link>
           </div>
