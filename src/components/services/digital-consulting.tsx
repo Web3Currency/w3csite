@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check, RotateCcw } from "lucide-react";
+import { ArrowLeft, ArrowRight, RotateCcw } from "lucide-react";
 import { SiTelegram, SiWhatsapp } from "react-icons/si";
 import { Link } from "wouter";
 import { branding } from "@/config/branding";
