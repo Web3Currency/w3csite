@@ -268,7 +268,7 @@ export default function DigitalConsulting() {
       <div className="container max-w-2xl mx-auto px-6">
         <div className="flex items-center justify-center mb-8">
           <span className={`text-xs uppercase tracking-widest font-mono font-bold ${brand.twText}`}>
-            LET&apos;S FIGURE IT OUT
+            LET&apos;S FIND THE RIGHT DIGITAL SOLUTION
           </span>
         </div>
 
