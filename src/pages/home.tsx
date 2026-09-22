@@ -755,30 +755,28 @@ export default function Home() {
                 {cta.description}
               </p>
 
-              <div className="relative mt-8 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5">
-                <div className="flex items-center gap-4">
-                  <div className="relative shrink-0">
-                    <div className="w-16 h-16 rounded-full border border-primary/20 overflow-hidden bg-primary/5">
-                      <img
-                        src="https://i.imgur.com/9q4rYyq.png"
-                        alt={branding.founderName}
-                        className="w-full h-full object-cover scale-110"
-                      />
-                    </div>
-                    <span className="absolute -right-0.5 -bottom-0.5 flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-[#0A0A0A]" />
-                    </span>
+              <div className="relative mt-8 pt-6 border-t border-white/[0.06] flex items-center gap-4">
+                <div className="relative shrink-0">
+                  <div className="w-16 h-16 rounded-full border border-primary/20 overflow-hidden bg-primary/5">
+                    <img
+                      src="https://i.imgur.com/9q4rYyq.png"
+                      alt={branding.founderName}
+                      className="w-full h-full object-cover scale-110"
+                    />
                   </div>
-                  <div className="min-w-0 pr-10">
-                    <div className="font-display font-bold text-white text-base leading-tight">{branding.founderName}</div>
-                    <div className="text-xs text-muted-foreground font-mono mt-1">Founder, {branding.businessName}</div>
-                  </div>
+                  <span className="absolute -right-0.5 -bottom-0.5 flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-[#0A0A0A]" />
+                  </span>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="font-display font-bold text-white text-base leading-tight">{branding.founderName}</div>
+                  <div className="text-xs text-muted-foreground font-mono mt-1">Founder, {branding.businessName}</div>
                 </div>
                 <Link
                   href="/contact"
                   aria-label="Contact Jake"
-                  className="absolute right-4 bottom-4 w-9 h-9 rounded-full border border-primary/30 bg-primary/10 text-primary flex items-center justify-center hover:bg-primary/20 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary"
+                  className="shrink-0 w-9 h-9 rounded-full border border-primary/30 bg-primary/10 text-primary flex items-center justify-center hover:bg-primary/20 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary"
                 >
                   <ArrowRight className="w-4 h-4" />
                 </Link>
