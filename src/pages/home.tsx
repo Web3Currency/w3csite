@@ -8,7 +8,6 @@ import { Link, useLocation } from "wouter";
 import { ArrowRight, ChevronRight, ChevronLeft, ChevronDown, Globe, Headset, Shield, ShieldCheck, Users, Wallet, Mail, MessageCircle, Terminal, Send, MessageSquare, HelpCircle, CheckCircle2, TrendingUp, Compass, BookOpen, Clock } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { homepageContent } from "@/content/homepage";
-import { contact } from "@/config/contact";
 import { branding } from "@/config/branding";
 import { metrics } from "@/config/metrics";
 import { projects } from "@/data/portfolio";
@@ -705,21 +704,18 @@ export default function Home() {
                             >
                               <div className="pb-5 text-xs sm:text-sm text-muted-foreground leading-relaxed space-y-4">
                                 <p className="whitespace-pre-line">{faq.a}</p>
-                                <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-white/[0.04]">
+                                <div className="pt-2 flex justify-end border-t border-white/[0.04]">
                                   {faq.action ? (
                                     faq.action.isExternal ? (
-                                      <a id={`faq-action-${index}`} href={faq.action.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-black font-mono font-bold text-xs hover:bg-opacity-90 transition-all duration-300">
+                                      <a id={`faq-action-${index}`} href={faq.action.url} target="_blank" rel="noopener noreferrer" className="inline-flex w-fit items-center gap-2 px-4 py-2 rounded-xl bg-primary text-black font-mono font-bold text-xs hover:bg-opacity-90 transition-all duration-300">
                                         {faq.action.label}<ArrowRight className="w-3.5 h-3.5 text-black" />
                                       </a>
                                     ) : (
-                                      <Link id={`faq-action-${index}`} href={faq.action.url} className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-black font-mono font-bold text-xs hover:bg-opacity-90 transition-all duration-300">
+                                      <Link id={`faq-action-${index}`} href={faq.action.url} className="inline-flex w-fit items-center gap-2 px-4 py-2 rounded-xl bg-primary text-black font-mono font-bold text-xs hover:bg-opacity-90 transition-all duration-300">
                                         {faq.action.label}<ArrowRight className="w-3.5 h-3.5 text-black" />
                                       </Link>
                                     )
-                                  ) : <div />}
-                                  <a id={`faq-whatsapp-link-${index}`} href={contact.whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs text-primary font-bold hover:underline">
-                                    Ask about this on WhatsApp<ArrowRight className="w-3.5 h-3.5" />
-                                  </a>
+                                  ) : null}
                                 </div>
                               </div>
                             </motion.div>
