@@ -57,9 +57,9 @@ export default function WebDevelopment() {
             Not sure what your business needs yet?{" "}
             <Link
               href="/services?tab=consulting"
-              className="text-white font-bold hover:text-primary transition-colors underline underline-offset-4"
+              className="text-[#22C55E] font-bold hover:brightness-125 transition-colors no-underline"
             >
-              Start with Digital Consulting
+              Start with Digital Solutions
             </Link>
             {" "}and we&apos;ll figure it out together before building anything.
           </p>
