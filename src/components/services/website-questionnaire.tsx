@@ -270,7 +270,7 @@ export default function WebsiteQuestionnaire() {
       <div className="container max-w-2xl mx-auto px-6">
         <div className="flex items-center justify-center mb-8">
           <span className={`text-xs uppercase tracking-widest font-mono font-bold ${brand.twText}`}>
-            LET'S FIGURE IT OUT
+            LET'S PLAN YOUR WEBSITE
           </span>
         </div>
 
