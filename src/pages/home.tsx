@@ -5,7 +5,7 @@ import { GlassCard, MotionGlassCard } from "@/components/shared/glass-card";
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
-import { ArrowRight, ChevronRight, ChevronLeft, ChevronDown, Globe, Headset, Shield, ShieldCheck, Users, Wallet, Mail, MessageCircle, Terminal, Send, MessageSquare, HelpCircle, CheckCircle2, TrendingUp, Compass, BookOpen, Clock } from "lucide-react";
+import { ArrowRight, ChevronRight, ChevronLeft, ChevronDown, Globe, Headset, Shield, ShieldCheck, Users, Wallet, Mail, MessageCircle, Terminal, Send, MessageSquare, HelpCircle, CheckCircle2, TrendingUp, Compass, BookOpen, Clock, ArrowLeftRight, Ribbon } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { homepageContent } from "@/content/homepage";
 import { branding } from "@/config/branding";
@@ -420,11 +420,11 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {[
               { label: "Total Trading Volume", value: totalVolumeFormatted, icon: TrendingUp },
-              { label: "Trades Completed", value: totalTrades.toString(), icon: CheckCircle2 },
+              { label: "Trades Completed", value: totalTrades.toString(), icon: ArrowLeftRight },
               { label: "Community Members", value: metrics.communitySize, icon: Users },
               { label: "Protocol Explored", value: metrics.testnetsCompleted, icon: Compass },
-              { label: "People Supported", value: metrics.clientsSupported, icon: Globe },
-              { label: "Year Founded", value: metrics.activeSince, icon: BookOpen },
+              { label: "People Supported", value: metrics.clientsSupported, icon: Headset },
+              { label: "Year Founded", value: metrics.activeSince, icon: Ribbon },
             ].map((sc, idx) => {
               const Icon = sc.icon;
               return (
