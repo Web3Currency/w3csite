@@ -81,7 +81,7 @@ export function Navbar() {
             aria-label="Toggle Menu"
             aria-expanded={isOpen}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <Menu className="w-6 h-6" />
           </button>
         </div>
       </header>
