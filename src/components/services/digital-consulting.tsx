@@ -332,7 +332,7 @@ export default function DigitalConsulting() {
             <ArrowLeft className="w-4 h-4" />
             Back
           </button>
-          <span className="text-xs text-muted-foreground">Tap an answer to continue</span>
+          
         </div>
       </div>
     </section>
