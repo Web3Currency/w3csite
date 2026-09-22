@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, RotateCcw } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
-import { Link } from "wouter";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { branding } from "@/config/branding";
@@ -84,7 +83,7 @@ function buildMessage(answers: AnswerMap) {
     .join("\n");
 }
 
-export default function CryptoP2P() {
+export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: "consulting" | "desk" | "web" | "community" | "others") => void }) {
   const brand = getServiceBrandColor("W3C DESK");
   const [answers, setAnswers] = useState<AnswerMap>({});
   const [step, setStep] = useState(0);
@@ -441,7 +440,7 @@ export default function CryptoP2P() {
               <ArrowLeft className="w-4 h-4" />
               Back
             </button>
-            <span className="text-xs text-muted-foreground">Tap an answer to continue</span>
+            
           </div>
         </div>
       </section>
@@ -455,12 +454,13 @@ export default function CryptoP2P() {
             <p className="text-base sm:text-lg leading-relaxed text-white/80 max-w-2xl mx-auto mt-5">
               That&apos;s okay. You can take your time to understand how crypto works, ask questions, and learn before you decide to trade. Join W3C Community to learn with others, follow practical conversations around crypto and Web3, and build your understanding first. When you&apos;re ready, you can come back to W3C DESK and start your trade request.
             </p>
-            <Link
-              href="/services?tab=community"
-              className={"mt-8 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-bold text-sm no-underline " + brand.twText + " " + brand.twBorder + " border hover:brightness-125 transition-all"}
+            <button
+              type="button"
+              onClick={() => onNavigateToTab("community")}
+              className={"mt-8 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-bold text-sm " + brand.twText + " " + brand.twBorder + " border hover:brightness-125 transition-all"}
             >
               Learn with W3C Community <ArrowRight className="w-4 h-4" />
-            </Link>
+            </button>
           </div>
         </div>
       </section>
