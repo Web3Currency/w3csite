@@ -245,7 +245,7 @@ export default function CommunityService() {
             <button type="button" onClick={goBack} disabled={step === 0} className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed">
               <ArrowLeft className="w-4 h-4" /> Back
             </button>
-            <span className="text-xs text-white/45">No account or form to submit.</span>
+            
           </div>
         </div>
       </section>
