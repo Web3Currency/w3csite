@@ -132,7 +132,7 @@ export function Navbar() {
               type="button"
               onClick={toggleMenu}
               aria-label="Close menu"
-              className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-14 text-white/80 flex items-center justify-center hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="absolute right-4 top-6 w-12 h-12 text-white/80 flex items-center justify-center hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <MenuArrowIcon direction="right" className="w-7 h-7" />
             </button>
