@@ -7,6 +7,7 @@ import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
 import { getServiceBrandColor } from "@/config/theme";
 import { trackContactClick } from "@/lib/analytics";
+import { FounderAvatar } from "@/components/shared/founder-avatar";
 
 type AnswerMap = Record<string, string>;
 
@@ -207,7 +208,7 @@ export default function DigitalConsulting() {
             className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 sm:p-10"
           >
             <div className="flex justify-center mb-6">
-              <Check className={`w-16 h-16 sm:w-20 sm:h-20 ${brand.twText}`} strokeWidth={1.75} />
+              <FounderAvatar />
             </div>
             <h2 className={`text-3xl sm:text-4xl font-display font-bold text-center ${brand.twText}`}>
               You&apos;ve given me the context I need.
