@@ -132,7 +132,7 @@ export default function Projects() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": `Portfolio of ${branding.businessName}`,
-    "description": "Real Work. Real Progress. Every project represents a problem solved, a skill improved, or an idea brought to life.",
+    "description": "Explore websites, web applications, internal W3C tools, and Web3 projects built to solve real problems and turn ideas into something useful.",
     "url": "https://web3currency.online/projects",
     "about": {
       "@type": "Person",
@@ -144,7 +144,7 @@ export default function Projects() {
     <PageTransition>
       <SEO 
         title={`Projects | ${branding.businessName}`}
-        description="Real Work. Real Progress. Every project represents a problem solved, a skill improved, or an idea brought to life."
+        description="Explore websites, web applications, internal W3C tools, and Web3 projects built to solve real problems and turn ideas into something useful."
         path="/projects"
         schema={portfolioSchema}
       />
@@ -433,7 +433,7 @@ export default function Projects() {
                       {/* Technology Tags/Pills */}
                       <div className="mt-8 pt-6 border-t border-white/[0.06]">
                         <h4 className="text-[10px] font-mono text-white/40 uppercase tracking-widest font-bold mb-3">
-                          Featured Technologies
+                          Key Areas
                         </h4>
                         <div className="flex flex-wrap gap-1.5 sm:gap-2">
                           {techStacks[currentIndex].tags.map((tag) => (
