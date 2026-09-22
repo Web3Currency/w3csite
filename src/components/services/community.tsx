@@ -7,6 +7,7 @@ import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
 import { getServiceBrandColor } from "@/config/theme";
 import { trackCommunityJoin } from "@/lib/analytics";
+import { FounderAvatar } from "@/components/shared/founder-avatar";
 
 type Answer = { question: string; answer: string };
 
@@ -150,7 +151,7 @@ export default function CommunityService() {
         <section className="min-h-[70vh] py-20 md:py-28 bg-zinc-950 border-y border-white/[0.08]">
           <div className="container max-w-3xl mx-auto px-6">
             <div className="text-center mb-10">
-              <ShieldCheck className={`w-12 h-12 mx-auto mb-5 ${brand.twText}`} />
+              <FounderAvatar sizeClass="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-5" />
               <p className={`text-xs uppercase tracking-widest font-medium ${brand.twText} mb-3`}>Before you join</p>
               <h1 className="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">W3C Community Safety Rules</h1>
               <p className="text-base sm:text-lg text-white/70 leading-relaxed mt-5">Please read these rules before joining. They help keep the community useful and safe for everyone.</p>
