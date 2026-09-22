@@ -48,8 +48,8 @@ export const faqs: FAQItem[] = [
     q: "What kind of websites do you build?",
     a: "I build modern websites for businesses, creators, startups, communities, and organizations. Examples include: Landing Pages, Business Websites, Company Websites, Community Websites, Portfolio Websites, and Custom Digital Platforms.",
     action: {
-      label: "Explore Web Development",
-      url: "/services/web-development"
+      label: "Explore Website Design & Development",
+      url: "/services?tab=web"
     }
   },
   {
@@ -62,7 +62,7 @@ export const faqs: FAQItem[] = [
     q: "Can you redesign my existing website?",
     a: "Yes. If your current website feels outdated or no longer reflects your business, I can redesign and modernize it while preserving important content where appropriate.",
     action: {
-      label: "Request Redesign",
+      label: "Request a Website Redesign",
       url: "/services/web-development"
     }
   },
@@ -71,7 +71,7 @@ export const faqs: FAQItem[] = [
     q: "How long does a project take?",
     a: "Every project is different. Simple landing pages may take only a few days. Larger websites require more planning depending on the features involved. I'll provide an estimated timeline before we begin.",
     action: {
-      label: "Request a Project Quote",
+      label: "Discuss My Website Project",
       url: "/contact"
     }
   },
@@ -81,14 +81,14 @@ export const faqs: FAQItem[] = [
     a: "Yes. I can continue updating, improving, and maintaining websites after they go live."
   },
 
-  // DIGITAL CONSULTING
+  // DIGITAL SOLUTIONS
   {
     category: "consulting",
-    q: "What is Digital Consulting?",
-    a: "Sometimes people don't need a website—they need clarity. Digital Consulting helps individuals and businesses make better technology decisions, solve digital challenges, and plan their next steps.",
+    q: "What are Digital Solutions?",
+    a: "Sometimes people don't need a website—they need help figuring out what they need. Digital Solutions helps individuals, creators, and businesses solve digital problems, improve what they already have, use AI where it makes sense, and turn ideas into practical solutions.",
     action: {
-      label: "Book a Consultation",
-      url: "/services/digital-consulting"
+      label: "Explore Digital Solutions",
+      url: "/services?tab=consulting"
     }
   },
   {
@@ -112,8 +112,8 @@ export const faqs: FAQItem[] = [
     q: "What is W3C DESK?",
     a: "W3C DESK is my crypto peer-to-peer trading service. I help clients buy and sell supported cryptocurrencies quickly and securely.",
     action: {
-      label: "Start a Trade",
-      url: "/services/crypto-p2p"
+      label: "Start a Trade Request",
+      url: "/services?tab=desk"
     }
   },
   {
@@ -139,7 +139,7 @@ export const faqs: FAQItem[] = [
     q: "How do I know I'm chatting with the correct desk?",
     a: `Always confirm you're speaking with ${branding.founderName} through the official ${branding.businessName} WhatsApp channel linked on this website before starting any transaction.`,
     action: {
-      label: "Go to Contact Page",
+      label: "Verify the Official Contact",
       url: "/contact"
     }
   },
@@ -157,7 +157,7 @@ export const faqs: FAQItem[] = [
     q: "Which cryptocurrencies do you support?",
     a: "Supported assets may include: BTC, ETH, USDT, USDC, BNB, PI, and other supported digital assets. Availability depends on market conditions.",
     action: {
-      label: "Check Asset Rates",
+      label: "Explore W3C DESK",
       url: "/services/crypto-p2p"
     }
   },
@@ -166,7 +166,7 @@ export const faqs: FAQItem[] = [
     q: "How do trades work?",
     a: "Simply send a message. I'll provide the current rate, explain the process, confirm the details, and complete the transaction once everything is verified.",
     action: {
-      label: "Trade on WhatsApp",
+      label: "Start a Trade Request",
       url: contact.whatsappUrl,
       isExternal: true
     }
@@ -202,8 +202,8 @@ export const faqs: FAQItem[] = [
     q: "What is the W3C Community?",
     a: "The W3C Community is a private learning community focused on cryptocurrency, Web3, AI, and digital opportunities. The goal is to help members learn, build, and grow together.",
     action: {
-      label: "Learn About Community",
-      url: "/services/community"
+      label: "Explore W3C Community",
+      url: "/services?tab=community"
     }
   },
   {
@@ -216,7 +216,7 @@ export const faqs: FAQItem[] = [
     q: "Can anyone join?",
     a: "The community is currently invite-only or application-based to maintain quality discussions.",
     action: {
-      label: "Apply to Join the Community",
+      label: "Join W3C Community",
       url: "/services/community"
     }
   },
