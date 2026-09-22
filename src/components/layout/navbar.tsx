@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { navigation } from "@/config/navigation";
@@ -96,6 +96,14 @@ export function Navbar() {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 md:hidden h-[100dvh]"
           >
+            <button
+              type="button"
+              onClick={toggleMenu}
+              aria-label="Close menu"
+              className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-14 rounded-r-full border border-l-0 border-white/10 bg-white/[0.06] text-white/80 flex items-center justify-center hover:bg-white/10 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <ArrowLeft className="w-5 h-5" aria-hidden="true" />
+            </button>
             <nav className="flex flex-col items-center gap-8 w-full px-6">
               {navigation.headerLinks.map((link, i) => (
                 <motion.div
