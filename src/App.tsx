@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Layout } from "@/components/layout/layout";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
+import { BackToTop } from "@/components/layout/BackToTop";
 import { AnimatePresence } from "framer-motion";
 import { initAnalytics, trackPageView } from "@/lib/analytics";
 import { ErrorBoundary } from "@/components/shared/error-boundary";
@@ -73,6 +74,7 @@ function App() {
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <AnalyticsTracker />
           <ScrollToTop />
+          <BackToTop />
           <Layout>
             <ErrorBoundary><Router /></ErrorBoundary>
           </Layout>
