@@ -8,6 +8,7 @@ import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
 import { getServiceBrandColor } from "@/config/theme";
 import { trackContactClick, trackDeskEnquiry } from "@/lib/analytics";
+import { FounderAvatar } from "@/components/shared/founder-avatar";
 
 type AnswerMap = Record<string, string>;
 
@@ -249,7 +250,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
           <div className="container max-w-2xl mx-auto px-6">
             <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 sm:p-10">
               <div className="flex justify-center mb-6">
-                <Check className={"w-16 h-16 sm:w-20 sm:h-20 " + brand.twText} strokeWidth={1.75} />
+                <FounderAvatar />
               </div>
               <h2 className={"text-3xl sm:text-4xl font-display font-bold text-center " + brand.twText}>
                 Your trade request is ready.
