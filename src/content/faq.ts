@@ -10,6 +10,11 @@ export interface FAQItem {
     url: string;
     isExternal?: boolean;
   };
+  secondaryAction?: {
+    label: string;
+    url: string;
+    isExternal?: boolean;
+  };
 }
 
 export const faqs: FAQItem[] = [
@@ -188,11 +193,15 @@ export const faqs: FAQItem[] = [
   },
   {
     category: "p2p",
-    q: "Does W3C guarantee profit?",
-    a: "No. The desk facilitates fair, transparent asset conversion, it does not offer investment advice or promise returns. You are always encouraged to make your own informed decisions.",
+    q: "How does W3C protect my information and transactions?",
+    a: "Your information and use of W3C DESK are handled according to the policies and terms that apply to our services. Please review the Privacy Policy to understand how your information is handled, and the Terms of Use for the rules and responsibilities that apply when using W3C Digital Network and W3C DESK.",
     action: {
-      label: "Explore Digital Solutions",
-      url: "/services?tab=consulting"
+      label: "Privacy Policy",
+      url: "/privacy"
+    },
+    secondaryAction: {
+      label: "Terms of Use",
+      url: "/terms"
     }
   },
 
