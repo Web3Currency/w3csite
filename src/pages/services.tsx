@@ -175,7 +175,7 @@ export default function Services() {
                 </p>
               </motion.div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-5">
                 {extras.list.map((item, i) => {
                   const IconComponent = getExtraIcon(item.iconName);
                   return (
