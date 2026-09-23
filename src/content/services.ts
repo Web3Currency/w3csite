@@ -139,6 +139,11 @@ export const servicesContent: ServicesContent = {
         body: "I'll handle the paperwork to get your business name officially registered with the Corporate Affairs Commission."
       },
       {
+        iconName: "globe",
+        title: "Domain & Hosting",
+        body: "I can help you choose, purchase, and set up the domain and hosting your website needs."
+      },
+      {
         iconName: "mail",
         title: "Business Email Setup",
         body: "Setting up professional email addresses (like you@yourbusiness.com) to make your communications look official."
