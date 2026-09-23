@@ -97,10 +97,10 @@ export function Footer() {
           <div className="col-span-1 text-center md:text-right">
             <h4 className="hidden md:block font-display font-semibold text-white mb-6 uppercase tracking-wider text-sm">Registered Business (CAC)</h4>
             <div className="hidden md:block space-y-1.5 text-sm text-white/80">
-              <p className="font-mono">RC: 957908</p>
+              <p className="font-mono">{branding.rcNumber}</p>
               <p className="text-muted-foreground">Nigeria</p>
             </div>
-            <p className="md:hidden text-sm text-white/80 font-mono">Nigeria · RC: 957908</p>
+            <p className="md:hidden text-sm text-white/80 font-mono">Nigeria · {branding.rcNumber}</p>
           </div>
         </div>
 
