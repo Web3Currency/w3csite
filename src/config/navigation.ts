@@ -17,6 +17,7 @@ export const navigation: NavigationConfig = {
     { href: "/about", label: "Meet JAKE" },
     { href: "/services", label: "What I Do" },
     { href: "/projects", label: "Projects" },
+    { href: "/blog", label: "Blog" },
     { href: "/#homepage-faq-section", label: "FAQ" },
     { href: "/ledger", label: "P2P Ledger" }
   ],
@@ -24,6 +25,7 @@ export const navigation: NavigationConfig = {
     { href: "/about", label: "Meet JAKE" },
     { href: "/services", label: "What I Do" },
     { href: "/projects", label: "Projects" },
+    { href: "/blog", label: "Blog" },
     { href: "/#homepage-faq-section", label: "FAQ" },
     { href: "/contact#community", label: "Community" },
     { href: "/ledger", label: "P2P Ledger" },
