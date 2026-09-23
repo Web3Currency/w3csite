@@ -747,7 +747,7 @@ export default function Home() {
                             >
                               <div className="pb-5 text-xs sm:text-sm text-muted-foreground leading-relaxed space-y-4">
                                 <p className="whitespace-pre-line">{faq.a}</p>
-                                <div className="pt-2 flex justify-end border-t border-white/[0.04]">
+                                <div className="pt-2 flex flex-wrap justify-end gap-2 border-t border-white/[0.04]">
                                   {faq.action ? (
                                     faq.action.isExternal ? (
                                       <a id={`faq-action-${index}`} href={faq.action.url} target="_blank" rel="noopener noreferrer" className="inline-flex w-fit items-center gap-2 px-4 py-2 rounded-xl bg-primary text-black font-mono font-bold text-xs hover:bg-opacity-90 transition-all duration-300">
@@ -756,6 +756,17 @@ export default function Home() {
                                     ) : (
                                       <Link id={`faq-action-${index}`} href={faq.action.url} className="inline-flex w-fit items-center gap-2 px-4 py-2 rounded-xl bg-primary text-black font-mono font-bold text-xs hover:bg-opacity-90 transition-all duration-300">
                                         {faq.action.label}<ArrowRight className="w-3.5 h-3.5 text-black" />
+                                      </Link>
+                                    )
+                                  ) : null}
+                                  {faq.secondaryAction ? (
+                                    faq.secondaryAction.isExternal ? (
+                                      <a id={`faq-secondary-action-${index}`} href={faq.secondaryAction.url} target="_blank" rel="noopener noreferrer" className="inline-flex w-fit items-center gap-2 px-4 py-2 rounded-xl border border-white/10 text-white font-mono font-bold text-xs hover:bg-white/[0.05] transition-all duration-300">
+                                        {faq.secondaryAction.label}<ArrowRight className="w-3.5 h-3.5" />
+                                      </a>
+                                    ) : (
+                                      <Link id={`faq-secondary-action-${index}`} href={faq.secondaryAction.url} className="inline-flex w-fit items-center gap-2 px-4 py-2 rounded-xl border border-white/10 text-white font-mono font-bold text-xs hover:bg-white/[0.05] transition-all duration-300">
+                                        {faq.secondaryAction.label}<ArrowRight className="w-3.5 h-3.5" />
                                       </Link>
                                     )
                                   ) : null}
