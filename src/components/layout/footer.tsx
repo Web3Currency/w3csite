@@ -15,7 +15,7 @@ export function Footer() {
           <div className="col-span-1 md:col-span-1 text-center md:text-left">
             <Link href="/" className="flex items-center justify-center md:justify-start gap-2 group mb-6 w-fit mx-auto md:mx-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
               <img 
-                src="https://i.imgur.com/FwLZZ8d.png" 
+                src="https://i.imgur.com/4toqqzS.png" 
                 alt={branding.businessName} 
                 className="h-[120px] md:h-12 w-auto min-w-[40px] max-w-[160px] object-contain transition-transform duration-300 group-hover:scale-105"
               />
