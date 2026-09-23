@@ -86,7 +86,7 @@ export const servicesContent: ServicesContent = {
       whoFor: "Anyone who has a digital problem, idea, or goal and wants help figuring out the right way forward.",
       benefit: "A clearer direction, practical recommendations, and a solution that fits your situation.",
       iconName: "headphones",
-      href: "/services/digital-consulting",
+      href: "/services?tab=consulting",
       accentColorClass: "bg-green-500/20 text-green-400 border-green-500/30",
       ctaText: "Learn More",
       delay: 0.05
@@ -98,7 +98,7 @@ export const servicesContent: ServicesContent = {
       whoFor: "Anyone looking for a reliable person to help them buy or sell crypto safely and conveniently.",
       benefit: "Fast communication, fair rates, and a smooth trading experience handled by a real person.",
       iconName: "wallet",
-      href: "/services/crypto-p2p",
+      href: "/services?tab=desk",
       accentColorClass: "bg-orange-500/20 text-orange-400 border-orange-500/30",
       ctaText: "Learn More",
       delay: 0.1
@@ -110,7 +110,7 @@ export const servicesContent: ServicesContent = {
       whoFor: "Business owners who want a modern website that represents their brand and supports their growth.",
       benefit: "A fast, mobile-friendly website that gives your business a professional online presence.",
       iconName: "terminal",
-      href: "/services/web-development",
+      href: "/services?tab=web",
       accentColorClass: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
       ctaText: "Learn More",
       delay: 0.15
@@ -122,7 +122,7 @@ export const servicesContent: ServicesContent = {
       whoFor: "Anyone who wants to learn, explore, and grow in the digital space alongside a supportive community.",
       benefit: "Practical knowledge, honest conversations, and access to a growing network of learners and builders.",
       iconName: "users",
-      href: "/services/community",
+      href: "/services?tab=community",
       accentColorClass: "bg-primary/20 text-primary border-primary/30",
       ctaText: "Learn More",
       delay: 0.2
@@ -131,7 +131,7 @@ export const servicesContent: ServicesContent = {
   extras: {
     title: "More Ways I Can Help",
     subtitle: "Some projects naturally need a little more than the main service. If you need any of the following, I'm happy to help.",
-    description: "These smaller services often come up naturally during our web design or consulting discussions. I can take care of them for you to save you time.",
+    description: "These smaller services often come up naturally during our web design or Digital Solutions discussions. I can take care of them for you to save you time.",
     list: [
       {
         iconName: "building",
