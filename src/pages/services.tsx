@@ -8,7 +8,6 @@ import { Link } from "wouter";
 import { servicesContent } from "@/content/services";
 import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
-import { branding } from "@/config/branding";
 import { trackContactClick } from "@/lib/analytics";
 import { FounderAvatar } from "@/components/shared/founder-avatar";
 import DigitalSolutions from "@/components/services/digital-consulting";
