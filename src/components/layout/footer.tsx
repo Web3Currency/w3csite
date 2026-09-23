@@ -51,7 +51,7 @@ export function Footer() {
               </a>
               <a href={`mailto:${contact.email}`} aria-label="Email" className="group flex items-center justify-center text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
                 <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-colors">
-                  <Mail className="w-4 h-4 text-white/50" />
+                  <Mail className="w-4 h-4 text-red-500" />
                 </div>
               </a>
             </div>
@@ -61,7 +61,7 @@ export function Footer() {
             <h4 className="font-display font-semibold text-white mb-6 uppercase tracking-wider text-sm text-center md:text-left">Quick Links</h4>
             <div className="grid grid-cols-2 gap-x-8 gap-y-4 md:block justify-items-center md:justify-items-start">
               {navigation.footerQuickLinks.map((link) => (
-                <Link key={link.href} href={link.href} className={`text-white/80 text-sm hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm ${link.label === "FAQ" ? "hidden md:block" : "block"} md:mb-4`}>
+                <Link key={link.href} href={link.href} className={`text-white/80 text-sm hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm block md:mb-4`}>
                   {link.label}
                 </Link>
               ))}
