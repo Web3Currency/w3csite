@@ -113,25 +113,23 @@ export default function Home() {
     return () => window.clearInterval(interval);
   }, [activeTestimonial]);
   const { hero, features, trust, projectsTeaser, cta } = homepageContent;
-  const servicesScrollRef = useRef<HTMLDivElement>(null);
   const [activeService, setActiveService] = useState(0);
 
-  const handleServicesScroll = () => {
-    const el = servicesScrollRef.current;
-    if (!el) return;
-    const index = Math.round(el.scrollLeft / el.clientWidth);
-    setActiveService(Math.max(0, Math.min(index, features.list.length - 1)));
+  const scrollServices = (direction: "next" | "previous") => {
+    setActiveService((prev) =>
+      direction === "next"
+        ? (prev + 1) % features.list.length
+        : (prev - 1 + features.list.length) % features.list.length
+    );
   };
 
-  const scrollServices = (direction: "next" | "previous") => {
-    const el = servicesScrollRef.current;
-    if (!el) return;
-    const currentIndex = Math.round(el.scrollLeft / el.clientWidth);
-    const nextIndex = Math.max(
-      0,
-      Math.min(currentIndex + (direction === "next" ? 1 : -1), features.list.length - 1)
-    );
-    el.scrollTo({ left: nextIndex * el.clientWidth, behavior: "smooth" });
+  const handleServiceDragEnd = (_: any, info: any) => {
+    const swipeThreshold = 50;
+    if (info.offset.x > swipeThreshold) {
+      scrollServices("previous");
+    } else if (info.offset.x < -swipeThreshold) {
+      scrollServices("next");
+    }
   };
   const [, setLocation] = useLocation();
 
@@ -356,9 +354,38 @@ export default function Home() {
           </div>
           
           <div className="relative">
-            <div ref={servicesScrollRef} onScroll={handleServicesScroll} className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 -mx-1 px-1 sm:grid sm:grid-cols-2 sm:overflow-visible sm:mx-0 sm:px-0 sm:pb-0 md:gap-6">
+            <div className="sm:hidden w-full">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeService}
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 25 }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.4}
+                  onDragEnd={handleServiceDragEnd}
+                  className="cursor-grab active:cursor-grabbing touch-pan-y"
+                >
+                  <ServiceCard
+                    title={features.list[activeService].title}
+                    tagline={features.list[activeService].tagline}
+                    description={features.list[activeService].description}
+                    icon={getFeatureIcon(features.list[activeService].iconName)}
+                    href={features.list[activeService].href}
+                    accentColorClass={features.list[activeService].accentColorClass}
+                    ctaText={features.list[activeService].ctaText}
+                    delay={0}
+                    iconStyle={features.list[activeService].iconStyle}
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <div className="hidden sm:grid sm:grid-cols-2 gap-6">
               {features.list.map((feature) => (
-                <ServiceCard 
+                <ServiceCard
                   key={feature.title}
                   title={feature.title}
                   tagline={feature.tagline}
@@ -372,29 +399,44 @@ export default function Home() {
                 />
               ))}
             </div>
+          </div>
 
+          <div className="flex sm:hidden items-center justify-center gap-3 mt-4" aria-label="Service card navigation">
             <button
               type="button"
               onClick={() => scrollServices("previous")}
               aria-label="Previous service"
-              className={`sm:hidden absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-white/15 bg-black/30 backdrop-blur-sm text-white/80 flex items-center justify-center transition-all duration-200 hover:bg-black/50 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${activeService > 0 ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+              className="w-10 h-10 rounded-full border border-white/10 bg-white/[0.02] hover:bg-white/[0.08] hover:border-primary/40 text-white hover:text-primary flex items-center justify-center transition-all duration-300 shrink-0 shadow-lg group focus:outline-none focus:ring-1 focus:ring-primary/40"
             >
-              <ChevronLeft className="w-6 h-6" aria-hidden="true" />
+              <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
             </button>
+
+            <div className="flex items-center justify-center gap-3">
+              {features.list.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveService(idx)}
+                  className="relative h-2.5 focus:outline-none focus:ring-1 focus:ring-primary/40 rounded-full transition-all duration-300"
+                  style={{ width: activeService === idx ? "24px" : "10px" }}
+                  aria-label={`Go to service ${idx + 1}`}
+                >
+                  <motion.div
+                    className={`absolute inset-0 rounded-full ${activeService === idx ? "bg-primary" : "bg-white/20 hover:bg-white/40"}`}
+                    layoutId="activeServiceDot"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                </button>
+              ))}
+            </div>
 
             <button
               type="button"
               onClick={() => scrollServices("next")}
               aria-label="Next service"
-              className={`sm:hidden absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-white/15 bg-black/30 backdrop-blur-sm text-white/80 flex items-center justify-center transition-all duration-200 hover:bg-black/50 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${activeService < features.list.length - 1 ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+              className="w-10 h-10 rounded-full border border-white/10 bg-white/[0.02] hover:bg-white/[0.08] hover:border-primary/40 text-white hover:text-primary flex items-center justify-center transition-all duration-300 shrink-0 shadow-lg group focus:outline-none focus:ring-1 focus:ring-primary/40"
             >
-              <ChevronRight className="w-6 h-6" aria-hidden="true" />
+              <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
             </button>
-          </div>
-          <div className="flex sm:hidden items-center justify-center gap-2 mt-4" aria-label="Service card position">
-            {features.list.map((feature, index) => (
-              <span key={feature.title} className={"h-1.5 rounded-full transition-all duration-200 " + (index === activeService ? "w-5 bg-white" : "w-1.5 bg-white/30")} aria-hidden="true" />
-            ))}
           </div>
         </div>
       </section>
