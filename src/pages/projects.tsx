@@ -79,7 +79,6 @@ export default function Projects() {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
   const [selectedProjectCategory, setSelectedProjectCategory] = useState("all");
 
   const filterOptions = [
@@ -119,14 +118,6 @@ export default function Projects() {
       handleNext();
     }
   };
-
-  useEffect(() => {
-    if (isHovered) return;
-    const interval = setInterval(() => {
-      handleNext();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isHovered]);
 
   const portfolioSchema = {
     "@context": "https://schema.org",
@@ -387,11 +378,7 @@ export default function Projects() {
             <div className="w-full">
               
               {/* Central Card Stage */}
-              <div 
-                className="w-full"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
+              <div className="w-full">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentIndex}
