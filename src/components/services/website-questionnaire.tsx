@@ -197,7 +197,7 @@ export default function WebsiteQuestionnaire() {
   const message = buildMessage(answers);
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `${contact.whatsappUrl}?text=${encodedMessage}`;
-  const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent("https://web3currency.online/services/web-development")}&text=${encodedMessage}`;
+  const telegramUrl = `${contact.telegramUrl}?text=${encodedMessage}`;
   const emailUrl = `mailto:${contact.email}?subject=${encodeURIComponent("Website Project Enquiry")}&body=${encodedMessage}`;
 
   if (complete) {
