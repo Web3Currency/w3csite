@@ -13,13 +13,13 @@ export function Footer() {
       <div className="container max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 lg:gap-16 mb-14 md:mb-16 text-center md:text-left">
           <div className="col-span-1 md:col-span-1 text-center md:text-left">
-            <Link href="/" className="flex items-center justify-center md:justify-start gap-2 group mb-6 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
+            <Link href="/" className="flex items-center justify-center md:justify-start gap-2 group mb-6 w-fit mx-auto md:mx-0" focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
               <img 
                 src="https://i.imgur.com/FwLZZ8d.png" 
                 alt={branding.businessName} 
-                className="h-10 sm:h-12 w-auto min-w-[40px] max-w-[160px] object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-[120px] md:h-12 w-auto min-w-[40px] max-w-[160px] object-contain transition-transform duration-300 group-hover:scale-105"
               />
-              <span className="font-display font-bold text-xl tracking-tight text-white">
+              <span className="hidden md:inline font-display font-bold text-xl tracking-tight text-white">
                 {branding.businessName.replace("W3C ", "")}
               </span>
             </Link>
@@ -94,12 +94,13 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="col-span-1 text-right">
-            <h4 className="font-display font-semibold text-white mb-6 uppercase tracking-wider text-sm">Registered Business (CAC)</h4>
-            <div className="space-y-1.5 text-sm text-white/80">
+          <div className="col-span-1 text-center md:text-right">
+            <h4 className="hidden md:block font-display font-semibold text-white mb-6 uppercase tracking-wider text-sm">Registered Business (CAC)</h4>
+            <div className="hidden md:block space-y-1.5 text-sm text-white/80">
               <p className="font-mono">RC: 957908</p>
               <p className="text-muted-foreground">Nigeria</p>
             </div>
+            <p className="md:hidden text-sm text-white/80 font-mono">Nigeria · RC: 957908</p>
           </div>
         </div>
 
