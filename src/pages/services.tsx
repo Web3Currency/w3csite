@@ -351,7 +351,7 @@ export default function Services() {
                   Continue on WhatsApp
                 </a>
                 <a
-                  href={`https://t.me/share/url?url=${encodeURIComponent("https://web3currency.online/services?tab=others")}&text=${encodeURIComponent(`Hi ${branding.founderName}, I'd like to make an inquiry about ${inquiryService}.`)}`}
+                  href={`${contact.telegramUrl}?text=${encodeURIComponent(`Hi ${branding.founderName}, I'd like to make an inquiry about ${inquiryService}.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackContactClick("Telegram", `Others Service Inquiry: ${inquiryService}`)}
