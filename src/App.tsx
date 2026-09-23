@@ -20,6 +20,7 @@ import Contact from "@/pages/contact";
 import Ledger from "@/pages/ledger";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
+import Blog from "@/pages/blog";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -57,6 +58,7 @@ function Router() {
         <Route path="/ledger" component={Ledger} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
+        <Route path="/blog" component={Blog} />
         <Route component={NotFound} />
       </Switch>
     </AnimatePresence>
