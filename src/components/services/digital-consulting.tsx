@@ -194,7 +194,7 @@ export default function DigitalConsulting() {
   const message = buildMessage(answers);
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `${contact.whatsappUrl}?text=${encodedMessage}`;
-  const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent("https://web3currency.online/services?tab=consulting")}&text=${encodedMessage}`;
+  const telegramUrl = `${contact.telegramUrl}?text=${encodedMessage}`;
   const emailUrl = `mailto:${contact.email}?subject=${encodeURIComponent("Digital Solutions Enquiry")}&body=${encodedMessage}`;
 
   if (complete) {
