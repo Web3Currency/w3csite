@@ -28,7 +28,7 @@ export default function Terms() {
             </h1>
             <div className="flex items-center gap-2 justify-center sm:justify-start text-xs text-white/50 font-mono">
               <Clock className="w-3.5 h-3.5" />
-              <span>Last updated: March 2025</span>
+              <span>Last updated: September 2026</span>
             </div>
             <p className="text-sm sm:text-base text-white/70 leading-relaxed max-w-xl">
               Please read these Terms of Service carefully before using W3C Digital Network services or joining our WhatsApp-based community.
@@ -39,14 +39,14 @@ export default function Terms() {
             <div className="space-y-3">
               <h2 className="text-xl font-display font-bold text-white">1. Acceptance of Terms</h2>
               <p>
-                By accessing this website, joining the Web3 Currency WhatsApp community, or executing transactions with our P2P Desk, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using our services.
+                By accessing this website, joining the W3C Community on WhatsApp, or executing transactions with our P2P Desk, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using our services.
               </p>
             </div>
 
             <div className="space-y-3">
               <h2 className="text-xl font-display font-bold text-white">2. Description of Services</h2>
               <p>
-                W3C Digital Network provides informational content, digital consulting, web design & software engineering, and peer-to-peer (P2P) cryptocurrency conversion services ("the Services"). All community interaction and active desk operations are run over WhatsApp, whereas this website serves primarily as an introductory digital front.
+                W3C Digital Network provides informational content, Digital Solutions, web design & software engineering, and peer-to-peer (P2P) cryptocurrency conversion services ("the Services"). All community interaction and active desk operations are run over WhatsApp, whereas this website serves primarily as an introductory digital front.
               </p>
             </div>
 

@@ -27,7 +27,7 @@ export default function Privacy() {
             </h1>
             <div className="flex items-center gap-2 justify-center sm:justify-start text-xs text-white/50 font-mono">
               <Clock className="w-3.5 h-3.5" />
-              <span>Last updated: July 2026</span>
+              <span>Last updated: September 2026</span>
             </div>
             <p className="text-sm sm:text-base text-white/70 leading-relaxed max-w-xl">
               W3C Digital Network is committed to respecting your privacy and handling your information responsibly. This policy explains what information may be collected when you use this website or interact with our services.
@@ -51,7 +51,7 @@ export default function Privacy() {
                 W3C Digital Network is an independent digital business operated by Jake, providing services including:
               </p>
               <ul className="list-disc pl-5 mt-2 space-y-1 text-white/70">
-                <li>Digital Consulting</li>
+                <li>Digital Solutions</li>
                 <li>Website Design & Development</li>
                 <li>W3C DESK (Crypto P2P)</li>
                 <li>Web3 Community & Learning</li>
@@ -104,7 +104,7 @@ export default function Privacy() {
               </p>
               <ul className="list-disc pl-5 mt-2 space-y-1 text-white/70">
                 <li>Respond to enquiries</li>
-                <li>Deliver consulting services</li>
+                <li>Deliver Digital Solutions services</li>
                 <li>Build and support websites</li>
                 <li>Coordinate W3C DESK transactions</li>
                 <li>Communicate project updates</li>
@@ -199,8 +199,8 @@ export default function Privacy() {
               </p>
               <div className="p-4 rounded-xl border border-white/5 bg-white/[0.02] flex items-center gap-3 mt-2 w-fit">
                 <Mail className="w-5 h-5 text-[#f97316]" />
-                <a href="mailto:web3currency.info@gmail.com" className="font-mono text-white hover:underline">
-                  web3currency.info@gmail.com
+                <a href="mailto:w3cdigitalnetwork@gmail.com" className="font-mono text-white hover:underline">
+                  w3cdigitalnetwork@gmail.com
                 </a>
               </div>
             </div>
