@@ -11,8 +11,7 @@ import {
   Search,
   X,
   Terminal,
-  ArrowRightLeft,
-  Clock
+  ArrowRightLeft
 } from 'lucide-react';
 
 // --- Types ---
@@ -296,11 +295,11 @@ export default function LedgerPage() {
                 <TerminalText className="text-purple-500">NGN</TerminalText>
               </div>
               <div className="mt-6 flex gap-4">
-                <div className="flex-1 p-3 rounded-xl backdrop-blur-md border border-white/[0.05] bg-purple-500/5">
+                <div className="flex-1 p-3 rounded-xl backdrop-blur-md border border-white/[0.05] bg-purple-500/5 text-center">
                   <TerminalText className="text-white/30 block mb-1">Total Trades</TerminalText>
                   <span className="text-purple-500 font-mono text-base font-bold">{stats.allTimeCount}</span>
                 </div>
-                <div className="flex-1 p-3 rounded-xl backdrop-blur-md border border-white/[0.05] bg-purple-500/5">
+                <div className="flex-1 p-3 rounded-xl backdrop-blur-md border border-white/[0.05] bg-purple-500/5 text-center">
                   <TerminalText className="text-white/30 block mb-1">Top Traded Asset</TerminalText>
                   <span className="text-purple-500 font-mono text-base font-bold truncate block">{stats.topTradedAsset}</span>
                 </div>
@@ -308,11 +307,7 @@ export default function LedgerPage() {
             </GlassCard>
 
             {/* Timeframe Selector Section */}
-            <div className="flex items-center justify-between px-1">
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-purple-500/40" />
-                <TerminalText className="text-white/60 font-bold">Analysis Window</TerminalText>
-              </div>
+            <div className="flex items-center justify-end px-1">
               <select 
                 value={analyticsPeriod}
                 onChange={(e) => setAnalyticsPeriod(e.target.value)}
@@ -343,13 +338,13 @@ export default function LedgerPage() {
             {/* MARKET ANALYTICS CARD */}
             <GlassCard className="p-6 relative border border-white/5 space-y-6 bg-gradient-to-br from-[#0A0A0A] to-[#0D0D0D]">
               <div className="grid grid-cols-2 gap-4">
-                <div className="p-3 rounded-xl border bg-white/[0.02] border-white/[0.05]">
+                <div className="p-3 rounded-xl border bg-white/[0.02] border-white/[0.05] text-center">
                   <TerminalText className="text-white/30 block mb-1">Period Volume</TerminalText>
                   <div className="font-bold text-lg sm:text-xl tracking-tight text-[#BF00FF] font-mono">
                     ₦{(stats.filteredTradesVolume || 0).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                   </div>
                 </div>
-                <div className="p-3 rounded-xl border bg-white/[0.02] border-white/[0.05]">
+                <div className="p-3 rounded-xl border bg-white/[0.02] border-white/[0.05] text-center">
                   <TerminalText className="text-white/30 block mb-1">Trade Count</TerminalText>
                   <div className="font-bold text-lg sm:text-xl tracking-tight text-white font-mono">{stats.filteredTradesCount}</div>
                 </div>
@@ -375,19 +370,19 @@ export default function LedgerPage() {
 
               {/* BUY / SELL BAR SUB-METRICS */}
               <div className="grid grid-cols-2 gap-4 pt-2">
-                <div id="card-total-in-buys" className="p-3 rounded-xl border bg-white/[0.02] border-white/[0.05] flex flex-col justify-between">
-                  <div className="flex items-center gap-2 mb-1">
+                <div id="card-total-in-buys" className="p-3 rounded-xl border bg-white/[0.02] border-white/[0.05] flex flex-col justify-between text-center">
+                  <div className="flex items-center justify-center gap-2 mb-1">
                     <ArrowRightLeft className="w-3.5 h-3.5 text-[#00FF00]" />
-                    <TerminalText className="text-white/30">TOTAL IN (BUYS)</TerminalText>
+                    <TerminalText className="text-white/30">Total Buys</TerminalText>
                   </div>
                   <div className="font-bold text-lg sm:text-xl tracking-tight text-white font-mono">
                     ₦{(stats.totalAmountIn || 0).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                   </div>
                 </div>
-                <div id="card-total-out-sells" className="p-3 rounded-xl border bg-white/[0.02] border-white/[0.05] flex flex-col justify-between">
-                  <div className="flex items-center gap-2 mb-1">
+                <div id="card-total-out-sells" className="p-3 rounded-xl border bg-white/[0.02] border-white/[0.05] flex flex-col justify-between text-center">
+                  <div className="flex items-center justify-center gap-2 mb-1">
                     <ArrowRightLeft className="w-3.5 h-3.5 text-red-500" />
-                    <TerminalText className="text-white/30">TOTAL OUT (SELLS)</TerminalText>
+                    <TerminalText className="text-white/30">Total Sales</TerminalText>
                   </div>
                   <div className="font-bold text-lg sm:text-xl tracking-tight text-white font-mono">
                     ₦{(stats.totalSellNaira || 0).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
