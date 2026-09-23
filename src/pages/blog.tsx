@@ -1,6 +1,7 @@
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { motion } from "framer-motion";
+import { Newspaper } from "lucide-react";
 import { branding } from "@/config/branding";
 
 export default function Blog() {
@@ -19,9 +20,11 @@ export default function Blog() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center"
         >
-          <p className="text-primary/70 text-xs font-mono uppercase tracking-[0.3em] mb-4">
-            Blog
-          </p>
+          <Newspaper
+            aria-hidden="true"
+            strokeWidth={1}
+            className="w-36 h-36 sm:w-44 sm:h-44 mx-auto mb-8 text-white/[0.05]"
+          />
           <h1 className="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight">
             Nothing to read here. Yet.
           </h1>
