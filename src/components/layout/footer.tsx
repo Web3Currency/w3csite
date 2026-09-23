@@ -59,7 +59,7 @@ export function Footer() {
 
           <div className="col-span-1 md:col-span-1 text-center md:text-left">
             <h4 className="font-display font-semibold text-white mb-6 uppercase tracking-wider text-sm text-center md:text-left">Quick Links</h4>
-            <div className="grid grid-cols-2 gap-x-8 gap-y-4 md:block justify-items-start md:justify-items-start">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-4 md:block justify-items-start md:justify-items-start [&>*:nth-child(even)]:justify-self-end">
               {navigation.footerQuickLinks.map((link) => (
                 <Link key={link.href} href={link.href} className={`text-white/80 text-sm hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm block md:mb-4`}>
                   {link.label}
