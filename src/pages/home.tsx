@@ -588,7 +588,7 @@ export default function Home() {
             <h2 className="text-4xl font-display font-bold text-white mb-4 tracking-tight">What People Say</h2>
           </motion.div>
 
-          <div className="md:hidden">
+          <div className="md:hidden text-center">
             <div
               ref={testimonialsScrollRef}
               onScroll={handleTestimonialsScroll}
@@ -798,7 +798,7 @@ export default function Home() {
                 {cta.description}
               </p>
 
-              <div className="relative mt-8 pt-6 border-t border-white/[0.06] flex items-center gap-4">
+              <div className="relative mt-8 pt-6 border-t border-white/[0.06] flex items-center justify-center gap-4">
                 <FounderAvatar />
                 <div className="min-w-0 flex-1">
                   <div className="font-display font-bold text-white text-base leading-tight">{branding.founderName}</div>
@@ -815,18 +815,18 @@ export default function Home() {
             </div>
 
             {/* Desktop / Tablet Founder Consultation */}
-            <div className="hidden md:grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            <div className="hidden md:flex justify-center">
               {/* Left Column: Premium Pitch & Founder Info */}
-              <div className="lg:col-span-7 space-y-6 text-left">
+              <div className="w-full max-w-3xl space-y-6 text-center">
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight leading-[1.15]">
                   {cta.title}
                 </h2>
                 
-                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
                   {cta.description}
                 </p>
                 
-                <div className="pt-6 border-t border-white/[0.06] flex flex-wrap items-center gap-4">
+                <div className="pt-6 border-t border-white/[0.06] flex flex-wrap items-center justify-center gap-4">
                   <FounderAvatar sizeClass="w-12 h-12" />
                   <div>
                     <div className="font-display font-bold text-white text-base leading-tight">{branding.founderName}</div>
