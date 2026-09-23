@@ -790,7 +790,7 @@ export default function Home() {
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/[0.01] rounded-full blur-3xl pointer-events-none" />
 
             {/* Mobile Founder Consultation */}
-            <div className="md:hidden">
+            <div className="md:hidden text-center">
               <h2 className="text-3xl font-display font-bold text-white tracking-tight leading-[1.15]">
                 {cta.title}
               </h2>
