@@ -1,5 +1,32 @@
 {
   "buildCommand": "npm run build",
+  "redirects": [
+    {
+      "source": "/services/digital-consulting",
+      "destination": "/services?tab=consulting",
+      "permanent": true
+    },
+    {
+      "source": "/services/crypto-p2p",
+      "destination": "/services?tab=desk",
+      "permanent": true
+    },
+    {
+      "source": "/services/web-development",
+      "destination": "/services?tab=web",
+      "permanent": true
+    },
+    {
+      "source": "/services/community",
+      "destination": "/services?tab=community",
+      "permanent": true
+    },
+    {
+      "source": "/projects/ceecar",
+      "destination": "/projects",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

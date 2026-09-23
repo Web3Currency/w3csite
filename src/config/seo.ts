@@ -23,12 +23,12 @@ export interface SEOConfig {
 export const seo: SEOConfig = {
   default: {
     title: "W3C Digital Network",
-    description: "Practical digital solutions built around your needs. Consulting, crypto P2P trading, AI-powered web development, and a Web3 community.",
-    keywords: ["Web3", "Crypto P2P", "OTC Trading", "Web Development", "AI Development", "Consulting", "Jake", "W3C"]
+    description: "Practical digital solutions built around your needs. Digital Solutions, crypto P2P trading via W3C DESK, AI-powered web development, and a Web3 community.",
+    keywords: ["Web3", "Crypto P2P", "W3C DESK", "Web Development", "AI Development", "Digital Solutions", "Jake", "W3C"]
   },
   home: {
     title: "W3C Digital Network",
-    description: "Practical digital solutions built around your needs. Consulting, crypto P2P trading, AI-powered web development, and a Web3 community."
+    description: "Practical digital solutions built around your needs. Digital Solutions, crypto P2P trading via W3C DESK, AI-powered web development, and a Web3 community."
   },
   about: {
     title: "About JAKE | W3C Digital Network",
@@ -36,11 +36,11 @@ export const seo: SEOConfig = {
   },
   services: {
     title: "Services | W3C Digital Network",
-    description: "Digital consulting, secure crypto P2P trading, AI-powered web development, and a Web3 community, all delivered personally by JAKE."
+    description: "Digital Solutions, secure crypto P2P trading via W3C DESK, AI-powered web development, and a Web3 community, all delivered personally by JAKE."
   },
   projects: {
-    title: "Projects & Outcomes | Digital Network",
-    description: "Explore a selection of verified digital solutions, web infrastructure, OTC operations, and community milestones built by JAKE."
+    title: "Projects & Outcomes | W3C Digital Network",
+    description: "Explore a selection of verified digital solutions, web infrastructure, P2P operations, and community milestones built by JAKE."
   },
   community: {
     title: "Community Hub | W3C Digital Network",
@@ -48,7 +48,7 @@ export const seo: SEOConfig = {
   },
   contact: {
     title: "Contact JAKE | W3C Digital Network",
-    description: "Get in touch with JAKE for consulting, development, crypto operations, or community access."
+    description: "Get in touch with JAKE for Digital Solutions, development, W3C DESK, or community access."
   },
   cryptoP2P: {
     title: "W3C DESK, Crypto P2P Trading | W3C Digital Network",
@@ -59,8 +59,8 @@ export const seo: SEOConfig = {
     description: "Professional business websites, school websites, and custom web apps built cleanly and delivered fast by JAKE."
   },
   digitalConsulting: {
-    title: "Digital Consulting | W3C Digital Network",
-    description: "Independent, honest digital and Web3 consulting from JAKE. Strategic guidance and problem solving without the corporate jargon."
+    title: "Digital Solutions | W3C Digital Network",
+    description: "Independent, honest Digital Solutions and Web3 guidance from JAKE. Practical help without the corporate jargon."
   },
   communityService: {
     title: "W3C Community | W3C Digital Network",
