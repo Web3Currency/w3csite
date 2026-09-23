@@ -13,7 +13,7 @@ export function Footer() {
       <div className="container max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 lg:gap-16 mb-14 md:mb-16 text-center md:text-left">
           <div className="col-span-1 md:col-span-1 text-center md:text-left">
-            <Link href="/" className="flex items-center justify-center md:justify-start gap-2 group mb-6 w-fit mx-auto md:mx-0" focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
+            <Link href="/" className="flex items-center justify-center md:justify-start gap-2 group mb-6 w-fit mx-auto md:mx-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
               <img 
                 src="https://i.imgur.com/FwLZZ8d.png" 
                 alt={branding.businessName} 
