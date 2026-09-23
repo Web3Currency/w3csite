@@ -1,12 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
-import { motion } from "framer-motion";
-import { ArrowRight, Building2, Mail, PenTool, MapPin } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, Building2, Globe, Mail, PenTool, MapPin, X } from "lucide-react";
+import { SiTelegram, SiWhatsapp } from "react-icons/si";
 import { Link } from "wouter";
 import { servicesContent } from "@/content/services";
 import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
+import { branding } from "@/config/branding";
+import { trackContactClick } from "@/lib/analytics";
+import { FounderAvatar } from "@/components/shared/founder-avatar";
 import DigitalSolutions from "@/components/services/digital-consulting";
 import CryptoP2P from "@/components/services/crypto-p2p";
 import WebDevelopment from "@/components/services/web-development";
@@ -34,6 +38,7 @@ export default function Services() {
   };
 
   const [activeTab, setActiveTab] = useState<ServiceTab>(getTabFromUrl);
+  const [inquiryService, setInquiryService] = useState<string | null>(null);
   const tabsContainerRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<Record<ServiceTab, HTMLButtonElement | null>>({
     consulting: null,
@@ -88,6 +93,8 @@ export default function Services() {
         return Mail;
       case "pentool":
         return PenTool;
+      case "globe":
+        return Globe;
       default:
         return MapPin;
     }
@@ -173,16 +180,15 @@ export default function Services() {
                 {extras.list.map((item, i) => {
                   const IconComponent = getExtraIcon(item.iconName);
                   return (
-                    <motion.a
+                    <motion.button
                       key={item.title}
-                      href={contact.whatsappUrl}
-                      target="_blank"
-                      rel="noreferrer"
+                      type="button"
+                      onClick={() => setInquiryService(item.title)}
                       initial={{ opacity: 0, y: 15 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-50px" }}
                       transition={{ duration: 0.5, delay: i * 0.06 }}
-                      className="group block rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-primary/30 hover:bg-primary/[0.03] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      className="group w-full text-left rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-primary/30 hover:bg-primary/[0.03] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     >
                       <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 group-hover:border-primary/30 transition-colors">
                         <IconComponent className="w-5 h-5 text-white/70 group-hover:text-primary transition-colors" />
@@ -194,10 +200,10 @@ export default function Services() {
                         {item.body}
                       </p>
                       <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/60 group-hover:text-primary transition-colors">
-                        Ask on WhatsApp
+                        Make Inquiry
                         <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                       </span>
-                    </motion.a>
+                    </motion.button>
                   );
                 })}
               </div>
@@ -297,6 +303,69 @@ export default function Services() {
 
       {/* The selected service content renders here. */}
       <main>{renderActiveService()}</main>
+
+      <AnimatePresence>
+        {inquiryService && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setInquiryService(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 14, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 14, scale: 0.98 }}
+              transition={{ duration: 0.2 }}
+              onClick={(event) => event.stopPropagation()}
+              className="relative w-full max-w-2xl rounded-3xl border border-white/10 bg-zinc-950 p-7 sm:p-10 shadow-2xl"
+            >
+              <button
+                type="button"
+                onClick={() => setInquiryService(null)}
+                aria-label="Close"
+                className="absolute top-5 right-5 inline-flex items-center justify-center w-9 h-9 rounded-full border border-white/10 text-muted-foreground hover:text-white hover:bg-white/5 transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+
+              <div className="flex justify-center mb-6">
+                <FounderAvatar />
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-display font-bold text-center text-primary">
+                Ready to make an inquiry?
+              </h2>
+              <p className="text-muted-foreground mt-4 leading-relaxed text-center">
+                Your inquiry is about <span className="text-white font-semibold">{inquiryService}</span>. Choose where you would like to continue.
+              </p>
+
+              <div className="grid gap-3 mt-8">
+                <a
+                  href={`${contact.whatsappUrl}?text=${encodeURIComponent(`Hi ${branding.founderName}, I'd like to make an inquiry about ${inquiryService}.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackContactClick("WhatsApp", `Others Service Inquiry: ${inquiryService}`)}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#25D366] text-black font-bold text-sm hover:brightness-110 transition-all"
+                >
+                  <SiWhatsapp className="w-4 h-4" />
+                  Continue on WhatsApp
+                </a>
+                <a
+                  href={`https://t.me/share/url?url=${encodeURIComponent("https://web3currency.online/services?tab=others")}&text=${encodeURIComponent(`Hi ${branding.founderName}, I'd like to make an inquiry about ${inquiryService}.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackContactClick("Telegram", `Others Service Inquiry: ${inquiryService}`)}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#229ED9] text-white font-bold text-sm hover:brightness-110 transition-all"
+                >
+                  <SiTelegram className="w-4 h-4" />
+                  Continue on Telegram
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Final CTA remains only for the Others tab */}
       {activeTab === "others" && (
