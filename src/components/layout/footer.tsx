@@ -11,9 +11,9 @@ export function Footer() {
   return (
     <footer className="border-t border-white/[0.08] bg-black pt-16 md:pt-20 pb-8">
       <div className="container max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 lg:gap-16 mb-14 md:mb-16 text-left">
-          <div className="col-span-1 md:col-span-1 text-left">
-            <Link href="/" className="flex items-center gap-2 group mb-6 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 lg:gap-16 mb-14 md:mb-16 text-center md:text-left">
+          <div className="col-span-1 md:col-span-1 text-center md:text-left">
+            <Link href="/" className="flex items-center justify-center md:justify-start gap-2 group mb-6 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
               <img 
                 src="https://i.imgur.com/FwLZZ8d.png" 
                 alt={branding.businessName} 
@@ -26,7 +26,7 @@ export function Footer() {
             <p className="text-muted-foreground text-sm leading-relaxed md:block hidden">
               Built around Web3, crypto and the wider digital economy.
             </p>
-            <div className="mt-2 flex flex-row items-center gap-3 flex-nowrap md:hidden">
+            <div className="mt-2 flex flex-row items-center justify-center gap-3 flex-nowrap md:hidden">
               <a href={`tel:${contact.phoneNumber}`} aria-label="Phone" className="group flex items-center justify-center text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm">
                 <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-colors">
                   <Phone className="w-4 h-4 text-white/50" />
@@ -57,9 +57,9 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="col-span-1 md:col-span-1">
-            <h4 className="font-display font-semibold text-white mb-6 uppercase tracking-wider text-sm">Quick Links</h4>
-            <div className="grid grid-cols-2 gap-x-8 gap-y-4 md:block">
+          <div className="col-span-1 md:col-span-1 text-center md:text-left">
+            <h4 className="font-display font-semibold text-white mb-6 uppercase tracking-wider text-sm text-center md:text-left">Quick Links</h4>
+            <div className="grid grid-cols-2 gap-x-8 gap-y-4 md:block justify-items-center md:justify-items-start">
               {navigation.footerQuickLinks.map((link) => (
                 <Link key={link.href} href={link.href} className={`text-white/80 text-sm hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm ${link.label === "FAQ" ? "hidden md:block" : "block"} md:mb-4`}>
                   {link.label}
@@ -94,7 +94,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="col-span-1 md:text-right">
+          <div className="col-span-1 text-right">
             <h4 className="font-display font-semibold text-white mb-6 uppercase tracking-wider text-sm">Registered Business (CAC)</h4>
             <div className="space-y-1.5 text-sm text-white/80">
               <p className="font-mono">RC: 957908</p>
