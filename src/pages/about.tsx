@@ -46,7 +46,7 @@ export default function About() {
       icon: LayoutTemplate,
     },
     {
-      title: "Digital Solutions & Consulting",
+      title: "Digital Solutions",
       body: "Helping people understand digital tools and find practical ways to solve digital problems.",
       icon: Compass,
     },
