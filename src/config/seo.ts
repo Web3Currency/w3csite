@@ -24,7 +24,7 @@ export const seo: SEOConfig = {
   default: {
     title: "W3C Digital Network",
     description: "Practical digital solutions built around your needs. Digital Solutions, crypto P2P services through W3C DESK, website development, and a Web3 community.",
-    keywords: ["Web3", "Crypto P2P", "W3C DESK", "Web Development", "AI Development", "Digital Solutions", "Jake", "W3C"]
+    keywords: ["Web3", "Crypto P2P", "W3C DESK", "Web Development", "AI Development", "Digital Solutions", "JAKE", "W3C"]
   },
   home: {
     title: "W3C Digital Network",
