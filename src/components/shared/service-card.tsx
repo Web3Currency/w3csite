@@ -18,9 +18,10 @@ interface ServiceCardProps {
   /** Optional "Primary benefit" line, shown on Services Hub cards. */
   benefit?: string;
   iconStyle?: React.CSSProperties;
+  glassStyle?: boolean;
 }
 
-export function ServiceCard({ title, tagline, description, icon, href, ctaText = "Explore this pillar", delay = 0, whoFor, benefit, iconStyle }: ServiceCardProps) {
+export function ServiceCard({ title, tagline, description, icon, href, ctaText = "Explore this pillar", delay = 0, whoFor, benefit, iconStyle, glassStyle = false }: ServiceCardProps) {
   const brand = getServiceBrandColor(title);
 
   return (
@@ -39,7 +40,7 @@ export function ServiceCard({ title, tagline, description, icon, href, ctaText =
         />
       </div>
       <div 
-        className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border transition-colors duration-300 ${brand.twBg} ${brand.twBorder} ${brand.twBgHover}`}
+        className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border transition-colors duration-300 ${glassStyle ? "bg-white/[0.05] border-white/10" : `${brand.twBg} ${brand.twBorder} ${brand.twBgHover}`}`}
         style={iconStyle}
       >
         {icon}
@@ -71,7 +72,7 @@ export function ServiceCard({ title, tagline, description, icon, href, ctaText =
 
       <Link 
         href={href} 
-        className="inline-flex items-center justify-center gap-2 text-sm font-bold text-black transition-all duration-300 mt-auto w-fit px-4 py-2 rounded-full hover:brightness-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+        className={`inline-flex items-center justify-center gap-2 text-sm font-bold transition-all duration-300 mt-auto w-fit px-4 py-2 rounded-full active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${glassStyle ? "bg-white/[0.05] border border-white/10 text-white hover:bg-white/10" : "text-black hover:brightness-110"}`}
         style={{ backgroundColor: brand.hex }}
       >
         <span>{ctaText}</span>
