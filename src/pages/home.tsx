@@ -5,7 +5,7 @@ import { GlassCard, MotionGlassCard } from "@/components/shared/glass-card";
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
-import { ArrowRight, ChevronRight, ChevronLeft, ChevronDown, Globe, Headset, Shield, ShieldCheck, Users, Wallet, Mail, MessageCircle, Terminal, Send, MessageSquare, HelpCircle, CheckCircle2, TrendingUp, Compass, BookOpen, Clock, ArrowLeftRight, Ribbon } from "lucide-react";
+import { ArrowRight, ChevronRight, ChevronLeft, ChevronDown, Globe, Headset, Shield, ShieldCheck, Users, Wallet, Mail, MessageCircle, Terminal, Send, MessageSquare, HelpCircle, CheckCircle2, TrendingUp, Compass, BookOpen, Clock, ArrowLeftRight, Ribbon, BriefcaseBusiness } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { homepageContent } from "@/content/homepage";
 import { branding } from "@/config/branding";
@@ -152,6 +152,7 @@ export default function Home() {
       case "headphones": return <Headset className="w-6 h-6 text-white" />;
       case "wallet": return <Wallet className="w-6 h-6 text-white" />;
       case "terminal": return <Terminal className="w-6 h-6 text-white" />;
+      case "briefcase": return <BriefcaseBusiness className="w-6 h-6 text-white" />;
       default: return <Users className="w-6 h-6 text-white" />;
     }
   };
@@ -378,6 +379,7 @@ export default function Home() {
                     ctaText={features.list[activeService].ctaText}
                     delay={0}
                     iconStyle={features.list[activeService].iconStyle}
+                    glassStyle={features.list[activeService].title === "Other Services"}
                   />
                 </motion.div>
               </AnimatePresence>
@@ -396,6 +398,7 @@ export default function Home() {
                   ctaText={feature.ctaText}
                   delay={feature.delay}
                   iconStyle={feature.iconStyle}
+                  glassStyle={feature.title === "Other Services"}
                 />
               ))}
             </div>
