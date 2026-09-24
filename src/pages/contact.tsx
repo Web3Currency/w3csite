@@ -276,7 +276,7 @@ export default function Contact() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-purple-500"></span>
                   </span>
-                  <span className="font-mono text-xs uppercase tracking-[0.25em] font-extrabold text-purple-400">FAST RESPONSE ADVISORY</span>
+                  <span className="font-mono text-xs uppercase tracking-[0.25em] font-extrabold text-purple-400">FAST RESPONSE</span>
                 </div>
 
                 <h2 className="text-3xl font-display font-bold text-white tracking-tight">
