@@ -313,7 +313,7 @@ export default function Services() {
                       <button
                         type="button"
                         onClick={() => selectTab((["consulting", "desk", "web", "community", "others"] as ServiceTab[])[index - 1])}
-                        className="mt-auto self-end inline-flex items-center gap-2 rounded-full px-4 py-2.5 bg-white text-black font-bold text-sm hover:brightness-110 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                        className="mt-auto self-end inline-flex items-center gap-2 rounded-full px-4 py-2.5 bg-white/[0.05] border border-white/10 text-white font-bold text-sm backdrop-blur-md hover:bg-white/10 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
                       >
                         <span>{["Find the Right Solution", "Start a Trade Request", "Plan My Website", "Enter the Community", "Explore Other Services"][index - 1]}</span>
                         <ChevronDown className="w-4 h-4" />
