@@ -297,7 +297,7 @@ export default function Contact() {
                     href={contact.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => trackContactClick('WhatsApp', 'Advisory CTA')}
+                    onClick={() => trackContactClick('WhatsApp', 'Fast Response CTA')}
                     className="px-6 py-3 rounded-full bg-emerald-500 text-black font-bold text-xs sm:text-sm hover:bg-emerald-400 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                   >
                     <SiWhatsapp className="w-4 h-4" />
