@@ -288,7 +288,9 @@ export default function Services() {
                   }}
                   type="button"
                   onClick={() => selectTab(tab.id)}
-                  role="tab"\n                  aria-selected={active}\n                  aria-controls="selected-service-questionnaire"\n                  className={`shrink-0 md:flex-1 px-5 py-4 md:py-5 border-b-2 text-base sm:text-lg font-bold uppercase tracking-wide transition-colors ${
+                  role="tab"
+                  aria-selected={active}
+                  aria-controls="selected-service-questionnaire"\n                  className={`shrink-0 md:flex-1 px-5 py-4 md:py-5 border-b-2 text-base sm:text-lg font-bold uppercase tracking-wide transition-colors ${
                     active ? tab.activeClass : "border-transparent text-white/60 hover:text-white"
                   }`}
                 >
@@ -308,7 +310,7 @@ export default function Services() {
       */}
       <section aria-labelledby="service-questionnaire-guide" className="border-b border-white/[0.08] bg-zinc-950 py-12 md:py-16">
         <div className="container max-w-5xl mx-auto px-6">
-          <h1 id="service-questionnaire-guide" className="text-2xl sm:text-3xl font-display font-bold text-white">
+          <h2 id="service-questionnaire-guide" className="text-2xl sm:text-3xl font-display font-bold text-white">
             Choose a service and answer a few questions
           </h1>
           <p className="mt-3 max-w-3xl text-white/70 leading-relaxed">
