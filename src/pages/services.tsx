@@ -291,9 +291,6 @@ export default function Services() {
               {serviceGuideCards.map((card, index) => (
                 <article key={card.title} className="min-w-full p-7 sm:p-9 md:p-12" aria-hidden={serviceGuideIndex !== index}>
                   <div className="max-w-3xl">
-                    <p className="text-xs uppercase tracking-[0.2em] text-white/40 mb-3">
-                      {index === 0 ? "How it works" : "Service " + index + " of " + (serviceGuideCards.length - 1)}
-                    </p>
                     <h2 id={index === 0 ? "service-questionnaire-guide" : undefined} className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-tight">
                       {card.title}
                     </h2>
@@ -302,8 +299,7 @@ export default function Services() {
                 </article>
               ))}
             </div>
-            <div className="flex items-center justify-between border-t border-white/10 px-6 py-4 sm:px-8">
-              <span className="text-xs text-white/40">Auto-rotating guide</span>
+            <div className="flex items-center justify-end border-t border-white/10 px-6 py-4 sm:px-8">
               <div className="flex items-center gap-2" aria-label="Service guide carousel controls">
                 {serviceGuideCards.map((card, index) => (
                   <button
