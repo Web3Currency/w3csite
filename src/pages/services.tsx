@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Building2, Globe, Mail, PenTool, MapPin, X } from "lucide-react";
+import { ArrowRight, Building2, Globe, Mail, PenTool, MapPin, X, ChevronDown } from "lucide-react";
 import { SiTelegram, SiWhatsapp } from "react-icons/si";
 import { Link } from "wouter";
 import { servicesContent } from "@/content/services";
@@ -290,11 +290,21 @@ export default function Services() {
             >
               {serviceGuideCards.map((card, index) => (
                 <article key={card.title} className={"min-w-full p-7 sm:p-9 md:p-12 " + (index === 0 ? "bg-gradient-to-br from-emerald-500 via-orange-500 via-50% to-purple-600" : index === 1 ? "bg-gradient-to-br from-emerald-700 via-emerald-500 to-lime-400" : index === 2 ? "bg-gradient-to-br from-orange-700 via-orange-500 to-amber-400" : index === 3 ? "bg-gradient-to-br from-yellow-600 via-yellow-400 to-amber-200" : index === 4 ? "bg-gradient-to-br from-purple-800 via-purple-600 to-fuchsia-400" : "bg-gradient-to-br from-slate-700 via-slate-600 to-slate-400") + " text-white"} aria-hidden={serviceGuideIndex !== index}>
-                  <div className="max-w-3xl">
+                  <div className="max-w-3xl min-h-[250px] sm:min-h-[280px] md:min-h-[300px] flex flex-col">
                     <h2 id={index === 0 ? "service-questionnaire-guide" : undefined} className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-tight drop-shadow-sm">
                       {card.title}
                     </h2>
                     <p className="mt-4 max-w-3xl text-white leading-relaxed drop-shadow-sm">{card.description}</p>
+                    {index > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => selectTab((["consulting", "desk", "web", "community", "others"] as ServiceTab[])[index - 1])}
+                        className="mt-auto self-end inline-flex items-center gap-2 rounded-full px-4 py-2.5 bg-white text-black font-bold text-sm hover:brightness-110 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                      >
+                        <span>{["Find the Right Solution", "Start a Trade Request", "Plan My Website", "Enter the Community", "Explore Other Services"][index - 1]}</span>
+                        <ChevronDown className="w-4 h-4" />
+                      </button>
+                    )}
                   </div>
                 </article>
               ))}
