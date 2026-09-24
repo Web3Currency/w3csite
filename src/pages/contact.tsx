@@ -13,7 +13,7 @@ export default function Contact() {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     "name": `Contact ${branding.founderName} - ${branding.businessName}`,
-    "description": `Get in touch with ${branding.founderName} for consulting, development, crypto operations, or community access.`,
+    "description": `Get in touch with ${branding.founderName} for Digital Solutions, development, crypto operations, or community access.`,
     "url": "https://web3currency.online/contact",
     "mainEntity": {
       "@type": "Person",
