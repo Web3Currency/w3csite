@@ -264,7 +264,7 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* 4. Fast Response Advisory */}
+          {/* 4. Fast Response */}
           <div id="fast-response-advisory" className="pt-4">
             <GlassCard className="p-8 sm:p-12 border border-white/5 bg-gradient-to-r from-[#0C0C0C] via-[#050505] to-[#0A0A0A] rounded-[2rem] overflow-hidden relative">
               <div className="absolute right-0 top-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
