@@ -39,12 +39,12 @@ export default function Services() {
   const [activeTab, setActiveTab] = useState<ServiceTab>(getTabFromUrl);
   const [inquiryService, setInquiryService] = useState<string | null>(null);
   const serviceGuideCards = [
-    { title: "Choose a service and answer a few questions", description: "Each service uses a simple questionnaire. Your answers help Jake understand what you need before you contact him. When you finish, your answers are prepared for the next conversation, so you do not have to explain everything again." },
+    { title: "Choose a service and answer a few questions", description: "Each service uses a simple questionnaire. Your answers help JAKE understand what you need before you contact him. When you finish, your answers are prepared for the next conversation, so you do not have to explain everything again." },
     { title: "Digital Solutions", description: "You answer what you need help with, what kind of situation you are in, and the result you want. If you are unsure, there is an option for that too." },
     { title: "W3C DESK", description: "You choose whether you want to buy or sell crypto, select the asset, provide the amount and wallet type, add any note, review the request, and continue to WhatsApp." },
-    { title: "Website Design & Development", description: "You describe what kind of website you need, what it is for, your main goal, your content situation, and when you want to start. Your answers can then be sent to Jake by WhatsApp, Telegram, or email." },
+    { title: "Website Design & Development", description: "You describe what kind of website you need, what it is for, your main goal, your content situation, and when you want to start. Your answers can then be sent to JAKE by WhatsApp, Telegram, or email." },
     { title: "W3C Community", description: "You answer a short set of questions about your interests, experience, learning goals, connections, updates, opportunities, and the kind of help you need. Before joining, you review the community safety rules and then continue to WhatsApp." },
-    { title: "Other services", description: "You can also ask Jake about CAC business name registration, domain and hosting, business email setup, logo and brand identity, Google Business Profile, or another digital task that is not listed. Choose the service, make an inquiry, and continue through WhatsApp or Telegram." },
+    { title: "Other services", description: "You can also ask JAKE about CAC business name registration, domain and hosting, business email setup, logo and brand identity, Google Business Profile, or another digital task that is not listed. Choose the service, make an inquiry, and continue through WhatsApp or Telegram." },
   ];
   const [serviceGuideIndex, setServiceGuideIndex] = useState(0);
   const tabsContainerRef = useRef<HTMLDivElement>(null);
@@ -248,7 +248,7 @@ export default function Services() {
           itemOffered: {
             "@type": "Service",
             name: "Digital Solutions",
-            description: "A questionnaire that helps Jake understand a digital problem, idea, AI need, or online-presence goal before the conversation continues.",
+            description: "A questionnaire that helps JAKE understand a digital problem, idea, AI need, or online-presence goal before the conversation continues.",
           },
         },
         {
