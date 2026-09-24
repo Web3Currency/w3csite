@@ -14,7 +14,35 @@ export default function Contact() {
     "@type": "ContactPage",
     "name": `Contact ${branding.founderName} - ${branding.businessName}`,
     "description": `Get in touch with ${branding.founderName} for consulting, development, crypto operations, or community access.`,
-    "url": "https://web3currency.online/contact"
+    "url": "https://web3currency.online/contact",
+    "mainEntity": {
+      "@type": "Person",
+      "name": branding.founderName,
+      "sameAs": [contact.telegramUrl, contact.twitterUrl]
+    },
+    "sameAs": [contact.whatsappCommunityUrl],
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": contact.whatsappUrl
+      },
+      {
+        "@type": "ContactPoint",
+        "contactType": "community",
+        "url": contact.whatsappCommunityUrl
+      },
+      {
+        "@type": "ContactPoint",
+        "contactType": "personal messaging",
+        "url": contact.telegramUrl
+      },
+      {
+        "@type": "ContactPoint",
+        "contactType": "telephone",
+        "telephone": contact.phoneNumber
+      }
+    ]
   };
 
   return (
