@@ -1,12 +1,12 @@
 # W3C Digital Network
 
-> Practical digital services operated personally by Jake. CAC registered in Nigeria (RC 9579098). Primary site: https://web3currency.online. WhatsApp is the digital office.
+> Practical digital services operated personally by JAKE. CAC registered in Nigeria (RC 9579098). Primary site: https://web3currency.online. WhatsApp is the digital office.
 
-W3C Digital Network is not an exchange, broker, or investment platform. W3C DESK is a peer-to-peer crypto desk coordinated directly with Jake.
+W3C Digital Network is not an exchange, broker, or investment platform. W3C DESK is a peer-to-peer crypto desk coordinated directly with JAKE.
 
 ## Pages
 - [Home](https://web3currency.online/): overview of current services
-- [About Jake](https://web3currency.online/about): founder story and how W3C works
+- [About JAKE](https://web3currency.online/about): founder story and how W3C works
 - [Services](https://web3currency.online/services): Digital Solutions, W3C DESK, Website Design & Development, W3C Community
 - [Digital Solutions](https://web3currency.online/services?tab=consulting)
 - [W3C DESK](https://web3currency.online/services?tab=desk)
