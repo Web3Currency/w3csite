@@ -30,8 +30,7 @@ const ROUTES = [
   '/contact',
   '/ledger',
   '/privacy',
-  '/terms',
-  '/blog'
+  '/terms'
 ];
 
 const MIME = {
