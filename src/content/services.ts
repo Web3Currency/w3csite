@@ -76,7 +76,7 @@ export const servicesContent: ServicesContent = {
   hero: {
     title: "Let's Figure It Out Together",
     description: "Whether you need a website, Web3 guidance, crypto P2P, or help solving a digital challenge, every service starts the same way: a simple conversation.",
-    subDescription: "When you message W3C Digital Network, you're talking directly with me, Jake. I'll take the time to understand what you're trying to achieve, recommend the right solution, and work with you from start to finish.\n\nNot sure which service fits? That's completely fine. Tell me what you need, and we'll figure it out together."
+    subDescription: "When you message W3C Digital Network, you're talking directly with me, JAKE. I'll take the time to understand what you're trying to achieve, recommend the right solution, and work with you from start to finish.\n\nNot sure which service fits? That's completely fine. Tell me what you need, and we'll figure it out together."
   },
   cores: [
     {
@@ -165,7 +165,7 @@ export const servicesContent: ServicesContent = {
     list: [
       {
         title: "Personally Managed",
-        body: "Every service is delivered directly by Jake."
+        body: "Every service is delivered directly by JAKE."
       },
       {
         title: "CAC Registered",
