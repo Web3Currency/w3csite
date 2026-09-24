@@ -49,7 +49,7 @@ export default function Contact() {
     <PageTransition>
       <SEO 
         title={`Contact ${branding.founderName} | ${branding.businessName}`} 
-        description={`Get in touch with ${branding.founderName} for consulting, development, crypto operations, or community access.`}
+        description={`Get in touch with ${branding.founderName} for Digital Solutions, development, crypto operations, or community access.`}
         path="/contact"
         schema={contactSchema}
       />
