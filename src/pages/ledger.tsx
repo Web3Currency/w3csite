@@ -528,7 +528,7 @@ export default function LedgerPage() {
                         <ArrowRightLeft className="w-7 h-7 text-red-500" />
                       )}
                     </div>
-                    <h3 className="text-xl font-bold tracking-tight uppercase text-white">Trade details</h3>
+                    <h2 className="text-xl font-bold tracking-tight uppercase text-white">Trade details</h2>
                     <div className={`inline-block px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold tracking-widest uppercase ${viewingTrade.type === 'BUY' ? 'bg-[#00FF00]/10 text-[#00FF00]' : 'bg-red-500/10 text-red-500'}`}>
                       {viewingTrade.type === 'BUY' ? 'Client Buys' : 'Client Sells'} {viewingTrade.asset}
                     </div>
