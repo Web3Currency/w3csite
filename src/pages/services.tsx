@@ -38,6 +38,15 @@ export default function Services() {
 
   const [activeTab, setActiveTab] = useState<ServiceTab>(getTabFromUrl);
   const [inquiryService, setInquiryService] = useState<string | null>(null);
+  const serviceGuideCards = [
+    { title: "Choose a service and answer a few questions", description: "Each service uses a simple questionnaire. Your answers help Jake understand what you need before you contact him. When you finish, your answers are prepared for the next conversation, so you do not have to explain everything again." },
+    { title: "Digital Solutions", description: "You answer what you need help with, what kind of situation you are in, and the result you want. If you are unsure, there is an option for that too." },
+    { title: "W3C DESK", description: "You choose whether you want to buy or sell crypto, select the asset, provide the amount and wallet type, add any note, review the request, and continue to WhatsApp." },
+    { title: "Website Design & Development", description: "You describe what kind of website you need, what it is for, your main goal, your content situation, and when you want to start. Your answers can then be sent to Jake by WhatsApp, Telegram, or email." },
+    { title: "W3C Community", description: "You answer a short set of questions about your interests, experience, learning goals, connections, updates, opportunities, and the kind of help you need. Before joining, you review the community safety rules and then continue to WhatsApp." },
+    { title: "Other services", description: "You can also ask Jake about CAC business name registration, domain and hosting, business email setup, logo and brand identity, Google Business Profile, or another digital task that is not listed. Choose the service, make an inquiry, and continue through WhatsApp or Telegram." },
+  ];
+  const [serviceGuideIndex, setServiceGuideIndex] = useState(0);
   const tabsContainerRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<Record<ServiceTab, HTMLButtonElement | null>>({
     consulting: null,
@@ -271,82 +280,69 @@ export default function Services() {
         schema={servicesSchema}
       />
 
+      {/* Service guide carousel appears before the sticky tabs. */}
+      <section aria-labelledby="service-questionnaire-guide" className="border-b border-white/[0.08] bg-zinc-950 py-10 md:py-14 overflow-hidden">
+        <div className="container max-w-5xl mx-auto px-6">
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] shadow-2xl">
+            <div
+              className="flex transition-transform duration-700 ease-out"
+              style={{ transform: "translateX(-" + (serviceGuideIndex * 100) + "%)" }}
+            >
+              {serviceGuideCards.map((card, index) => (
+                <article key={card.title} className="min-w-full p-7 sm:p-9 md:p-12" aria-hidden={serviceGuideIndex !== index}>
+                  <div className="max-w-3xl">
+                    <p className="text-xs uppercase tracking-[0.2em] text-white/40 mb-3">
+                      {index === 0 ? "How it works" : "Service " + index + " of " + (serviceGuideCards.length - 1)}
+                    </p>
+                    <h2 id={index === 0 ? "service-questionnaire-guide" : undefined} className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-tight">
+                      {card.title}
+                    </h2>
+                    <p className="mt-4 max-w-3xl text-white/70 leading-relaxed">{card.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className="flex items-center justify-between border-t border-white/10 px-6 py-4 sm:px-8">
+              <span className="text-xs text-white/40">Auto-rotating guide</span>
+              <div className="flex items-center gap-2" aria-label="Service guide carousel controls">
+                {serviceGuideCards.map((card, index) => (
+                  <button
+                    key={card.title}
+                    type="button"
+                    aria-label={"Show " + card.title}
+                    aria-current={serviceGuideIndex === index ? "true" : undefined}
+                    onClick={() => setServiceGuideIndex(index)}
+                    className={"h-1.5 rounded-full transition-all duration-300 " + (serviceGuideIndex === index ? "w-8 bg-white" : "w-2 bg-white/20 hover:bg-white/40")}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Functional sticky service tabs */}
       <section className="sticky top-20 z-40 bg-black/95 backdrop-blur-md border-b border-white/[0.08]" aria-label="Service navigation" role="tablist">
         <div className="w-full">
-          <div
-            ref={tabsContainerRef}
-            className="flex items-stretch overflow-x-auto scrollbar-hide whitespace-nowrap"
-          >
+          <div ref={tabsContainerRef} className="flex items-stretch overflow-x-auto scrollbar-hide whitespace-nowrap">
             {tabs.map((tab) => {
               const active = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
-                  ref={(element) => {
-                    tabRefs.current[tab.id] = element;
-                  }}
+                  ref={(element) => { tabRefs.current[tab.id] = element; }}
                   type="button"
                   onClick={() => selectTab(tab.id)}
                   role="tab"
                   aria-selected={active}
                   aria-controls="selected-service-questionnaire"
-                  className={`shrink-0 md:flex-1 px-5 py-4 md:py-5 border-b-2 text-base sm:text-lg font-bold uppercase tracking-wide transition-colors ${
-                    active ? tab.activeClass : "border-transparent text-white/60 hover:text-white"
-                  }`}
+                  className={"shrink-0 md:flex-1 px-5 py-4 md:py-5 border-b-2 text-base sm:text-lg font-bold uppercase tracking-wide transition-colors " + (active ? tab.activeClass : "border-transparent text-white/60 hover:text-white")}
                 >
                   {tab.label}
                 </button>
               );
             })}
           </div>
-        </div>
-      </section>
-
-      {/*
-        This guide is intentionally present in the document before the interactive
-        questionnaires. It explains the service journeys in plain language so
-        people, screen readers, search engines, and AI systems can understand
-        what each questionnaire does without having to activate a JavaScript tab.
-      */}
-      <section aria-labelledby="service-questionnaire-guide" className="border-b border-white/[0.08] bg-zinc-950 py-12 md:py-16">
-        <div className="container max-w-5xl mx-auto px-6">
-          <h2 id="service-questionnaire-guide" className="text-2xl sm:text-3xl font-display font-bold text-white">
-            Choose a service and answer a few questions
-          </h2>
-          <p className="mt-3 max-w-3xl text-white/70 leading-relaxed">
-            Each service below uses a simple questionnaire. Your answers help Jake understand what you need before you contact him. When you finish, your answers are prepared for the next conversation so you do not have to explain everything again.
-          </p>
-
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            <article className="rounded-2xl border border-white/10 bg-white/[0.02] p-5">
-              <h2 className="font-display font-bold text-white">Digital Solutions</h2>
-              <p className="mt-2 text-sm text-white/70 leading-relaxed">You answer what you need help with, what kind of situation you are in, and the result you want. If you are unsure, there is an option for that too.</p>
-            </article>
-            <article className="rounded-2xl border border-white/10 bg-white/[0.02] p-5">
-              <h2 className="font-display font-bold text-white">W3C DESK</h2>
-              <p className="mt-2 text-sm text-white/70 leading-relaxed">You choose whether you want to buy or sell crypto, select the asset, provide the amount and wallet type, add any note, review the request, and continue to WhatsApp.</p>
-            </article>
-            <article className="rounded-2xl border border-white/10 bg-white/[0.02] p-5">
-              <h2 className="font-display font-bold text-white">Website Design &amp; Development</h2>
-              <p className="mt-2 text-sm text-white/70 leading-relaxed">You describe what kind of website you need, what it is for, your main goal, your content situation, and when you want to start. Your answers can then be sent to Jake by WhatsApp, Telegram, or email.</p>
-            </article>
-            <article className="rounded-2xl border border-white/10 bg-white/[0.02] p-5">
-              <h2 className="font-display font-bold text-white">W3C Community</h2>
-              <p className="mt-2 text-sm text-white/70 leading-relaxed">You answer a short set of questions about your interests, experience, learning goals, connections, updates, opportunities, and the kind of help you need. Before joining, you review the community safety rules and then continue to WhatsApp.</p>
-            </article>
-            <article className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:col-span-2">
-              <h2 className="font-display font-bold text-white">Other services</h2>
-              <p className="mt-2 text-sm text-white/70 leading-relaxed">You can also ask Jake about CAC business name registration, domain and hosting, business email setup, logo and brand identity, Google Business Profile, or another digital task that is not listed. Choose the service, make an inquiry, and continue through WhatsApp or Telegram.</p>
-            </article>
-          </div>
-
-          <ol className="mt-8 grid gap-3 sm:grid-cols-4" aria-label="What happens after you choose a service">
-            <li className="rounded-xl border border-white/10 p-4"><strong className="block text-white">1. Choose</strong><span className="text-sm text-white/60">Pick the service closest to your need.</span></li>
-            <li className="rounded-xl border border-white/10 p-4"><strong className="block text-white">2. Answer</strong><span className="text-sm text-white/60">Complete the questions shown for that service.</span></li>
-            <li className="rounded-xl border border-white/10 p-4"><strong className="block text-white">3. Review</strong><span className="text-sm text-white/60">Check the information before continuing.</span></li>
-            <li className="rounded-xl border border-white/10 p-4"><strong className="block text-white">4. Continue</strong><span className="text-sm text-white/60">Send the enquiry to Jake and discuss the next step.</span></li>
-          </ol>
         </div>
       </section>
 
