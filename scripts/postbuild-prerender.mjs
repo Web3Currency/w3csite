@@ -15,12 +15,23 @@ if (!process.env.VERCEL) {
 const DIST = path.join(__dirname, '..', 'dist');
 const PORT = 5005;
 
+// Only prerender canonical, indexable public routes.
+// Obsolete service/project URLs are handled by Vercel redirects and must not
+// be generated as standalone HTML pages.
 const ROUTES = [
-  '/', '/about', '/services', '/services/digital-consulting', '/services/crypto-p2p',
-  '/services/web-development', '/services/community', '/projects',
-  '/projects/w3c-digital-network', '/projects/gold-marine-group',
-  '/projects/w3c-test-token-tracker', '/projects/ceecar',
-  '/contact', '/ledger', '/privacy', '/terms'
+  '/',
+  '/about',
+  '/services',
+  '/projects',
+  '/projects/w3c-pi-bookings',
+  '/projects/w3c-digital-network',
+  '/projects/gold-marine-group',
+  '/projects/w3c-test-token-tracker',
+  '/contact',
+  '/ledger',
+  '/privacy',
+  '/terms',
+  '/blog'
 ];
 
 const MIME = {
