@@ -73,7 +73,7 @@ export function ServiceCard({ title, tagline, description, icon, href, ctaText =
       <Link 
         href={href} 
         className={`inline-flex items-center justify-center gap-2 text-sm font-bold transition-all duration-300 mt-auto w-fit px-4 py-2 rounded-full active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${glassStyle ? "bg-white/[0.05] border border-white/10 text-white hover:bg-white/10" : "text-black hover:brightness-110"}`}
-        style={{ backgroundColor: brand.hex }}
+        style={glassStyle ? undefined : { backgroundColor: brand.hex }}
       >
         <span>{ctaText}</span>
         <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
