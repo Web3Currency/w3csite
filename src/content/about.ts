@@ -102,7 +102,7 @@ export const aboutContent: AboutContent = {
   growth: {
     title: "Thoughtful, Personal Growth",
     paragraphs: [
-      `As ${branding.businessName} grows, the core mission will remain exactly the same. The long-term vision is to expand our digital consulting and web development capacity, build deeper educational resources for our community, and continuously integrate safer, faster transaction frameworks.`,
+      `As ${branding.businessName} grows, the core mission will remain exactly the same. The long-term vision is to expand our Digital Solutions and web development capacity, build deeper educational resources for our community, and continuously integrate safer, faster transaction frameworks.`,
       "However, growth will never come at the expense of personal trust. No matter how large the network becomes, it will always be anchored by the same approachable, human-centric support that we started with."
     ]
   },
