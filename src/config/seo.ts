@@ -23,7 +23,7 @@ export interface SEOConfig {
 export const seo: SEOConfig = {
   default: {
     title: "W3C Digital Network",
-    description: "Practical digital solutions built around your needs. Digital Solutions, crypto P2P trading via W3C DESK, AI-powered web development, and a Web3 community.",
+    description: "Practical digital solutions built around your needs. Digital Solutions, crypto P2P services through W3C DESK, website development, and a Web3 community.",
     keywords: ["Web3", "Crypto P2P", "W3C DESK", "Web Development", "AI Development", "Digital Solutions", "Jake", "W3C"]
   },
   home: {
@@ -48,7 +48,7 @@ export const seo: SEOConfig = {
   },
   contact: {
     title: "Contact JAKE | W3C Digital Network",
-    description: "Get in touch with JAKE for Digital Solutions, development, W3C DESK, or community access."
+    description: "Get in touch with JAKE for Digital Solutions, website development, W3C DESK, or community access."
   },
   cryptoP2P: {
     title: "W3C DESK, Crypto P2P Trading | W3C Digital Network",
@@ -60,7 +60,7 @@ export const seo: SEOConfig = {
   },
   digitalConsulting: {
     title: "Digital Solutions | W3C Digital Network",
-    description: "Independent, honest Digital Solutions and Web3 guidance from JAKE. Practical help without the corporate jargon."
+    description: "Practical Digital Solutions from JAKE for people, creators, and businesses. Clear help without unnecessary jargon."
   },
   communityService: {
     title: "W3C Community | W3C Digital Network",
