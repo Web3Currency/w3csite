@@ -26,8 +26,5 @@
       "destination": "/projects",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
