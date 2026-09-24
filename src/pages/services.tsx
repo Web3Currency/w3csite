@@ -62,6 +62,7 @@ export default function Services() {
   }, []);
 
   const tabsContainerRef = useRef<HTMLDivElement>(null);
+  const serviceTabsSectionRef = useRef<HTMLElement>(null);
   const tabRefs = useRef<Record<ServiceTab, HTMLButtonElement | null>>({
     consulting: null,
     desk: null,
@@ -105,6 +106,21 @@ export default function Services() {
     window.history.pushState({}, "", url);
     setActiveTab(tab);
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  };
+
+  const selectGuideTab = (tab: ServiceTab) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("tab", tab);
+    window.history.pushState({}, "", url);
+    setActiveTab(tab);
+
+    requestAnimationFrame(() => {
+      serviceTabsSectionRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
+    });
   };
 
   const getExtraIcon = (name: string) => {
@@ -312,7 +328,7 @@ export default function Services() {
                     {index > 0 && (
                       <button
                         type="button"
-                        onClick={() => selectTab((["consulting", "desk", "web", "community", "others"] as ServiceTab[])[index - 1])}
+                        onClick={() => selectGuideTab((["consulting", "desk", "web", "community", "others"] as ServiceTab[])[index - 1])}
                         className="mt-auto self-end inline-flex items-center gap-2 rounded-full px-4 py-2.5 bg-white/[0.05] border border-white/10 text-white font-bold text-sm backdrop-blur-md hover:bg-white/10 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
                       >
                         <span>{["Find the Right Solution", "Start a Trade Request", "Plan My Website", "Enter the Community", "Explore Other Services"][index - 1]}</span>
@@ -342,7 +358,7 @@ export default function Services() {
       </section>
 
       {/* Functional sticky service tabs */}
-      <section className="sticky top-20 z-40 bg-black/95 backdrop-blur-md border-b border-white/[0.08]" aria-label="Service navigation" role="tablist">
+      <section ref={serviceTabsSectionRef} className="sticky top-20 z-40 scroll-mt-20 bg-black/95 backdrop-blur-md border-b border-white/[0.08]" aria-label="Service navigation" role="tablist">
         <div className="w-full">
           <div ref={tabsContainerRef} className="flex items-stretch overflow-x-auto scrollbar-hide whitespace-nowrap">
             {tabs.map((tab) => {
