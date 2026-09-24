@@ -110,7 +110,7 @@ export default function Contact() {
                     </h2>
                     
                     <p className="text-xs text-white/60 leading-relaxed mb-6">
-                      This is the best place to reach me for new enquiries, project discussions, W3C DESK trades, digital consulting, and community support.
+                      This is the best place to reach me for new enquiries, project discussions, W3C DESK trades, Digital Solutions, and community support.
                     </p>
                   </div>
 
