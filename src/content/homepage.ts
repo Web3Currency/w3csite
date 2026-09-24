@@ -124,6 +124,17 @@ export const homepageContent: HomepageContent = {
         iconName: "users",
         iconStyle: { backgroundColor: "#8b5cf6" },
         accentColorClass: "bg-primary/20 text-primary border-primary/30"
+      },
+      {
+        title: "Other Services",
+        tagline: "Need something else? Ask about it.",
+        description: "From CAC business name registration and domain or hosting setup to business email, logo and brand identity, Google Business Profile, or another digital task, you can make an inquiry here.",
+        ctaText: "Explore Other Services",
+        href: "/services?tab=others",
+        delay: 0.5,
+        iconName: "users",
+        iconStyle: { backgroundColor: "#64748b" },
+        accentColorClass: "bg-slate-500/20 text-slate-300 border-slate-500/30"
       }
     ]
   },
