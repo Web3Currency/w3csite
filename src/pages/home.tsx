@@ -729,7 +729,7 @@ export default function Home() {
                             <span className="text-[9px] font-mono uppercase tracking-widest text-primary font-bold">
                               {faq.category === "web-dev" ? "Web Design & Development" : faq.category === "p2p" ? "Crypto P2P" : faq.category === "consulting" ? "Digital Solutions" : faq.category === "about" ? "About" : faq.category === "community" ? "Community" : faq.category === "communication" ? "Channels" : faq.category === "projects" ? "Projects" : faq.category || "General"}
                             </span>
-                            <h4 className="font-display font-bold text-white text-sm sm:text-base md:text-md pt-2">{faq.q}</h4>
+                            <h3 className="font-display font-bold text-white text-sm sm:text-base md:text-md pt-2">{faq.q}</h3>
                           </div>
                           <div className="mt-1 shrink-0">
                             <ChevronDown className={`w-4 h-4 text-white/50 transition-transform duration-300 ${isOpen ? "rotate-180 text-primary" : ""}`} />
@@ -781,7 +781,7 @@ export default function Home() {
                 ) : (
                   <motion.div key="no-results" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-12">
                     <HelpCircle className="w-10 h-10 text-white/20 mx-auto mb-3" />
-                    <h4 className="font-display font-bold text-white text-base">No questions found</h4>
+                    <h4 className="font-display font-bold text-white text-base">No questions found</h3>
                   </motion.div>
                 )}
               </AnimatePresence>
