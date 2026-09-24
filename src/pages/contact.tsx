@@ -77,9 +77,9 @@ export default function Contact() {
                       <SiWhatsapp className="w-5 h-5 text-emerald-400" />
                     </div>
                     
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
                       WhatsApp
-                    </h3>
+                    </h2>
                     
                     <p className="text-xs text-white/60 leading-relaxed mb-6">
                       This is the best place to reach me for new enquiries, project discussions, W3C DESK trades, digital consulting, and community support.
@@ -118,9 +118,9 @@ export default function Contact() {
                       <SiTelegram className="w-5 h-5 text-[#0089c4]" />
                     </div>
                     
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#0089c4] transition-colors">
+                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-[#0089c4] transition-colors">
                       Telegram
-                    </h3>
+                    </h2>
                     
                     <p className="text-xs text-white/60 leading-relaxed mb-6">
                       For quick conversations and the W3C community.
@@ -161,9 +161,9 @@ export default function Contact() {
                       </svg>
                     </div>
                     
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                       X
-                    </h3>
+                    </h2>
                     
                     <p className="text-xs text-white/60 leading-relaxed mb-6">
                       Follow for core development announcements, technical updates, and official project updates.
@@ -200,9 +200,9 @@ export default function Contact() {
                       <Mail className="w-5 h-5 text-[#a71d07]" />
                     </div>
                     
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#a71d07] transition-colors">
+                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-[#a71d07] transition-colors">
                       Email
-                    </h3>
+                    </h2>
                     
                     <p className="text-xs text-white/60 leading-relaxed mb-6">
                       Best for business proposals, documents, partnerships, and detailed enquiries.
@@ -227,7 +227,7 @@ export default function Contact() {
                   <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/25 flex items-center justify-center">
                     <Bookmark className="w-4 h-4 text-primary" />
                   </div>
-                  <h4 className="font-display font-bold text-base text-white tracking-tight">Stay Connected Guarantee</h4>
+                  <h3 className="font-display font-bold text-base text-white tracking-tight">Stay Connected Guarantee</h2>
                 </div>
                 <p className="text-sm text-white/70 leading-relaxed max-w-3xl">
                   Communication channels may change over time, but <strong className="text-white font-semibold">W3C Digital Network</strong> will always be available through this website. Bookmark this website for the latest updates and contact information.
@@ -251,9 +251,9 @@ export default function Contact() {
                   <span className="font-mono text-xs uppercase tracking-[0.25em] font-extrabold text-purple-400">FAST RESPONSE ADVISORY</span>
                 </div>
 
-                <h3 className="text-3xl font-display font-bold text-white tracking-tight">
+                <h2 className="text-3xl font-display font-bold text-white tracking-tight">
                   Need a quick response?
-                </h3>
+                </h2>
 
                 <div className="space-y-4 text-white/70 leading-relaxed text-sm sm:text-base">
                   <p>
