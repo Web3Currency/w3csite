@@ -99,7 +99,7 @@ export default function About() {
         <div className="absolute inset-0 z-0 pointer-events-none select-none">
           <img
             src="https://i.imgur.com/cGKA8AC.png"
-            alt="Jake Background"
+            alt="JAKE Background"
             className="w-full h-full object-cover object-center opacity-45 md:opacity-55"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black" />
@@ -581,7 +581,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* SECTION 13: A Note From Jake */}
+      {/* SECTION 13: A Note From JAKE */}
       <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
         <div className="site-container">
           <motion.div
@@ -592,7 +592,7 @@ export default function About() {
             className="space-y-6"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
-              A Note From Jake
+              A Note From JAKE
             </h2>
             <div className="space-y-6 text-base sm:text-lg text-white/95 leading-relaxed pt-4">
               <p>
@@ -619,7 +619,7 @@ export default function About() {
                 This is W3C Digital Network.
               </p>
               <p className="text-primary font-display font-bold text-xl sm:text-2xl">
-                And I'm Jake.
+                And I'm JAKE.
               </p>
             </div>
           </motion.div>
@@ -651,7 +651,7 @@ export default function About() {
                 There is no need to know exactly what service you need before reaching out. We can start with the problem and work from there.
               </p>
               <p className="text-white font-medium">
-                Talk directly with Jake and let's see what makes sense for you.
+                Talk directly with JAKE and let's see what makes sense for you.
               </p>
             </div>
 
