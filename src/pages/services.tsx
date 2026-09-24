@@ -216,7 +216,7 @@ export default function Services() {
     "@context": "https://schema.org",
     "@type": "Service",
     name: `Digital Services by ${branding.businessName}`,
-    description: `Digital solutions, secure crypto P2P trading, website design and development, and a Web3 community, all delivered personally by ${branding.founderName}.`,
+    description: `Questionnaire-led services from ${branding.businessName}: Digital Solutions, W3C DESK crypto P2P, Website Design & Development, W3C Community, and other digital services.`,
     provider: {
       "@type": "ProfessionalService",
       name: branding.businessName,
@@ -266,7 +266,7 @@ export default function Services() {
     <PageTransition>
       <SEO
         title={`Services | ${branding.businessName}`}
-        description={`Digital solutions, secure crypto P2P trading, website design and development, and a Web3 community, all delivered personally by ${branding.founderName}. Find the right service for your situation.`}
+        description={`Choose a W3C service questionnaire to explain what you need. Digital Solutions helps clarify digital problems and goals; W3C DESK handles crypto P2P requests; Website Design & Development gathers website requirements; W3C Community helps people find the right learning and community path; Other services are available for common digital tasks.`}
         path="/services"
         schema={servicesSchema}
       />
@@ -290,7 +290,8 @@ export default function Services() {
                   onClick={() => selectTab(tab.id)}
                   role="tab"
                   aria-selected={active}
-                  aria-controls="selected-service-questionnaire"\n                  className={`shrink-0 md:flex-1 px-5 py-4 md:py-5 border-b-2 text-base sm:text-lg font-bold uppercase tracking-wide transition-colors ${
+                  aria-controls="selected-service-questionnaire"
+                  className={`shrink-0 md:flex-1 px-5 py-4 md:py-5 border-b-2 text-base sm:text-lg font-bold uppercase tracking-wide transition-colors ${
                     active ? tab.activeClass : "border-transparent text-white/60 hover:text-white"
                   }`}
                 >
@@ -312,7 +313,7 @@ export default function Services() {
         <div className="container max-w-5xl mx-auto px-6">
           <h2 id="service-questionnaire-guide" className="text-2xl sm:text-3xl font-display font-bold text-white">
             Choose a service and answer a few questions
-          </h1>
+          </h2>
           <p className="mt-3 max-w-3xl text-white/70 leading-relaxed">
             Each service below uses a simple questionnaire. Your answers help Jake understand what you need before you contact him. When you finish, your answers are prepared for the next conversation so you do not have to explain everything again.
           </p>
