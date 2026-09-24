@@ -134,7 +134,7 @@ export const homepageContent: HomepageContent = {
         delay: 0.5,
         iconName: "briefcase",
         iconStyle: { backgroundColor: "transparent" },
-        accentColorClass: "bg-transparent text-white border-white/10"
+        accentColorClass: "bg-white/5 text-white border-white/10"
       }
     ]
   },
