@@ -47,6 +47,20 @@ export default function Services() {
     { title: "Other services", description: "You can also ask JAKE about CAC business name registration, domain and hosting, business email setup, logo and brand identity, Google Business Profile, or another digital task that is not listed. Choose the service, make an inquiry, and continue through WhatsApp or Telegram." },
   ];
   const [serviceGuideIndex, setServiceGuideIndex] = useState(0);
+  const serviceGuideTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    serviceGuideTimerRef.current = window.setInterval(() => {
+      setServiceGuideIndex((current) => (current + 1) % serviceGuideCards.length);
+    }, 7000);
+
+    return () => {
+      if (serviceGuideTimerRef.current !== null) {
+        window.clearInterval(serviceGuideTimerRef.current);
+      }
+    };
+  }, []);
+
   const tabsContainerRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<Record<ServiceTab, HTMLButtonElement | null>>({
     consulting: null,
