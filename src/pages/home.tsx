@@ -276,7 +276,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Meet Jake Section */}
+      {/* Meet JAKE Section */}
       <section className="py-20 md:py-24 bg-zinc-950 relative border-y border-white/[0.08]">
         <div className="site-container">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
@@ -291,7 +291,7 @@ export default function Home() {
               <div className="relative rounded-[2rem] overflow-hidden border border-white/[0.08] bg-[#0A0A0A] shadow-2xl flex items-center justify-center">
                 <img 
                   src="https://i.imgur.com/cGKA8AC.png" 
-                  alt="Jake" 
+                  alt="JAKE" 
                   className="w-full h-auto object-contain block"
                 />
                 <div className="absolute inset-0 bg-black/10" />
@@ -817,7 +817,7 @@ export default function Home() {
                 </div>
                 <Link
                   href="/contact"
-                  aria-label="Contact Jake"
+                  aria-label="Contact JAKE"
                   className="shrink-0 w-9 h-9 rounded-full border border-primary/30 bg-primary/10 text-primary flex items-center justify-center hover:bg-primary/20 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary"
                 >
                   <ArrowRight className="w-4 h-4" />
