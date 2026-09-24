@@ -132,9 +132,9 @@ export const homepageContent: HomepageContent = {
         ctaText: "Explore Other Services",
         href: "/services?tab=others",
         delay: 0.5,
-        iconName: "users",
-        iconStyle: { backgroundColor: "#64748b" },
-        accentColorClass: "bg-slate-500/20 text-slate-300 border-slate-500/30"
+        iconName: "briefcase",
+        iconStyle: { backgroundColor: "transparent" },
+        accentColorClass: "bg-transparent text-white border-white/10"
       }
     ]
   },
