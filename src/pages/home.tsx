@@ -781,7 +781,7 @@ export default function Home() {
                 ) : (
                   <motion.div key="no-results" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-12">
                     <HelpCircle className="w-10 h-10 text-white/20 mx-auto mb-3" />
-                    <h4 className="font-display font-bold text-white text-base">No questions found</h3>
+                    <h3 className="font-display font-bold text-white text-base">No questions found</h3>
                   </motion.div>
                 )}
               </AnimatePresence>
