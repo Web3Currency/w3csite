@@ -25,7 +25,7 @@ export const branding: BrandingConfig = {
   founderName: "JAKE",
   founderImage: "https://i.imgur.com/9q4rYyq.png",
   tagline: "Consult. Trade. Build. Grow.",
-  description: "Practical digital solutions built around your needs. Consulting, crypto P2P trading, AI-powered web development, and a Web3 community.",
+  description: "Practical digital solutions built around your needs. Digital Solutions, crypto P2P services through W3C DESK, website development, and a Web3 community.",
   rcNumber: "RC: 9579098",
   cacStatus: "2026",
   shortBio: "I created W3C Digital Network as one place where I can bring together everything I do in the digital space. Over the years, I have helped people through crypto P2P trading, built a growing Web3 community, developed modern websites using AI-powered workflows, and provided practical digital guidance.",
