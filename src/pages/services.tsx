@@ -283,23 +283,23 @@ export default function Services() {
       {/* Service guide carousel appears before the sticky tabs. */}
       <section aria-labelledby="service-questionnaire-guide" className="border-b border-white/[0.08] bg-zinc-950 py-10 md:py-14 overflow-hidden">
         <div className="container max-w-5xl mx-auto px-6">
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] shadow-2xl">
+          <div className="relative overflow-hidden rounded-3xl shadow-2xl">
             <div
               className="flex transition-transform duration-700 ease-out"
               style={{ transform: "translateX(-" + (serviceGuideIndex * 100) + "%)" }}
             >
               {serviceGuideCards.map((card, index) => (
-                <article key={card.title} className="min-w-full p-7 sm:p-9 md:p-12" aria-hidden={serviceGuideIndex !== index}>
+                <article key={card.title} className={"min-w-full p-7 sm:p-9 md:p-12 " + (index === 0 ? "bg-gradient-to-br from-emerald-500 via-orange-500 via-50% to-purple-600" : index === 1 ? "bg-gradient-to-br from-emerald-700 via-emerald-500 to-lime-400" : index === 2 ? "bg-gradient-to-br from-orange-700 via-orange-500 to-amber-400" : index === 3 ? "bg-gradient-to-br from-yellow-600 via-yellow-400 to-amber-200" : index === 4 ? "bg-gradient-to-br from-purple-800 via-purple-600 to-fuchsia-400" : "bg-gradient-to-br from-slate-700 via-slate-600 to-slate-400") + " text-white"} aria-hidden={serviceGuideIndex !== index}>
                   <div className="max-w-3xl">
-                    <h2 id={index === 0 ? "service-questionnaire-guide" : undefined} className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-tight">
+                    <h2 id={index === 0 ? "service-questionnaire-guide" : undefined} className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-tight drop-shadow-sm">
                       {card.title}
                     </h2>
-                    <p className="mt-4 max-w-3xl text-white/70 leading-relaxed">{card.description}</p>
+                    <p className="mt-4 max-w-3xl text-white leading-relaxed drop-shadow-sm">{card.description}</p>
                   </div>
                 </article>
               ))}
             </div>
-            <div className="flex items-center justify-end border-t border-white/10 px-6 py-4 sm:px-8">
+            <div className="flex items-center justify-end px-6 py-4 sm:px-8">
               <div className="flex items-center gap-2" aria-label="Service guide carousel controls">
                 {serviceGuideCards.map((card, index) => (
                   <button
