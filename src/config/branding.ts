@@ -24,7 +24,7 @@ export const branding: BrandingConfig = {
   businessName: "W3C Digital Network",
   founderName: "JAKE",
   founderImage: "https://i.imgur.com/9q4rYyq.png",
-  tagline: "Consult. Trade. Build. Grow.",
+  tagline: "",
   description: "Practical digital solutions built around your needs. Digital Solutions, crypto P2P services through W3C DESK, website development, and a Web3 community.",
   rcNumber: "RC: 9579098",
   cacStatus: "2026",
@@ -35,7 +35,7 @@ export const branding: BrandingConfig = {
     "To solve a clear problem for my community, I stepped into crypto peer-to-peer trading. By prioritizing security, fast settlements, and complete transparency, I built a system that people could depend on. That hands-on experience naturally expanded into digital consulting and AI-powered web development, as businesses and individuals began asking for custom websites and strategic direction to establish their own digital presence."
   ],
   mission: "To make digital opportunities transparent, accessible, and practical for everyone.",
-  vision: "To expand our digital consulting and web development capacity, build deeper educational resources for our community, and continuously integrate safer, faster transaction frameworks, without ever losing personal trust.",
+  vision: "To expand our Digital Solutions and web development capacity, build deeper educational resources for our community, and continuously integrate safer, faster transaction frameworks, without ever losing personal trust.",
   philosophy: "A transaction is only successful if it genuinely serves your goals. We focus strictly on what works, delivering clean code, functional websites, and secure assets that provide real-world utility.",
   whyExists: "I built W3C Digital Network because I saw how fragmented, confusing, and impersonal the digital world can be. People looking for help were forced to deal with faceless corporations on one side, or anonymous, unverified internet profiles on the other. I wanted to bridge that gap."
 };
