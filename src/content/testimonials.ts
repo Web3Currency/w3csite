@@ -5,7 +5,7 @@ export interface Testimonial {
   company?: string;
   avatarUrl?: string;
   statement: string;
-  serviceUsed: "W3C DESK" | "Website Development" | "Digital Consulting";
+  serviceUsed: "W3C DESK" | "Website Development" | "Digital Solutions";
   rating: number; // e.g. 5
 }
 
@@ -32,8 +32,7 @@ export const testimonials: Testimonial[] = [
     name: "Mike",
     role: "W3C Community Member",
     statement: "I was exploring different Web3 opportunities but wasn't sure which ones were worth my time. Jake helped me understand the space, avoid common mistakes, and focus on opportunities that actually matched my goals.",
-    serviceUsed: "Digital Consulting",
+    serviceUsed: "Digital Solutions",
     rating: 5
   }
 ];
-
