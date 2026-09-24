@@ -227,7 +227,7 @@ export default function Contact() {
                   <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/25 flex items-center justify-center">
                     <Bookmark className="w-4 h-4 text-primary" />
                   </div>
-                  <h3 className="font-display font-bold text-base text-white tracking-tight">Stay Connected Guarantee</h2>
+                  <h3 className="font-display font-bold text-base text-white tracking-tight">Stay Connected Guarantee</h3>
                 </div>
                 <p className="text-sm text-white/70 leading-relaxed max-w-3xl">
                   Communication channels may change over time, but <strong className="text-white font-semibold">W3C Digital Network</strong> will always be available through this website. Bookmark this website for the latest updates and contact information.
