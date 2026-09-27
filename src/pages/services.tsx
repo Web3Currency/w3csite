@@ -257,9 +257,7 @@ export default function Services() {
     name: `Digital Services by ${branding.businessName}`,
     description: `Questionnaire-led services from ${branding.businessName}: Digital Solutions, W3C DESK crypto P2P, Website Design & Development, W3C Community, and other digital services.`,
     provider: {
-      "@type": "ProfessionalService",
-      name: branding.businessName,
-      url: "https://web3currency.online",
+      "@id": "https://web3currency.online/#business"
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
