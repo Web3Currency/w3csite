@@ -5,12 +5,24 @@ import { Scale, Clock, Mail } from "lucide-react";
 import { branding } from "@/config/branding";
 
 export default function Terms() {
-  const termsSchema = {\n    "@context": "https://schema.org",\n    "@type": "WebPage",\n    "name": "Terms of Service - W3C Digital Network",\n    "description": "Terms governing W3C Digital Network services, W3C DESK peer-to-peer transactions, and community use.",\n    "url": "https://web3currency.online/terms",\n    "isPartOf": { "@type": "WebSite", "name": branding.businessName, "url": "https://web3currency.online" },\n    "about": { "@type": "Organization", "name": branding.businessName, "url": "https://web3currency.online" },\n    "dateModified": "2026-09-27"\n  };\n\n  return (
+  const termsSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Terms of Service - W3C Digital Network",
+    "description": "Terms governing W3C Digital Network services, W3C DESK peer-to-peer transactions, and community use.",
+    "url": "https://web3currency.online/terms",
+    "isPartOf": { "@type": "WebSite", "name": branding.businessName, "url": "https://web3currency.online" },
+    "about": { "@type": "Organization", "name": branding.businessName, "url": "https://web3currency.online" },
+    "dateModified": "2026-09-27"
+  };
+
+  return (
     <PageTransition>
       <SEO 
         title="Terms of Service - W3C Digital Network" 
         description="Review the terms, rules, and guidelines for using W3C Digital Network services and participating in our Web3 and P2P community."
         path="/terms"
+        schema={termsSchema}
       />
       
       <section className="py-20 md:py-28 bg-black min-h-screen relative overflow-hidden">
