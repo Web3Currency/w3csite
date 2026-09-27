@@ -101,14 +101,58 @@ export default function Terms() {
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">4. Blockchain Irreversibility</h2>
+              <h2 className="text-xl font-display font-bold text-white">4. Dispute, Delay & Refund Process</h2>
+              <p>
+                W3C DESK transactions are intended to be resolved through direct communication with the customer. Most transactions are completed without dispute. If a delay, technical issue, or transaction problem occurs, W3C will communicate with the customer and work through the issue based on the transaction records and, where relevant, blockchain evidence.
+              </p>
+
+              <div className="space-y-4">
+                <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
+                  <h3 className="font-semibold text-white">Delays and technical issues</h3>
+                  <p className="mt-2 text-white/70">
+                    Delays may result from W3C-side technical issues, payment processing, blockchain network conditions, or other transaction dependencies. When a delay occurs, W3C will communicate with the customer and monitor the transaction until it is resolved. For cryptocurrency purchases, W3C may release the cryptocurrency within the usual 10–15 minute processing period after payment confirmation, but the customer's receipt may take longer when blockchain confirmation or network processing is delayed.
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
+                  <h3 className="font-semibold text-white">Wrong wallet details, memo/tag, or other customer errors</h3>
+                  <p className="mt-2 text-white/70">
+                    Customers are responsible for ensuring that the bank account, wallet address, memo/tag, and other transaction details they provide are correct. If a customer reports that cryptocurrency was sent incorrectly, W3C may request the transaction hash and check the relevant blockchain explorer to establish what happened. If the blockchain record confirms that the customer sent cryptocurrency to an incorrect address, or omitted a required memo/tag, the transfer may not be reversible. Any possible recovery depends on the relevant network, wallet, or platform and may involve additional costs.
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
+                  <h3 className="font-semibold text-white">Refund requests before execution</h3>
+                  <p className="mt-2 text-white/70">
+                    If a customer requests a refund before W3C has commenced the transaction, the customer may be eligible for a full refund after W3C confirms the payment and verifies that the transaction has not been executed or otherwise committed.
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
+                  <h3 className="font-semibold text-white">Transactions already commenced or sent on-chain</h3>
+                  <p className="mt-2 text-white/70">
+                    Once W3C has commenced a transaction or sent cryptocurrency on-chain, cancellation or reversal may no longer be possible. Blockchain transfers cannot normally be reversed after execution. If W3C receives cryptocurrency from a customer selling to W3C and agrees to return that cryptocurrency where operationally possible, any applicable blockchain network or gas cost for the return transfer will be borne by the customer.
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
+                  <h3 className="font-semibold text-white">How to raise a dispute</h3>
+                  <p className="mt-2 text-white/70">
+                    Customers should contact W3C through the official contact channels and provide the relevant transaction details, including the amount, payment or wallet details, and transaction hash where applicable. W3C will review the available transaction records and blockchain evidence and communicate the outcome to the customer.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h2 className="text-xl font-display font-bold text-white">5. Blockchain Irreversibility</h2>
               <p>
                 You acknowledge and accept that digital asset and blockchain transactions are fully irreversible. Once a transfer is executed on-chain, it cannot be refunded, reversed, or cancelled. Public addresses and transaction details are permanently written into decentralized public ledgers.
               </p>
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">5. Business Registration & CAC Information</h2>
+              <h2 className="text-xl font-display font-bold text-white">6. Business Registration & CAC Information</h2>
               <p>
                 W3C Digital Network is the official business name operated by W3C. The business is registered with the Corporate Affairs Commission (CAC) in Nigeria.
               </p>
@@ -142,7 +186,7 @@ export default function Terms() {
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">6. Official W3C Payment Account</h2>
+              <h2 className="text-xl font-display font-bold text-white">7. Official W3C Payment Account</h2>
               <p>
                 For W3C DESK transactions, the following is the official W3C payment account used for customer fiat payments. The same account is used when customers pay W3C to buy cryptocurrency and when W3C pays customers who sell cryptocurrency to W3C.
               </p>
@@ -171,21 +215,21 @@ export default function Terms() {
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">7. Limitation of Liability</h2>
+              <h2 className="text-xl font-display font-bold text-white">8. Limitation of Liability</h2>
               <p>
                 Under no circumstances shall W3C Digital Network, Web3 Currency, or its founder JAKE be liable for any indirect, incidental, special, or consequential damages resulting from network congestion, system failures, third-party wallet exploits, or blockchain software bugs.
               </p>
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">8. Governing Law</h2>
+              <h2 className="text-xl font-display font-bold text-white">9. Governing Law</h2>
               <p>
                 These Terms of Service are governed by and construed in accordance with the corporate guidelines of Nigeria, and you irrevocably submit to the exclusive jurisdiction of the competent courts in that territory.
               </p>
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">9. Contact Details</h2>
+              <h2 className="text-xl font-display font-bold text-white">10. Contact Details</h2>
               <p>
                 For further clarification or legal inquiries, reach out to us at:
               </p>
