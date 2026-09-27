@@ -6,12 +6,10 @@ const getSupabaseUrl = () => {
   const candidates = [
     import.meta.env.VITE_SUPABASE_URL,
     import.meta.env.VITE_DATABASE_URL,
-    import.meta.env.DATABASE_URL,
-    import.meta.env.SUPABASE_URL,
+        import.meta.env.SUPABASE_URL,
     // Include fallback to global process.env in case of Vite define injection
     typeof process !== 'undefined' && process.env ? process.env.VITE_SUPABASE_URL : undefined,
-    typeof process !== 'undefined' && process.env ? process.env.DATABASE_URL : undefined,
-    typeof process !== 'undefined' && process.env ? process.env.SUPABASE_URL : undefined,
+        typeof process !== 'undefined' && process.env ? process.env.SUPABASE_URL : undefined,
   ].filter((val): val is string => typeof val === 'string' && val.trim() !== '');
 
   console.log('[Supabase Diagnostic] Inspecting candidate URLs:', candidates.map(c => {
