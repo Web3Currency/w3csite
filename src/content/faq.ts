@@ -115,7 +115,7 @@ export const faqs: FAQItem[] = [
   {
     category: "p2p",
     q: "What is W3C DESK?",
-    a: "W3C DESK is my direct crypto P2P service. I help clients buy and sell supported cryptocurrencies through a clear, person-to-person process."
+    a: "W3C DESK is my direct crypto P2P service. I help clients buy and sell supported cryptocurrencies through a clear, person-to-person process.",
     action: {
       label: "Start a Trade Request",
       url: "/services?tab=desk"
@@ -232,7 +232,7 @@ export const faqs: FAQItem[] = [
   {
     category: "community",
     q: "Do I have to trade to be part of W3C?",
-    a: "No. Many people join the W3C Community just to learn, network, and explore Web3. Buying or selling crypto through the desk is entirely optional."
+    a: "No. Many people join the W3C Community just to learn, network, and explore Web3. Buying or selling crypto through the desk is entirely optional.",
     action: {
       label: "Join W3C Community",
       url: "/services?tab=community"
