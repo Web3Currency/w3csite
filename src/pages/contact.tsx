@@ -2,7 +2,7 @@ import React from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { GlassCard, MotionGlassCard } from "@/components/shared/glass-card";
-import { Mail, ArrowRight, CheckCircle2, Bookmark } from "lucide-react";
+import { Mail, ArrowRight, Bookmark, ShieldCheck, Phone } from "lucide-react";
 import { SiWhatsapp, SiTelegram } from "react-icons/si";
 import { contact } from "@/config/contact";
 import { branding } from "@/config/branding";
@@ -13,7 +13,7 @@ export default function Contact() {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     "name": `Contact ${branding.founderName} - ${branding.businessName}`,
-    "description": `Get in touch with ${branding.founderName} for Digital Solutions, development, crypto operations, or community access.`,
+    "description": `Get in touch with ${branding.businessName} for Digital Solutions, development, crypto operations, or community access.`,
     "url": "https://web3currency.online/contact",
     "mainEntity": {
       "@type": "Person",
@@ -25,17 +25,28 @@ export default function Contact() {
       {
         "@type": "ContactPoint",
         "contactType": "customer support",
-        "url": contact.whatsappUrl
+        "url": contact.whatsappUrl,
+        "telephone": contact.phoneNumber
       },
       {
         "@type": "ContactPoint",
-        "contactType": "community",
+        "contactType": "WhatsApp personal/direct",
+        "url": contact.personalWhatsappUrl
+      },
+      {
+        "@type": "ContactPoint",
+        "contactType": "WhatsApp community",
         "url": contact.whatsappCommunityUrl
       },
       {
         "@type": "ContactPoint",
-        "contactType": "personal messaging",
+        "contactType": "Telegram direct",
         "url": contact.telegramUrl
+      },
+      {
+        "@type": "ContactPoint",
+        "contactType": "Telegram community",
+        "url": contact.telegramCommunityUrl
       },
       {
         "@type": "ContactPoint",
@@ -80,7 +91,7 @@ export default function Contact() {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* WhatsApp */}
+              {/* W3C Business WhatsApp */}
               <a 
                 href={contact.whatsappUrl} 
                 target="_blank" 
@@ -106,22 +117,60 @@ export default function Contact() {
                     </div>
                     
                     <h2 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
-                      WhatsApp
+                      W3C Digital Network
                     </h2>
                     
                     <p className="text-xs text-white/60 leading-relaxed mb-6">
-                      This is the best place to reach me for new enquiries, project discussions, W3C DESK trades, Digital Solutions, and community support.
+                      The official W3C WhatsApp Business account for W3C DESK trades, Digital Solutions, website projects, and other service requests.
                     </p>
                   </div>
 
                   <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-emerald-400 transition-colors pt-2">
-                    <span>Chat on WhatsApp</span>
+                    <span>Chat with W3C</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </MotionGlassCard>
               </a>
 
-              {/* Telegram */}
+              {/* Jake Direct WhatsApp */}
+              <a 
+                href={contact.personalWhatsappUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                onClick={() => trackContactClick('WhatsApp', 'Direct Jake Card')}
+                className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]"
+              >
+                <MotionGlassCard
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.2 }}
+                  className="p-6 h-full flex flex-col justify-between border-emerald-500/10 bg-emerald-500/[0.02] hover:border-emerald-500/40 hover:bg-emerald-500/[0.05] transition-all duration-300"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                        </span>
+                        <span className="font-mono text-[10px] tracking-wider text-emerald-400 font-bold">DIRECT CONTACT</span>
+                      </div>
+                      <SiWhatsapp className="w-5 h-5 text-emerald-400" />
+                    </div>
+                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                      Talk to Jake
+                    </h2>
+                    <p className="text-xs text-white/60 leading-relaxed mb-6">
+                      For direct conversations and personal enquiries with Jake. Service requests should go to W3C Digital Network.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-emerald-400 transition-colors pt-2">
+                    <span>Chat with Jake</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </MotionGlassCard>
+              </a>
+
+              {/* Telegram Direct */}
               <a 
                 href={contact.telegramUrl} 
                 target="_blank" 
@@ -151,12 +200,46 @@ export default function Contact() {
                     </h2>
                     
                     <p className="text-xs text-white/60 leading-relaxed mb-6">
-                      For quick conversations and the W3C community.
+                      For direct Telegram conversations with Jake. The W3C Telegram Community is listed separately below.
                     </p>
                   </div>
 
                   <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-[#0089c4] transition-colors pt-2">
                     <span>Open Telegram</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </MotionGlassCard>
+              </a>
+
+              {/* W3C Telegram Community */}
+              <a 
+                href={contact.telegramCommunityUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                onClick={() => trackContactClick('Telegram', 'W3C Telegram Community Card')}
+                className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0089c4] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]"
+              >
+                <MotionGlassCard
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.2 }}
+                  className="p-6 h-full flex flex-col justify-between border-[#0089c4]/10 bg-[#0089c4]/[0.01] hover:border-[#0089c4]/40 hover:bg-[#0089c4]/[0.04] transition-all duration-300"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-[10px] tracking-wider text-[#0089c4] font-bold">COMMUNITY</span>
+                      </div>
+                      <SiTelegram className="w-5 h-5 text-[#0089c4]" />
+                    </div>
+                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-[#0089c4] transition-colors">
+                      W3C Telegram Community
+                    </h2>
+                    <p className="text-xs text-white/60 leading-relaxed mb-6">
+                      Join the W3C Digital Network Telegram community for community participation and updates.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-[#0089c4] transition-colors pt-2">
+                    <span>Join Telegram Community</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </MotionGlassCard>
@@ -205,6 +288,38 @@ export default function Contact() {
                 </MotionGlassCard>
               </a>
 
+              {/* WhatsApp Community */}
+              <a 
+                href={contact.whatsappCommunityUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                onClick={() => trackContactClick('WhatsApp', 'W3C WhatsApp Community Card')}
+                className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]"
+              >
+                <MotionGlassCard
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.2 }}
+                  className="p-6 h-full flex flex-col justify-between border-emerald-500/10 bg-emerald-500/[0.02] hover:border-emerald-500/40 hover:bg-emerald-500/[0.05] transition-all duration-300"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="font-mono text-[10px] tracking-wider text-emerald-400 font-bold">COMMUNITY</span>
+                      <SiWhatsapp className="w-5 h-5 text-emerald-400" />
+                    </div>
+                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                      W3C WhatsApp Community
+                    </h2>
+                    <p className="text-xs text-white/60 leading-relaxed mb-6">
+                      Join the W3C WhatsApp Community. Service requests should be sent to W3C Digital Network WhatsApp Business.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-emerald-400 transition-colors pt-2">
+                    <span>Join WhatsApp Community</span>
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </MotionGlassCard>
+              </a>
+
               {/* Email */}
               <a 
                 href={`mailto:${contact.email}`} 
@@ -246,7 +361,26 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* 3. Stay Connected Guarantee */}
+          {/* 3. Official Channels & Anti-Impersonation */}
+          <div id="official-channels" className="space-y-5">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-purple-400" />
+              <span className="font-mono text-xs uppercase tracking-[0.2em] font-bold text-purple-400">Official Channels & Anti-Impersonation</span>
+            </div>
+            <div className="p-6 sm:p-8 rounded-2xl border border-purple-500/15 bg-purple-500/[0.03]">
+              <p className="text-sm sm:text-base text-white/75 leading-relaxed">
+                Use this page as the reference for W3C Digital Network&apos;s official contact channels. Before sending money, cryptocurrency, passwords, verification codes, or other sensitive information, confirm that you are communicating through one of the channels listed here.
+              </p>
+              <ul className="mt-5 space-y-3 text-sm text-white/70 leading-relaxed">
+                <li><strong className="text-white">Service requests:</strong> W3C Digital Network WhatsApp Business at +234 703 275 4611.</li>
+                <li><strong className="text-white">Direct conversation with Jake:</strong> Jake&apos;s personal WhatsApp and Telegram are available above.</li>
+                <li><strong className="text-white">Payments:</strong> Verify the official W3C payment details on the Terms page and with W3C before sending funds.</li>
+                <li><strong className="text-white">Security:</strong> W3C will not ask you to send money or cryptocurrency to an unofficial or unrelated account.</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* 4. Stay Connected Guarantee */}
           <div id="contact-stay-connected" className="p-6 sm:p-8 rounded-2xl border border-white/5 bg-gradient-to-r from-zinc-950 via-zinc-900/40 to-zinc-950 relative overflow-hidden">
             <div className="absolute right-0 top-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
             <div className="flex flex-col md:flex-row gap-6 justify-between items-start md:items-center relative z-10">
@@ -264,7 +398,7 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* 4. Fast Response */}
+          {/* 5. Fast Response */}
           <div id="fast-response" className="pt-4">
             <GlassCard className="p-8 sm:p-12 border border-white/5 bg-gradient-to-r from-[#0C0C0C] via-[#050505] to-[#0A0A0A] rounded-[2rem] overflow-hidden relative">
               <div className="absolute right-0 top-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -288,7 +422,7 @@ export default function Contact() {
                     For most enquiries, WhatsApp is still the fastest option.
                   </p>
                   <p>
-                    Whether you're planning a website, exploring Web3, looking for digital guidance, or ready to make a crypto trade, just send me a message and we'll take it from there.
+                    Whether you're planning a website, exploring Web3, looking for digital guidance, or ready to make a crypto trade, send your request to W3C Digital Network and we'll take it from there.
                   </p>
                 </div>
 
