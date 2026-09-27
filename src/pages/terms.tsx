@@ -200,7 +200,7 @@ export default function Terms() {
                 </div>
               </div>
               <p>
-                W3C's community and operating history predates the CAC registration. The W3C community officially began in 2025, when the brand and its activities were already operating. On 29 May 2026, W3C Digital Network was formally registered with the CAC under the business name shown above. The 2025 date therefore refers to the start of W3C's community and operating timeline, while 29 May 2026 refers to the formal CAC registration.
+                W3C's community and operating history predates the CAC registration. The W3C community officially began in 2025, when the brand and its activities were already operating. On 29 May 2026, W3C Digital Network was formally registered with the CAC under the business name shown above. The 2025 date therefore refers to the start of W3C's community and operating timeline, while 29 May 2026 refers to the formal CAC registration. W3C Digital Network serves an international digital audience. The Nigerian registration identifies the business's legal registration jurisdiction; it does not limit participation in W3C's digital community, content, or non-Naira digital services. W3C DESK's fiat settlement described on this website is specifically Naira-based.
               </p>
             </div>
 
@@ -256,7 +256,7 @@ export default function Terms() {
             <div className="space-y-3">
               <h2 className="text-xl font-display font-bold text-white">10. Governing Law</h2>
               <p>
-                These Terms of Service are governed by and construed in accordance with the corporate guidelines of Nigeria, and you irrevocably submit to the exclusive jurisdiction of the competent courts in that territory.
+                These Terms of Service are governed by and construed in accordance with the laws of Nigeria, and disputes arising under these Terms are subject to the jurisdiction of the competent courts of Nigeria.
               </p>
             </div>
 
