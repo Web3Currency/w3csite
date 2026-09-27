@@ -243,7 +243,7 @@ export default function About() {
                 So I started helping.
               </p>
               <p className="text-muted-foreground">
-                Over time, that turned into community building, education, crypto P2P trading and other digital services.
+                Over time, that turned into community building, education, crypto P2P transactions and other digital services.
               </p>
             </div>
           </motion.div>
@@ -269,7 +269,7 @@ export default function About() {
                 W3C DESK grew from the need for a practical way to help people buy and sell cryptocurrency through P2P transactions.
               </p>
               <p className="text-muted-foreground">
-                It wasn't just about completing trades.
+                It wasn't just about completing transactions.
               </p>
               <p className="text-white font-semibold text-lg sm:text-xl">
                 It taught me the importance of communication, speed, transparency and trust.
@@ -308,7 +308,7 @@ export default function About() {
               </p>
               <p>AI has changed how I work.</p>
               <p>
-                I'm not a traditional developer who learned everything through the conventional software-development path. I use AI heavily as a development partner.
+                I did not come through the traditional software-development path. I use AI heavily as a development partner.
               </p>
               <p>
                 I bring the idea, the visual direction and the decisions.
