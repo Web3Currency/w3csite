@@ -28,7 +28,7 @@ export const seo: SEOConfig = {
   },
   home: {
     title: "W3C Digital Network",
-    description: "Practical digital solutions built around your needs. Digital Solutions, crypto P2P trading via W3C DESK, AI-powered web development, and a Web3 community."
+    description: "Practical digital solutions built around your needs. Digital Solutions, direct crypto P2P buying and selling through W3C DESK, AI-powered web development, and a Web3 community."
   },
   about: {
     title: "About JAKE | W3C Digital Network",
@@ -36,7 +36,7 @@ export const seo: SEOConfig = {
   },
   services: {
     title: "Services | W3C Digital Network",
-    description: "Digital Solutions, secure crypto P2P trading via W3C DESK, AI-powered web development, and a Web3 community, all delivered personally by JAKE."
+    description: "Digital Solutions, direct crypto P2P buying and selling through W3C DESK, AI-powered web development, and a Web3 community, all delivered personally by JAKE."
   },
   projects: {
     title: "Projects & Outcomes | W3C Digital Network",
@@ -51,8 +51,8 @@ export const seo: SEOConfig = {
     description: "Get in touch with JAKE for Digital Solutions, website development, W3C DESK, or community access."
   },
   cryptoP2P: {
-    title: "W3C DESK, Crypto P2P Trading | W3C Digital Network",
-    description: "A secure, transparent peer-to-peer desk for converting crypto to Naira and back, coordinated directly on WhatsApp with JAKE."
+    title: "W3C DESK, Crypto P2P | W3C Digital Network",
+    description: "A direct peer-to-peer service for buying and selling supported crypto for Naira, coordinated directly on WhatsApp with JAKE. W3C DESK is not an exchange, broker, or investment platform."
   },
   webDev: {
     title: "Website Design & Development | W3C Digital Network",
