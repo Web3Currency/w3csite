@@ -3,6 +3,8 @@ export interface ContactConfig {
   phoneNumberFormatted?: string;
   whatsappNumber: string;
   whatsappUrl: string;
+  personalWhatsappNumber: string;
+  personalWhatsappUrl: string;
   whatsappCommunityUrl: string;
   email: string;
   website: string;
@@ -10,6 +12,7 @@ export interface ContactConfig {
   twitterUrl: string;
   telegram: string;
   telegramUrl: string;
+  telegramCommunityUrl: string;
   linkedin?: string;
   linkedinUrl?: string;
   businessHours: string;
@@ -19,8 +22,10 @@ export interface ContactConfig {
 export const contact: ContactConfig = {
   phoneNumber: "+2347032754611",
   phoneNumberFormatted: "+234 703 275 4611",
-  whatsappNumber: "2348149625496",
-  whatsappUrl: "https://wa.me/2348149625496",
+  whatsappNumber: "2347032754611",
+  whatsappUrl: "https://wa.me/2347032754611",
+  personalWhatsappNumber: "2348149625496",
+  personalWhatsappUrl: "https://wa.me/2348149625496",
   whatsappCommunityUrl: "https://chat.whatsapp.com/EUEkJYcfSYB3aJuBSERi5N?s=cl&p=a&ilr=1&amv=2",
   email: "w3cdigitalnetwork@gmail.com",
   website: "https://web3currency.online",
@@ -28,6 +33,7 @@ export const contact: ContactConfig = {
   twitterUrl: "https://x.com/Web3CurrencyNG",
   telegram: "@Web3CurrencyNG",
   telegramUrl: "https://t.me/Web3CurrencyNG",
+  telegramCommunityUrl: "https://t.me/W3CDigitalNetwork",
   businessHours: "Monday - Sunday, 24/7 Support & Trades",
   officeName: "W3C Communication Hub"
 };
