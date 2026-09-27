@@ -78,7 +78,25 @@ export default function Contact() {
             <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 tracking-tight">
               Let's Start the <span className="text-purple-500 italic">Conversation</span>
             </h1>
-            
+
+            <div id="official-channels" className="mt-8 space-y-5">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-purple-400" />
+                <span className="font-mono text-xs uppercase tracking-[0.2em] font-bold text-purple-400">Official Channels & Anti-Impersonation</span>
+              </div>
+              <div className="p-6 sm:p-8 rounded-2xl border border-purple-500/15 bg-purple-500/[0.03]">
+                <p className="text-sm sm:text-base text-white/75 leading-relaxed">
+                  Use this page as the reference for W3C Digital Network&apos;s official contact channels. Before sending money or cryptocurrency, confirm that you are communicating through an official W3C channel listed on this page.
+                </p>
+                <ul className="mt-5 space-y-3 text-sm text-white/70 leading-relaxed">
+                  <li><strong className="text-white">Service requests:</strong> W3C Digital Network WhatsApp Business at +234 703 275 4611.</li>
+                  <li><strong className="text-white">Direct conversation with Jake:</strong> Jake&apos;s personal WhatsApp and Telegram are available below.</li>
+                  <li><strong className="text-white">Payments:</strong> Verify the official W3C payment details on the Terms page and with W3C before sending funds.</li>
+                  <li><strong className="text-white">Security:</strong> W3C will never ask for your password, OTP, verification code, 2FA code, recovery phrase, or private key. Never share these with anyone claiming to represent W3C.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
           {/* 2. W3C Digital Network */}
           <section id="w3c-digital-network" className="space-y-6">
