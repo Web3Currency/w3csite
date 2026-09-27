@@ -161,7 +161,7 @@ export default function Home() {
               preload="metadata"
               poster="/images/hero.png"
               className="w-full h-full object-cover opacity-40 scale-105 select-none pointer-events-none"
-              aria-label="Abstract background video displaying trading charts and market activity data"
+              aria-label="Abstract background video displaying market charts and activity data"
             >
               <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Chart-EVd3zqX4CxBIDarHPrWzR6LlyOLh1P.mp4" type="video/mp4" />
               Your browser does not support the video tag.
@@ -263,7 +263,7 @@ export default function Home() {
                   I created W3C Digital Network as one place where I can bring together the things I do in the digital space.
                 </p>
                 <p>
-                  Over the years, I've explored and worked across crypto, Web3, AI, digital art, websites and digital solutions. I've helped people through crypto P2P trading, built a growing Web3 community, designed and built websites and digital products, and provided practical digital guidance.
+                  Over the years, I've explored and worked across crypto, Web3, AI, digital art, websites and digital solutions. I've helped people through crypto P2P transactions, built a growing Web3 community, designed and built websites and digital products, and provided practical digital guidance.
                 </p>
                 <p>
                   I don't like limiting myself to just one thing. I enjoy learning, creating, solving problems and finding new ways to use technology.
@@ -403,7 +403,7 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {[
-              { label: "Total Trading Volume", value: totalVolumeFormatted, icon: TrendingUp },
+              { label: "Total Transaction Volume", value: totalVolumeFormatted, icon: TrendingUp },
               { label: "Trades Completed", value: totalTrades.toString(), icon: ArrowLeftRight },
               { label: "Community Members", value: metrics.communitySize, icon: Users },
               { label: "Protocol Explored", value: metrics.testnetsCompleted, icon: Compass },
