@@ -58,7 +58,7 @@ export default function Terms() {
             <div className="space-y-3">
               <h2 className="text-xl font-display font-bold text-white">2. Description of Services</h2>
               <p>
-                W3C Digital Network provides informational content, Digital Solutions, web design & software engineering, and peer-to-peer (P2P) cryptocurrency conversion services ("the Services"). W3C DESK is a direct P2P service coordinated by W3C and is not an investment platform, exchange, or broker. W3C does not offer managed trading, guaranteed returns, or passive-income products. All community interaction and active desk operations are run over WhatsApp, whereas this website serves primarily as an introductory digital front.
+                W3C Digital Network provides informational content, Digital Solutions, website design and development, and peer-to-peer (P2P) cryptocurrency conversion services ("the Services"). W3C DESK is a direct P2P service for buying and selling supported crypto with W3C. It is not an investment platform, exchange, or broker. W3C does not offer managed trading, guaranteed returns, passive-income products, or investment custody. All community interaction and active desk operations are run over WhatsApp, whereas this website serves primarily as an introductory digital front.
               </p>
             </div>
 
@@ -101,6 +101,13 @@ export default function Terms() {
                 <h3 className="font-semibold text-white">Customer verification</h3>
                 <p>
                   W3C DESK is primarily used by members of the W3C community, and routine identity verification is not normally required for every transaction. For larger transactions or where additional verification is considered necessary, W3C may request a valid government-issued ID, preferably the customer's NIN, to confirm that the customer's identity matches the bank account details provided. W3C may also request a video call with the customer for additional identity confirmation.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="font-semibold text-white">Customer funds and crypto assets</h3>
+                <p>
+                  W3C may temporarily receive fiat or cryptocurrency sent for a specific W3C DESK transaction so that the agreed transaction can be settled. This is transaction settlement, not investment custody. W3C does not accept customer assets for safekeeping, yield, investment, or managed trading, and does not operate customer investment accounts.
                 </p>
               </div>
 
