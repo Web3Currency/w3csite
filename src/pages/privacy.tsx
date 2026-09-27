@@ -4,6 +4,17 @@ import { PageTransition } from "@/components/shared/page-transition";
 import { Shield, Clock, Mail } from "lucide-react";
 
 export default function Privacy() {
+  const privacySchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Privacy Policy - W3C Digital Network",
+    "description": "Privacy Policy for W3C Digital Network, including website analytics, service enquiries, W3C DESK transaction information, and third-party communication channels.",
+    "url": "https://web3currency.online/privacy",
+    "isPartOf": { "@type": "WebSite", "name": branding.businessName, "url": "https://web3currency.online" },
+    "about": { "@type": "Organization", "name": branding.businessName, "url": "https://web3currency.online" },
+    "dateModified": "2026-09-27"
+  };
+
   return (
     <PageTransition>
       <SEO
