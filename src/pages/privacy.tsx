@@ -60,7 +60,7 @@ export default function Privacy() {
             <div className="space-y-3">
               <h2 className="text-xl font-display font-bold text-white">1. Who We Are</h2>
               <p>
-                W3C Digital Network is an independent digital business operated by Jake and registered in Nigeria as W3C Digital Network (CAC RC 9579098). It provides services including:
+                W3C Digital Network is an independent digital business operated by Jake and registered in Nigeria as W3C Digital Network (CAC RC 9579098). W3C serves an international digital audience. Its W3C DESK fiat settlement is Naira-based, while its community, content, digital products, and other digital services are not limited to Nigeria. It provides services including:
               </p>
               <ul className="list-disc pl-5 mt-2 space-y-1 text-white/70">
                 <li>Digital Solutions</li>
