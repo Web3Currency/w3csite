@@ -70,9 +70,36 @@ export default function Terms() {
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">5. Registration & Corporate Entity</h2>
+              <h2 className="text-xl font-display font-bold text-white">5. Business Registration & CAC Information</h2>
               <p>
-                W3C Digital Network is an officially registered and incorporated business entity in Nigeria ({branding.cacStatus}, {branding.rcNumber}). We operate within local corporate boundaries, ensuring strict transaction verification, zero-dispute track records, and clean fiat settlement pathways.
+                W3C Digital Network is the official business name operated by W3C. The business is registered with the Corporate Affairs Commission (CAC) in Nigeria.
+              </p>
+              <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5 space-y-3">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <span className="block text-xs font-mono uppercase tracking-wider text-white/40">Official business name</span>
+                    <span className="text-white font-medium">W3C Digital Network</span>
+                  </div>
+                  <div>
+                    <span className="block text-xs font-mono uppercase tracking-wider text-white/40">CAC registration number</span>
+                    <span className="text-white font-medium">RC 9579098</span>
+                  </div>
+                  <div>
+                    <span className="block text-xs font-mono uppercase tracking-wider text-white/40">Registration type</span>
+                    <span className="text-white font-medium">Business Name</span>
+                  </div>
+                  <div>
+                    <span className="block text-xs font-mono uppercase tracking-wider text-white/40">Nature of business</span>
+                    <span className="text-white font-medium">Information Service Activities</span>
+                  </div>
+                  <div>
+                    <span className="block text-xs font-mono uppercase tracking-wider text-white/40">CAC registration date</span>
+                    <span className="text-white font-medium">29 May 2026</span>
+                  </div>
+                </div>
+              </div>
+              <p>
+                W3C's community and operating history predates the CAC registration. The W3C community officially began in 2025, when the brand and its activities were already operating. On 29 May 2026, W3C Digital Network was formally registered with the CAC under the business name shown above. The 2025 date therefore refers to the start of W3C's community and operating timeline, while 29 May 2026 refers to the formal CAC registration.
               </p>
             </div>
 
