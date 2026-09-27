@@ -5,7 +5,7 @@ import { Scale, Clock, Mail } from "lucide-react";
 import { branding } from "@/config/branding";
 
 export default function Terms() {
-  return (
+  const termsSchema = {\n    "@context": "https://schema.org",\n    "@type": "WebPage",\n    "name": "Terms of Service - W3C Digital Network",\n    "description": "Terms governing W3C Digital Network services, W3C DESK peer-to-peer transactions, and community use.",\n    "url": "https://web3currency.online/terms",\n    "isPartOf": { "@type": "WebSite", "name": branding.businessName, "url": "https://web3currency.online" },\n    "about": { "@type": "Organization", "name": branding.businessName, "url": "https://web3currency.online" },\n    "dateModified": "2026-09-27"\n  };\n\n  return (
     <PageTransition>
       <SEO 
         title="Terms of Service - W3C Digital Network" 
