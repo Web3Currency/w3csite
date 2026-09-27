@@ -46,7 +46,7 @@ export default function Terms() {
             <div className="space-y-3">
               <h2 className="text-xl font-display font-bold text-white">2. Description of Services</h2>
               <p>
-                W3C Digital Network provides informational content, Digital Solutions, web design & software engineering, and peer-to-peer (P2P) cryptocurrency conversion services ("the Services"). All community interaction and active desk operations are run over WhatsApp, whereas this website serves primarily as an introductory digital front.
+                W3C Digital Network provides informational content, Digital Solutions, web design & software engineering, and peer-to-peer (P2P) cryptocurrency conversion services ("the Services"). W3C DESK is a direct P2P service coordinated by W3C and is not an investment platform, exchange, or broker. W3C does not offer managed trading, guaranteed returns, or passive-income products. All community interaction and active desk operations are run over WhatsApp, whereas this website serves primarily as an introductory digital front.
               </p>
             </div>
 
