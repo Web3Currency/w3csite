@@ -278,9 +278,6 @@ export default function LedgerPage() {
               <h1 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
                 W3C DESK Ledger
               </h1>
-              <p className="text-xs sm:text-sm text-white/50 leading-relaxed max-w-xl">
-                We don't ask you to trust us blindly. Every completed trade is publicly logged below so you can verify our volume, rates, and transaction history.
-              </p>
             </header>
 
             {/* Total Volume Card */}
