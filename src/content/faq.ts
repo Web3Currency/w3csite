@@ -115,7 +115,7 @@ export const faqs: FAQItem[] = [
   {
     category: "p2p",
     q: "What is W3C DESK?",
-    a: "W3C DESK is my crypto peer-to-peer trading service. I help clients buy and sell supported cryptocurrencies quickly and securely.",
+    a: "W3C DESK is my direct crypto P2P service. I help clients buy and sell supported cryptocurrencies through a clear, person-to-person process."
     action: {
       label: "Start a Trade Request",
       url: "/services?tab=desk"
@@ -124,7 +124,7 @@ export const faqs: FAQItem[] = [
   {
     category: "p2p",
     q: "Is the W3C DESK an exchange?",
-    a: `No. The W3C DESK is not an automated crypto exchange. It simply connects you directly with a verified merchant, ${branding.founderName}, through WhatsApp if you want to buy or sell any publicly tradable cryptocurrency. All trades are coordinated manually, person to person.`,
+    a: `No. W3C DESK is not an automated exchange, broker, or investment platform. It is a direct P2P service coordinated with ${branding.founderName} through WhatsApp for buying and selling supported cryptocurrencies. W3C does not offer managed trading, guaranteed returns, or passive-income products.`,
     action: {
       label: "Start a Trade Request",
       url: "/services?tab=desk"
@@ -232,7 +232,7 @@ export const faqs: FAQItem[] = [
   {
     category: "community",
     q: "Do I have to trade to be part of W3C?",
-    a: "No. Many people join the W3C Community just to learn, network, and explore Web3. Trading through the desk is entirely optional.",
+    a: "No. Many people join the W3C Community just to learn, network, and explore Web3. Buying or selling crypto through the desk is entirely optional."
     action: {
       label: "Join W3C Community",
       url: "/services?tab=community"
