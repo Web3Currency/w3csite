@@ -1,8 +1,8 @@
 import React from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
-import { GlassCard, MotionGlassCard } from "@/components/shared/glass-card";
-import { Mail, ArrowRight, Bookmark, ShieldCheck, Phone } from "lucide-react";
+import { MotionGlassCard } from "@/components/shared/glass-card";
+import { Mail, ArrowRight, ShieldCheck } from "lucide-react";
 import { SiWhatsapp, SiTelegram } from "react-icons/si";
 import { contact } from "@/config/contact";
 import { branding } from "@/config/branding";
@@ -78,370 +78,124 @@ export default function Contact() {
             <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 tracking-tight">
               Let's Start the <span className="text-purple-500 italic">Conversation</span>
             </h1>
-            <p className="text-lg sm:text-xl text-white/70 leading-relaxed max-w-2xl">
-              Whether you need a website, digital guidance, Web3 support, or a crypto P2P trade, the first step is simply reaching out.
-            </p>
-          </div>
+            
 
-          {/* 2. Communication Hub */}
-          <div id="contact-hub" className="space-y-8">
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
-              <span className="font-mono text-xs uppercase tracking-[0.2em] font-bold text-purple-400">Communication Hub</span>
+          {/* 2. W3C Digital Network */}
+          <section id="w3c-digital-network" className="space-y-6">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-display font-bold text-white">W3C Digital Network</h2>
+              <p className="mt-2 text-sm text-white/60">Official channels for services, business enquiries, and updates.</p>
             </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* W3C Business WhatsApp */}
-              <a 
-                href={contact.whatsappUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                onClick={() => trackContactClick('WhatsApp', 'Communication Hub Card')}
-                className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]"
-              >
-                <MotionGlassCard
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2 }}
-                  className="p-6 h-full flex flex-col justify-between border-emerald-500/10 bg-emerald-500/[0.02] hover:border-emerald-500/40 hover:bg-emerald-500/[0.05] transition-all duration-300"
-                >
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <a href={contact.whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackContactClick('WhatsApp', 'W3C Digital Network Card')} className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]">
+                <MotionGlassCard className="p-6 h-full flex flex-col justify-between border-emerald-500/10 bg-emerald-500/[0.02] hover:border-emerald-500/40 hover:bg-emerald-500/[0.05] transition-all duration-300">
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-                        </span>
-                        <span className="font-mono text-[10px] tracking-wider text-emerald-400 font-bold">FASTEST RESPONSE</span>
-                      </div>
+                      <span className="font-mono text-[10px] tracking-wider text-emerald-400 font-bold">OFFICIAL WHATSAPP BUSINESS</span>
                       <SiWhatsapp className="w-5 h-5 text-emerald-400" />
                     </div>
-                    
-                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
-                      W3C Digital Network
-                    </h2>
-                    
-                    <p className="text-xs text-white/60 leading-relaxed mb-6">
-                      The official W3C WhatsApp Business account for W3C DESK trades, Digital Solutions, website projects, and other service requests.
-                    </p>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">W3C Digital Network</h3>
+                    <p className="text-xs text-white/60 leading-relaxed">The official W3C WhatsApp Business account for W3C DESK trades, Digital Solutions, website projects, and other service requests.</p>
                   </div>
-
-                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-emerald-400 transition-colors pt-2">
-                    <span>Chat with W3C</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-emerald-400 transition-colors pt-6"><span>Chat with W3C</span><ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" /></div>
                 </MotionGlassCard>
               </a>
 
-              {/* Jake Direct WhatsApp */}
-              <a 
-                href={contact.personalWhatsappUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                onClick={() => trackContactClick('WhatsApp', 'Direct Jake Card')}
-                className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]"
-              >
-                <MotionGlassCard
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2 }}
-                  className="p-6 h-full flex flex-col justify-between border-emerald-500/10 bg-emerald-500/[0.02] hover:border-emerald-500/40 hover:bg-emerald-500/[0.05] transition-all duration-300"
-                >
+              <a href={contact.twitterUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackContactClick('Twitter', 'W3C Digital Network Card')} className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]">
+                <MotionGlassCard className="p-6 h-full flex flex-col justify-between border-purple-500/10 bg-purple-500/[0.01] hover:border-purple-500/40 hover:bg-purple-500/[0.04] transition-all duration-300">
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-                        </span>
-                        <span className="font-mono text-[10px] tracking-wider text-emerald-400 font-bold">DIRECT CONTACT</span>
-                      </div>
-                      <SiWhatsapp className="w-5 h-5 text-emerald-400" />
+                      <span className="font-mono text-[10px] tracking-wider text-purple-400 font-bold">OFFICIAL X ACCOUNT</span>
+                      <svg className="w-4 h-4 fill-current text-purple-400" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
                     </div>
-                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
-                      Talk to Jake
-                    </h2>
-                    <p className="text-xs text-white/60 leading-relaxed mb-6">
-                      For direct conversations and personal enquiries with Jake. Service requests should go to W3C Digital Network.
-                    </p>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">X</h3>
+                    <p className="text-xs text-white/60 leading-relaxed">Follow the W3C Digital Network account for public updates, announcements, and project news.</p>
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-emerald-400 transition-colors pt-2">
-                    <span>Chat with Jake</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-purple-400 transition-colors pt-6"><span>Follow on X</span><ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" /></div>
                 </MotionGlassCard>
               </a>
 
-              {/* Telegram Direct */}
-              <a 
-                href={contact.telegramUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                onClick={() => trackContactClick('Telegram', 'Communication Hub Card')}
-                className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0089c4] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]"
-              >
-                <MotionGlassCard
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2 }}
-                  className="p-6 h-full flex flex-col justify-between border-[#0089c4]/10 bg-[#0089c4]/[0.01] hover:border-[#0089c4]/40 hover:bg-[#0089c4]/[0.04] transition-all duration-300"
-                >
+              <a href={`mailto:${contact.email}`} onClick={() => trackContactClick('Email', 'W3C Digital Network Card')} className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a71d07] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]">
+                <MotionGlassCard className="p-6 h-full flex flex-col justify-between border-[#a71d07]/10 bg-[#a71d07]/[0.01] hover:border-[#a71d07]/40 hover:bg-[#a71d07]/[0.04] transition-all duration-300">
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0089c4] opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0089c4]"></span>
-                        </span>
-                        <span className="font-mono text-[10px] tracking-wider text-[#0089c4] font-bold">COMMUNITY & CHAT</span>
-                      </div>
-                      <SiTelegram className="w-5 h-5 text-[#0089c4]" />
-                    </div>
-                    
-                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-[#0089c4] transition-colors">
-                      Telegram
-                    </h2>
-                    
-                    <p className="text-xs text-white/60 leading-relaxed mb-6">
-                      For direct Telegram conversations with Jake. The W3C Telegram Community is listed separately below.
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-[#0089c4] transition-colors pt-2">
-                    <span>Open Telegram</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </MotionGlassCard>
-              </a>
-
-              {/* W3C Telegram Community */}
-              <a 
-                href={contact.telegramCommunityUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                onClick={() => trackContactClick('Telegram', 'W3C Telegram Community Card')}
-                className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0089c4] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]"
-              >
-                <MotionGlassCard
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2 }}
-                  className="p-6 h-full flex flex-col justify-between border-[#0089c4]/10 bg-[#0089c4]/[0.01] hover:border-[#0089c4]/40 hover:bg-[#0089c4]/[0.04] transition-all duration-300"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-[10px] tracking-wider text-[#0089c4] font-bold">COMMUNITY</span>
-                      </div>
-                      <SiTelegram className="w-5 h-5 text-[#0089c4]" />
-                    </div>
-                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-[#0089c4] transition-colors">
-                      W3C Telegram Community
-                    </h2>
-                    <p className="text-xs text-white/60 leading-relaxed mb-6">
-                      Join the W3C Digital Network Telegram community for community participation and updates.
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-[#0089c4] transition-colors pt-2">
-                    <span>Join Telegram Community</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </MotionGlassCard>
-              </a>
-
-              {/* X (Twitter) */}
-              <a 
-                href={contact.twitterUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                onClick={() => trackContactClick('Twitter', 'Communication Hub Card')}
-                className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]"
-              >
-                <MotionGlassCard
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2 }}
-                  className="p-6 h-full flex flex-col justify-between border-purple-500/10 bg-purple-500/[0.01] hover:border-purple-500/40 hover:bg-purple-500/[0.04] transition-all duration-300"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-400"></span>
-                        </span>
-                        <span className="font-mono text-[10px] tracking-wider text-purple-400 font-bold">CORE ANNOUNCEMENTS</span>
-                      </div>
-                      <svg className="w-4 h-4 fill-current text-purple-400" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                      </svg>
-                    </div>
-                    
-                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
-                      X
-                    </h2>
-                    
-                    <p className="text-xs text-white/60 leading-relaxed mb-6">
-                      Follow for core development announcements, technical updates, and official project updates.
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-purple-400 transition-colors pt-2">
-                    <span>Follow on X</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </MotionGlassCard>
-              </a>
-
-              {/* WhatsApp Community */}
-              <a 
-                href={contact.whatsappCommunityUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                onClick={() => trackContactClick('WhatsApp', 'W3C WhatsApp Community Card')}
-                className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]"
-              >
-                <MotionGlassCard
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2 }}
-                  className="p-6 h-full flex flex-col justify-between border-emerald-500/10 bg-emerald-500/[0.02] hover:border-emerald-500/40 hover:bg-emerald-500/[0.05] transition-all duration-300"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="font-mono text-[10px] tracking-wider text-emerald-400 font-bold">COMMUNITY</span>
-                      <SiWhatsapp className="w-5 h-5 text-emerald-400" />
-                    </div>
-                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
-                      W3C WhatsApp Community
-                    </h2>
-                    <p className="text-xs text-white/60 leading-relaxed mb-6">
-                      Join the W3C WhatsApp Community. Service requests should be sent to W3C Digital Network WhatsApp Business.
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-emerald-400 transition-colors pt-2">
-                    <span>Join WhatsApp Community</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </MotionGlassCard>
-              </a>
-
-              {/* Email */}
-              <a 
-                href={`mailto:${contact.email}`} 
-                onClick={() => trackContactClick('Email', 'Communication Hub Card')}
-                className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a71d07] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]"
-              >
-                <MotionGlassCard
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2 }}
-                  className="p-6 h-full flex flex-col justify-between border-[#a71d07]/10 bg-[#a71d07]/[0.01] hover:border-[#a71d07]/40 hover:bg-[#a71d07]/[0.04] transition-all duration-300"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#a71d07] opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#a71d07]"></span>
-                        </span>
-                        <span className="font-mono text-[10px] tracking-wider text-[#a71d07] font-bold">BUSINESS PROPOSALS & FILES</span>
-                      </div>
+                      <span className="font-mono text-[10px] tracking-wider text-[#a71d07] font-bold">BUSINESS EMAIL</span>
                       <Mail className="w-5 h-5 text-[#a71d07]" />
                     </div>
-                    
-                    <h2 className="text-xl font-bold text-white mb-2 group-hover:text-[#a71d07] transition-colors">
-                      Email
-                    </h2>
-                    
-                    <p className="text-xs text-white/60 leading-relaxed mb-6">
-                      Best for business proposals, documents, partnerships, and detailed enquiries.
-                    </p>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#a71d07] transition-colors">Email</h3>
+                    <p className="text-xs text-white/60 leading-relaxed">For business proposals, documents, partnerships, and detailed enquiries.</p>
                   </div>
-
-                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-[#a71d07] transition-colors pt-2">
-                    <span>Send Email</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-[#a71d07] transition-colors pt-6"><span>Send Email</span><ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" /></div>
                 </MotionGlassCard>
               </a>
             </div>
-          </div>
+          </section>
 
-          {/* 3. Official Channels & Anti-Impersonation */}
-          <div id="official-channels" className="space-y-5">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-purple-400" />
-              <span className="font-mono text-xs uppercase tracking-[0.2em] font-bold text-purple-400">Official Channels & Anti-Impersonation</span>
-            </div>
-            <div className="p-6 sm:p-8 rounded-2xl border border-purple-500/15 bg-purple-500/[0.03]">
-              <p className="text-sm sm:text-base text-white/75 leading-relaxed">
-                Use this page as the reference for W3C Digital Network&apos;s official contact channels. Before sending money, cryptocurrency, passwords, verification codes, or other sensitive information, confirm that you are communicating through one of the channels listed here.
-              </p>
-              <ul className="mt-5 space-y-3 text-sm text-white/70 leading-relaxed">
-                <li><strong className="text-white">Service requests:</strong> W3C Digital Network WhatsApp Business at +234 703 275 4611.</li>
-                <li><strong className="text-white">Direct conversation with Jake:</strong> Jake&apos;s personal WhatsApp and Telegram are available above.</li>
-                <li><strong className="text-white">Payments:</strong> Verify the official W3C payment details on the Terms page and with W3C before sending funds.</li>
-                <li><strong className="text-white">Security:</strong> W3C will not ask you to send money or cryptocurrency to an unofficial or unrelated account.</li>
-              </ul>
-            </div>
-          </div>
+          <div className="border-t border-white/10" aria-hidden="true" />
 
-          {/* 4. Stay Connected Guarantee */}
-          <div id="contact-stay-connected" className="p-6 sm:p-8 rounded-2xl border border-white/5 bg-gradient-to-r from-zinc-950 via-zinc-900/40 to-zinc-950 relative overflow-hidden">
-            <div className="absolute right-0 top-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="flex flex-col md:flex-row gap-6 justify-between items-start md:items-center relative z-10">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/25 flex items-center justify-center">
-                    <Bookmark className="w-4 h-4 text-primary" />
+          {/* 3. Community */}
+          <section id="community" className="space-y-6">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-display font-bold text-white">Community</h2>
+              <p className="mt-2 text-sm text-white/60">Join the official W3C communities for participation and updates.</p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-6">
+              <a href={contact.whatsappCommunityUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackContactClick('WhatsApp', 'W3C WhatsApp Community Card')} className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]">
+                <MotionGlassCard className="p-6 h-full flex flex-col justify-between border-emerald-500/10 bg-emerald-500/[0.02] hover:border-emerald-500/40 hover:bg-emerald-500/[0.05] transition-all duration-300">
+                  <div>
+                    <div className="flex items-center justify-between mb-4"><span className="font-mono text-[10px] tracking-wider text-emerald-400 font-bold">COMMUNITY</span><SiWhatsapp className="w-5 h-5 text-emerald-400" /></div>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">W3C WhatsApp Community</h3>
+                    <p className="text-xs text-white/60 leading-relaxed">Join the W3C WhatsApp Community for community participation, discussions, and updates.</p>
                   </div>
-                  <h3 className="font-display font-bold text-base text-white tracking-tight">Stay Connected Guarantee</h3>
-                </div>
-                <p className="text-sm text-white/70 leading-relaxed max-w-3xl">
-                  Communication channels may change over time, but <strong className="text-white font-semibold">W3C Digital Network</strong> will always be available through this website. Bookmark this website for the latest updates and contact information.
-                </p>
-              </div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-emerald-400 transition-colors pt-6"><span>Join WhatsApp Community</span><ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" /></div>
+                </MotionGlassCard>
+              </a>
+
+              <a href={contact.telegramCommunityUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackContactClick('Telegram', 'W3C Telegram Community Card')} className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0089c4] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]">
+                <MotionGlassCard className="p-6 h-full flex flex-col justify-between border-[#0089c4]/10 bg-[#0089c4]/[0.01] hover:border-[#0089c4]/40 hover:bg-[#0089c4]/[0.04] transition-all duration-300">
+                  <div>
+                    <div className="flex items-center justify-between mb-4"><span className="font-mono text-[10px] tracking-wider text-[#0089c4] font-bold">COMMUNITY</span><SiTelegram className="w-5 h-5 text-[#0089c4]" /></div>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#0089c4] transition-colors">W3C Telegram Community</h3>
+                    <p className="text-xs text-white/60 leading-relaxed">Join the W3C Digital Network Telegram community for community participation and updates.</p>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-[#0089c4] transition-colors pt-6"><span>Join Telegram Community</span><ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" /></div>
+                </MotionGlassCard>
+              </a>
             </div>
-          </div>
+          </section>
 
-          {/* 5. Fast Response */}
-          <div id="fast-response" className="pt-4">
-            <GlassCard className="p-8 sm:p-12 border border-white/5 bg-gradient-to-r from-[#0C0C0C] via-[#050505] to-[#0A0A0A] rounded-[2rem] overflow-hidden relative">
-              <div className="absolute right-0 top-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute left-0 bottom-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+          <div className="border-t border-white/10" aria-hidden="true" />
 
-              <div className="max-w-3xl relative z-10 space-y-6">
-                <div className="flex items-center gap-2">
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-purple-500"></span>
-                  </span>
-                  <span className="font-mono text-xs uppercase tracking-[0.25em] font-extrabold text-purple-400">FAST RESPONSE</span>
-                </div>
+          {/* 4. Talk to Jake */}
+          <section id="talk-to-jake" className="space-y-6">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-display font-bold text-white">Talk to Jake</h2>
+              <p className="mt-2 text-sm text-white/60">For direct conversations and personal enquiries with Jake.</p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-6">
+              <a href={contact.personalWhatsappUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackContactClick('WhatsApp', 'Direct Jake Card')} className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]">
+                <MotionGlassCard className="p-6 h-full flex flex-col justify-between border-emerald-500/10 bg-emerald-500/[0.02] hover:border-emerald-500/40 hover:bg-emerald-500/[0.05] transition-all duration-300">
+                  <div>
+                    <div className="flex items-center justify-between mb-4"><span className="font-mono text-[10px] tracking-wider text-emerald-400 font-bold">DIRECT CONTACT</span><SiWhatsapp className="w-5 h-5 text-emerald-400" /></div>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">WhatsApp</h3>
+                    <p className="text-xs text-white/60 leading-relaxed">Direct WhatsApp conversation with Jake. Service requests should go to W3C Digital Network.</p>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-emerald-400 transition-colors pt-6"><span>Chat with Jake</span><ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" /></div>
+                </MotionGlassCard>
+              </a>
 
-                <h2 className="text-3xl font-display font-bold text-white tracking-tight">
-                  Need a quick response?
-                </h2>
-
-                <div className="space-y-4 text-white/70 leading-relaxed text-sm sm:text-base">
-                  <p>
-                    For most enquiries, WhatsApp is still the fastest option.
-                  </p>
-                  <p>
-                    Whether you're planning a website, exploring Web3, looking for digital guidance, or ready to make a crypto trade, send your request to W3C Digital Network and we'll take it from there.
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-4 pt-4">
-                  <a 
-                    href={contact.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackContactClick('WhatsApp', 'Fast Response CTA')}
-                    className="px-6 py-3 rounded-full bg-emerald-500 text-black font-bold text-xs sm:text-sm hover:bg-emerald-400 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                  >
-                    <SiWhatsapp className="w-4 h-4" />
-                    Chat on WhatsApp
-                  </a>
-                </div>
-              </div>
-            </GlassCard>
-          </div>
-
+              <a href={contact.telegramUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackContactClick('Telegram', 'Direct Jake Card')} className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0089c4] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-[2rem]">
+                <MotionGlassCard className="p-6 h-full flex flex-col justify-between border-[#0089c4]/10 bg-[#0089c4]/[0.01] hover:border-[#0089c4]/40 hover:bg-[#0089c4]/[0.04] transition-all duration-300">
+                  <div>
+                    <div className="flex items-center justify-between mb-4"><span className="font-mono text-[10px] tracking-wider text-[#0089c4] font-bold">DIRECT CONTACT</span><SiTelegram className="w-5 h-5 text-[#0089c4]" /></div>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#0089c4] transition-colors">Telegram</h3>
+                    <p className="text-xs text-white/60 leading-relaxed">Direct Telegram conversation with Jake.</p>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-white group-hover:text-[#0089c4] transition-colors pt-6"><span>Open Telegram</span><ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" /></div>
+                </MotionGlassCard>
+              </a>
+            </div>
+          </section>
         </div>
       </section>
     </PageTransition>
