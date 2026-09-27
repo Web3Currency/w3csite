@@ -33,60 +33,8 @@ const getProjectImage = (id: string) => {
 };
 
 
-const CountUpValue = ({ value, start }: { value: string; start: boolean }) => {
-  const match = value.match(/^([^\d]*)([\d,.]+)(.*)$/);
-
-  if (!match) {
-    return <span>{value}</span>;
-  }
-
-  const [, prefix, numericValue, suffix] = match;
-  const target = Number(numericValue.replace(/,/g, ""));
-  const decimalPlaces = (numericValue.split(".")[1] || "").length;
-  const [displayValue, setDisplayValue] = useState(0);
-
-  useEffect(() => {
-    if (!start || !Number.isFinite(target)) return;
-
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) {
-      setDisplayValue(target);
-      return;
-    }
-
-    let frame = 0;
-    const startTime = performance.now();
-    const duration = 1200;
-
-    const animate = (now: number) => {
-      const progress = Math.min((now - startTime) / duration, 1);
-      const easedProgress = 1 - Math.pow(1 - progress, 3);
-      setDisplayValue(target * easedProgress);
-
-      if (progress < 1) {
-        frame = window.requestAnimationFrame(animate);
-      } else {
-        setDisplayValue(target);
-      }
-    };
-
-    setDisplayValue(0);
-    frame = window.requestAnimationFrame(animate);
-
-    return () => window.cancelAnimationFrame(frame);
-  }, [start, target]);
-
-  const formatted = displayValue.toLocaleString(undefined, {
-    minimumFractionDigits: decimalPlaces,
-    maximumFractionDigits: decimalPlaces,
-  });
-
-  return <span aria-label={value}>{prefix}{formatted}{suffix}</span>;
-};
-
 export default function Home() {
-  const { totalTrades, totalVolumeFormatted, avgMonthlyVolumeFormatted, lastTradeDate, loading } = useLiveMetrics();
-  const [metricsVisible, setMetricsVisible] = useState(false);
+  const { totalTrades, totalVolumeFormatted, avgMonthlyVolumeFormatted, lastTradeDate } = useLiveMetrics();
 
   const testimonialsScrollRef = useRef<HTMLDivElement>(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -447,20 +395,11 @@ export default function Home() {
       {/* By the Numbers */}
       <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
         <div className="site-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            onViewportEnter={() => {
-              if (!loading) setMetricsVisible(true);
-            }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
               By the Numbers
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {[
@@ -470,29 +409,23 @@ export default function Home() {
               { label: "Protocol Explored", value: metrics.testnetsCompleted, icon: Compass },
               { label: "People Supported", value: metrics.clientsSupported, icon: Headset },
               { label: "Year Founded", value: metrics.activeSince, icon: Ribbon },
-            ].map((sc, idx) => {
+            ].map((sc) => {
               const Icon = sc.icon;
               return (
-                <motion.div
-                  key={sc.label}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: idx * 0.05 }}
-                >
+                <div key={sc.label}>
                   <GlassCard className="p-6 md:p-8 h-full flex flex-col items-center justify-center text-center border-white/5 bg-white/[0.015] hover:border-primary/10 transition-colors">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
                       <Icon className="w-5 h-5 md:w-6 md:h-6" />
                     </div>
                     <div className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-none">
-                      {sc.label === "Year Founded" ? sc.value : <CountUpValue value={sc.value} start={metricsVisible && !loading} />}
+                      {sc.value}
                     </div>
                     <span className="text-[10px] md:text-xs font-mono uppercase text-muted-foreground tracking-wider block mt-3">{sc.label}</span>
                     {sc.subValue && (
                       <div className="text-[10px] font-mono text-muted-foreground mt-1">{sc.subValue}</div>
                     )}
                   </GlassCard>
-                </motion.div>
+                </div>
               );
             })}
           </div>
