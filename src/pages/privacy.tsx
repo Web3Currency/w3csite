@@ -2,6 +2,7 @@ import React from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { Shield, Clock, Mail } from "lucide-react";
+import { branding } from "@/config/branding";
 
 export default function Privacy() {
   const privacySchema = {
@@ -21,6 +22,7 @@ export default function Privacy() {
         title="Privacy Policy - W3C Digital Network"
         description="Your privacy matters. Learn how W3C Digital Network and Jake handle and protect your personal information."
         path="/privacy"
+        schema={privacySchema}
       />
 
       <section className="py-20 md:py-28 bg-black min-h-screen relative overflow-hidden">
