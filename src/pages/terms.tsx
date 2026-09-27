@@ -51,15 +51,53 @@ export default function Terms() {
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">3. P2P Transaction Terms</h2>
+              <h2 className="text-xl font-display font-bold text-white">3. W3C DESK Transaction Process</h2>
               <p>
-                When transacting through the W3C DESK P2P system:
+                W3C DESK transactions are handled directly with the customer. The transaction rate and details are agreed before the customer sends any funds or cryptocurrency. The customer always sends first: customers buying cryptocurrency send the agreed fiat payment first, while customers selling cryptocurrency send the agreed cryptocurrency first.
               </p>
-              <ul className="list-disc pl-5 mt-2 space-y-2 text-white/70">
-                <li>You acknowledge that all digital transactions are completed directly with our desk coordinator, JAKE.</li>
-                <li>You are solely responsible for providing accurate bank details and blockchain wallet addresses. W3C Digital Network is not liable for assets lost due to incorrect details provided by the client.</li>
-                <li>All rates and fee terms are settled and agreed upon in the WhatsApp conversation prior to executing any bank or block transfers.</li>
-              </ul>
+
+              <div className="space-y-4">
+                <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
+                  <h3 className="font-semibold text-white">When buying cryptocurrency</h3>
+                  <ol className="list-decimal pl-5 mt-3 space-y-2 text-white/70">
+                    <li>The customer and W3C agree on the cryptocurrency, amount, rate, and transaction details.</li>
+                    <li>The customer sends the agreed fiat payment to the official W3C payment account.</li>
+                    <li>Once the payment is confirmed, W3C releases the cryptocurrency to the customer's confirmed wallet address.</li>
+                    <li>Subject to the agreed transaction limit and normal processing conditions, the cryptocurrency is usually released within 10–15 minutes after payment confirmation.</li>
+                  </ol>
+                </div>
+
+                <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
+                  <h3 className="font-semibold text-white">When selling cryptocurrency</h3>
+                  <ol className="list-decimal pl-5 mt-3 space-y-2 text-white/70">
+                    <li>The customer and W3C agree on the cryptocurrency, amount, rate, and transaction details.</li>
+                    <li>The customer sends the agreed cryptocurrency to the W3C wallet address provided for the transaction.</li>
+                    <li>Once the cryptocurrency transfer is confirmed, W3C sends the agreed fiat amount to the customer's confirmed bank account.</li>
+                    <li>Subject to the agreed transaction limit and normal processing conditions, the customer's bank account is usually credited within 10–15 minutes after the cryptocurrency transfer is confirmed.</li>
+                  </ol>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="font-semibold text-white">Rates and charges</h3>
+                <p>
+                  W3C DESK does not publish a fixed service fee because charges may vary by transaction. The applicable rate and total amount are confirmed with the customer before the transaction is executed. For cryptocurrency purchases, the quoted rate includes the applicable W3C service charge and network or gas cost for sending the cryptocurrency. For cryptocurrency sales, the quoted rate includes the applicable W3C service charge. Any applicable charge is therefore reflected in the agreed rate rather than presented as a separate fixed fee.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="font-semibold text-white">Customer verification</h3>
+                <p>
+                  W3C DESK is primarily used by members of the W3C community, and routine identity verification is not normally required for every transaction. For larger transactions or where additional verification is considered necessary, W3C may request a valid government-issued ID, preferably the customer's NIN, to confirm that the customer's identity matches the bank account details provided. W3C may also request a video call with the customer for additional identity confirmation.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="font-semibold text-white">Incorrect or mismatched transaction details</h3>
+                <p>
+                  A transaction will not be completed until the relevant payment, bank, or wallet details are confirmed. Customers are responsible for providing accurate details. For wallet transfers, especially for new customers, W3C may ask the customer to confirm the wallet address by sending a screenshot directly from the receiving platform or providing the wallet address barcode before the cryptocurrency is released. If any transaction detail does not match or cannot be sufficiently confirmed, the transaction may be paused until the correct details are verified.
+                </p>
+              </div>
             </div>
 
             <div className="space-y-3">
