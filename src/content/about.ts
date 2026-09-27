@@ -70,7 +70,7 @@ export const aboutContent: AboutContent = {
       },
       {
         title: "Absolute Transparency",
-        body: "Whether it is a clear breakdown of web development timelines or completely open crypto transaction handling with zero hidden fees, you will always know exactly what is happening and why.",
+        body: "Whether it is a clear breakdown of web development timelines or clear crypto transaction handling with applicable charges explained before the trade, you will always know exactly what is happening and why.",
         iconName: "eye"
       },
       {
