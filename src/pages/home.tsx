@@ -121,19 +121,46 @@ export default function Home() {
 
   const schemaOrg = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": branding.businessName,
-    "image": "https://web3currency.online/opengraph.jpeg",
-    "url": "https://web3currency.online",
-    "description": branding.description,
-    "founder": {
-      "@type": "Person",
-      "name": branding.founderName
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "NG"
-    }
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://web3currency.online/#business",
+        "name": branding.businessName,
+        "image": "https://web3currency.online/opengraph.jpeg",
+        "url": "https://web3currency.online",
+        "description": branding.description,
+        "legalName": branding.businessName,
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "CAC",
+          "value": branding.rcNumber.replace("RC: ", "")
+        },
+        "founder": {
+          "@id": "https://web3currency.online/#founder"
+        },
+        "sameAs": [
+          "https://x.com/Web3CurrencyNG",
+          "https://t.me/Web3CurrencyNG"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "NG"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://web3currency.online/#founder",
+        "name": branding.founderName,
+        "url": "https://web3currency.online/about",
+        "sameAs": [
+          "https://x.com/Web3CurrencyNG",
+          "https://t.me/Web3CurrencyNG"
+        ],
+        "worksFor": {
+          "@id": "https://web3currency.online/#business"
+        }
+      }
+    ]
   };
 
   return (
