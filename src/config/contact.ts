@@ -34,6 +34,5 @@ export const contact: ContactConfig = {
   telegram: "@Web3CurrencyNG",
   telegramUrl: "https://t.me/Web3CurrencyNG",
   telegramCommunityUrl: "https://t.me/W3CDigitalNetwork",
-  businessHours: "Monday - Sunday, 24/7 Support & Trades",
-  officeName: "W3C Communication Hub"
+  businessHours: "Monday - Sunday, 24/7 Support & Trades"
 };
