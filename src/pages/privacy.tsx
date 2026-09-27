@@ -145,7 +145,7 @@ export default function Privacy() {
                 The website prepares this information for a WhatsApp request. It does not ask for bank account details or wallet addresses through the website questionnaire itself.
               </p>
               <p className="mt-2">
-                During an actual W3C DESK transaction, additional information may be required to complete or verify the transaction, such as bank account details, public wallet addresses, transaction references, or verification information where applicable. Transaction records may be retained for operational, accounting, compliance, and security purposes.
+                During an actual W3C DESK transaction, additional information may be required to complete or verify the transaction, such as bank account details, public wallet addresses, transaction references, or verification information where applicable. W3C may temporarily receive fiat or cryptocurrency sent for a specific transaction so that the transaction can be settled. W3C does not accept customer assets for investment, yield, or safekeeping, and does not operate managed investment accounts. Transaction records may be retained for operational, accounting, compliance, and security purposes.
               </p>
             </div>
 
