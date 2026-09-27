@@ -94,8 +94,8 @@ export const homepageContent: HomepageContent = {
       },
       {
         title: "W3C DESK",
-        tagline: "Safe, direct peer-to-peer trading.",
-        description: "Buy and sell digital assets directly with a verified merchant through a simple WhatsApp conversation.\n\nNo unnecessary complexity. Just a transparent process, clear communication, and support from start to finish.",
+        tagline: "Direct peer-to-peer crypto buying and selling.",
+        description: "Buy and sell supported crypto directly with W3C through a simple WhatsApp conversation.\n\nW3C DESK is a P2P service, not an exchange, broker, or investment platform. The process is direct, clear, and coordinated from start to finish.",
         ctaText: "Start a Trade Request",
         href: "/services?tab=desk",
         delay: 0.2,
