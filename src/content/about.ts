@@ -57,7 +57,7 @@ export const aboutContent: AboutContent = {
     title: "Bringing It All Under One Trusted Brand",
     paragraphs: [
       branding.whyExists,
-      "I wanted to bridge that gap. By bringing community learning, secure P2P trading, and modern web development under one single, structured ecosystem, I can provide comprehensive support while maintaining a direct, human connection. W3C Digital Network exists to make complex systems transparent and accessible, ensuring you always have a trusted partner to call when making your next digital move."
+      "I wanted to bridge that gap. By bringing community learning, secure P2P crypto transactions, and modern web development under one single, structured ecosystem, I can provide comprehensive support while maintaining a direct, human connection. W3C Digital Network exists to make complex systems transparent and accessible, ensuring you always have a trusted partner to call when making your next digital move."
     ]
   },
   principles: {
@@ -95,8 +95,8 @@ export const aboutContent: AboutContent = {
   achievementsHeader: {
     title: "A Verified Infrastructure for Ambitious Minds",
     paragraphs: [
-      `Today, W3C Digital Network is an officially registered business (${branding.rcNumber}) built on a foundation of verified achievements. It serves independent creators, modern businesses, and crypto traders who value security and clear execution over corporate talk.`,
-      "In 2026 alone, our systems successfully processed over ₦35M+ in total peer-to-peer volume, maintaining an average of ₦7M+ monthly and ₦233K+ in daily transactions. This proves that you are partnering with a platform that possesses the liquidity, compliance, and everyday consistency to support your operations reliably."
+      `Today, W3C Digital Network is an officially registered business (${branding.rcNumber}) built on a foundation of verified achievements. It serves independent creators, modern businesses, and people who use our digital services and value clear communication over corporate talk.`,
+      "In 2026 alone, our systems successfully processed over ₦35M+ in total peer-to-peer volume, maintaining an average of ₦7M+ monthly and ₦233K+ in daily transactions. These figures describe W3C's recorded P2P activity; they are not a promise of future transaction volume, returns, or investment performance."
     ]
   },
   growth: {
