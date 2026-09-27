@@ -215,21 +215,34 @@ export default function Terms() {
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">8. Limitation of Liability</h2>
+              <h2 className="text-xl font-display font-bold text-white">8. Official Communication & Anti-Impersonation</h2>
+              <p>
+                W3C Digital Network uses official communication channels to handle services, transactions, and community activity. The current official contact directory is maintained on the Contact page of this website. Customers should use that page to verify the correct W3C channel before sending money, cryptocurrency, passwords, verification codes, or other sensitive information.
+              </p>
+              <p>
+                Service requests, including W3C DESK trades, Digital Solutions, website design and development, and other W3C services, should be started through the official W3C Digital Network WhatsApp Business account. Jake&apos;s personal contact channels are available for direct conversations but are not the primary service-request channel.
+              </p>
+              <p>
+                W3C will not ask customers to send money or cryptocurrency to an unofficial or unrelated account. If a person or account claims to represent W3C but is not listed through the official website, verify with W3C before continuing.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <h2 className="text-xl font-display font-bold text-white">9. Limitation of Liability</h2>
               <p>
                 Under no circumstances shall W3C Digital Network, Web3 Currency, or its founder JAKE be liable for any indirect, incidental, special, or consequential damages resulting from network congestion, system failures, third-party wallet exploits, or blockchain software bugs.
               </p>
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">9. Governing Law</h2>
+              <h2 className="text-xl font-display font-bold text-white">10. Governing Law</h2>
               <p>
                 These Terms of Service are governed by and construed in accordance with the corporate guidelines of Nigeria, and you irrevocably submit to the exclusive jurisdiction of the competent courts in that territory.
               </p>
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">10. Contact Details</h2>
+              <h2 className="text-xl font-display font-bold text-white">11. Contact Details</h2>
               <p>
                 For further clarification or legal inquiries, reach out to us at:
               </p>
