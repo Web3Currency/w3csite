@@ -16,7 +16,6 @@ export interface ContactConfig {
   linkedin?: string;
   linkedinUrl?: string;
   businessHours: string;
-  officeName: string;
 }
 
 export const contact: ContactConfig = {
