@@ -217,13 +217,13 @@ export default function Terms() {
             <div className="space-y-3">
               <h2 className="text-xl font-display font-bold text-white">8. Official Communication & Anti-Impersonation</h2>
               <p>
-                W3C Digital Network uses official communication channels to handle services, transactions, and community activity. The current official contact directory is maintained on the Contact page of this website. Customers should use that page to verify the correct W3C channel before sending money, cryptocurrency, passwords, verification codes, or other sensitive information.
+                W3C Digital Network uses official communication channels to handle services, transactions, and community activity. The current official contact directory is maintained on the Contact page of this website. Customers should use that page to verify the correct W3C channel before sending money or cryptocurrency.
               </p>
               <p>
                 Service requests, including W3C DESK trades, Digital Solutions, website design and development, and other W3C services, should be started through the official W3C Digital Network WhatsApp Business account. Jake&apos;s personal contact channels are available for direct conversations but are not the primary service-request channel.
               </p>
               <p>
-                W3C will not ask customers to send money or cryptocurrency to an unofficial or unrelated account. If a person or account claims to represent W3C but is not listed through the official website, verify with W3C before continuing.
+                W3C will never ask for a customer's password, OTP, verification code, 2FA code, recovery phrase, or private key. Never share these with anyone claiming to represent W3C. W3C will also not ask customers to send money or cryptocurrency to an unofficial or unrelated account. If a person or account claims to represent W3C but is not listed through the official website, verify with W3C before continuing.
               </p>
             </div>
 
