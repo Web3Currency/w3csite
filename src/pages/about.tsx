@@ -28,11 +28,14 @@ export default function About() {
     "name": `The Story Behind ${branding.businessName}`,
     "description": `The story, journey, values, and work behind ${branding.businessName} and its founder, ${branding.founderName}.`,
     "url": "https://web3currency.online/about",
-    "mainEntity": {
-      "@type": "Person",
-      "name": branding.founderName,
-      "description": branding.shortBio,
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": branding.businessName,
+      "url": "https://web3currency.online"
     },
+    "mainEntity": {
+      "@id": "https://web3currency.online/#founder"
+    }
   };
 
   const currentAreas = [
