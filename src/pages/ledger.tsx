@@ -252,7 +252,7 @@ export default function LedgerPage() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "W3C DESK Ledger",
-    "description": `Verify public execution histories, trace recorded naira transactions, or direct access ${branding.founderName}'s official Web3Currency Desk.`,
+    "description": `Verify public execution histories, trace recorded naira transactions, or direct access the official W3C DESK.`,
     "url": "https://web3currency.online/ledger"
   };
 
