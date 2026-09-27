@@ -104,21 +104,50 @@ export default function Terms() {
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">6. Limitation of Liability</h2>
+              <h2 className="text-xl font-display font-bold text-white">6. Official W3C Payment Account</h2>
+              <p>
+                For W3C DESK transactions, the following is the official W3C payment account used for customer fiat payments. The same account is used when customers pay W3C to buy cryptocurrency and when W3C pays customers who sell cryptocurrency to W3C.
+              </p>
+              <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
+                <div className="grid gap-4 sm:grid-cols-3">
+                  <div>
+                    <span className="block text-xs font-mono uppercase tracking-wider text-white/40">Bank</span>
+                    <span className="text-white font-medium">OPay Digital Services Ltd</span>
+                  </div>
+                  <div>
+                    <span className="block text-xs font-mono uppercase tracking-wider text-white/40">Account name</span>
+                    <span className="text-white font-medium">W3C Digital Network</span>
+                  </div>
+                  <div>
+                    <span className="block text-xs font-mono uppercase tracking-wider text-white/40">Account number</span>
+                    <span className="text-white font-medium">7032754611</span>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-xl border border-[#f97316]/20 bg-[#f97316]/5 p-5">
+                <p className="text-white font-medium">Important payment security notice</p>
+                <p className="mt-2 text-white/70">
+                  Payments sent to any other bank account, account name, or payment destination are not W3C payments. Before sending money, verify that the payment details match the official details published here and the transaction instructions confirmed directly by W3C. W3C will not ask customers to send funds to an unofficial account.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h2 className="text-xl font-display font-bold text-white">7. Limitation of Liability</h2>
               <p>
                 Under no circumstances shall W3C Digital Network, Web3 Currency, or its founder JAKE be liable for any indirect, incidental, special, or consequential damages resulting from network congestion, system failures, third-party wallet exploits, or blockchain software bugs.
               </p>
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">7. Governing Law</h2>
+              <h2 className="text-xl font-display font-bold text-white">8. Governing Law</h2>
               <p>
                 These Terms of Service are governed by and construed in accordance with the corporate guidelines of Nigeria, and you irrevocably submit to the exclusive jurisdiction of the competent courts in that territory.
               </p>
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">8. Contact Details</h2>
+              <h2 className="text-xl font-display font-bold text-white">9. Contact Details</h2>
               <p>
                 For further clarification or legal inquiries, reach out to us at:
               </p>
