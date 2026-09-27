@@ -27,7 +27,7 @@ const rootQuestion: Question = {
 
 const assetQuestion: Question = {
   id: "asset",
-  title: "Which crypto do you want to trade?",
+  title: "Which crypto do you want to buy or sell?",
   options: ["USDT", "USDC", "BTC", "PI", "Other asset"],
 };
 
@@ -244,7 +244,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
     return (
       <PageTransition>
         <SEO
-          title={"W3C DESK, Crypto P2P Trading | " + branding.businessName}
+          title={"W3C DESK, Crypto P2P | " + branding.businessName}
           description={"Buy and sell digital assets through W3C DESK with direct WhatsApp coordination from " + branding.founderName + "."}
           path="/services"
         />
@@ -284,7 +284,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
   return (
     <PageTransition>
       <SEO
-        title={"W3C DESK, Crypto P2P Trading | " + branding.businessName}
+        title={"W3C DESK, Crypto P2P | " + branding.businessName}
         description={"Buy and sell digital assets through W3C DESK with direct WhatsApp coordination from " + branding.founderName + "."}
         path="/services"
       />
@@ -302,8 +302,13 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
             Buy or sell crypto through W3C DESK.
           </h1>
           <p className="text-lg sm:text-xl text-white/90 leading-relaxed font-medium max-w-3xl mt-6">
-            Tell me what you want to buy or sell, how much, and where the crypto is coming from or going. I’ll use your answers to prepare a clear trade request for WhatsApp.
+            Tell me what you want to buy or sell, how much, and where the crypto is coming from or going. I’ll use your answers to prepare a clear transaction request for WhatsApp.
           </p>
+          <div className="mt-8 max-w-3xl rounded-2xl border border-white/10 bg-white/[0.02] p-5 text-sm sm:text-base text-white/75 leading-relaxed">
+            <p><span className="font-semibold text-white">What W3C DESK is:</span> a direct peer-to-peer service for buying and selling supported crypto with W3C.</p>
+            <p className="mt-3"><span className="font-semibold text-white">What it is not:</span> an exchange, broker, investment platform, or managed trading service. W3C does not offer guaranteed returns or passive-income products.</p>
+            <p className="mt-3"><span className="font-semibold text-white">Customer assets:</span> W3C may temporarily receive fiat or crypto sent for a specific transaction so that transaction can be settled. W3C does not accept customer assets for investment, yield, or safekeeping.</p>
+          </div>
         </div>
       </section>
 
@@ -311,7 +316,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
         <div className="container max-w-2xl mx-auto px-6">
           <div className="flex items-center justify-center mb-8">
             <span className={"text-xs uppercase tracking-widest font-mono font-bold " + brand.twText}>
-              LET’S SORT OUT YOUR TRADE
+              LET’S SORT OUT YOUR TRANSACTION
             </span>
           </div>
 
@@ -452,10 +457,10 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
         <div className="container max-w-4xl mx-auto px-6">
           <div className="text-center">
             <h2 className="text-2xl sm:text-3xl font-display font-bold text-white">
-              Not ready to trade yet?
+              Not ready to buy or sell crypto yet?
             </h2>
             <p className="text-base sm:text-lg leading-relaxed text-white/80 max-w-2xl mx-auto mt-5">
-              That&apos;s okay. You can take your time to understand how crypto works, ask questions, and learn before you decide to trade. Join W3C Community to learn with others, follow practical conversations around crypto and Web3, and build your understanding first. When you&apos;re ready, you can come back to W3C DESK and start your trade request.
+              That&apos;s okay. You can take your time to understand how crypto works, ask questions, and learn before you decide to buy or sell. Join W3C Community to learn with others, follow practical conversations around crypto and Web3, and build your understanding first. When you&apos;re ready, you can come back to W3C DESK and start your transaction request.
             </p>
             <button
               type="button"
