@@ -6,16 +6,15 @@ import { Shield, Clock, Mail } from "lucide-react";
 export default function Privacy() {
   return (
     <PageTransition>
-      <SEO 
-        title="Privacy Policy - W3C Digital Network" 
+      <SEO
+        title="Privacy Policy - W3C Digital Network"
         description="Your privacy matters. Learn how W3C Digital Network and Jake handle and protect your personal information."
         path="/privacy"
       />
-      
+
       <section className="py-20 md:py-28 bg-black min-h-screen relative overflow-hidden">
-        {/* Ambient background glows */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#f97316]/5 rounded-full blur-[120px] pointer-events-none" />
-        
+
         <div className="site-container relative z-10">
           <div className="space-y-4 text-center sm:text-left mb-12 border-b border-white/[0.08] pb-10">
             <div className="flex items-center gap-2 justify-center sm:justify-start text-[#f97316] font-mono text-xs font-bold tracking-widest uppercase">
@@ -67,33 +66,35 @@ export default function Privacy() {
                 Depending on how you interact with W3C Digital Network, you may choose to provide information such as:
               </p>
               <ul className="list-disc pl-5 mt-2 space-y-1 text-white/70">
-                <li>Your name</li>
-                <li>Phone number</li>
-                <li>Email address</li>
-                <li>Messages or enquiries</li>
-                <li>Business information relevant to your project</li>
-                <li>Cryptocurrency wallet addresses</li>
-                <li>Bank account details for W3C DESK transactions</li>
+                <li>Your name, phone number, or email address when you choose to contact me</li>
+                <li>Messages, enquiries, or other information you choose to send</li>
+                <li>Business information relevant to a project</li>
+                <li>Cryptocurrency wallet addresses and bank account details when required for W3C DESK transactions</li>
               </ul>
               <p className="mt-2">
-                You only provide this information when you choose to contact me or use one of my services.
+                The website&apos;s website-project questionnaire does not ask for your name, phone number, email address, bank details, wallet address, or other personal information. It only asks predefined questions about what you need, the purpose and goal of the website, your available content, and when you would like to start.
+              </p>
+              <p className="mt-2">
+                When you complete that questionnaire, your selected answers are used to prepare a message that you can choose to send through WhatsApp, Telegram, or email. The questionnaire itself does not submit the answers to a W3C database.
               </p>
             </div>
 
             <div className="space-y-3">
               <h2 className="text-xl font-display font-bold text-white">3. Website Analytics</h2>
               <p>
-                This website may collect limited technical information automatically, including:
+                This website may use analytics and website-performance tools, depending on the current configuration of the site. These tools may collect technical and usage information such as:
               </p>
               <ul className="list-disc pl-5 mt-2 space-y-1 text-white/70">
-                <li>Browser type</li>
-                <li>Device information</li>
-                <li>Pages visited</li>
-                <li>General location based on IP address</li>
-                <li>Website performance data</li>
+                <li>Pages visited and page navigation</li>
+                <li>Browser, device, and technical information</li>
+                <li>Website performance and interaction data</li>
+                <li>General information associated with website visits, as provided by the analytics services</li>
               </ul>
               <p className="mt-2">
-                This information is used to improve the website, monitor performance, and maintain security. It is not used to personally identify visitors.
+                The website code currently supports Google Analytics 4 and Microsoft Clarity. Where enabled, Google Analytics may receive page views and selected interaction events, including contact-link clicks and W3C DESK calculator activity. Microsoft Clarity may collect website interaction and session-recording data.
+              </p>
+              <p className="mt-2">
+                These tools are used to understand how the website is used, improve services, monitor performance, and maintain security. Their collection and processing are also subject to the privacy practices of the respective providers.
               </p>
             </div>
 
@@ -108,39 +109,43 @@ export default function Privacy() {
                 <li>Build and support websites</li>
                 <li>Coordinate W3C DESK transactions</li>
                 <li>Communicate project updates</li>
-                <li>Improve services</li>
+                <li>Improve services and website experience</li>
                 <li>Maintain business records where appropriate</li>
               </ul>
               <p className="mt-2">
-                Your information is never sold or rented to third parties.
+                Information is not sold or rented to third parties. Some information may be processed through third-party platforms when you choose to communicate with W3C through those platforms or when third-party services are used to operate and understand the website.
               </p>
             </div>
 
             <div className="space-y-3">
               <h2 className="text-xl font-display font-bold text-white">5. W3C DESK Transactions</h2>
               <p>
-                If you use W3C DESK, additional information may be required to complete your transaction, including:
+                The W3C DESK request tool on this website asks for the information needed to prepare a trade request, including:
               </p>
               <ul className="list-disc pl-5 mt-2 space-y-1 text-white/70">
-                <li>Bank account details</li>
-                <li>Public wallet addresses</li>
-                <li>Transaction references</li>
+                <li>Whether you want to buy or sell crypto</li>
+                <li>The crypto asset and amount</li>
+                <li>Where the crypto is being sent from or received</li>
+                <li>An optional note or explanation when you choose to provide one</li>
               </ul>
               <p className="mt-2">
-                Transaction records may be retained for operational, accounting, compliance, and security purposes.
+                The website prepares this information for a WhatsApp request. It does not ask for bank account details or wallet addresses through the website questionnaire itself.
+              </p>
+              <p className="mt-2">
+                During an actual W3C DESK transaction, additional information may be required to complete or verify the transaction, such as bank account details, public wallet addresses, transaction references, or verification information where applicable. Transaction records may be retained for operational, accounting, compliance, and security purposes.
               </p>
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-xl font-display font-bold text-white">6. WhatsApp & Third-Party Platforms</h2>
+              <h2 className="text-xl font-display font-bold text-white">6. Contact Forms, WhatsApp & Third-Party Platforms</h2>
               <p>
-                Many services are delivered through WhatsApp.
+                The website does not currently use a contact form that sends information to a W3C database. Contact buttons and service questionnaires direct you to WhatsApp, Telegram, or email, where you choose whether to continue the conversation.
               </p>
               <p>
-                By contacting W3C Digital Network through WhatsApp, Telegram, email, or other third-party platforms, you also agree to the privacy practices and terms of those respective platforms.
+                Many services are coordinated through WhatsApp. By contacting W3C Digital Network through WhatsApp, Telegram, email, or other third-party platforms, information you choose to share may also be processed by those platforms according to their own privacy practices and terms.
               </p>
               <p>
-                W3C Digital Network is not responsible for how third-party services collect or process your information.
+                W3C Digital Network does not control how third-party services collect or process information within their own platforms.
               </p>
             </div>
 
