@@ -268,7 +268,7 @@ export default function Projects() {
                           <span>
                             {project.id === "w3c-digital-network" && "web3currency.online"}
                             {project.id === "gold-marine-group" && "goldmarinegroup.com"}
-                            {project.id === "w3c-test-token-tracker" && "tw3c-tracker.vercel.app"}
+                            {project.id === "w3c-test-token-tracker" && "apppitokenexplor8194.pinet.com"}
                         {project.id === "w3c-pi-bookings" && "app.web3currency.online"}
                             {project.id === "ceecar" && "t.me/ceecarbot"}
                           </span>
@@ -291,7 +291,7 @@ export default function Projects() {
                           <span className="text-[10px] font-mono font-bold text-white tracking-wider bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded border border-white/10 uppercase">
                             {project.id === "w3c-digital-network" && "W3C Digital"}
                             {project.id === "gold-marine-group" && "Gold Marine"}
-                            {project.id === "w3c-test-token-tracker" && "Token Tracker"}
+                            {project.id === "w3c-test-token-tracker" && "Pi Token Explorer"}
                             {project.id === "ceecar" && "Ceecar"}
                           </span>
                           <span className="text-[8px] font-mono text-white/60 bg-black/60 backdrop-blur-sm px-1.5 py-0.5 rounded uppercase">
