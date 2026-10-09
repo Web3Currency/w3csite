@@ -122,7 +122,7 @@ export const projects: Project[] = [
     id: "w3c-test-token-tracker",
     title: "Pi Token Explorer",
     category: "Internal Web3 Tool",
-    shortDescription: "Explore tokens across the Pi ecosystem in one place. Pi Token Explorer helps users discover available tokens, view useful token details, and check liquidity information to better understand the projects building around Pi.",
+    shortDescription: "Discover Pi ecosystem tokens, view token details, and check liquidity in one place.",
     problem: "Making it easier for people to discover and learn about tokens in the Pi ecosystem without jumping between different sources.",
     role: "Product Designer & Core Developer",
     tags: ["Pi Network", "Token Discovery", "Token Information"],
