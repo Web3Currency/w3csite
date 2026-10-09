@@ -120,31 +120,30 @@ export const projects: Project[] = [
   },
   {
     id: "w3c-test-token-tracker",
-    title: "W3C Test Token Tracker",
+    title: "Pi Token Explorer",
     category: "Internal Web3 Tool",
-    shortDescription: "An internal utility built to monitor and visualize the activity of the W3C test token on the Pi Network testnet, providing insights into token distribution and ecosystem activity.",
-    problem: "Visualizing and auditing token transactions and circulation parameters on emerging blockchain networks without dedicated public block explorer APIs.",
-    role: "Blockchain Developer & Integration Engineer",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Pi Network Testnet"],
+    shortDescription: "Explore tokens across the Pi ecosystem in one place. Pi Token Explorer helps users discover available tokens, view useful token details, and check liquidity information to better understand the projects building around Pi.",
+    problem: "Making it easier for people to discover and learn about tokens in the Pi ecosystem without jumping between different sources.",
+    role: "Product Designer & Core Developer",
+    tags: ["Pi Network", "Token Discovery", "Token Information"],
     status: "Prototype • Active",
     statusColorClass: "bg-blue-500/10 text-blue-400 border-blue-500/20",
     colorClass: "text-blue-400 bg-blue-400/10",
-    externalLink: "https://tw3c-tracker.vercel.app",
-    overview: "The W3C Test Token Tracker is an internal monitoring dashboard built to check liquidity distributions and testnet ledger actions. It provides on-chain visibility to verify that wallet balances and transaction velocities behave as designed.",
-    challenge: "Monitoring real-time wallet transactions and token distributions on a novel testnet environment without pre-built block explorers or robust public analytics APIs. Internal operators needed a direct way to visualize distribution behaviors.",
-    approach: "Design a custom local monitoring interface that hooks into the Pi Network testnet nodes. Focus on high-signal data tables, wallet address tracking, and basic transfer activity graphs.",
-    solution: "A prototype tracker that reads the Pi Network testnet transaction history. It processes on-chain ledger entries, extracts token transfer amounts, and presents them on a clean, responsive internal developer dashboard.",
-    lessonsLearned: "Direct on-chain data tracking requires lightweight processing structures to prevent UI freezing. Debouncing updates and caching transaction blocks keeps the interface highly responsive.",
+    externalLink: "https://apppitokenexplor8194.pinet.com/",
+    overview: "Pi Token Explorer brings Pi ecosystem tokens together in one place, helping users browse token projects and see useful information about each token.",
+    challenge: "Token information can be difficult to find and compare when it is spread across different places. The explorer aims to make discovery simpler and more accessible.",
+    approach: "Present token listings and relevant token information in a clear, easy-to-browse interface.",
+    solution: "A simple explorer for discovering Pi ecosystem tokens, viewing token details, and checking available liquidity information.",
+    lessonsLearned: "Clear, accessible token information helps people explore an ecosystem and understand the projects being built within it.",
     keyHighlights: [
-      "Wallet activity tracking",
-      "Token analytics",
-      "Web3 dashboard",
-      "Internal monitoring tool"
+      "Explore tokens across the Pi ecosystem",
+      "View token details",
+      "Check available liquidity information"
     ],
     keyFeatures: [
-      "Real-time transaction list tracking and wallet activity monitoring",
-      "Visual token analytics showing mock network distribution density",
-      "Direct responsive ledger search interface for fast transaction lookups"
+      "Browse and discover tokens in the Pi ecosystem",
+      "View useful details about listed tokens",
+      "Check available token liquidity information"
     ],
     futureImprovements: [
       "Adding automated SMS or email alerts for large-volume transactions",
