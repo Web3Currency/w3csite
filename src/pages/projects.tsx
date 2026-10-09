@@ -34,7 +34,7 @@ const getProjectImage = (id: string) => {
     case "gold-marine-group":
       return "https://i.imgur.com/qO5yasK.jpeg";
     case "w3c-test-token-tracker":
-      return "https://i.imgur.com/oFxxGhs.jpeg";
+      return "https://i.imgur.com/LxEW3ye.jpeg";
     case "w3c-pi-bookings":
       return "https://i.imgur.com/UofCtfk.jpeg";
     case "ceecar":
