@@ -1,20 +1,29 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# W3C Digital Network
 
-# Run and deploy your AI Studio app
+**Practical digital solutions, built around real needs.**
 
-This contains everything you need to run your app locally.
+W3C Digital Network is a founder-led digital services and community initiative focused on helping people and businesses make better use of digital tools, online services, and emerging technology.
 
-View your app in AI Studio: https://ai.studio/apps/3ad8ff25-1e35-4ae3-8563-4b42c6e6aaa3
+Website: [web3currency.online](https://web3currency.online)
 
-## Run Locally
+## What We Do
 
-**Prerequisites:**  Node.js
+- **Digital Solutions** — practical support for digital ideas, online presence, and everyday technology needs.
+- **Website Design & Development** — websites shaped around a business's goals and audience.
+- **W3C DESK** — peer-to-peer crypto buying and selling coordinated directly with users.
+- **W3C Community** — a community for learning and sharing around Web3, cryptocurrency, AI tools, and the digital economy.
+- **Projects & Resources** — a growing collection of digital products, initiatives, and useful resources.
 
+## Our Approach
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+We focus on practical outcomes, clear communication, and building long-term trust. We aim to make useful digital services easier to access and to keep conversations direct and approachable.
+
+## Explore W3C
+
+Visit [web3currency.online](https://web3currency.online) to learn more about our services, projects, community, and contact options.
+
+For enquiries, use the contact options provided on the website.
+
+---
+
+W3C Digital Network — practical digital solutions for a connected world.
