@@ -568,7 +568,7 @@ export default function Home() {
                           <div className="min-w-0">
                             <p className="text-sm font-bold text-white leading-none mb-1">{review.author || "Customer"}</p>
                           </div>
-                          <a href={review.url || reviewsProfileUrl} target="_blank" rel="noopener noreferrer" className="shrink-0 inline-flex items-center px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-mono font-medium text-primary hover:bg-primary/20 transition-colors">
+                          <a href={review.url || reviewsProfileUrl} target="_blank" rel="noopener noreferrer" className="shrink-0 inline-flex items-center text-[10px] font-mono font-medium text-primary hover:text-white transition-colors">
                             TheReviews ↗
                           </a>
                         </div>
@@ -609,7 +609,7 @@ export default function Home() {
                         <div className="min-w-0">
                           <p className="text-sm font-bold text-white leading-none mb-1">{review.author || "Customer"}</p>
                         </div>
-                        <a href={review.url || reviewsProfileUrl} target="_blank" rel="noopener noreferrer" className="shrink-0 inline-flex items-center px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-mono font-medium text-primary hover:bg-primary/20 transition-colors">
+                        <a href={review.url || reviewsProfileUrl} target="_blank" rel="noopener noreferrer" className="shrink-0 inline-flex items-center text-[10px] font-mono font-medium text-primary hover:text-white transition-colors">
                           TheReviews ↗
                         </a>
                       </div>
