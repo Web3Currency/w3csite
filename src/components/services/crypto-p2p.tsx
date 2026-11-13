@@ -304,11 +304,6 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
           <p className="text-lg sm:text-xl text-white/90 leading-relaxed font-medium max-w-3xl mt-6">
             Tell me what you want to buy or sell, how much, and where the crypto is coming from or going. I’ll use your answers to prepare a clear transaction request for WhatsApp.
           </p>
-          <div className="mt-8 max-w-3xl rounded-2xl border border-white/10 bg-white/[0.02] p-5 text-sm sm:text-base text-white/75 leading-relaxed">
-            <p><span className="font-semibold text-white">What W3C DESK is:</span> a direct peer-to-peer service for buying and selling supported crypto with W3C.</p>
-            <p className="mt-3"><span className="font-semibold text-white">What it is not:</span> an exchange, broker, investment platform, or managed trading service. W3C does not offer guaranteed returns or passive-income products.</p>
-            <p className="mt-3"><span className="font-semibold text-white">Customer assets:</span> W3C may temporarily receive fiat or crypto sent for a specific transaction so that transaction can be settled. W3C does not accept customer assets for investment, yield, or safekeeping.</p>
-          </div>
         </div>
       </section>
 
@@ -449,6 +444,16 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
               Back
             </button>
             
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-16 bg-black">
+        <div className="container max-w-4xl mx-auto px-6">
+          <div className="mt-8 max-w-3xl rounded-2xl border border-white/10 bg-white/[0.02] p-5 text-sm sm:text-base text-white/75 leading-relaxed">
+            <p><span className="font-semibold text-white">What W3C DESK is:</span> a direct peer-to-peer service for buying and selling supported crypto with W3C.</p>
+            <p className="mt-3"><span className="font-semibold text-white">What it is not:</span> an exchange, broker, investment platform, or managed trading service. W3C does not offer guaranteed returns or passive-income products.</p>
+            <p className="mt-3"><span className="font-semibold text-white">Customer assets:</span> W3C may temporarily receive fiat or crypto sent for a specific transaction so that transaction can be settled. W3C does not accept customer assets for investment, yield, or safekeeping.</p>
           </div>
         </div>
       </section>
