@@ -165,9 +165,9 @@ export default function Home() {
 
   return (
     <PageTransition>
-      <SEO 
-        title={branding.businessName} 
-        description={branding.description}
+      <SEO
+        title="W3C Digital Network | Digital Solutions & Crypto P2P"
+        description="W3C Digital Network provides practical digital solutions, crypto P2P services through W3C DESK, website development, digital tools and Web3 community resources."
         path="/"
         schema={schemaOrg}
       />
