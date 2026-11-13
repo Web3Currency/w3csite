@@ -6,16 +6,13 @@ import { Link } from "wouter";
 import {
   ArrowRight,
   Users,
-  MessageCircle,
   CheckCircle2,
-  Sparkles,
   ShieldCheck,
-  Globe,
-  Compass,
-  PenTool,
   Wallet,
   Bot,
   LayoutTemplate,
+  Compass,
+  Globe,
 } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { contact } from "@/config/contact";
@@ -25,8 +22,8 @@ export default function About() {
   const aboutSchema = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": `The Story Behind ${branding.businessName}`,
-    "description": `The story, journey, values, and work behind ${branding.businessName} and its founder, ${branding.founderName}.`,
+    "name": `Meet ${branding.founderName} | ${branding.businessName}`,
+    "description": `Meet ${branding.founderName}, founder of ${branding.businessName}, and learn about the vision and work behind the network.`,
     "url": "https://web3currency.online/about",
     "isPartOf": {
       "@type": "WebSite",
@@ -41,253 +38,155 @@ export default function About() {
   const currentAreas = [
     {
       title: "Crypto P2P",
-      body: "Helping people buy and sell cryptocurrency through W3C DESK.",
+      body: "P2P cryptocurrency services through W3C DESK, with clear communication and transparent processes.",
       icon: Wallet,
     },
     {
-      title: "Websites & Landing Pages",
-      body: "Designing and building websites and landing pages for people, businesses and projects.",
+      title: "Websites & Development",
+      body: "Websites, landing pages and digital experiences for individuals, businesses and projects.",
       icon: LayoutTemplate,
     },
     {
       title: "Digital Solutions",
-      body: "Helping people understand digital tools and find practical ways to solve digital problems.",
+      body: "Practical support for digital needs, tools and challenges.",
       icon: Compass,
     },
     {
-      title: "Crypto, Web3 & AI Community",
-      body: "Creating a space where people can learn, ask questions, share opportunities and understand what is happening in the digital world.",
+      title: "Web3 & AI",
+      body: "Exploring emerging technology and finding useful ways to apply it.",
+      icon: Bot,
+    },
+    {
+      title: "Community & Education",
+      body: "Spaces to learn, ask questions, exchange knowledge and connect with others.",
       icon: Users,
     },
     {
       title: "Digital Products",
-      body: "Building and experimenting with useful digital tools and applications.",
-      icon: Bot,
+      body: "Developing tools and applications with a clear purpose.",
+      icon: Globe,
     },
   ];
 
   const principles = [
     {
       title: "People Before Sales",
-      body: "I would rather recommend what you actually need than sell you something you don't.",
+      body: "Understand what someone needs before recommending a service. The right solution matters more than making a sale.",
       icon: Users,
     },
     {
-      title: "Keep Things Simple",
-      body: "Technology is already complicated enough. I believe people should be able to understand what they are using and why they are using it.",
-      icon: MessageCircle,
+      title: "Clear Communication",
+      body: "Keep people informed, explain things plainly and make expectations clear from the beginning.",
+      icon: ShieldCheck,
     },
     {
-      title: "Create Something Useful",
-      body: "I don't want to build things simply because they are trending. I want what I build to have a purpose.",
+      title: "Practicality Over Hype",
+      body: "Focus on useful work and real outcomes rather than following trends for their own sake.",
       icon: CheckCircle2,
     },
     {
-      title: "Keep Learning",
-      body: "Technology changes quickly. So I keep learning, experimenting and trying new tools. There is always something new to discover.",
-      icon: Sparkles,
+      title: "Keep Improving",
+      body: "Stay curious, learn continuously and refine the way things are built and delivered.",
+      icon: Compass,
+    },
+  ];
+
+  const sections = [
+    {
+      eyebrow: "THE PERSON BEHIND THE NETWORK",
+      title: "A creative approach to technology.",
+      paragraphs: [
+        "My background in visual creativity shaped how I approach ideas, design and problem-solving. Over time, that interest expanded into technology, cryptocurrency, Web3 and artificial intelligence.",
+        "Today, I bring those areas together through projects that solve problems, make digital services more accessible and create room for new opportunities."
+      ],
+      background: "bg-zinc-950",
+    },
+    {
+      eyebrow: "THE VISION",
+      title: "Why I built W3C.",
+      paragraphs: [
+        "The digital world offers enormous opportunities, but finding reliable services, useful tools and clear guidance is not always straightforward.",
+        "I created W3C Digital Network to bring different parts of that world into one connected ecosystem.",
+        "W3C stands for Web3 Currency. The Digital Network reflects a broader vision that extends beyond cryptocurrency into digital services, technology, products and community."
+      ],
+      background: "bg-black",
     },
   ];
 
   return (
     <PageTransition>
       <SEO
-        title={`The Story Behind ${branding.businessName}`}
-        description={`Read the story, journey, values, and work behind ${branding.businessName}.`}
+        title={`Meet ${branding.founderName} | ${branding.businessName}`}
+        description={`Meet ${branding.founderName}, the founder of ${branding.businessName}. Discover the vision, work and principles behind the network.`}
         path="/about"
         schema={aboutSchema}
       />
 
-      {/* SECTION 1: Hero */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-black border-b border-white/[0.08]">
+      {/* Founder introduction */}
+      <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-black border-b border-white/[0.08]">
         <div className="absolute inset-0 z-0 pointer-events-none select-none">
           <img
             src="https://i.imgur.com/cGKA8AC.png"
-            alt="JAKE Background"
+            alt="JAKE"
             className="w-full h-full object-cover object-center opacity-45 md:opacity-55"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80" />
         </div>
 
-        <div className="site-container relative z-10 text-center">
+        <div className="site-container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="space-y-6"
+            className="max-w-4xl mx-auto text-center"
           >
-            <span className="text-xs uppercase tracking-widest font-mono font-semibold text-primary block">
-              The Story Behind W3C Digital Network
+            <span className="text-xs uppercase tracking-[0.2em] font-mono font-semibold text-primary block mb-6">
+              Meet the Founder
             </span>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold leading-[1.1] tracking-tight text-white">
-              You already know what I do.
-              <br />
-              <span className="text-primary italic">This page is about why I do it.</span>
+            <h1 className="text-5xl sm:text-6xl lg:text-8xl font-display font-bold leading-[1.05] tracking-tight text-white">
+              {branding.founderName}
             </h1>
+            <p className="mt-5 text-base sm:text-lg uppercase tracking-[0.16em] text-white/65">
+              Founder, {branding.businessName}
+            </p>
             <div className="h-1 w-12 bg-primary mx-auto my-8 rounded-full" />
-            <div className="space-y-6 text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              <p>
-                W3C Digital Network didn't start with a business plan, an office, or a big team.
-              </p>
-              <p className="text-white font-semibold text-lg sm:text-xl">
-                It started with curiosity.
-              </p>
-              <p>
-                And, honestly, it started with me being interested in many different things.
-              </p>
-            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-semibold leading-tight tracking-tight text-white">
+              Ideas into practical digital solutions.
+            </h2>
+            <p className="mt-7 text-base sm:text-lg md:text-xl text-white/75 leading-relaxed max-w-3xl mx-auto">
+              I work across technology, digital services, crypto, Web3 and creative projects. W3C Digital Network is where these interests come together through practical products, services and communities.
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* SECTION 2: Before W3C */}
-      <section className="py-20 md:py-28 bg-zinc-950 border-b border-white/[0.08]">
-        <div className="site-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
-              Before W3C
-            </h2>
-            <div className="space-y-6 text-base sm:text-lg text-white/95 leading-relaxed pt-4">
-              <p>I've always been someone who likes to learn, create and try things.</p>
-              <p>
-                From childhood, I was interested in art. I drew anime and cartoons. I painted houses. I experimented with lettering and different forms of artwork.
-              </p>
-              <p>
-                Later, I spent a lot of time doing pencil drawings and eventually got to the point where people were willing to pay for my work. I focused on realism and spent years improving my ability to look at something and recreate it.
-              </p>
-              <p>
-                Then I moved into digital art and photo editing.
-              </p>
-              <p>
-                Eventually, I discovered AI and started experimenting with creating images and bringing ideas I had in my head to life.
-              </p>
-              <p className="border-l-2 border-primary pl-4 py-1 italic text-primary font-medium">
-                Looking back, I didn't realize it at the time, but all of this was teaching me something important:
-              </p>
-              <p className="text-white font-semibold text-lg sm:text-xl">
-                How to see an idea in my head and find a way to create it.
-              </p>
-              <p className="text-muted-foreground">
-                That ability still influences the things I build today.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* SECTION 3: Then Came the Digital World */}
-      <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
-        <div className="site-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
-              Then Came the Digital World
-            </h2>
-            <div className="space-y-6 text-base sm:text-lg text-white/95 leading-relaxed pt-4">
-              <p>My curiosity eventually moved deeper into technology.</p>
-              <p>
-                I started exploring cryptocurrency, blockchain, Web3, artificial intelligence, websites and other digital tools.
-              </p>
-              <p className="text-muted-foreground">
-                I wasn't learning these things because I had already decided to build a company.
-              </p>
-              <p>I simply wanted to understand them.</p>
-              <p>And I like applying what I learn.</p>
-              <p className="text-primary font-semibold text-lg sm:text-xl border-l-2 border-primary pl-4 py-1">
-                If I learn something useful, I want to try it. If I see a problem, I want to see if I can solve it.
-              </p>
-              <p className="text-muted-foreground">
-                That is how many of the things I do today started.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* SECTION 4: From Learning to Helping */}
-      <section className="py-20 md:py-28 bg-zinc-950 border-b border-white/[0.08]">
-        <div className="site-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
-              From Learning to Helping
-            </h2>
-            <div className="space-y-6 text-base sm:text-lg text-white/95 leading-relaxed pt-4">
-              <p>As I learned more about crypto and Web3, people started asking me questions.</p>
-              <div className="grid sm:grid-cols-2 gap-3 py-2">
-                {["How does this work?", "How do I buy this?", "How do I sell this?", "Is this safe?", "What does this project do?"].map((question) => (
-                  <div key={question} className="p-4 rounded-xl border border-white/5 bg-black/40 text-white/90 text-sm sm:text-base">
-                    {question}
-                  </div>
-                ))}
+      {/* Background and vision */}
+      {sections.map((section, index) => (
+        <section key={section.eyebrow} className={`py-20 md:py-24 ${section.background} border-b border-white/[0.08]`}>
+          <div className="site-container">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="max-w-4xl mx-auto"
+            >
+              <span className="text-xs uppercase tracking-[0.18em] font-mono font-semibold text-primary block mb-5">
+                {section.eyebrow}
+              </span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight mb-8">
+                {section.title}
+              </h2>
+              <div className="space-y-5 text-base sm:text-lg text-white/80 leading-relaxed max-w-3xl">
+                {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </div>
-              <p>
-                Sometimes people simply needed someone to explain something without making it more complicated than it already was.
-              </p>
-              <p className="text-primary font-semibold text-lg sm:text-xl">
-                So I started helping.
-              </p>
-              <p className="text-muted-foreground">
-                Over time, that turned into community building, education, crypto P2P transactions and other digital services.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            </motion.div>
+          </div>
+        </section>
+      ))}
 
-      {/* SECTION 5: W3C DESK */}
-      <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
-        <div className="site-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
-              W3C DESK
-            </h2>
-            <div className="space-y-6 text-base sm:text-lg text-white/95 leading-relaxed pt-4">
-              <p>Crypto eventually became a major part of what I do.</p>
-              <p>
-                W3C DESK grew from the need for a practical way to help people buy and sell cryptocurrency through P2P transactions.
-              </p>
-              <p className="text-muted-foreground">
-                It wasn't just about completing transactions.
-              </p>
-              <p className="text-white font-semibold text-lg sm:text-xl">
-                It taught me the importance of communication, speed, transparency and trust.
-              </p>
-              <p>
-                Every trade involves another person trusting me to handle something valuable.
-              </p>
-              <p className="border-l-2 border-primary pl-4 py-1 italic text-primary font-medium">
-                That responsibility matters.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* SECTION 6: Websites, AI & Building Things */}
+      {/* The work */}
       <section className="py-20 md:py-28 bg-zinc-950 border-b border-white/[0.08]">
         <div className="site-container">
           <motion.div
@@ -295,132 +194,16 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="max-w-3xl mb-12"
           >
+            <span className="text-xs uppercase tracking-[0.18em] font-mono font-semibold text-primary block mb-5">
+              THE WORK
+            </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
-              Websites, AI & Building Things
+              Different disciplines. One direction.
             </h2>
-            <div className="space-y-6 text-base sm:text-lg text-white/95 leading-relaxed pt-4">
-              <p>My interest in websites came from another direction.</p>
-              <p>
-                I've always been visual. When I look at a website, I don't only think about the technology behind it. I think about how it looks, how it feels, what people will see first, and whether the whole thing makes sense.
-              </p>
-              <p className="text-primary font-semibold text-lg sm:text-xl border-l-2 border-primary pl-4 py-1">
-                I can usually visualize what I want before I know exactly how to build it.
-              </p>
-              <p>AI has changed how I work.</p>
-              <p>
-                I did not come through the traditional software-development path. I use AI heavily as a development partner.
-              </p>
-              <p>
-                I bring the idea, the visual direction and the decisions.
-              </p>
-              <p className="text-muted-foreground">
-                AI helps me turn those ideas into working software.
-              </p>
-              <p>
-                That is how I've been able to build websites, landing pages and applications while continuing to learn along the way.
-              </p>
-              <div className="rounded-2xl border border-primary/15 bg-primary/[0.04] p-6 space-y-3">
-                <h3 className="font-display font-bold text-white text-xl">W3C Pi Bookings</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  W3C Pi Bookings is one example. It started as an idea and gradually became something people can actually test and use.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* SECTION 7: Why W3C Exists */}
-      <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
-        <div className="site-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
-              Why W3C Exists
-            </h2>
-            <div className="space-y-6 text-base sm:text-lg text-white/95 leading-relaxed pt-4">
-              <p>At some point, I realized that all these different things I was doing were connected.</p>
-              <p className="text-white font-semibold text-lg sm:text-xl">
-                Crypto. Web3. AI. Websites. Digital art. Digital solutions. Community. Education.
-              </p>
-              <p>They are all part of the digital world I've been exploring for years.</p>
-              <p className="text-primary font-semibold text-lg sm:text-xl">
-                That's where W3C Digital Network comes in.
-              </p>
-              <p>
-                W3C stands for Web3 Currency.
-              </p>
-              <p className="text-muted-foreground">
-                The name came from my connection with Web3 and cryptocurrency, which have been a major part of my journey and the work I've done over the years.
-              </p>
-              <p>
-                The "Digital Network" represents the broader direction W3C has grown into.
-              </p>
-              <p className="text-muted-foreground">
-                Today, W3C brings together the different digital services, products, communities and experiments that I build and work on.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* SECTION 8: How I Think About My Work */}
-      <section className="py-20 md:py-28 bg-zinc-950 border-b border-white/[0.08]">
-        <div className="site-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
-              How I Think About My Work
-            </h2>
-            <div className="space-y-6 text-base sm:text-lg text-white/95 leading-relaxed pt-4">
-              <p>I've never been someone who enjoys doing only one thing for a very long time.</p>
-              <p>I get curious.</p>
-              <p>I learn something.</p>
-              <p>I apply it.</p>
-              <p>I build with it.</p>
-              <p>Then I start wondering what else I can do.</p>
-              <p className="text-primary font-semibold text-lg sm:text-xl border-l-2 border-primary pl-4 py-1">
-                Sometimes that means moving into something completely new. Other times, it means expanding into something connected to what I'm already doing.
-              </p>
-              <p>
-                I've learned that I don't necessarily need to fight that part of myself.
-              </p>
-              <p className="text-muted-foreground">
-                I just need to make sure the things I'm learning and building are useful.
-              </p>
-              <p className="text-white font-semibold">That's how I continue to grow.</p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* SECTION 9: What W3C Is Today */}
-      <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
-        <div className="site-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12 md:mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
-              What W3C Is Today
-            </h2>
-            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto leading-relaxed">
-              W3C Digital Network currently brings together several areas of work:
+            <p className="text-base sm:text-lg text-muted-foreground mt-5 leading-relaxed">
+              W3C brings together several areas of work, connected by a shared focus on useful digital experiences.
             </p>
           </motion.div>
 
@@ -433,7 +216,7 @@ export default function About() {
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+                  transition={{ duration: 0.5, delay: idx * 0.06 }}
                 >
                   <GlassCard className="p-6 h-full border-white/10 bg-white/[0.015] hover:border-primary/20 transition-all">
                     <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-5">
@@ -446,67 +229,10 @@ export default function About() {
               );
             })}
           </div>
-
-          <div className="mt-10 max-w-3xl mx-auto text-center">
-            <p className="text-white font-semibold text-lg sm:text-xl">
-              These areas may look different, but they come from the same place:
-            </p>
-            <p className="mt-3 text-primary font-semibold text-lg sm:text-xl">
-              Curiosity, creativity, technology and a desire to create something useful.
-            </p>
-          </div>
         </div>
       </section>
 
-      {/* SECTION 10: How I Work */}
-      <section className="py-20 md:py-28 bg-zinc-950 border-b border-white/[0.08]">
-        <div className="site-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
-              How I Work
-            </h2>
-            <div className="space-y-6 text-base sm:text-lg text-white/95 leading-relaxed pt-4">
-              <p className="text-primary font-semibold text-lg sm:text-xl">
-                I prefer to keep things simple.
-              </p>
-              <p>
-                When you come to W3C, you are not being passed from one department to another.
-              </p>
-              <p>You can talk directly with me.</p>
-              <p>We start with a conversation.</p>
-              <p>
-                I try to understand what you actually need before deciding what solution makes sense.
-              </p>
-              <div className="grid sm:grid-cols-2 gap-4 py-2">
-                {[
-                  "Sometimes that solution is a website.",
-                  "Sometimes it's a digital product.",
-                  "Sometimes it's a crypto transaction.",
-                  "Sometimes it's advice.",
-                ].map((item) => (
-                  <div key={item} className="p-5 rounded-xl border border-white/5 bg-black/40">
-                    <p className="text-white font-medium text-sm sm:text-base">{item}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="text-muted-foreground">
-                And sometimes, the best thing I can tell you is that you don't need to spend money on something.
-              </p>
-              <p className="border-l-2 border-primary pl-4 py-1 text-primary font-semibold text-lg sm:text-xl">
-                The goal is not to sell you everything I can do. The goal is to find what actually makes sense for you.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* SECTION 11: What I Believe */}
+      {/* Approach and principles */}
       <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
         <div className="site-container">
           <motion.div
@@ -514,11 +240,20 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12 md:mb-16"
+            className="max-w-4xl mx-auto mb-12"
           >
+            <span className="text-xs uppercase tracking-[0.18em] font-mono font-semibold text-primary block mb-5">
+              THE APPROACH
+            </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
-              What I Believe
+              Useful work. Clear communication. Trust.
             </h2>
+            <p className="mt-7 text-base sm:text-lg text-white/80 leading-relaxed max-w-3xl">
+              I believe good digital work should serve a real purpose. That means understanding the problem before recommending a solution, communicating clearly, being transparent about what is possible and treating every interaction with respect.
+            </p>
+            <p className="mt-5 text-base sm:text-lg text-white/80 leading-relaxed max-w-3xl">
+              Whether it involves a digital project or a crypto transaction, trust should never be an afterthought.
+            </p>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 gap-5">
@@ -530,7 +265,7 @@ export default function About() {
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+                  transition={{ duration: 0.5, delay: idx * 0.06 }}
                 >
                   <GlassCard className="p-7 h-full border-white/10 bg-white/[0.015] hover:border-primary/20 transition-all">
                     <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-5">
@@ -546,93 +281,38 @@ export default function About() {
         </div>
       </section>
 
-      {/* SECTION 12: W3C Is Still Growing */}
-      <section className="py-20 md:py-28 bg-zinc-950 border-b border-white/[0.08]">
+      {/* Looking ahead */}
+      <section className="py-20 md:py-24 bg-zinc-950 border-b border-white/[0.08]">
         <div className="site-container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="max-w-4xl mx-auto"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
-              W3C Is Still Growing
+            <span className="text-xs uppercase tracking-[0.18em] font-mono font-semibold text-primary block mb-5">
+              LOOKING AHEAD
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight mb-8">
+              Building with purpose.
             </h2>
-            <div className="space-y-6 text-base sm:text-lg text-white/95 leading-relaxed pt-4">
-              <p>W3C is not a finished story.</p>
-              <p>I'm still learning.</p>
-              <p>I'm still experimenting.</p>
-              <p>I'm still building.</p>
-              <p className="text-muted-foreground">
-                Some ideas will work. Some won't.
-              </p>
-              <p className="text-muted-foreground">
-                Some things will stay. Others will change.
-              </p>
-              <p className="text-primary font-semibold text-lg sm:text-xl border-l-2 border-primary pl-4 py-1">
-                That's part of the journey.
+            <div className="space-y-5 text-base sm:text-lg text-white/80 leading-relaxed max-w-3xl">
+              <p>
+                W3C is an evolving network. The focus is on strengthening what already works, developing useful digital products, expanding services and building meaningful connections.
               </p>
               <p>
-                The goal isn't to become the biggest company.
-              </p>
-              <p className="text-white font-semibold text-lg sm:text-xl">
-                It's to keep building something useful, trustworthy and genuinely valuable to the people who interact with it.
+                The direction is growth, but not growth for its own sake. The priority is to build things that people can use, understand and trust.
               </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* SECTION 13: A Note From JAKE */}
-      <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
-        <div className="site-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
-              A Note From JAKE
-            </h2>
-            <div className="space-y-6 text-base sm:text-lg text-white/95 leading-relaxed pt-4">
-              <p>
-                If you've been around W3C for a while, you've probably noticed that I do many different things.
-              </p>
-              <p>
-                You might see me talking about crypto today, building an application tomorrow, discussing AI another day, and then working on a website or helping someone with a digital problem.
-              </p>
-              <p className="text-primary font-semibold text-lg sm:text-xl">
-                That's not a new phase I'm going through. That's simply how I've always been.
-              </p>
-              <p>
-                I've never been interested in putting myself into one box.
-              </p>
-              <p>
-                I'm curious about many things, and I enjoy learning how things work and finding ways to create with them.
-              </p>
-              <p className="text-muted-foreground">
-                W3C is simply the place where many of those interests have come together.
-              </p>
-              <p>And I'm still figuring out where it all leads.</p>
-              <p>But I'm enjoying the process.</p>
-              <p className="text-white font-display font-bold text-xl sm:text-2xl">
-                This is W3C Digital Network.
-              </p>
-              <p className="text-primary font-display font-bold text-xl sm:text-2xl">
-                And I'm JAKE.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* FINAL SECTION: Start a Conversation */}
-      <section className="py-24 md:py-32 relative overflow-hidden bg-zinc-950">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      {/* Contact */}
+      <section className="py-24 md:py-32 relative overflow-hidden bg-black">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/5 rounded-full blur-[120px]" />
         </div>
 
         <div className="site-container relative z-10 text-center">
@@ -643,20 +323,18 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="rounded-[2.5rem] border border-white/[0.08] bg-white/[0.01] backdrop-blur-sm px-6 py-14 sm:px-16 sm:py-16"
           >
+            <span className="text-xs uppercase tracking-[0.18em] font-mono font-semibold text-primary block mb-5">
+              GET IN TOUCH
+            </span>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-6 tracking-tight">
-              Let's Start With a Conversation
+              Let's make something useful.
             </h2>
-            <div className="space-y-6 text-base sm:text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-              <p>
-                Whether you need a website, want to complete a crypto transaction, have questions about Web3, or simply need help thinking through a digital problem, you can start by talking to me.
-              </p>
-              <p>
-                There is no need to know exactly what service you need before reaching out. We can start with the problem and work from there.
-              </p>
-              <p className="text-white font-medium">
-                Talk directly with JAKE and let's see what makes sense for you.
-              </p>
-            </div>
+            <p className="text-base sm:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
+              If you have a project, need a digital solution, want to explore a partnership or simply have an idea worth discussing, I'm open to a conversation.
+            </p>
+            <p className="text-white font-semibold text-lg mb-10">
+              {branding.founderName} · Founder, {branding.businessName}
+            </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <a
