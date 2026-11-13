@@ -550,10 +550,7 @@ export default function Home() {
                   style={{ scrollbarWidth: "none" }}
                 >
                   {carouselReviews.map((review, idx) => {
-                    const reviewText = [review.title, review.body].filter(Boolean).join(" — ");
-                    const reviewDate = review.createdAt
-                      ? new Date(review.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
-                      : null;
+                    const reviewText = review.body || "";
                     return (
                       <MotionGlassCard
                         key={`${review.id}-${idx}`}
@@ -570,7 +567,6 @@ export default function Home() {
                         <div className="border-t border-white/[0.06] pt-4 flex items-center justify-between gap-3">
                           <div className="min-w-0">
                             <p className="text-sm font-bold text-white leading-none mb-1">{review.author || "Customer"}</p>
-                            <p className="text-[11px] text-muted-foreground">{reviewDate ? `Customer review · ${reviewDate}` : "Customer review"}</p>
                           </div>
                           <a href={review.url || reviewsProfileUrl} target="_blank" rel="noopener noreferrer" className="shrink-0 inline-flex items-center px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-mono font-medium text-primary hover:bg-primary/20 transition-colors">
                             TheReviews ↗
@@ -591,10 +587,7 @@ export default function Home() {
 
               <div className="hidden md:grid md:grid-cols-3 gap-6">
                 {reviews.map((review, idx) => {
-                  const reviewText = [review.title, review.body].filter(Boolean).join(" — ");
-                  const reviewDate = review.createdAt
-                    ? new Date(review.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
-                    : null;
+                  const reviewText = review.body || "";
                   return (
                     <MotionGlassCard
                       key={review.id}
@@ -615,7 +608,6 @@ export default function Home() {
                       <div className="border-t border-white/[0.06] pt-4 flex items-center justify-between gap-3">
                         <div className="min-w-0">
                           <p className="text-sm font-bold text-white leading-none mb-1">{review.author || "Customer"}</p>
-                          <p className="text-[11px] text-muted-foreground">{reviewDate ? `Customer review · ${reviewDate}` : "Customer review"}</p>
                         </div>
                         <a href={review.url || reviewsProfileUrl} target="_blank" rel="noopener noreferrer" className="shrink-0 inline-flex items-center px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-mono font-medium text-primary hover:bg-primary/20 transition-colors">
                           TheReviews ↗
