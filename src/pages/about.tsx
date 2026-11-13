@@ -108,7 +108,6 @@ export default function About() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80" />
-          <div className="absolute inset-0 bg-grid-fade" aria-hidden="true" />
         </div>
 
         <div className="site-container relative z-10 text-center">
