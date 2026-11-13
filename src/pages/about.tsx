@@ -116,8 +116,8 @@ export default function About() {
   return (
     <PageTransition>
       <SEO
-        title={`Meet ${branding.founderName} | ${branding.businessName}`}
-        description={`Meet ${branding.founderName}, the founder of ${branding.businessName}. Discover the vision, work and principles behind the network.`}
+        title="Meet JAKE | Founder of W3C Digital Network"
+        description="Meet JAKE, founder of W3C Digital Network. Explore the vision, work and principles behind its crypto P2P services, digital solutions, website development and Web3 community."
         path="/about"
         schema={aboutSchema}
       />
