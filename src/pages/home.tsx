@@ -3,7 +3,7 @@ import { PageTransition } from "@/components/shared/page-transition";
 import { ServiceCard } from "@/components/shared/service-card";
 import { GlassCard, MotionGlassCard } from "@/components/shared/glass-card";
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion, useInView } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import { ArrowRight, ChevronRight, ChevronLeft, ChevronDown, Globe, Headset, Shield, ShieldCheck, Users, Wallet, Mail, MessageCircle, Terminal, Send, MessageSquare, HelpCircle, CheckCircle2, TrendingUp, Compass, BookOpen, Clock, ArrowLeftRight, Ribbon, BriefcaseBusiness } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
@@ -44,6 +44,35 @@ const getProjectImage = (id: string) => {
 };
 
 
+function AnimatedMetricValue({ value }: { value: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.7 });
+  const reducedMotion = useReducedMotion();
+  const numericText = value.match(/[0-9][0-9,.]*/)?.[0];
+  const numericValue = numericText ? Number(numericText.replace(/,/g, "")) : NaN;
+  const prefix = numericText ? value.slice(0, value.indexOf(numericText)) : "";
+  const suffix = numericText ? value.slice(value.indexOf(numericText) + numericText.length) : "";
+  const decimals = numericText?.split(".")[1]?.length ?? 0;
+  const [display, setDisplay] = useState(value);
+  useEffect(() => {
+    if (!inView || !Number.isFinite(numericValue)) return;
+    if (reducedMotion) { setDisplay(value); return; }
+    const start = performance.now();
+    const duration = 1500;
+    let frame = 0;
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      const current = numericValue * eased;
+      const formatted = current.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+      setDisplay(prefix + formatted + suffix);
+      if (progress < 1) frame = window.requestAnimationFrame(tick);
+    };
+    frame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frame);
+  }, [inView, numericValue, reducedMotion, value, prefix, suffix, decimals]);
+  return <span ref={ref}>{display}</span>;
+}
 export default function Home() {
   const { totalTrades, totalVolumeFormatted, avgMonthlyVolumeFormatted, lastTradeDate } = useLiveMetrics();
   const prefersReducedMotion = useReducedMotion();
@@ -414,7 +443,7 @@ export default function Home() {
                       <Icon className="w-5 h-5 md:w-6 md:h-6" />
                     </div>
                     <div className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-none">
-                      {sc.value}
+                      <AnimatedMetricValue value={sc.value} />
                     </div>
                     <span className="text-[10px] md:text-xs font-mono uppercase text-muted-foreground tracking-wider block mt-3">{sc.label}</span>
                     {sc.subValue && (
