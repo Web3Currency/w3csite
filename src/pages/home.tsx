@@ -425,23 +425,7 @@ export default function Home() {
             })}
           </div>
 
-          <div className="mt-8 flex justify-center">
-            <a
-              href="https://thereviews.net/review/web3currency.online?utm_source=homepage-metrics"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-lg transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-              aria-label="Read W3C Digital Network customer reviews on TheReviews"
-            >
-              <img
-                src="https://thereviews.net/api/badge/web3currency.online.svg?theme=dark"
-                alt="W3C Digital Network customer rating on TheReviews"
-                height="44"
-                className="h-11 w-auto"
-                loading="lazy"
-              />
-            </a>
-          </div>
+
         </div>
       </section>
 
@@ -536,14 +520,23 @@ export default function Home() {
           >
             <h2 className="text-4xl font-display font-bold text-white mb-4 tracking-tight">What People Say</h2>
             <p className="text-sm text-muted-foreground mb-5">Published customer reviews from TheReviews.</p>
-            <a
-              href={reviewsProfileUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-primary hover:text-white transition-colors"
-            >
-              View all reviews on TheReviews <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+            <div className="flex justify-center">
+              <a
+                href="https://thereviews.net/review/web3currency.online?utm_source=homepage-testimonials"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-lg transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                aria-label="Read W3C Digital Network customer reviews on TheReviews"
+              >
+                <img
+                  src="https://thereviews.net/api/badge/web3currency.online.svg?theme=dark"
+                  alt="W3C Digital Network customer rating on TheReviews"
+                  height="44"
+                  className="h-11 w-auto"
+                  loading="lazy"
+                />
+              </a>
+            </div>
           </motion.div>
 
           {reviewsLoading ? (
