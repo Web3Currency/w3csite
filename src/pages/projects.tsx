@@ -486,23 +486,6 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Looking Ahead Section */}
-      <section className="py-20 md:py-24 bg-zinc-950 border-t border-white/[0.08]">
-        <div className="site-container text-center space-y-6">
-          <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
-            More Projects Are On The Way
-          </h2>
-          <div className="max-w-2xl mx-auto space-y-4">
-            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-              This portfolio is only the beginning.
-            </p>
-            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-              As I continue working with businesses, founders, and the W3C community, new projects and case studies will be published here. Every completed project represents another opportunity to learn, improve, and create something valuable.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Final Web Development CTA */}
       <section className="py-20 md:py-28 bg-black border-t border-white/[0.08]">
         <div className="site-container text-center space-y-8">
