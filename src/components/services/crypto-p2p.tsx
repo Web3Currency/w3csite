@@ -461,7 +461,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
       <section className="py-16 md:py-20 bg-black border-t border-white/[0.08]">
         <div className="container max-w-4xl mx-auto px-6">
           <div className="text-center">
-            <h2 className="text-2xl sm:text-3xl font-display font-bold text-white">
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-purple-400">
               Not ready to buy or sell crypto yet?
             </h2>
             <p className="text-base sm:text-lg leading-relaxed text-white/80 max-w-2xl mx-auto mt-5">
@@ -470,7 +470,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
             <button
               type="button"
               onClick={() => onNavigateToTab("community")}
-              className={"mt-8 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-bold text-sm " + brand.twText + " " + brand.twBorder + " border hover:brightness-125 transition-all"}
+              className="mt-8 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-bold text-sm text-purple-400 border-purple-500 border hover:brightness-125 transition-all"
             >
               Learn with W3C Community <ArrowRight className="w-4 h-4" />
             </button>
