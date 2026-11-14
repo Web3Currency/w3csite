@@ -274,19 +274,13 @@ export default function LedgerPage() {
         {/* Central Stage Wrapper */}
         <div className="site-container relative z-10 flex flex-col min-h-[75vh]">
           <div className="space-y-8">
-            <header className="space-y-2 text-center sm:text-left">
-              <h1 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
-                W3C DESK Ledger
-              </h1>
-            </header>
-
             {/* Total Volume Card */}
-            <GlassCard className="p-8 relative overflow-hidden bg-gradient-to-br from-[#0A0A0A] to-[#0F0F0F] border border-white/5 shadow-2xl">
-              <div className="flex justify-between items-start mb-4">
-                <TerminalText className="text-purple-500 font-bold">Total Volume Traded</TerminalText>
+            <GlassCard className="p-8 relative overflow-hidden bg-gradient-to-br from-[#0A0A0A] to-[#0F0F0F] border border-white/5 shadow-2xl text-center">
+              <div className="mb-4 text-center">
+                <TerminalText className="text-white/30 font-bold">W3C DESK 2026 Total Volume</TerminalText>
               </div>
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl sm:text-5xl font-bold tracking-tighter text-white">
+              <div className="flex items-baseline justify-center gap-2">
+                <span className="text-4xl sm:text-5xl font-bold tracking-tighter text-[#BF00FF]">
                   ₦{(stats.allTimeVolume || 0).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                 </span>
                 <TerminalText className="text-purple-500">NGN</TerminalText>
