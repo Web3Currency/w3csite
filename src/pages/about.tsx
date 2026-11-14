@@ -319,19 +319,13 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-[2.5rem] border border-white/[0.08] bg-white/[0.01] backdrop-blur-sm px-6 py-14 sm:px-16 sm:py-16"
+            className="max-w-4xl mx-auto"
           >
-            <span className="text-xs uppercase tracking-[0.18em] font-mono font-semibold text-primary block mb-5">
-              GET IN TOUCH
-            </span>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-6 tracking-tight">
               Let's make something useful.
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
               If you have a project, need a digital solution, want to explore a partnership or simply have an idea worth discussing, I'm open to a conversation.
-            </p>
-            <p className="text-white font-semibold text-lg mb-10">
-              {branding.founderName} · Founder, {branding.businessName}
             </p>
 
             <div className="flex justify-center">
