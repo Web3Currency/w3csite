@@ -3,7 +3,7 @@ import { PageTransition } from "@/components/shared/page-transition";
 import { ServiceCard } from "@/components/shared/service-card";
 import { GlassCard, MotionGlassCard } from "@/components/shared/glass-card";
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import { ArrowRight, ChevronRight, ChevronLeft, ChevronDown, Globe, Headset, Shield, ShieldCheck, Users, Wallet, Mail, MessageCircle, Terminal, Send, MessageSquare, HelpCircle, CheckCircle2, TrendingUp, Compass, BookOpen, Clock, ArrowLeftRight, Ribbon, BriefcaseBusiness } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
@@ -46,6 +46,7 @@ const getProjectImage = (id: string) => {
 
 export default function Home() {
   const { totalTrades, totalVolumeFormatted, avgMonthlyVolumeFormatted, lastTradeDate } = useLiveMetrics();
+  const prefersReducedMotion = useReducedMotion();
 
   const testimonialsScrollRef = useRef<HTMLDivElement>(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -390,11 +391,11 @@ export default function Home() {
       {/* By the Numbers */}
       <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
         <div className="site-container">
-          <div className="text-center mb-16">
+          <motion.div className="text-center mb-16" initial={prefersReducedMotion ? false : { opacity: 0, y: 34 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.6 }} transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
               By the Numbers
             </h2>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {[
@@ -407,7 +408,7 @@ export default function Home() {
             ].map((sc) => {
               const Icon = sc.icon;
               return (
-                <div key={sc.label}>
+                <motion.div key={sc.label} initial={prefersReducedMotion ? false : { opacity: 0, y: 42, scale: 0.96 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.7, delay: (["Total Transaction Volume", "Trades Completed", "Community Members", "Protocol Explored", "People Supported", "Year Founded"].indexOf(sc.label) % 3) * 0.12, ease: [0.22, 1, 0.36, 1] }}>
                   <GlassCard className="p-6 md:p-8 h-full flex flex-col items-center justify-center text-center border-white/5 bg-white/[0.015] hover:border-primary/10 transition-colors">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
                       <Icon className="w-5 h-5 md:w-6 md:h-6" />
