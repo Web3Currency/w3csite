@@ -301,7 +301,12 @@ export default function Home() {
       </section>
 
       {/* Services Grid (Four Pillars) */}
-      <section className="py-20 md:py-24 bg-black relative">
+      <section className="py-20 md:py-24 bg-black relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute inset-0 bg-grid-fade opacity-35" />
+          <div className="absolute -top-32 -left-24 w-[520px] h-[520px] rounded-full bg-primary/[0.07] blur-[130px]" />
+          <div className="absolute -bottom-40 -right-24 w-[560px] h-[560px] rounded-full bg-cyan-400/[0.035] blur-[140px]" />
+        </div>
         <div className="site-container relative z-10">
           <div className="max-w-2xl mx-auto mb-14 md:mb-16 text-center">
             <h2 className="text-3xl sm:text-4xl md:text-[2.5rem] font-display font-bold text-white mb-4 tracking-tight">{features.title}</h2>
@@ -398,8 +403,13 @@ export default function Home() {
       </section>
 
       {/* By the Numbers */}
-      <section className="py-20 md:py-28 bg-black border-b border-white/[0.08]">
-        <div className="site-container">
+      <section className="py-20 md:py-28 bg-black border-b border-white/[0.08] relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute inset-0 bg-grid-fade opacity-45" />
+          <div className="absolute inset-0" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)", backgroundSize: "72px 72px", maskImage: "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)" }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[760px] h-[420px] rounded-full bg-primary/[0.055] blur-[140px]" />
+        </div>
+        <div className="site-container relative z-10">
           <motion.div className="text-center mb-16" initial={prefersReducedMotion ? false : { opacity: 0, y: 34 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.6 }} transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
               By the Numbers
@@ -446,8 +456,13 @@ export default function Home() {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-20 bg-black">
-        <div className="site-container">
+      <section className="py-20 bg-black relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.17) 1px, transparent 1px)", backgroundSize: "26px 26px", maskImage: "radial-gradient(ellipse at center, black 12%, transparent 78%)" }} />
+          <div className="absolute -top-40 -right-24 w-[560px] h-[560px] rounded-full bg-primary/[0.055] blur-[145px]" />
+          <div className="absolute -bottom-48 -left-24 w-[520px] h-[520px] rounded-full bg-blue-400/[0.035] blur-[145px]" />
+        </div>
+        <div className="site-container relative z-10">
           <motion.div className="text-center max-w-2xl mx-auto mb-12" initial={prefersReducedMotion ? false : { opacity: 0, y: 34 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.6 }} transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}>
             <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mb-4 tracking-tight">{projectsTeaser.title}</h2>
           </motion.div>
@@ -527,6 +542,13 @@ export default function Home() {
 
       {/* Live TheReviews testimonials */}
       <section className="py-20 md:py-24 bg-black relative overflow-hidden border-t border-white/[0.08]">
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[780px] h-[780px] rounded-full border border-white/[0.045]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[590px] h-[590px] rounded-full border border-white/[0.04]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[390px] h-[390px] rounded-full border border-primary/[0.07]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(255,255,255,0.045),transparent_66%)]" />
+          <div className="absolute -bottom-48 right-[8%] w-[500px] h-[500px] rounded-full bg-primary/[0.045] blur-[140px]" />
+        </div>
         <div className="site-container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -652,8 +674,11 @@ export default function Home() {
 
       {/* Help Hub & FAQ Section */}
       <section id="homepage-faq-section" className="py-20 md:py-24 bg-black border-t border-white/[0.08] relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
+          <div className="absolute -top-12 right-[5%] text-[26rem] leading-none font-display font-black text-white/[0.018] select-none">?</div>
+          <div className="absolute bottom-8 left-[7%] text-[9rem] leading-none font-display font-black text-primary/[0.035] select-none">?</div>
+          <div className="absolute inset-0 bg-grid-fade opacity-15" />
         </div>
         <div className="site-container relative z-10">
           <motion.div className="text-center max-w-3xl mx-auto mb-12 md:mb-14" initial={prefersReducedMotion ? false : { opacity: 0, y: 38 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.55 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
@@ -779,8 +804,11 @@ export default function Home() {
 
       {/* Final Call-to-Action */}
       <section className="py-24 md:py-32 relative overflow-hidden bg-black">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute inset-0 bg-grid-fade opacity-20" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-primary/5 rounded-full blur-[140px]" />
+          <div className="absolute -top-36 -right-24 w-[520px] h-[520px] rounded-full border border-white/[0.035]" />
+          <div className="absolute -bottom-48 -left-24 w-[620px] h-[620px] rounded-full border border-primary/[0.045]" />
         </div>
         
         <div className="site-container relative z-10">
