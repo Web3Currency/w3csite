@@ -452,7 +452,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
         <div className="container max-w-4xl mx-auto px-6 flex justify-center">
           <a
             href="/ledger"
-            className="inline-flex items-center justify-center rounded-xl px-6 py-3 font-bold text-sm text-purple-400 border border-purple-500 hover:brightness-125 transition-all"
+            className="inline-flex items-center justify-center rounded-xl px-6 py-3 font-bold text-sm text-orange-400 border border-orange-500 hover:brightness-125 transition-all"
           >
             View Transaction Ledger
           </a>
