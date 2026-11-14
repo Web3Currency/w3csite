@@ -421,7 +421,7 @@ export default function Home() {
                       <div className="text-[10px] font-mono text-muted-foreground mt-1">{sc.subValue}</div>
                     )}
                   </GlassCard>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -433,18 +433,18 @@ export default function Home() {
       {/* Featured Projects */}
       <section className="py-20 bg-black">
         <div className="site-container">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <motion.div className="text-center max-w-2xl mx-auto mb-12" initial={prefersReducedMotion ? false : { opacity: 0, y: 34 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.6 }} transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}>
             <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mb-4 tracking-tight">{projectsTeaser.title}</h2>
-          </div>
+          </motion.div>
           
           <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {featuredProjects.map((project, i) => (
               <MotionGlassCard 
                 key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 48, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.8, delay: i * 0.18, ease: [0.22, 1, 0.36, 1] }}
                 className="p-4 group rounded-2xl border-white/[0.08] hover:border-white/[0.15] transition-all duration-300 bg-white/[0.01]"
               >
                 <div className="aspect-video rounded-2xl overflow-hidden mb-6 relative bg-zinc-950 border border-white/10 flex flex-col justify-between">
@@ -641,13 +641,13 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
         </div>
         <div className="site-container relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-14">
+          <motion.div className="text-center max-w-3xl mx-auto mb-12 md:mb-14" initial={prefersReducedMotion ? false : { opacity: 0, y: 38 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.55 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
               How can I help you today?
             </h2>
-          </div>
+          </motion.div>
           <div className="max-w-4xl mx-auto">
-            <div className="flex flex-wrap justify-center gap-2 mb-10">
+            <motion.div className="flex flex-wrap justify-center gap-2 mb-10" initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}>
               {[
                 { id: "about", label: "About" },
                 { id: "web-dev", label: "Web Design & Development" },
@@ -676,8 +676,8 @@ export default function Home() {
                   </button>
                 );
               })}
-            </div>
-            <div className="space-y-1">
+            </motion.div>
+            <motion.div className="space-y-1" initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.18 }} transition={{ duration: 0.75, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}>
               <AnimatePresence mode="popLayout">
                 {filteredFaqs.length > 0 ? (
                   filteredFaqs.map((faq, index) => {
@@ -757,7 +757,7 @@ export default function Home() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -769,7 +769,7 @@ export default function Home() {
         </div>
         
         <div className="site-container relative z-10">
-          <div className="relative rounded-[2.5rem] border border-white/[0.08] bg-white/[0.015] backdrop-blur-md px-8 py-12 md:p-16 overflow-hidden">
+          <motion.div className="relative rounded-[2.5rem] border border-white/[0.08] bg-white/[0.015] backdrop-blur-md px-8 py-12 md:p-16 overflow-hidden" initial={prefersReducedMotion ? false : { opacity: 0, y: 52, scale: 0.975 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white/[0.01] rounded-full blur-3xl pointer-events-none" />
 
             {/* Mobile Founder Consultation */}
@@ -819,7 +819,7 @@ export default function Home() {
               </div>
               
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </PageTransition>
