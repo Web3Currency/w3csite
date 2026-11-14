@@ -3,7 +3,7 @@ import { PageTransition } from "@/components/shared/page-transition";
 import { ServiceCard } from "@/components/shared/service-card";
 import { GlassCard, MotionGlassCard } from "@/components/shared/glass-card";
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import { ArrowRight, ChevronRight, ChevronLeft, ChevronDown, Globe, Headset, Shield, ShieldCheck, Users, Wallet, Mail, MessageCircle, Terminal, Send, MessageSquare, HelpCircle, CheckCircle2, TrendingUp, Compass, BookOpen, Clock, ArrowLeftRight, Ribbon, BriefcaseBusiness } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
@@ -44,35 +44,6 @@ const getProjectImage = (id: string) => {
 };
 
 
-function AnimatedMetricValue({ value }: { value: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.7 });
-  const reducedMotion = useReducedMotion();
-  const numericText = value.match(/[0-9][0-9,.]*/)?.[0];
-  const numericValue = numericText ? Number(numericText.replace(/,/g, "")) : NaN;
-  const prefix = numericText ? value.slice(0, value.indexOf(numericText)) : "";
-  const suffix = numericText ? value.slice(value.indexOf(numericText) + numericText.length) : "";
-  const decimals = numericText?.split(".")[1]?.length ?? 0;
-  const [display, setDisplay] = useState(value);
-  useEffect(() => {
-    if (!inView || !Number.isFinite(numericValue)) return;
-    if (reducedMotion) { setDisplay(value); return; }
-    const start = performance.now();
-    const duration = 1500;
-    let frame = 0;
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 4);
-      const current = numericValue * eased;
-      const formatted = current.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-      setDisplay(prefix + formatted + suffix);
-      if (progress < 1) frame = window.requestAnimationFrame(tick);
-    };
-    frame = window.requestAnimationFrame(tick);
-    return () => window.cancelAnimationFrame(frame);
-  }, [inView, numericValue, reducedMotion, value, prefix, suffix, decimals]);
-  return <span ref={ref}>{display}</span>;
-}
 export default function Home() {
   const { totalTrades, totalVolumeFormatted, avgMonthlyVolumeFormatted, lastTradeDate } = useLiveMetrics();
   const prefersReducedMotion = useReducedMotion();
@@ -437,13 +408,26 @@ export default function Home() {
             ].map((sc) => {
               const Icon = sc.icon;
               return (
-                <motion.div key={sc.label} initial={prefersReducedMotion ? false : { opacity: 0, y: 42, scale: 0.96 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.7, delay: (["Total Transaction Volume", "Trades Completed", "Community Members", "Protocol Explored", "People Supported", "Year Founded"].indexOf(sc.label) % 3) * 0.12, ease: [0.22, 1, 0.36, 1] }}>
+                <motion.div
+                  key={sc.label}
+                  initial={prefersReducedMotion ? false : [
+                    { opacity: 0, x: -110, y: -28, rotate: -5, scale: 0.9, filter: "blur(7px)" },
+                    { opacity: 0, x: 110, y: 28, rotate: 5, scale: 0.9, filter: "blur(7px)" },
+                    { opacity: 0, y: 110, rotate: 3, scale: 0.88, filter: "blur(7px)" },
+                    { opacity: 0, x: -95, y: 65, rotate: 4, scale: 0.9, filter: "blur(7px)" },
+                    { opacity: 0, x: 95, y: -65, rotate: -4, scale: 0.9, filter: "blur(7px)" },
+                    { opacity: 0, y: -110, rotate: -3, scale: 0.88, filter: "blur(7px)" }
+                  ][["Total Transaction Volume", "Trades Completed", "Community Members", "Protocol Explored", "People Supported", "Year Founded"].indexOf(sc.label)]}
+                  whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1, filter: "blur(0px)" }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 1.05, delay: (["Total Transaction Volume", "Trades Completed", "Community Members", "Protocol Explored", "People Supported", "Year Founded"].indexOf(sc.label) % 3) * 0.13, ease: [0.16, 1, 0.3, 1] }}
+                >
                   <GlassCard className="p-6 md:p-8 h-full flex flex-col items-center justify-center text-center border-white/5 bg-white/[0.015] hover:border-primary/10 transition-colors">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
                       <Icon className="w-5 h-5 md:w-6 md:h-6" />
                     </div>
                     <div className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-none">
-                      <AnimatedMetricValue value={sc.value} />
+                      {sc.value}
                     </div>
                     <span className="text-[10px] md:text-xs font-mono uppercase text-muted-foreground tracking-wider block mt-3">{sc.label}</span>
                     {sc.subValue && (
