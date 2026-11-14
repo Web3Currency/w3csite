@@ -405,7 +405,6 @@ export default function Home() {
       {/* By the Numbers */}
       <section className="py-20 md:py-28 bg-black border-b border-white/[0.08] relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute inset-0 bg-grid-fade opacity-45" />
           <div className="absolute inset-0" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)", backgroundSize: "72px 72px", maskImage: "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)" }} />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[760px] h-[420px] rounded-full bg-primary/[0.055] blur-[140px]" />
         </div>
