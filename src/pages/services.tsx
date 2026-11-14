@@ -10,7 +10,6 @@ import { branding } from "@/config/branding";
 import { contact } from "@/config/contact";
 import { trackContactClick } from "@/lib/analytics";
 import { FounderAvatar } from "@/components/shared/founder-avatar";
-import TheReviewsMini from "@/components/shared/thereviews-mini";
 import DigitalSolutions from "@/components/services/digital-consulting";
 import CryptoP2P from "@/components/services/crypto-p2p";
 import WebDevelopment from "@/components/services/web-development";
@@ -161,7 +160,7 @@ export default function Services() {
                 <p className="text-lg sm:text-xl text-white/90 leading-relaxed font-medium max-w-3xl mt-6">
                   I help individuals, creators, and businesses figure out what they need, improve what they already have, and turn digital ideas into practical solutions.
                 </p>
-                <TheReviewsMini />
+                
               </div>
             </section>
             <DigitalSolutions />
