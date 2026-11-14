@@ -265,7 +265,7 @@ export default function LedgerPage() {
         schema={ledgerSchema}
       />
       
-      <div className="min-h-screen bg-black text-white relative pt-24 pb-8">
+      <div className="min-h-screen bg-black text-white relative pt-20 pb-8">
         {/* Background Grid Accent */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <div className="absolute inset-0 bg-grid-fade opacity-30" />
