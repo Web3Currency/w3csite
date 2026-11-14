@@ -3,6 +3,7 @@ import { PageTransition } from "@/components/shared/page-transition";
 import { branding } from "@/config/branding";
 import { getServiceBrandColor } from "@/config/theme";
 import WebsiteQuestionnaire from "@/components/services/website-questionnaire";
+import TheReviewsMini from "@/components/shared/thereviews-mini";
 
 export default function WebDevelopment({ onNavigateToTab }: { onNavigateToTab: (tab: "consulting" | "desk" | "web" | "community" | "others") => void }) {
   const brand = getServiceBrandColor("Website Design & Development");
@@ -45,6 +46,7 @@ export default function WebDevelopment({ onNavigateToTab }: { onNavigateToTab: (
           <p className="text-lg sm:text-xl text-white/90 leading-relaxed font-medium max-w-3xl mt-6">
             Whether you need a new website, want to improve an existing one, or have an idea you want to turn into a website, let&apos;s start by figuring out what you need.
           </p>
+          <TheReviewsMini />
         </div>
       </section>
 
