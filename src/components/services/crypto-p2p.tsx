@@ -9,7 +9,6 @@ import { contact } from "@/config/contact";
 import { getServiceBrandColor } from "@/config/theme";
 import { trackContactClick, trackDeskEnquiry } from "@/lib/analytics";
 import { FounderAvatar } from "@/components/shared/founder-avatar";
-import TheReviewsMini from "@/components/shared/thereviews-mini";
 
 type AnswerMap = Record<string, string>;
 
@@ -306,7 +305,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
             Tell me what you want to buy or sell, how much, and where the crypto is coming from or going. I’ll use your answers to prepare a clear transaction request for WhatsApp.
           </p>
 
-          <TheReviewsMini />
+          
         </div>
       </section>
 
