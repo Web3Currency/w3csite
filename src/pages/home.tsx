@@ -433,7 +433,7 @@ export default function Home() {
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 1.05, delay: (["Total Transaction Volume", "Trades Completed", "Community Members", "Protocol Explored", "People Supported", "Year Founded"].indexOf(sc.label) % 3) * 0.13, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <GlassCard className="p-6 md:p-8 h-full flex flex-col items-center justify-center text-center border-white/5 bg-white/[0.015] hover:border-primary/10 transition-colors">
+                  <GlassCard className="relative h-full flex flex-col items-center justify-center text-center min-w-0 rounded-2xl bg-[#0A0A0A] border border-white/[0.06] p-8 backdrop-blur-none transition-all duration-300 hover:bg-[#0E0E0E] hover:border-white/[0.12]">
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
                       <Icon className="w-5 h-5 md:w-6 md:h-6" />
                     </div>
