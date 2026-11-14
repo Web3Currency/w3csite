@@ -449,12 +449,13 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
       </section>
 
       <section className="py-12 md:py-16 bg-black">
-        <div className="container max-w-4xl mx-auto px-6">
-          <div className="mt-8 max-w-3xl rounded-2xl border border-white/10 bg-white/[0.02] p-5 text-sm sm:text-base text-white/75 leading-relaxed">
-            <p><span className="font-semibold text-white">What W3C DESK is:</span> a direct peer-to-peer service for buying and selling supported crypto with W3C.</p>
-            <p className="mt-3"><span className="font-semibold text-white">What it is not:</span> an exchange, broker, investment platform, or managed trading service. W3C does not offer guaranteed returns or passive-income products.</p>
-            <p className="mt-3"><span className="font-semibold text-white">Customer assets:</span> W3C may temporarily receive fiat or crypto sent for a specific transaction so that transaction can be settled. W3C does not accept customer assets for investment, yield, or safekeeping.</p>
-          </div>
+        <div className="container max-w-4xl mx-auto px-6 flex justify-center">
+          <a
+            href="/ledger"
+            className="inline-flex items-center justify-center rounded-xl px-6 py-3 font-bold text-sm text-purple-400 border border-purple-500 hover:brightness-125 transition-all"
+          >
+            View Transaction Ledger
+          </a>
         </div>
       </section>
 
