@@ -159,7 +159,7 @@ export const servicesContent: ServicesContent = {
         body: "Listing your business on Google Search and Maps so local customers can easily find you."
       },
       {
-        iconName: "filepenline",
+        iconName: "imageupscale",
         title: "Professional Image & Document Improvement",
         body: "Refining CVs, profiles, upscaling images, and professional documents to help you present yourself clearly and confidently."
       }
