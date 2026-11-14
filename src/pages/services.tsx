@@ -455,7 +455,6 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="relative rounded-[2.5rem] border border-white/[0.08] bg-white/[0.015] backdrop-blur-sm px-6 py-14 sm:px-16 sm:py-16"
           >
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-8 tracking-tight">
               {cta.title}
@@ -463,20 +462,13 @@ export default function Services() {
             <p className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
               {cta.description}
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5">
+            <div className="flex justify-center">
               <Link
                 id="cta-contact-btn"
                 href="/contact"
                 className="w-full sm:w-auto glow-primary-hover inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-black font-bold text-lg active:scale-95 hover:bg-primary/95 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
-                Start the Conversation
-              </Link>
-              <Link
-                id="cta-projects-btn"
-                href="/projects"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-transparent border border-white/15 text-white font-semibold text-lg transition-all hover:bg-white/5 hover:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-              >
-                View Recent Work
+                Start a Conversation
               </Link>
             </div>
           </motion.div>
