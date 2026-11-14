@@ -269,25 +269,6 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* Independent customer feedback, kept close to the primary actions */}
-              <div className="mt-7 flex justify-center">
-                <a
-                  href="https://thereviews.net/review/web3currency.online?utm_source=homepage-badge"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-lg transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                  aria-label="Read W3C Digital Network customer reviews on TheReviews"
-                >
-                  <img
-                    src="https://thereviews.net/api/badge/web3currency.online.svg?theme=dark"
-                    alt="W3C Digital Network customer rating on TheReviews"
-                    height="44"
-                    className="h-11 w-auto"
-                    loading="lazy"
-                  />
-                </a>
-              </div>
-
               {/* Scroll Past Hero Button */}
               <motion.div
                 initial={{ opacity: 0 }}
@@ -442,6 +423,24 @@ export default function Home() {
                 </div>
               );
             })}
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <a
+              href="https://thereviews.net/review/web3currency.online?utm_source=homepage-metrics"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-lg transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              aria-label="Read W3C Digital Network customer reviews on TheReviews"
+            >
+              <img
+                src="https://thereviews.net/api/badge/web3currency.online.svg?theme=dark"
+                alt="W3C Digital Network customer rating on TheReviews"
+                height="44"
+                className="h-11 w-auto"
+                loading="lazy"
+              />
+            </a>
           </div>
         </div>
       </section>
