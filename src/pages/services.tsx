@@ -210,10 +210,7 @@ export default function Services() {
                 <span className="text-xs uppercase tracking-widest font-medium text-muted-foreground block mb-2">
                   {extras.title}
                 </span>
-                <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight mb-4">
-                  {extras.subtitle}
-                </h2>
-                <p className="text-muted-foreground max-w-2xl leading-relaxed">
+                <p className="text-lg sm:text-xl text-white/90 font-medium max-w-3xl leading-relaxed">
                   {extras.description}
                 </p>
               </motion.div>
