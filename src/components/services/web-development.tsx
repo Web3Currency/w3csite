@@ -52,6 +52,17 @@ export default function WebDevelopment({ onNavigateToTab }: { onNavigateToTab: (
 
       <WebsiteQuestionnaire />
 
+      <section className="py-12 md:py-16 bg-black">
+        <div className="container max-w-4xl mx-auto px-6 flex justify-center">
+          <a
+            href="/projects"
+            className="inline-flex items-center justify-center rounded-xl px-6 py-3 font-bold text-sm text-white/80 border border-white/20 hover:text-white hover:border-white/40 transition-all"
+          >
+            View Project
+          </a>
+        </div>
+      </section>
+
       <section className="py-16 md:py-20 bg-black border-t border-white/[0.08]">
         <div className="container max-w-4xl mx-auto px-6">
           <p className="text-base sm:text-lg leading-relaxed font-semibold text-white/90">
