@@ -11,7 +11,8 @@ import {
   Search,
   X,
   Terminal,
-  ArrowRightLeft
+  ArrowRightLeft,
+  ArrowRight
 } from 'lucide-react';
 
 // --- Types ---
