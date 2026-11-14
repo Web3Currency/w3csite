@@ -46,7 +46,6 @@ export interface ServicesContent {
   cores: ServiceListItem[];
   extras: {
     title: string;
-    subtitle: string;
     description: string;
     list: ExtraServiceItem[];
   };
@@ -130,7 +129,6 @@ export const servicesContent: ServicesContent = {
   ],
   extras: {
     title: "More Ways I Can Help",
-    subtitle: "Some projects naturally need a little more than the main service. If you need any of the following, I'm happy to help.",
     description: "These smaller services often come up naturally during our web design or Digital Solutions discussions. I can take care of them for you to save you time.",
     list: [
       {
