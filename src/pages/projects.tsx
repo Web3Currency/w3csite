@@ -503,35 +503,28 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Final Refined CTA */}
+      {/* Final Web Development CTA */}
       <section className="py-20 md:py-28 bg-black border-t border-white/[0.08]">
         <div className="site-container text-center space-y-8">
           <div className="space-y-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-yellow-400 leading-tight">
               Let's Build Something Useful Together
             </h2>
             <div className="space-y-2 max-w-xl mx-auto">
               <p className="text-white/80 text-sm sm:text-base">
-                Whether you need a modern website, digital guidance, or simply want to discuss an idea, I'm always open to a conversation.
+                Ready to build a website for your business, brand, or next idea? Tell us what you have in mind and let's shape it into something useful.
               </p>
               <p className="text-muted-foreground text-sm sm:text-base">
-                Every project starts with understanding your goals.
+                Start by sharing your project requirements.
               </p>
             </div>
           </div>
-          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <div className="pt-4 flex items-center justify-center">
             <Link
-              href="/contact"
-              className="glow-primary-hover inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-primary text-black font-bold text-sm hover:bg-primary/95 transition-all justify-center shadow-lg w-full sm:w-auto"
+              href="/services?tab=web"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-yellow-400 text-black font-bold text-sm hover:bg-yellow-300 transition-all justify-center shadow-lg w-full sm:w-auto"
             >
-              Start the Conversation
-              <ArrowRight className="w-4.5 h-4.5" />
-            </Link>
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-xl border border-white/10 bg-white/[0.02] text-white font-bold text-sm hover:bg-white/[0.05] transition-all justify-center w-full sm:w-auto"
-            >
-              Explore Services
+              Start Your Web Project
               <ArrowRight className="w-4.5 h-4.5" />
             </Link>
           </div>
