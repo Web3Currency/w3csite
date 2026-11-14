@@ -280,7 +280,7 @@ export default function LedgerPage() {
                 <TerminalText className="text-white/30 font-bold">W3C DESK 2026 Total Volume</TerminalText>
               </div>
               <div className="flex items-baseline justify-center gap-2">
-                <span className="text-4xl sm:text-5xl font-bold tracking-tighter text-[#BF00FF]">
+                <span className="text-4xl sm:text-5xl font-bold tracking-tighter text-white">
                   ₦{(stats.allTimeVolume || 0).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                 </span>
                 <TerminalText className="text-purple-500">NGN</TerminalText>
