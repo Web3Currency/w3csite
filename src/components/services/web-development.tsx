@@ -55,9 +55,9 @@ export default function WebDevelopment({ onNavigateToTab }: { onNavigateToTab: (
         <div className="container max-w-4xl mx-auto px-6 flex justify-center">
           <a
             href="/projects"
-            className="inline-flex items-center justify-center rounded-xl px-6 py-3 font-bold text-sm text-white/80 border border-white/20 hover:text-white hover:border-white/40 transition-all"
+            className="inline-flex items-center justify-center rounded-xl px-6 py-3 font-bold text-sm text-yellow-400 border border-yellow-400/70 hover:text-yellow-300 hover:border-yellow-300 transition-all"
           >
-            View Project
+            View Recent Projects
           </a>
         </div>
       </section>
