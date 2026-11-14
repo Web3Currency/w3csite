@@ -588,6 +588,28 @@ export default function LedgerPage() {
           </AnimatePresence>
         </div>
       </div>
+      {/* P2P Ledger CTA */}
+      <section className="py-20 md:py-24 bg-black border-t border-white/[0.08]">
+        <div className="container max-w-4xl mx-auto px-6 text-center space-y-7">
+          <div className="space-y-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-orange-400 leading-tight">
+              Ready to Make Your Move?
+            </h2>
+            <p className="text-white/80 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+              You have seen how W3C P2P transactions are carried out. When you are ready to buy or sell, submit your transaction request through W3C DESK and let us guide you through the process.
+            </p>
+          </div>
+          <div className="pt-2 flex justify-center">
+            <a
+              href="/services?tab=desk"
+              className="inline-flex items-center justify-center gap-3 rounded-xl px-8 py-4 bg-orange-500 text-black font-bold text-sm hover:bg-orange-400 transition-all shadow-lg w-full sm:w-auto"
+            >
+              Start a P2P Transaction
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </section>
     </PageTransition>
   );
 }
