@@ -276,6 +276,7 @@ export default function LedgerPage() {
           <div className="space-y-8">
             {/* Total Volume Card */}
             <GlassCard className="p-8 relative overflow-hidden bg-gradient-to-br from-[#0A0A0A] to-[#0F0F0F] border border-white/5 shadow-2xl text-center">
+              <h1 className="mb-5 text-sm sm:text-base font-semibold tracking-wide text-white/80 text-center">W3C DESK Transaction History</h1>
               <div className="mb-4 text-center">
                 <TerminalText className="text-white/30 font-bold">W3C DESK 2026 Total Volume</TerminalText>
               </div>
@@ -302,7 +303,7 @@ export default function LedgerPage() {
               <select 
                 value={analyticsPeriod}
                 onChange={(e) => setAnalyticsPeriod(e.target.value)}
-                className="rounded-xl px-4 py-2.5 text-xs font-mono font-bold outline-none transition-all border appearance-none pr-10 relative bg-[#0A0A0A] border-white/10 text-white/85 focus:border-purple-500/50 hover:bg-white/[0.08]"
+                className="px-0 py-2 pr-7 text-xs font-mono font-bold outline-none transition-colors border-0 appearance-none relative bg-transparent text-white/85 focus:text-white hover:text-white"
                 style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 0.75rem center', backgroundSize: '1rem' }}
               >
                 <option value="24H" className="bg-[#0A0A0A] text-white">24H Snapshot</option>
@@ -391,7 +392,7 @@ export default function LedgerPage() {
 
               {/* Search Bar */}
               <div className="relative group">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 group-focus-within:text-purple-500 transition-colors" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/45 group-focus-within:text-purple-500 transition-colors" />
                 <input
                   type="text"
                   placeholder="Search phone, asset or TX hash..."
