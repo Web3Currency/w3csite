@@ -44,6 +44,15 @@ const getProjectImage = (id: string) => {
 };
 
 
+const metricCardEntrances = [
+  { opacity: 0, x: -110, y: -28, rotate: -5, scale: 0.9, filter: "blur(7px)" },
+  { opacity: 0, x: 110, y: 28, rotate: 5, scale: 0.9, filter: "blur(7px)" },
+  { opacity: 0, y: 110, rotate: 3, scale: 0.88, filter: "blur(7px)" },
+  { opacity: 0, x: -95, y: 65, rotate: 4, scale: 0.9, filter: "blur(7px)" },
+  { opacity: 0, x: 95, y: -65, rotate: -4, scale: 0.9, filter: "blur(7px)" },
+  { opacity: 0, y: -110, rotate: -3, scale: 0.88, filter: "blur(7px)" },
+];
+
 export default function Home() {
   const { totalTrades, totalVolumeFormatted, avgMonthlyVolumeFormatted, lastTradeDate } = useLiveMetrics();
   const prefersReducedMotion = useReducedMotion();
@@ -405,19 +414,12 @@ export default function Home() {
               { label: "Protocol Explored", value: metrics.testnetsCompleted, icon: Compass },
               { label: "People Supported", value: metrics.clientsSupported, icon: Headset },
               { label: "Year Founded", value: metrics.activeSince, icon: Ribbon },
-            ].map((sc) => {
+            ].map((sc, index) => {
               const Icon = sc.icon;
               return (
                 <motion.div
                   key={sc.label}
-                  initial={prefersReducedMotion ? false : [
-                    { opacity: 0, x: -110, y: -28, rotate: -5, scale: 0.9, filter: "blur(7px)" },
-                    { opacity: 0, x: 110, y: 28, rotate: 5, scale: 0.9, filter: "blur(7px)" },
-                    { opacity: 0, y: 110, rotate: 3, scale: 0.88, filter: "blur(7px)" },
-                    { opacity: 0, x: -95, y: 65, rotate: 4, scale: 0.9, filter: "blur(7px)" },
-                    { opacity: 0, x: 95, y: -65, rotate: -4, scale: 0.9, filter: "blur(7px)" },
-                    { opacity: 0, y: -110, rotate: -3, scale: 0.88, filter: "blur(7px)" }
-                  ][["Total Transaction Volume", "Trades Completed", "Community Members", "Protocol Explored", "People Supported", "Year Founded"].indexOf(sc.label)]}
+                  initial={prefersReducedMotion ? false : metricCardEntrances[index]}
                   whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1, filter: "blur(0px)" }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 1.05, delay: (["Total Transaction Volume", "Trades Completed", "Community Members", "Protocol Explored", "People Supported", "Year Founded"].indexOf(sc.label) % 3) * 0.13, ease: [0.16, 1, 0.3, 1] }}
