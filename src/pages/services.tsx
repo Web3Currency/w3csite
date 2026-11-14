@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Building2, Globe, Mail, PenTool, MapPin, X, ChevronDown } from "lucide-react";
+import { ArrowRight, Building2, Globe, Mail, PenTool, MapPin, FilePenLine, X, ChevronDown } from "lucide-react";
 import { SiTelegram, SiWhatsapp } from "react-icons/si";
 import { Link } from "wouter";
 import { servicesContent } from "@/content/services";
@@ -45,7 +45,7 @@ export default function Services() {
     { title: "W3C DESK", description: "You choose whether you want to buy or sell crypto, select the asset, provide the amount and wallet type, add any note, review the request, and continue to WhatsApp." },
     { title: "Website Design & Development", description: "You describe what kind of website you need, what it is for, your main goal, your content situation, and when you want to start. Your answers can then be sent to JAKE by WhatsApp, Telegram, or email." },
     { title: "W3C Community", description: "You answer a short set of questions about your interests, experience, learning goals, connections, updates, opportunities, and the kind of help you need. Before joining, you review the community safety rules and then continue to WhatsApp." },
-    { title: "Other services", description: "You can also ask JAKE about CAC business name registration, domain and hosting, business email setup, logo and brand identity, Google Business Profile, or another digital task that is not listed. Choose the service, make an inquiry, and continue through WhatsApp or Telegram." },
+    { title: "Other services", description: "You can also ask JAKE about CAC business name registration, domain and hosting, business email setup, logo and brand identity, Google Business Profile, professional image and document improvement, or another digital task that is not listed. Choose the service, make an inquiry, and continue through WhatsApp or Telegram." },
   ];
   const [serviceGuideIndex, setServiceGuideIndex] = useState(0);
   const serviceGuideTimerRef = useRef<number | null>(null);
@@ -134,6 +134,8 @@ export default function Services() {
         return PenTool;
       case "globe":
         return Globe;
+      case "filepenline":
+        return FilePenLine;
       default:
         return MapPin;
     }
