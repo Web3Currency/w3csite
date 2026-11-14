@@ -3,7 +3,7 @@ import { PageTransition } from "@/components/shared/page-transition";
 import { motion } from "framer-motion";
 import { Newspaper } from "lucide-react";
 import { branding } from "@/config/branding";
-import { Link } from "react-router-dom";
+import { Link } from "wouter";
 
 export default function Blog() {
   return (
