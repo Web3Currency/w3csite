@@ -14,8 +14,6 @@ import {
   Compass,
   Globe,
 } from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
-import { contact } from "@/config/contact";
 import { branding } from "@/config/branding";
 
 export default function About() {
@@ -336,21 +334,12 @@ export default function About() {
               {branding.founderName} · Founder, {branding.businessName}
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-              <a
-                href={contact.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-black font-bold text-base sm:text-lg border border-primary/40 hover:border-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-              >
-                <SiWhatsapp className="w-5 h-5" />
-                Message on WhatsApp
-              </a>
+            <div className="flex justify-center">
               <Link
                 href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white/[0.03] text-white font-semibold text-base sm:text-lg border border-white/5 hover:border-white/10 hover:bg-white/[0.06] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-black font-bold text-base sm:text-lg border border-primary/40 hover:border-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
-                View Contact Options
+                Start a Conversation
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
