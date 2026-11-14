@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Building2, Globe, Mail, PenTool, MapPin, FilePenLine, X, ChevronDown } from "lucide-react";
+import { ArrowRight, Building2, Globe, Mail, PenTool, MapPin, ImageUpscale, X, ChevronDown } from "lucide-react";
 import { SiTelegram, SiWhatsapp } from "react-icons/si";
 import { Link } from "wouter";
 import { servicesContent } from "@/content/services";
@@ -134,7 +134,7 @@ export default function Services() {
         return PenTool;
       case "globe":
         return Globe;
-      case "filepenline":
+      case "imageupscale":
         return FilePenLine;
       default:
         return MapPin;
