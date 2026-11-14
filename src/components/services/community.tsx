@@ -8,6 +8,7 @@ import { contact } from "@/config/contact";
 import { getServiceBrandColor } from "@/config/theme";
 import { trackCommunityJoin } from "@/lib/analytics";
 import { FounderAvatar } from "@/components/shared/founder-avatar";
+import TheReviewsMini from "@/components/shared/thereviews-mini";
 
 type Answer = { question: string; answer: string };
 
@@ -210,6 +211,7 @@ export default function CommunityService() {
           <p className="text-lg sm:text-xl text-white/75 leading-relaxed max-w-3xl mt-6">
             A free WhatsApp community for practical learning, useful discussions, and people exploring the digital space together. No hype, no guaranteed returns, and no need to be an expert.
           </p>
+          <TheReviewsMini />
         </div>
       </section>
 
