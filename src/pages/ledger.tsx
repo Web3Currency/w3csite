@@ -274,9 +274,11 @@ export default function LedgerPage() {
         {/* Central Stage Wrapper */}
         <div className="site-container relative z-10 flex flex-col min-h-[75vh]">
           <div className="space-y-8">
+            {/* Page Title */}
+            <h1 className="mb-6 text-2xl sm:text-3xl font-semibold tracking-wide text-white/90 text-center">W3C DESK Transaction History</h1>
+
             {/* Total Volume Card */}
             <GlassCard className="p-8 relative overflow-hidden bg-gradient-to-br from-[#0A0A0A] to-[#0F0F0F] border border-white/5 shadow-2xl text-center">
-              <h1 className="mb-5 text-sm sm:text-base font-semibold tracking-wide text-white/80 text-center">W3C DESK Transaction History</h1>
               <div className="mb-4 text-center">
                 <TerminalText className="text-white/30 font-bold">W3C DESK 2026 Total Volume</TerminalText>
               </div>
@@ -392,13 +394,13 @@ export default function LedgerPage() {
 
               {/* Search Bar */}
               <div className="relative group">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/45 group-focus-within:text-purple-500 transition-colors" />
+                <Search aria-hidden="true" className="pointer-events-none absolute z-10 left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/75 group-focus-within:text-purple-400 transition-colors" />
                 <input
                   type="text"
                   placeholder="Search phone, asset or TX hash..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="glass-input w-full pl-11 pr-11 py-3.5 rounded-xl font-mono text-xs outline-none bg-[#050505] text-white border border-white/5 focus:border-purple-500/50 transition-all"
+                  className="glass-input w-full pl-12 pr-11 py-3.5 rounded-xl font-mono text-xs outline-none bg-[#050505] text-white border border-white/5 focus:border-purple-500/50 transition-all"
                 />
                 {searchTerm && (
                   <button
