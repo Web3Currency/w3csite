@@ -168,11 +168,8 @@ export default function Services() {
               <div className="container max-w-4xl mx-auto px-6">
                 <div className="text-center">
                   <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#22C55E]">
-                    Still wondering?
-                  </h2>
-                  <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mt-2">
                     Not sure if this is the right service?
-                  </h3>
+                  </h2>
                   <p className="text-base sm:text-lg leading-relaxed text-white/80 max-w-2xl mx-auto mt-5">
                     That&apos;s okay. Send me a message anyway. If Digital Solutions isn&apos;t the right fit, I&apos;ll point you to the service that is. Sometimes the best advice is simply knowing where to start.
                   </p>
