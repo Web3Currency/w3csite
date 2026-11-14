@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, RotateCcw } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
@@ -9,6 +9,7 @@ import { contact } from "@/config/contact";
 import { getServiceBrandColor } from "@/config/theme";
 import { trackContactClick, trackDeskEnquiry } from "@/lib/analytics";
 import { FounderAvatar } from "@/components/shared/founder-avatar";
+import TheReviewsMini from "@/components/shared/thereviews-mini";
 
 type AnswerMap = Record<string, string>;
 
@@ -90,21 +91,6 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
   const [step, setStep] = useState(0);
   const [complete, setComplete] = useState(false);
   const [confirming, setConfirming] = useState(false);
-
-  useEffect(() => {
-    const widgetContainer = document.getElementById("w3c-desk-thereviews-mini");
-    if (!widgetContainer) return;
-
-    const script = document.createElement("script");
-    script.src = "https://thereviews.net/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      script.remove();
-      widgetContainer.innerHTML = '<a href="https://thereviews.net/review/web3currency.online">Read our reviews on TheReviews.net</a>';
-    };
-  }, []);
 
   const questions = useMemo(() => {
     const amountQuestion: Question = {
@@ -320,18 +306,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
             Tell me what you want to buy or sell, how much, and where the crypto is coming from or going. I’ll use your answers to prepare a clear transaction request for WhatsApp.
           </p>
 
-          <div className="mt-8 inline-flex max-w-full items-center rounded-xl border border-white/10 bg-white/[0.025] px-4 py-3">
-            <div
-              id="w3c-desk-thereviews-mini"
-              className="thereviews-widget"
-              data-business="web3currency.online"
-              data-variant="mini"
-              data-theme="dark"
-              data-mode="inline"
-            >
-              <a href="https://thereviews.net/review/web3currency.online">Read our reviews on TheReviews.net</a>
-            </div>
-          </div>
+          <TheReviewsMini />
         </div>
       </section>
 
