@@ -135,7 +135,7 @@ export default function Services() {
       case "globe":
         return Globe;
       case "imageupscale":
-        return FilePenLine;
+        return ImageUpscale;
       default:
         return MapPin;
     }
