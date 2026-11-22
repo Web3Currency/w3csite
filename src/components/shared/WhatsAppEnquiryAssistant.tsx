@@ -228,7 +228,7 @@ export function WhatsAppEnquiryAssistant({
                 </div>
 
                 <div className="w3c-wa-message-bubble relative max-w-[94%] rounded-2xl rounded-tl-sm border border-white/[0.07] bg-[#202027] px-3.5 py-3 text-[12px] leading-[1.7] text-white/80 shadow-sm">
-                  <p className="font-semibold text-white">Welcome to {businessName}.</p>
+                  <p className="font-semibold text-white">Welcome to W3C DESK.</p>
                   <p className="mt-1.5">{welcomeMessage}</p>
                 </div>
 
