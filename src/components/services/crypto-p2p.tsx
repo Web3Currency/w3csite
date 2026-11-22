@@ -604,7 +604,8 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
 
               {currentQuestion.id !== "amount" &&
                 currentQuestion.id !== "assetName" &&
-                currentQuestion.id !== "noteChoice" &&\n                currentQuestion.id !== "network" && (
+                currentQuestion.id !== "noteChoice" &&
+                currentQuestion.id !== "network" && (
                   <div className="grid gap-3 mt-8">
                     {currentQuestion.options.map((option) => {
                       const selected = currentAnswer === option;
