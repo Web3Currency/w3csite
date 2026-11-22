@@ -163,67 +163,39 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
       setMarketLoading(true);
       setMarketQuote(null);
       const asset = (answers.asset === "Other asset" ? answers.assetName : answers.asset || "").trim().toUpperCase();
-      const nairaTask = (async () => {
-        const response = await fetch("https://tlt.ng/api/v1/naira", { cache: "no-store" });
-        if (!response.ok) throw new Error("Naira rate request failed: " + response.status);
-        const json = await response.json();
-        const data = json?.data ?? json;
-        const buy = Number(data?.buy ?? data?.buy_rate ?? data?.usdt_ngn_buy ?? data?.p2p?.buy ?? data?.rates?.buy);
-        const sell = Number(data?.sell ?? data?.sell_rate ?? data?.usdt_ngn_sell ?? data?.p2p?.sell ?? data?.rates?.sell);
-        if (!(buy > 0) || !(sell > 0)) throw new Error("Naira rate response did not contain valid buy/sell values");
-        return { buy, sell, updated: json?.meta?.updated ?? data?.updated };
-      })();
-
-      const tokenTask = (async () => {
-        if (!asset || asset === "USDT" || asset === "OTHER ASSET") return { price: asset === "USDT" ? 1 : undefined, updated: undefined };
-        const response = await fetch(
-          "https://api.gateio.ws/api/v4/spot/tickers?currency_pair=" + encodeURIComponent(asset + "_USDT"),
-          { cache: "no-store" }
-        );
-        if (!response.ok) throw new Error("Asset price request failed: " + response.status);
-        const payload = await response.json();
-        const ticker = Array.isArray(payload) ? payload[0] : null;
-        const price = Number(ticker?.last);
-        if (!(price > 0)) throw new Error("No valid " + asset + "/USDT price was returned");
-        return {
-          price,
-          updated: ticker?.update_id ? new Date(Number(ticker.update_id) * 1000).toISOString() : undefined,
-        };
-      })();
-
-      const [nairaResult, tokenResult] = await Promise.allSettled([nairaTask, tokenTask]);
-      if (cancelled) return;
-
-      if (nairaResult.status === "rejected") {
-        console.error("[W3C DESK] Naira rate lookup failed:", nairaResult.reason);
-        setMarketQuote({ nairaBuy: 0, nairaSell: 0, error: "Rate currently unavailable" });
+      if (!asset || asset === "OTHER ASSET") {
         setMarketLoading(false);
         return;
       }
-
-      const naira = nairaResult.value;
-      const token = tokenResult.status === "fulfilled" ? tokenResult.value : null;
-      if (tokenResult.status === "rejected") {
-        console.warn("[W3C DESK] Asset price lookup failed:", tokenResult.reason);
+      try {
+        const response = await fetch("/api/w3c-desk-market?asset=" + encodeURIComponent(asset), {
+          cache: "no-store",
+          headers: { accept: "application/json" },
+        });
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload?.error || "Market lookup failed");
+        const nairaBuy = Number(payload?.nairaBuy);
+        const nairaSell = Number(payload?.nairaSell);
+        if (!(nairaBuy > 0) || !(nairaSell > 0)) throw new Error("Invalid market quote");
+        if (!cancelled) {
+          setMarketQuote({
+            nairaBuy: nairaBuy + 10,
+            nairaSell: Math.max(0, nairaSell - 10),
+            updated: payload?.updated,
+            tokenUsdt: asset === "USDT" ? 1 : Number(payload?.tokenUsdt) > 0 ? Number(payload.tokenUsdt) : undefined,
+            tokenError: asset !== "USDT" && (payload?.tokenError || !(Number(payload?.tokenUsdt) > 0))
+              ? "Asset price currently unavailable"
+              : undefined,
+          });
+        }
+      } catch (error) {
+        console.error("[W3C DESK] Market quote request failed:", error);
+        if (!cancelled) setMarketQuote({ nairaBuy: 0, nairaSell: 0, error: "Rate currently unavailable" });
+      } finally {
+        if (!cancelled) setMarketLoading(false);
       }
-
-      setMarketQuote({
-        nairaBuy: naira.buy + 10,
-        nairaSell: naira.sell - 10,
-        updated: naira.updated,
-        tokenUsdt: token?.price,
-        tokenUpdated: token?.updated,
-        tokenError: tokenResult.status === "rejected" ? "Asset price currently unavailable" : undefined,
-      });
-      setMarketLoading(false);
     };
-    loadMarket().catch((error) => {
-      if (!cancelled) {
-        console.error("[W3C DESK] Market quote loading failed:", error);
-        setMarketQuote({ nairaBuy: 0, nairaSell: 0, error: "Rate currently unavailable" });
-        setMarketLoading(false);
-      }
-    });
+    loadMarket();
     return () => { cancelled = true; };
   }, [answers.asset, answers.assetName]);
 
@@ -597,8 +569,8 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
 
               {currentQuestion.id === "network" && (
                 <div className="mt-8">
-                  {marketQuote?.error && <p className="mb-4 text-sm text-amber-300">Rate currently unavailable. W3C will confirm the latest rate with you on WhatsApp.</p>}
-                  {marketQuote && !marketQuote.error && marketQuote.tokenError && <p className="mb-4 text-sm text-amber-300">The live price for this asset is temporarily unavailable. W3C will confirm the latest rate with you on WhatsApp.</p>}
+                  
+                  
                   {marketQuote && !marketQuote.error && !marketQuote.tokenError && Number(answers.amount) > 0 && (() => {
                     const buying = answers.tradeType === "Buy crypto";
                     const unit = (answers.asset === "USDT" ? 1 : marketQuote.tokenUsdt || 0) * (buying ? marketQuote.nairaBuy : marketQuote.nairaSell);
