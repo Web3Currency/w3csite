@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, RotateCcw } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
@@ -11,6 +11,46 @@ import { trackContactClick, trackDeskEnquiry } from "@/lib/analytics";
 import { FounderAvatar } from "@/components/shared/founder-avatar";
 
 type AnswerMap = Record<string, string>;
+type MarketQuote = {
+  nairaBuy: number;
+  nairaSell: number;
+  updated?: string;
+  tokenUsdt?: number;
+  tokenUpdated?: string;
+  error?: string;
+};
+
+type GateNetwork = { label: string; chain: string; depositDisabled: boolean; withdrawDisabled: boolean };
+
+const money = (value: number, digits = 2) =>
+  new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: digits }).format(value);
+
+function parseGateNetworks(payload: any): GateNetwork[] {
+  const chains = Array.isArray(payload?.chains) ? payload.chains : [];
+  return chains.map((item: any) => {
+    const chain = String(item.chain || item.name || item.chain_name || "").trim();
+    return {
+      chain,
+      label: String(item.name || item.chain || item.chain_name || chain).trim(),
+      depositDisabled: Boolean(item.deposit_disabled ?? item.deposit_status === "disabled"),
+      withdrawDisabled: Boolean(item.withdraw_disabled ?? item.withdraw_status === "disabled"),
+    };
+  }).filter((item: GateNetwork) => item.chain);
+}
+
+const preferredNetworkOrder = ["TRON", "TRC20", "BSC", "BNB", "ETH", "ERC20", "POLYGON", "MATIC", "ARBITRUM", "SOL", "TON"];
+
+function rankNetworks(networks: GateNetwork[]) {
+  return [...networks].sort((a, b) => {
+    const rank = (value: string) => {
+      const upper = value.toUpperCase();
+      const index = preferredNetworkOrder.findIndex((item) => upper.includes(item));
+      return index < 0 ? 999 : index;
+    };
+    return rank(a.chain) - rank(b.chain);
+  });
+}
+
 
 type Question = {
   id: string;
@@ -86,6 +126,7 @@ function buildMessage(answers: AnswerMap) {
   return [
     "Hello W3C DESK, I’d like to " + action + " " + answers.amount + " " + asset + " through W3C DESK.",
     answers.network ? "Network: " + answers.network : "",
+    answers.indicativeTotal ? "Indicative estimate: " + answers.indicativeTotal : "",
     location,
     note ? "Additional note: " + note : "",
     "Please confirm the available rate and the next steps before I proceed.",
@@ -101,6 +142,93 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
   const [complete, setComplete] = useState(false);
   const [confirming, setConfirming] = useState(false);
   const [amountError, setAmountError] = useState("");
+  const [marketQuote, setMarketQuote] = useState<MarketQuote | null>(null);
+  const [marketLoading, setMarketLoading] = useState(false);
+  const [gateNetworks, setGateNetworks] = useState<GateNetwork[]>([]);
+  const [networkLoading, setNetworkLoading] = useState(false);
+  const [networkMessage, setNetworkMessage] = useState("");
+
+
+  useEffect(() => {
+    let cancelled = false;
+    const loadMarket = async () => {
+      setMarketLoading(true);
+      setMarketQuote(null);
+      try {
+        const nairaResponse = await fetch("https://tlt.ng/api/v1/naira", { cache: "no-store" });
+        if (!nairaResponse.ok) throw new Error("TLT rate is temporarily unavailable");
+        const nairaJson = await nairaResponse.json();
+        const naira = nairaJson?.data ?? nairaJson;
+        const buy = Number(naira.buy ?? naira.buy_rate ?? naira.usdt_ngn_buy);
+        const sell = Number(naira.sell ?? naira.sell_rate ?? naira.usdt_ngn_sell);
+        if (!(buy > 0) || !(sell > 0)) throw new Error("TLT returned an incomplete USDT/NGN quote");
+
+        let tokenUsdt = 1;
+        let tokenUpdated: string | undefined;
+        const asset = (answers.asset || "").toUpperCase();
+        if (asset && asset !== "USDT" && asset !== "OTHER ASSET") {
+          const tickerResponse = await fetch(
+            "https://api.gateio.ws/api/v4/spot/tickers?currency_pair=" + encodeURIComponent(asset + "_USDT"),
+            { cache: "no-store" }
+          );
+          if (!tickerResponse.ok) throw new Error("Gate.io market price is unavailable for " + asset);
+          const tickerJson = await tickerResponse.json();
+          const ticker = Array.isArray(tickerJson) ? tickerJson[0] : null;
+          tokenUsdt = Number(ticker?.last);
+          if (!(tokenUsdt > 0)) throw new Error("No active " + asset + "/USDT market was found on Gate.io");
+          tokenUpdated = ticker?.update_id ? new Date(Number(ticker.update_id) * 1000).toISOString() : undefined;
+        }
+        if (!cancelled) setMarketQuote({
+          nairaBuy: buy + 10,
+          nairaSell: sell - 10,
+          updated: nairaJson?.meta?.updated,
+          tokenUsdt,
+          tokenUpdated,
+        });
+      } catch (error) {
+        if (!cancelled) setMarketQuote({ nairaBuy: 0, nairaSell: 0, error: error instanceof Error ? error.message : "Unable to load live prices" });
+      } finally {
+        if (!cancelled) setMarketLoading(false);
+      }
+    };
+    loadMarket();
+    return () => { cancelled = true; };
+  }, [answers.asset]);
+
+  useEffect(() => {
+    let cancelled = false;
+    const loadNetworks = async () => {
+      const asset = (answers.asset || "").toUpperCase();
+      if (!asset || asset === "OTHER ASSET") {
+        setGateNetworks([]);
+        return;
+      }
+      setNetworkLoading(true);
+      setNetworkMessage("");
+      setGateNetworks([]);
+      try {
+        const response = await fetch(
+          "https://api.gateio.ws/api/v4/spot/currencies/" + encodeURIComponent(asset),
+          { cache: "no-store" }
+        );
+        if (!response.ok) throw new Error("Gate.io network information is unavailable for " + asset);
+        const payload = await response.json();
+        const available = parseGateNetworks(payload).filter((network) =>
+          answers.tradeType === "Buy crypto" ? !network.withdrawDisabled : !network.depositDisabled
+        );
+        if (!cancelled) {
+          setGateNetworks(rankNetworks(available));
+          if (!available.length) setNetworkMessage("Gate.io did not return an enabled network for this transaction direction. Please confirm the network with W3C before proceeding.");
+        }
+      } catch (error) {
+        if (!cancelled) setNetworkMessage(error instanceof Error ? error.message : "Could not retrieve network options. Please confirm with W3C.");
+      } finally {
+        if (!cancelled) setNetworkLoading(false);
+      }
+    };
+    loadNetworks();
+    return () => { cancelled = true; };
+  }, [answers.asset, answers.tradeType]);
 
   const questions = useMemo(() => {
     const selectedAssetQuestion: Question = {
@@ -131,7 +259,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
       return [rootQuestion, selectedAssetQuestion, assetInputQuestion, amountQuestion, sourceQuestions[action], noteQuestion];
     }
 
-    const asksNetwork = answers.asset === "USDT" || answers.asset === "USDC";
+    const asksNetwork = answers.asset !== "Other asset";
     return [
       rootQuestion,
       selectedAssetQuestion,
@@ -227,6 +355,9 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
   const restart = () => {
     setAnswers({});
     setAmountError("");
+    setMarketQuote(null);
+    setGateNetworks([]);
+    setNetworkMessage("");
     setStep(0);
     setComplete(false);
     setConfirming(false);
@@ -262,6 +393,8 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                 <SummaryRow label="Trade" value={answers.tradeType} />
                 <SummaryRow label="Asset" value={answers.assetName || answers.asset} />
                 <SummaryRow label="Amount" value={answers.amount + " " + (answers.assetName || answers.asset)} />
+                {answers.indicativeUnitPrice && <SummaryRow label="Indicative unit price" value={answers.indicativeUnitPrice} />}
+                {answers.indicativeTotal && <SummaryRow label="Indicative total" value={answers.indicativeTotal} />}
                 {answers.network && <SummaryRow label="Network" value={answers.network} />}
                 <SummaryRow label={answers.tradeType === "Buy crypto" ? "Receive in" : "Sending from"} value={answers.tradeType === "Buy crypto" ? answers.destination : answers.source} />
                 {answers.note && <SummaryRow label="Note" value={answers.note} />}
@@ -430,7 +563,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
 
               {currentQuestion.id !== "amount" &&
                 currentQuestion.id !== "assetName" &&
-                currentQuestion.id !== "noteChoice" && (
+                currentQuestion.id !== "noteChoice" &&\n                currentQuestion.id !== "network" && (
                   <div className="grid gap-3 mt-8">
                     {currentQuestion.options.map((option) => {
                       const selected = currentAnswer === option;
