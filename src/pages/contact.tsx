@@ -3,18 +3,13 @@ import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import {
   ArrowRight,
-  BrainCircuit,
   Clock3,
-  Code2,
-  Handshake,
   Mail,
   MessageCircle,
   Network,
   Send,
   ShieldCheck,
-  Users,
   Zap,
-  Coins,
   ChevronDown,
 } from "lucide-react";
 import { SiWhatsapp, SiTelegram } from "react-icons/si";
@@ -26,32 +21,26 @@ const enquiryCategories = [
   {
     value: "Digital Services",
     description: "Websites, development and practical digital solutions.",
-    icon: Code2,
   },
   {
     value: "W3C DESK",
     description: "Buy or sell crypto (P2P), check rates and arrange a trade.",
-    icon: Coins,
   },
   {
     value: "AI & Digital Products",
     description: "AI-assisted tools, applications and digital products.",
-    icon: BrainCircuit,
   },
   {
     value: "Partnerships",
     description: "Business proposals, collaborations and strategic opportunities.",
-    icon: Handshake,
   },
   {
     value: "Community & Education",
     description: "Join the W3C community, learn, share and grow together.",
-    icon: Users,
   },
   {
     value: "General Enquiries",
     description: "Other questions, support or information about W3C.",
-    icon: Mail,
   },
 ];
 
@@ -136,14 +125,13 @@ export default function Contact() {
               <section aria-labelledby="enquiry-categories-heading">
                 <h2 id="enquiry-categories-heading" className="sr-only">Choose an enquiry category</h2>
                 <div className="grid gap-3 sm:grid-cols-2">
-                  {enquiryCategories.map(({ value, description, icon: Icon }) => (
+                  {enquiryCategories.map(({ value, description }) => (
                     <button
                       key={value}
                       type="button"
                       onClick={() => selectEnquiry(value)}
                       className="group flex min-h-[112px] items-center gap-4 rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-5 text-left hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7]"
                     >
-                      <Icon className="h-9 w-9 shrink-0 text-[#a855f7] transition-transform duration-300 group-hover:scale-110" strokeWidth={1.8} />
                       <span className="min-w-0 flex-1">
                         <span className="block text-base font-bold text-white sm:text-lg">{value}</span>
                         <span className="mt-1 block text-xs leading-relaxed text-white/60 sm:text-sm">{description}</span>
@@ -222,8 +210,7 @@ export default function Contact() {
 
             <aside className="space-y-3 lg:sticky lg:top-24">
               <section id="send-enquiry" className="scroll-mt-28 rounded-3xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 p-5 sm:p-6">
-                <div className="mb-5 flex items-center gap-3">
-                  <Send className="h-6 w-6 text-[#a855f7]" />
+                <div className="mb-5">
                   <h2 className="font-display text-2xl font-bold text-white">Send an Enquiry</h2>
                 </div>
                 <p className="mb-5 text-sm leading-relaxed text-white/65">
