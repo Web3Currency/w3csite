@@ -18,6 +18,7 @@ type MarketQuote = {
   tokenUsdt?: number;
   tokenUpdated?: string;
   error?: string;
+  tokenError?: string;
 };
 
 type GateNetwork = { label: string; chain: string; depositDisabled: boolean; withdrawDisabled: boolean };
@@ -116,9 +117,11 @@ function buildAmountHelper(asset: string) {
 function buildMessage(answers: AnswerMap, quote?: MarketQuote | null) {
   const action = answers.tradeType === "Buy crypto" ? "BUY" : "SELL";
   const asset = answers.assetName || answers.asset;
-  const isPricedAsset = Boolean(quote && !quote.error && quote.nairaBuy > 0 && quote.nairaSell > 0);
+  const isStablecoin = asset.toUpperCase() === "USDT";
+  const hasTokenPrice = isStablecoin || Boolean(quote?.tokenUsdt && quote.tokenUsdt > 0);
+  const isPricedAsset = Boolean(quote && !quote.error && hasTokenPrice && quote.nairaBuy > 0 && quote.nairaSell > 0);
   const quoteUnit = isPricedAsset
-    ? (quote!.tokenUsdt || 1) * (action === "BUY" ? quote!.nairaBuy : quote!.nairaSell)
+    ? (isStablecoin ? 1 : quote!.tokenUsdt!) * (action === "BUY" ? quote!.nairaBuy : quote!.nairaSell)
     : 0;
   const quoteTotal = quoteUnit * Number(answers.amount || 0);
   const location =
@@ -159,44 +162,68 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
     const loadMarket = async () => {
       setMarketLoading(true);
       setMarketQuote(null);
-      try {
-        const nairaResponse = await fetch("https://tlt.ng/api/v1/naira", { cache: "no-store" });
-        if (!nairaResponse.ok) throw new Error("TLT rate is temporarily unavailable");
-        const nairaJson = await nairaResponse.json();
-        const naira = nairaJson?.data ?? nairaJson;
-        const buy = Number(naira.buy ?? naira.buy_rate ?? naira.usdt_ngn_buy);
-        const sell = Number(naira.sell ?? naira.sell_rate ?? naira.usdt_ngn_sell);
-        if (!(buy > 0) || !(sell > 0)) throw new Error("Rate unavailable");
+      const asset = (answers.asset === "Other asset" ? answers.assetName : answers.asset || "").trim().toUpperCase();
+      const nairaTask = (async () => {
+        const response = await fetch("https://tlt.ng/api/v1/naira", { cache: "no-store" });
+        if (!response.ok) throw new Error("Naira rate request failed: " + response.status);
+        const json = await response.json();
+        const data = json?.data ?? json;
+        const buy = Number(data?.buy ?? data?.buy_rate ?? data?.usdt_ngn_buy ?? data?.p2p?.buy ?? data?.rates?.buy);
+        const sell = Number(data?.sell ?? data?.sell_rate ?? data?.usdt_ngn_sell ?? data?.p2p?.sell ?? data?.rates?.sell);
+        if (!(buy > 0) || !(sell > 0)) throw new Error("Naira rate response did not contain valid buy/sell values");
+        return { buy, sell, updated: json?.meta?.updated ?? data?.updated };
+      })();
 
-        let tokenUsdt = 1;
-        let tokenUpdated: string | undefined;
-        const asset = (answers.asset === "Other asset" ? answers.assetName : answers.asset || "").trim().toUpperCase();
-        if (asset && asset !== "USDT" && asset !== "OTHER ASSET") {
-          const tickerResponse = await fetch(
-            "https://api.gateio.ws/api/v4/spot/tickers?currency_pair=" + encodeURIComponent(asset + "_USDT"),
-            { cache: "no-store" }
-          );
-          if (!tickerResponse.ok) throw new Error("Gate.io market price is unavailable for " + asset);
-          const tickerJson = await tickerResponse.json();
-          const ticker = Array.isArray(tickerJson) ? tickerJson[0] : null;
-          tokenUsdt = Number(ticker?.last);
-          if (!(tokenUsdt > 0)) throw new Error("No active " + asset + "/USDT market was found on Gate.io");
-          tokenUpdated = ticker?.update_id ? new Date(Number(ticker.update_id) * 1000).toISOString() : undefined;
-        }
-        if (!cancelled) setMarketQuote({
-          nairaBuy: buy + 10,
-          nairaSell: sell - 10,
-          updated: nairaJson?.meta?.updated,
-          tokenUsdt,
-          tokenUpdated,
-        });
-      } catch (error) {
-        if (!cancelled) setMarketQuote({ nairaBuy: 0, nairaSell: 0, error: "Rate currently unavailable" });
-      } finally {
-        if (!cancelled) setMarketLoading(false);
+      const tokenTask = (async () => {
+        if (!asset || asset === "USDT" || asset === "OTHER ASSET") return { price: asset === "USDT" ? 1 : undefined, updated: undefined };
+        const response = await fetch(
+          "https://api.gateio.ws/api/v4/spot/tickers?currency_pair=" + encodeURIComponent(asset + "_USDT"),
+          { cache: "no-store" }
+        );
+        if (!response.ok) throw new Error("Asset price request failed: " + response.status);
+        const payload = await response.json();
+        const ticker = Array.isArray(payload) ? payload[0] : null;
+        const price = Number(ticker?.last);
+        if (!(price > 0)) throw new Error("No valid " + asset + "/USDT price was returned");
+        return {
+          price,
+          updated: ticker?.update_id ? new Date(Number(ticker.update_id) * 1000).toISOString() : undefined,
+        };
+      })();
+
+      const [nairaResult, tokenResult] = await Promise.allSettled([nairaTask, tokenTask]);
+      if (cancelled) return;
+
+      if (nairaResult.status === "rejected") {
+        console.error("[W3C DESK] Naira rate lookup failed:", nairaResult.reason);
+        setMarketQuote({ nairaBuy: 0, nairaSell: 0, error: "Rate currently unavailable" });
+        setMarketLoading(false);
+        return;
       }
+
+      const naira = nairaResult.value;
+      const token = tokenResult.status === "fulfilled" ? tokenResult.value : null;
+      if (tokenResult.status === "rejected") {
+        console.warn("[W3C DESK] Asset price lookup failed:", tokenResult.reason);
+      }
+
+      setMarketQuote({
+        nairaBuy: naira.buy + 10,
+        nairaSell: naira.sell - 10,
+        updated: naira.updated,
+        tokenUsdt: token?.price,
+        tokenUpdated: token?.updated,
+        tokenError: tokenResult.status === "rejected" ? "Asset price currently unavailable" : undefined,
+      });
+      setMarketLoading(false);
     };
-    loadMarket();
+    loadMarket().catch((error) => {
+      if (!cancelled) {
+        console.error("[W3C DESK] Market quote loading failed:", error);
+        setMarketQuote({ nairaBuy: 0, nairaSell: 0, error: "Rate currently unavailable" });
+        setMarketLoading(false);
+      }
+    });
     return () => { cancelled = true; };
   }, [answers.asset, answers.assetName]);
 
@@ -398,7 +425,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                 <SummaryRow label="Trade" value={answers.tradeType} />
                 <SummaryRow label="Asset" value={answers.assetName || answers.asset} />
                 <SummaryRow label="Amount" value={answers.amount + " " + (answers.assetName || answers.asset)} />
-                {marketQuote && !marketQuote.error && answers.amount && (answers.asset !== "Other asset" || answers.assetName) && <SummaryRow label="Indicative estimate" value={money((marketQuote.tokenUsdt || 1) * (answers.tradeType === "Buy crypto" ? marketQuote.nairaBuy : marketQuote.nairaSell) * Number(answers.amount), 2)} />}
+                {marketQuote && !marketQuote.error && (answers.asset === "USDT" || Boolean(marketQuote.tokenUsdt)) && answers.amount && (answers.asset !== "Other asset" || answers.assetName) && <SummaryRow label="Indicative estimate" value={money((answers.asset === "USDT" ? 1 : marketQuote.tokenUsdt!) * (answers.tradeType === "Buy crypto" ? marketQuote.nairaBuy : marketQuote.nairaSell) * Number(answers.amount), 2)} />}
                 {answers.indicativeUnitPrice && <SummaryRow label="Indicative unit price" value={answers.indicativeUnitPrice} />}
                 {answers.indicativeTotal && <SummaryRow label="Indicative total" value={answers.indicativeTotal} />}
                 {answers.network && <SummaryRow label="Network" value={answers.network} />}
@@ -503,6 +530,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
               exit={{ opacity: 0, x: -18 }}
               transition={{ duration: 0.2 }}
             >
+              {currentQuestion.id === "network" && (marketLoading || networkLoading) ? <NetworkSkeleton /> : <>
               <h2 className="text-3xl sm:text-4xl font-display font-bold text-white leading-tight">
                 {currentQuestion.title}
               </h2>
@@ -569,11 +597,11 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
 
               {currentQuestion.id === "network" && (
                 <div className="mt-8">
-                  {marketLoading && <p className="mb-4 text-sm text-white/60">Fetching current market rates…</p>}
-                  {!marketLoading && marketQuote?.error && <p className="mb-4 text-sm text-amber-300">Rate currently unavailable. W3C will confirm the latest rate with you on WhatsApp.</p>}
-                  {!marketLoading && marketQuote && !marketQuote.error && Number(answers.amount) > 0 && (() => {
+                  {marketQuote?.error && <p className="mb-4 text-sm text-amber-300">Rate currently unavailable. W3C will confirm the latest rate with you on WhatsApp.</p>}
+                  {marketQuote && !marketQuote.error && marketQuote.tokenError && <p className="mb-4 text-sm text-amber-300">The live price for this asset is temporarily unavailable. W3C will confirm the latest rate with you on WhatsApp.</p>}
+                  {marketQuote && !marketQuote.error && !marketQuote.tokenError && Number(answers.amount) > 0 && (() => {
                     const buying = answers.tradeType === "Buy crypto";
-                    const unit = (marketQuote.tokenUsdt || 1) * (buying ? marketQuote.nairaBuy : marketQuote.nairaSell);
+                    const unit = (answers.asset === "USDT" ? 1 : marketQuote.tokenUsdt || 0) * (buying ? marketQuote.nairaBuy : marketQuote.nairaSell);
                     const total = unit * Number(answers.amount);
                     return (
                       <div className="mb-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
@@ -650,6 +678,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                     })}
                   </div>
                 )}
+              </>}
             </motion.div>
           </AnimatePresence>
 
@@ -699,6 +728,24 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
         </div>
       </section>
     </PageTransition>
+  );
+}
+
+function NetworkSkeleton() {
+  return (
+    <div role="status" aria-live="polite" aria-label="Preparing current rates and network options" className="animate-pulse mt-8 space-y-5">
+      <div className="h-7 w-3/4 rounded-lg bg-white/10" />
+      <div className="h-4 w-2/3 rounded bg-white/[0.07]" />
+      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 space-y-4">
+        <div className="h-4 w-1/3 rounded bg-white/10" />
+        <div className="h-7 w-1/2 rounded bg-white/10" />
+        <div className="h-4 w-2/5 rounded bg-white/[0.07]" />
+      </div>
+      {[1, 2, 3, 4, 5].map((item) => (
+        <div key={item} className="h-[58px] rounded-2xl border border-white/[0.07] bg-white/[0.03]" />
+      ))}
+      <p className="text-xs text-white/45">Preparing your rate estimate and supported networks…</p>
+    </div>
   );
 }
 
