@@ -27,7 +27,7 @@ const rootQuestion: Question = {
 
 const assetQuestion: Question = {
   id: "asset",
-  title: "Which crypto do you want to buy or sell?",
+  title: "Which crypto would you like to buy?",
   options: ["USDT", "USDC", "BTC", "PI", "Other asset"],
 };
 
@@ -46,8 +46,8 @@ const sourceQuestions: Record<"buy" | "sell", Question> = {
 
 const noteQuestion: Question = {
   id: "noteChoice",
-  title: "Anything else Jake should know?",
-  options: ["No, that’s all", "I have a question", "I need to explain something"],
+  title: "Anything else W3C should know?",
+  options: ["No, that’s all", "I have a question"],
 };
 
 function buildAmountHelper(asset: string) {
@@ -75,7 +75,7 @@ function buildMessage(answers: AnswerMap) {
   const note = answers.note && answers.note.trim();
 
   return [
-    "Hi " + branding.founderName + ", I’d like to " + action + " " + answers.amount + " " + asset + " through W3C DESK.",
+    "Hello W3C DESK, I’d like to " + action + " " + answers.amount + " " + asset + " through W3C DESK.",
     location,
     note ? "Additional note: " + note : "",
     "Please let me know the next step.",
@@ -92,6 +92,12 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
   const [confirming, setConfirming] = useState(false);
 
   const questions = useMemo(() => {
+    const selectedAssetQuestion: Question = {
+      ...assetQuestion,
+      title: answers.tradeType === "Buy crypto"
+        ? "Which crypto would you like to buy?"
+        : "Which crypto would you like to sell?",
+    };
     const amountQuestion: Question = {
       id: "amount",
       title: "How much?",
@@ -111,10 +117,10 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
     const action = answers.tradeType === "Buy crypto" ? "buy" : "sell";
 
     if (answers.asset === "Other asset") {
-      return [rootQuestion, assetQuestion, assetInputQuestion, amountQuestion, sourceQuestions[action], noteQuestion];
+      return [rootQuestion, selectedAssetQuestion, assetInputQuestion, amountQuestion, sourceQuestions[action], noteQuestion];
     }
 
-    return [rootQuestion, assetQuestion, amountQuestion, sourceQuestions[action], noteQuestion];
+    return [rootQuestion, selectedAssetQuestion, amountQuestion, sourceQuestions[action], noteQuestion];
   }, [answers.tradeType, answers.asset]);
 
   const currentQuestion = questions[step];
@@ -123,6 +129,10 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
 
   const advance = (nextAnswers: AnswerMap) => {
     setAnswers(nextAnswers);
+    if (currentQuestion.id === "tradeType") {
+      setStep(1);
+      return;
+    }
     if (step < questions.length - 1) setStep(step + 1);
   };
 
@@ -219,7 +229,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                 <FounderAvatar />
               </div>
               <h2 className="text-xs uppercase tracking-widest font-mono font-bold text-orange-400 text-center">CONFIRM YOUR TRADE REQUEST</h2>
-              <p className="text-muted-foreground mt-4 leading-relaxed">Review your details below. When you continue, your request will open in WhatsApp for Jake to review.</p>
+              <p className="text-muted-foreground mt-4 leading-relaxed">Review your details below. When you continue, your request will open in WhatsApp for the W3C team to review.</p>
               <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.02] divide-y divide-white/[0.08]">
                 <SummaryRow label="Trade" value={answers.tradeType} />
                 <SummaryRow label="Asset" value={answers.assetName || answers.asset} />
@@ -258,7 +268,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                 Your trade request is ready.
               </h2>
               <p className="text-muted-foreground mt-4 leading-relaxed text-center">
-                Your details have been prepared for WhatsApp. Jake can review the request and let you know the next step.
+                Your details have been prepared for WhatsApp. The W3C team can review your request and confirm the agreed rate and next steps with you.
               </p>
               <a
                 href={contact.whatsappUrl + "?text=" + encodeURIComponent(buildMessage(answers))}
@@ -302,7 +312,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
             Buy or sell crypto through W3C DESK.
           </h1>
           <p className="text-lg sm:text-xl text-white/90 leading-relaxed font-medium max-w-3xl mt-6">
-            Tell me what you want to buy or sell, how much, and where the crypto is coming from or going. I’ll use your answers to prepare a clear transaction request for WhatsApp.
+            Tell W3C what you want to buy or sell, how much, and where the crypto is coming from or going. Your answers will be used to prepare a clear transaction request for WhatsApp.
           </p>
 
           
@@ -378,7 +388,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                       </span>
                     </button>
                   ))}
-                  {(currentAnswer === "I have a question" || currentAnswer === "I need to explain something") && (
+                  {currentAnswer === "I have a question" && (
                     <NoteComposer
                       value={answers.note || ""}
                       onContinue={(note) => {
