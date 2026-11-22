@@ -235,8 +235,19 @@ export default function DigitalConsulting() {
     questions.slice(step + 1).forEach((question) => delete nextAnswers[question.id]);
     setAnswers(nextAnswers);
     setDraft("");
-    if (step < questions.length - 1) setStep(step + 1);
-    else setReview(true);
+
+    // The first answer determines the branch, so the initial one-question
+    // list must not be used to decide whether the questionnaire is complete.
+    if (currentQuestion.id === "need") {
+      setStep(1);
+      return;
+    }
+
+    if (step < questions.length - 1) {
+      setStep(step + 1);
+    } else {
+      setReview(true);
+    }
   };
 
   const goBack = () => {
@@ -266,8 +277,6 @@ export default function DigitalConsulting() {
     setReview(false);
     setDraft("");
   };
-
-  const isTextQuestion = Boolean(currentQuestion && !currentQuestion.options);
 
   return (
     <section className="py-20 md:py-28 bg-zinc-950 border-y border-white/[0.08]">
