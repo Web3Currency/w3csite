@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
-import { MotionGlassCard } from "@/components/shared/glass-card";
 import {
   ArrowRight,
   BrainCircuit,
