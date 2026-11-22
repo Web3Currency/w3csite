@@ -273,7 +273,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                 onClick={sendToWhatsApp}
                 className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#25D366] text-black font-bold text-sm hover:brightness-110 transition-all"
               >
-                <SiWhatsapp className="w-4 h-4" /> Send Enquiry on WhatsApp
+                <SiWhatsapp className="w-4 h-4" /> Continue Transaction on WhatsApp
               </a>
               <button type="button" onClick={goBack} className="mt-5 inline-flex w-full items-center justify-center gap-2 text-sm font-semibold text-muted-foreground hover:text-white transition-colors">
                 <ArrowLeft className="w-4 h-4" /> Back
