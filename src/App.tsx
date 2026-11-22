@@ -88,7 +88,7 @@ function App() {
             businessDescription="Digital solutions, Web3 services and community support."
             whatsappNumber={contact.whatsappNumber}
             logoUrl="https://i.imgur.com/FwLZZ8d.png"
-            welcomeMessage="Tell us what you are looking to accomplish. Choose a topic below and we will prepare a message for the W3C team."
+            welcomeMessage="Tell us what you’re looking to accomplish. Choose a topic below and we’ll prepare a WhatsApp message for the team."
             brandPrimaryColour="#6D35D4"
             brandAccentColour="#B99AFF"
           />
