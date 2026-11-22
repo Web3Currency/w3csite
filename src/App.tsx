@@ -9,6 +9,9 @@ import { BackToTop } from "@/components/layout/BackToTop";
 import { AnimatePresence } from "framer-motion";
 import { initAnalytics, trackPageView } from "@/lib/analytics";
 import { ErrorBoundary } from "@/components/shared/error-boundary";
+import { WhatsAppEnquiryAssistant } from "@/components/shared/WhatsAppEnquiryAssistant";
+import { branding } from "@/config/branding";
+import { contact } from "@/config/contact";
 
 // Pages
 import Home from "@/pages/home";
@@ -80,6 +83,15 @@ function App() {
           <Layout>
             <ErrorBoundary><Router /></ErrorBoundary>
           </Layout>
+          <WhatsAppEnquiryAssistant
+            businessName={branding.businessName}
+            businessDescription="Digital solutions, Web3 services and community support."
+            whatsappNumber={contact.whatsappNumber}
+            logoUrl="https://i.imgur.com/FwLZZ8d.png"
+            welcomeMessage="Tell us what you are looking to accomplish. Choose a topic below and we will prepare a message for the W3C team."
+            brandPrimaryColour="#6D35D4"
+            brandAccentColour="#B99AFF"
+          />
         </WouterRouter>
         <Toaster />
       </TooltipProvider>
