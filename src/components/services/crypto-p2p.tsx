@@ -165,7 +165,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
 
         let tokenUsdt = 1;
         let tokenUpdated: string | undefined;
-        const asset = (answers.asset || "").toUpperCase();
+        const asset = (answers.asset === "Other asset" ? answers.assetName : answers.asset || "").trim().toUpperCase();
         if (asset && asset !== "USDT" && asset !== "OTHER ASSET") {
           const tickerResponse = await fetch(
             "https://api.gateio.ws/api/v4/spot/tickers?currency_pair=" + encodeURIComponent(asset + "_USDT"),
@@ -193,12 +193,12 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
     };
     loadMarket();
     return () => { cancelled = true; };
-  }, [answers.asset]);
+  }, [answers.asset, answers.assetName]);
 
   useEffect(() => {
     let cancelled = false;
     const loadNetworks = async () => {
-      const asset = (answers.asset || "").toUpperCase();
+      const asset = (answers.asset === "Other asset" ? answers.assetName : answers.asset || "").trim().toUpperCase();
       if (!asset || asset === "OTHER ASSET") {
         setGateNetworks([]);
         return;
@@ -228,7 +228,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
     };
     loadNetworks();
     return () => { cancelled = true; };
-  }, [answers.asset, answers.tradeType]);
+  }, [answers.asset, answers.assetName, answers.tradeType]);
 
   const questions = useMemo(() => {
     const selectedAssetQuestion: Question = {
@@ -256,7 +256,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
     const action = answers.tradeType === "Buy crypto" ? "buy" : "sell";
 
     if (answers.asset === "Other asset") {
-      return [rootQuestion, selectedAssetQuestion, assetInputQuestion, amountQuestion, sourceQuestions[action], noteQuestion];
+      return [rootQuestion, selectedAssetQuestion, assetInputQuestion, amountQuestion, networkQuestion, sourceQuestions[action], noteQuestion];
     }
 
     const asksNetwork = answers.asset !== "Other asset";
@@ -393,7 +393,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                 <SummaryRow label="Trade" value={answers.tradeType} />
                 <SummaryRow label="Asset" value={answers.assetName || answers.asset} />
                 <SummaryRow label="Amount" value={answers.amount + " " + (answers.assetName || answers.asset)} />
-                {marketQuote && !marketQuote.error && answers.amount && answers.asset !== "Other asset" && <SummaryRow label="Indicative estimate" value={money((marketQuote.tokenUsdt || 1) * (answers.tradeType === "Buy crypto" ? marketQuote.nairaBuy : marketQuote.nairaSell) * Number(answers.amount), 2)} />}
+                {marketQuote && !marketQuote.error && answers.amount && (answers.asset !== "Other asset" || answers.assetName) && <SummaryRow label="Indicative estimate" value={money((marketQuote.tokenUsdt || 1) * (answers.tradeType === "Buy crypto" ? marketQuote.nairaBuy : marketQuote.nairaSell) * Number(answers.amount), 2)} />}
                 {answers.indicativeUnitPrice && <SummaryRow label="Indicative unit price" value={answers.indicativeUnitPrice} />}
                 {answers.indicativeTotal && <SummaryRow label="Indicative total" value={answers.indicativeTotal} />}
                 {answers.network && <SummaryRow label="Network" value={answers.network} />}
@@ -576,7 +576,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                           <span className="text-sm font-semibold text-white">Indicative estimate</span>
                           <span className="text-[11px] text-white/50">Data by tlt.ng · Gate.io</span>
                         </div>
-                        <div className="mt-3 flex justify-between gap-3 text-sm"><span className="text-white/60">Rate per {answers.asset}</span><strong className="text-white">{money(unit, 2)}</strong></div>
+                        <div className="mt-3 flex justify-between gap-3 text-sm"><span className="text-white/60">Rate per {answers.assetName || answers.asset}</span><strong className="text-white">{money(unit, 2)}</strong></div>
                         <div className="mt-2 flex justify-between gap-3 text-sm"><span className="text-white/60">Estimated {buying ? "cost" : "payout"}</span><strong className="text-emerald-300 text-base">{money(total, 2)}</strong></div>
                         <p className="mt-2 text-xs text-white/45">Includes W3C’s ₦10 per-USDT spread. Indicative only; final rate is agreed on WhatsApp.</p>
                       </div>
