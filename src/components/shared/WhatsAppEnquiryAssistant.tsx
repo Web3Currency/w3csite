@@ -33,6 +33,18 @@ const DEFAULT_OPTIONS: WhatsAppEnquiryOption[] = [
   { label: "Something else", message: "Hello W3C Digital Network, I have another enquiry and would appreciate speaking with your team. Please let me know how best to proceed." },
 ];
 
+function getWestAfricaDate() {
+  return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "Africa/Lagos" }).format(new Date());
+}
+
+function getWestAfricaTime() {
+  const parts = new Intl.DateTimeFormat("en-GB", { hour: "numeric", minute: "2-digit", hour12: true, timeZone: "Africa/Lagos" }).formatToParts(new Date());
+  const hour = parts.find((part) => part.type === "hour")?.value ?? "";
+  const minute = parts.find((part) => part.type === "minute")?.value ?? "";
+  const period = parts.find((part) => part.type === "dayPeriod")?.value.toLowerCase() ?? "";
+  return hour + ":" + minute + " " + (period === "am" ? "a.m." : "p.m.");
+}
+
 function normaliseWhatsAppNumber(number: string) {
   return number.replace(/[^\d]/g, "");
 }
@@ -56,7 +68,8 @@ export function WhatsAppEnquiryAssistant({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [draft, setDraft] = useState("");
-  const [currentDate, setCurrentDate] = useState(() => new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" }).format(new Date()));
+  const [currentDate, setCurrentDate] = useState(getWestAfricaDate);
+  const [currentTime, setCurrentTime] = useState(getWestAfricaTime);
   const dialogRef = useRef<HTMLElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const conversationRef = useRef<HTMLDivElement>(null);
@@ -72,8 +85,11 @@ export function WhatsAppEnquiryAssistant({
   }, [buttonAppearanceDelay]);
 
   useEffect(() => {
-    const refreshDate = () => setCurrentDate(new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" }).format(new Date()));
-    const timer = window.setInterval(refreshDate, 60_000);
+    const refreshClock = () => {
+      setCurrentDate(getWestAfricaDate());
+      setCurrentTime(getWestAfricaTime());
+    };
+    const timer = window.setInterval(refreshClock, 1_000);
     return () => window.clearInterval(timer);
   }, []);
 
@@ -223,13 +239,16 @@ export function WhatsAppEnquiryAssistant({
 
             <div className="flex min-h-0 flex-1 flex-col bg-[#15151A]">
               <div ref={conversationRef} className="custom-scrollbar min-h-0 flex-1 space-y-3 overflow-y-auto px-3.5 py-4 overscroll-contain">
-                <div className="mx-auto w-fit rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] font-medium text-white/45">
+                <div className="text-center text-[10px] font-medium tracking-wide text-white/45">
                   {currentDate}
                 </div>
 
                 <div className="w3c-wa-message-bubble relative max-w-[94%] rounded-2xl rounded-tl-sm border border-white/[0.07] bg-[#202027] px-3.5 py-3 text-[12px] leading-[1.7] text-white/80 shadow-sm">
-                  <p className="font-semibold text-white">Welcome to W3C DESK.</p>
+                  <p className="font-semibold text-white">Welcome to W3C Digital Network.</p>
                   <p className="mt-1.5">{welcomeMessage}</p>
+                  <div className="mt-1.5 flex justify-end">
+                    <time className="text-[9px] leading-none text-white/40" aria-label={"Message sent at " + currentTime + " West Africa Time"}>{currentTime}</time>
+                  </div>
                 </div>
 
                 <div className="space-y-2 pt-1">
