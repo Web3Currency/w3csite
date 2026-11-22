@@ -82,10 +82,19 @@ export default function Home() {
     return () => { cancelled = true; };
   }, []);
 
+  const getTestimonialStep = () => {
+    const container = testimonialsScrollRef.current;
+    const firstCard = container?.firstElementChild as HTMLElement | null;
+    if (!container || !firstCard) return 0;
+    const gap = Number.parseFloat(window.getComputedStyle(container).columnGap || "0") || 0;
+    return firstCard.getBoundingClientRect().width + gap;
+  };
+
   const handleTestimonialsScroll = () => {
     const container = testimonialsScrollRef.current;
-    if (!container || reviews.length < 2) return;
-    const index = Math.round(container.scrollLeft / container.clientWidth);
+    const step = getTestimonialStep();
+    if (!container || !step || reviews.length < 2) return;
+    const index = Math.round(container.scrollLeft / step);
     if (index >= reviews.length) {
       setActiveTestimonial(0);
       window.requestAnimationFrame(() => {
@@ -96,17 +105,29 @@ export default function Home() {
     setActiveTestimonial(Math.max(0, index));
   };
 
+  const moveTestimonials = (direction: "next" | "previous") => {
+    const container = testimonialsScrollRef.current;
+    const step = getTestimonialStep();
+    if (!container || !step) return;
+    const next = direction === "next" ? activeTestimonial + 1 : Math.max(0, activeTestimonial - 1);
+    container.scrollTo({ left: next * step, behavior: "smooth" });
+  };
+
   useEffect(() => {
     const container = testimonialsScrollRef.current;
     if (!container || reviews.length < 2) return;
     const interval = window.setInterval(() => {
-      const next = activeTestimonial + 1;
-      container.scrollTo({ left: next * container.clientWidth, behavior: "smooth" });
+      const step = getTestimonialStep();
+      if (!step) return;
+      container.scrollTo({ left: (activeTestimonial + 1) * step, behavior: "smooth" });
     }, 4000);
     return () => window.clearInterval(interval);
   }, [activeTestimonial, reviews.length]);
 
-  const carouselReviews = reviews.length > 1 ? [...reviews, reviews[0]] : reviews;
+  // Keep enough leading cards in the track for a seamless reset on wide screens.
+  const carouselReviews = reviews.length > 1
+    ? [...reviews, ...Array.from({ length: 3 }, (_, index) => reviews[index % reviews.length])]
+    : reviews;
   const reviewsProfileUrl = "https://thereviews.net/review/web3currency.online";
   const { hero, features, trust, projectsTeaser, cta } = homepageContent;
   const [activeService, setActiveService] = useState(0);
@@ -590,11 +611,11 @@ export default function Home() {
             </div>
           ) : (
             <>
-              <div className="md:hidden text-center">
+              <div className="w-full">
                 <div
                   ref={testimonialsScrollRef}
                   onScroll={handleTestimonialsScroll}
-                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 touch-pan-x scrollbar-hide"
+                  className="flex w-full overflow-x-auto snap-x snap-mandatory gap-4 touch-pan-x scrollbar-hide scroll-smooth"
                   style={{ scrollbarWidth: "none" }}
                 >
                   {carouselReviews.map((review, idx) => {
@@ -602,7 +623,7 @@ export default function Home() {
                     return (
                       <MotionGlassCard
                         key={`${review.id}-${idx}`}
-                        className="p-8 border-white/10 bg-white/[0.015] flex flex-col justify-between min-w-full snap-start"
+                        className="p-7 md:p-8 border-white/10 bg-white/[0.025] flex flex-col justify-between min-w-0 shrink-0 basis-full md:basis-[calc(50%-0.5rem)] xl:basis-[calc(33.333%-1rem)] snap-start min-h-[260px]"
                       >
                         <div>
                           <div className="flex gap-0.5 mb-4 text-amber-400" aria-label={`${review.rating} out of 5 stars`}>
@@ -624,46 +645,42 @@ export default function Home() {
                     );
                   })}
                 </div>
+                </div>
                 {reviews.length > 1 && (
-                  <div className="flex justify-center gap-1.5 mt-5">
-                    {reviews.map((_, idx) => (
-                      <span key={idx} className={"h-1.5 rounded-full transition-all duration-300 " + (activeTestimonial === idx ? "w-5 bg-white" : "w-1.5 bg-white/20")} aria-hidden="true" />
-                    ))}
+                  <div className="mt-6 flex items-center justify-center gap-4">
+                    <button
+                      type="button"
+                      onClick={() => moveTestimonials("previous")}
+                      className="hidden md:inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/70 transition-colors hover:border-primary/50 hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      aria-label="Previous customer review"
+                    >
+                      <ChevronLeft className="h-5 w-5" />
+                    </button>
+                    <div className="flex max-w-[70%] items-center justify-center gap-2 overflow-hidden" aria-label="Customer review navigation">
+                      {reviews.map((_, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => {
+                            const step = getTestimonialStep();
+                            testimonialsScrollRef.current?.scrollTo({ left: idx * step, behavior: "smooth" });
+                          }}
+                          className={"h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary " + (activeTestimonial === idx ? "w-6 bg-primary" : "w-2 bg-white/25 hover:bg-white/50")}
+                          aria-label={`Go to customer review ${idx + 1}`}
+                          aria-current={activeTestimonial === idx ? "true" : undefined}
+                        />
+                      ))}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => moveTestimonials("next")}
+                      className="hidden md:inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/70 transition-colors hover:border-primary/50 hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      aria-label="Next customer review"
+                    >
+                      <ChevronRight className="h-5 w-5" />
+                    </button>
                   </div>
                 )}
-              </div>
-
-              <div className="hidden md:grid md:grid-cols-3 gap-6">
-                {reviews.map((review, idx) => {
-                  const reviewText = review.body || "";
-                  return (
-                    <MotionGlassCard
-                      key={review.id}
-                      initial={{ opacity: 0, y: 15 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: (idx % 3) * 0.15 }}
-                      className="p-8 border-white/10 bg-white/[0.015] flex flex-col justify-between"
-                    >
-                      <div>
-                        <div className="flex gap-0.5 mb-4 text-amber-400" aria-label={`${review.rating} out of 5 stars`}>
-                          {Array.from({ length: Math.max(0, Math.min(5, review.rating || 0)) }).map((_, i) => (
-                            <span key={i} className="text-sm font-bold">★</span>
-                          ))}
-                        </div>
-                        <p className="text-white/80 text-sm leading-relaxed mb-6 italic">"{reviewText || "The customer left a rating."}"</p>
-                      </div>
-                      <div className="border-t border-white/[0.06] pt-4 flex items-center justify-between gap-3">
-                        <div className="min-w-0">
-                          <p className="text-sm font-bold text-white leading-none mb-1">{review.author || "Customer"}</p>
-                        </div>
-                        <a href={review.url || reviewsProfileUrl} target="_blank" rel="noopener noreferrer" className="shrink-0 inline-flex items-center text-[10px] font-mono font-medium text-primary hover:text-white transition-colors">
-                          TheReviews ↗
-                        </a>
-                      </div>
-                    </MotionGlassCard>
-                  );
-                })}
               </div>
             </>
           )}
