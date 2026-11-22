@@ -452,3 +452,15 @@
 @media (prefers-reduced-motion: reduce) {
   .w3c-wa-trigger, .w3c-wa-pulse, .w3c-wa-dialog { animation: none !important; }
 }
+
+/* Chat-style pointer for the assistant's opening message */
+.w3c-wa-message-bubble::before {
+  content: "";
+  position: absolute;
+  top: 0.7rem;
+  left: -6px;
+  width: 10px;
+  height: 12px;
+  background: #202027;
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
