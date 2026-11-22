@@ -141,7 +141,7 @@ export default function Contact() {
                       key={value}
                       type="button"
                       onClick={() => selectEnquiry(value)}
-                      className="group flex min-h-[112px] items-center gap-4 rounded-2xl bg-white/[0.035] p-5 text-left backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5  hover:bg-[#a855f7]/[0.055] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7]"
+                      className="group flex min-h-[112px] items-center gap-4 rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-5 text-left hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7]"
                     >
                       <Icon className="h-9 w-9 shrink-0 text-[#a855f7] transition-transform duration-300 group-hover:scale-110" strokeWidth={1.8} />
                       <span className="min-w-0 flex-1">
@@ -168,7 +168,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackContactClick("WhatsApp", "W3C Contact Channel")}
-                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.035] p-4 text-center transition-all  hover:bg-emerald-500/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-4 text-center hover:bg-emerald-500/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                   >
                     <SiWhatsapp className="mb-3 h-8 w-8 text-emerald-400" />
                     <span className="font-bold text-white">WhatsApp</span>
@@ -181,7 +181,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackContactClick("Telegram", "W3C Contact Channel")}
-                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.035] p-4 text-center transition-all  hover:bg-sky-500/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-4 text-center hover:bg-sky-500/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
                   >
                     <SiTelegram className="mb-3 h-8 w-8 text-sky-400" />
                     <span className="font-bold text-white">Telegram</span>
@@ -192,7 +192,7 @@ export default function Contact() {
                   <a
                     href={`mailto:${contact.email}`}
                     onClick={() => trackContactClick("Email", "W3C Contact Channel")}
-                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.035] p-4 text-center transition-all  hover:bg-[#a855f7]/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7]"
+                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-4 text-center hover:bg-[#a855f7]/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7]"
                   >
                     <Mail className="mb-3 h-8 w-8 text-[#c084fc]" />
                     <span className="font-bold text-white">Business Email</span>
@@ -205,7 +205,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackContactClick("WhatsApp", "Direct Jake Contact Channel")}
-                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.035] p-4 text-center transition-all  hover:bg-[#a855f7]/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7]"
+                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-4 text-center hover:bg-[#a855f7]/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7]"
                   >
                     <MessageCircle className="mb-3 h-8 w-8 text-[#c084fc]" />
                     <span className="font-bold text-white">Direct Contact (Jake)</span>
@@ -221,7 +221,7 @@ export default function Contact() {
             </div>
 
             <aside className="space-y-3 lg:sticky lg:top-24">
-              <section id="send-enquiry" className="scroll-mt-28 rounded-3xl bg-[#111111]/90 p-5 shadow-[0_0_45px_rgba(168,85,247,0.08)] backdrop-blur-xl sm:p-6">
+              <section id="send-enquiry" className="scroll-mt-28 rounded-3xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 p-5 sm:p-6">
                 <div className="mb-5 flex items-center gap-3">
                   <Send className="h-6 w-6 text-[#a855f7]" />
                   <h2 className="font-display text-2xl font-bold text-white">Send an Enquiry</h2>
@@ -291,7 +291,7 @@ export default function Contact() {
                 </div>
               </section>
 
-              <section aria-label="Opening hours" className="flex items-center gap-4 rounded-2xl bg-[#111111]/90 p-4 shadow-[0_0_30px_rgba(168,85,247,0.07)] backdrop-blur-xl sm:p-5">
+              <section aria-label="Opening hours" className="flex items-center gap-4 rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 p-4 sm:p-5">
                 <Clock3 className="h-10 w-10 shrink-0 text-[#a855f7]" strokeWidth={1.8} />
                 <div className="h-12 w-px shrink-0 bg-white/25" />
                 <div className="min-w-0">
@@ -305,7 +305,7 @@ export default function Contact() {
             </aside>
           </div>
 
-          <section className="mt-10 grid gap-5 rounded-3xl bg-white/[0.035] p-5 backdrop-blur-xl sm:grid-cols-3 sm:p-7">
+          <section className="mt-10 grid gap-5 rounded-3xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 p-5 sm:grid-cols-3 sm:p-7">
             <div className="flex items-center gap-4 sm:border-r sm:border-white/15 sm:pr-5">
               <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#a855f7]/15 text-[#c084fc]"><Zap className="h-7 w-7" /></span>
               <div><h3 className="font-bold text-white">Prompt Response</h3><p className="mt-1 text-xs leading-relaxed text-white/60">We aim to respond to enquiries as soon as possible.</p></div>
