@@ -35,13 +35,22 @@ const sourceQuestions: Record<"buy" | "sell", Question> = {
   buy: {
     id: "destination",
     title: "Where would you like to receive the crypto?",
-    options: ["Non-custodian wallet", "Exchange wallet"],
+    helper: "Choose the type of wallet or account you will receive it in.",
+    options: ["Personal (non-custodial) wallet", "Exchange wallet"],
   },
   sell: {
     id: "source",
     title: "Where are you sending the crypto from?",
-    options: ["Non-custodian wallet", "Exchange wallet"],
+    helper: "Choose the type of wallet or account you will send it from.",
+    options: ["Personal (non-custodial) wallet", "Exchange wallet"],
   },
+};
+
+const networkQuestion: Question = {
+  id: "network",
+  title: "Which network is your USDT or USDC on?",
+  helper: "Select the network you intend to use. If you are unsure, choose the last option and W3C can help confirm it.",
+  options: ["TRON (TRC20)", "Ethereum (ERC20)", "BNB Smart Chain (BEP20)", "Other / Not sure"],
 };
 
 const noteQuestion: Question = {
@@ -54,13 +63,13 @@ function buildAmountHelper(asset: string) {
   switch (asset) {
     case "USDT":
     case "USDC":
-      return "Enter the amount in USD. For example, 500 means 500 USDT or USDC.";
+      return "Enter the quantity only, using numbers. For example, 500.";
     case "BTC":
-      return "Enter the exact BTC amount. For example, 0.005 BTC.";
+      return "Enter the quantity only, using numbers. For example, 0.005.";
     case "PI":
-      return "Enter the exact PI amount. For example, 500 PI.";
+      return "Enter the quantity only, using numbers. For example, 500.";
     default:
-      return "Enter the exact amount and unit. For example, 100 TOKEN.";
+      return "Enter the quantity only, using numbers. The asset name is collected separately.";
   }
 }
 
@@ -76,9 +85,10 @@ function buildMessage(answers: AnswerMap) {
 
   return [
     "Hello W3C DESK, I’d like to " + action + " " + answers.amount + " " + asset + " through W3C DESK.",
+    answers.network ? "Network: " + answers.network : "",
     location,
     note ? "Additional note: " + note : "",
-    "Please let me know the next step.",
+    "Please confirm the available rate and the next steps before I proceed.",
   ]
     .filter(Boolean)
     .join("\n");
@@ -90,6 +100,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
   const [step, setStep] = useState(0);
   const [complete, setComplete] = useState(false);
   const [confirming, setConfirming] = useState(false);
+  const [amountError, setAmountError] = useState("");
 
   const questions = useMemo(() => {
     const selectedAssetQuestion: Question = {
@@ -120,7 +131,15 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
       return [rootQuestion, selectedAssetQuestion, assetInputQuestion, amountQuestion, sourceQuestions[action], noteQuestion];
     }
 
-    return [rootQuestion, selectedAssetQuestion, amountQuestion, sourceQuestions[action], noteQuestion];
+    const asksNetwork = answers.asset === "USDT" || answers.asset === "USDC";
+    return [
+      rootQuestion,
+      selectedAssetQuestion,
+      amountQuestion,
+      ...(asksNetwork ? [networkQuestion] : []),
+      sourceQuestions[action],
+      noteQuestion,
+    ];
   }, [answers.tradeType, answers.asset]);
 
   const currentQuestion = questions[step];
@@ -145,6 +164,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
     const nextAnswers = { ...answers, [currentQuestion.id]: value };
 
     if (currentQuestion.id === "tradeType") {
+      setAmountError("");
       delete nextAnswers.asset;
       delete nextAnswers.assetName;
       delete nextAnswers.amount;
@@ -155,6 +175,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
     }
 
     if (currentQuestion.id === "asset") {
+      setAmountError("");
       delete nextAnswers.assetName;
       delete nextAnswers.amount;
     }
@@ -176,6 +197,16 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
   const submitInput = (value: string) => {
     const trimmed = value.trim();
     if (!trimmed) return;
+
+    if (currentQuestion.id === "amount") {
+      const validPositiveNumber = /^(?:\d+)(?:\.\d+)?$/.test(trimmed) && Number.isFinite(Number(trimmed)) && Number(trimmed) > 0;
+      if (!validPositiveNumber) {
+        setAmountError("Enter a valid amount greater than zero, using numbers only.");
+        return;
+      }
+      setAmountError("");
+    }
+
     advance({ ...answers, [currentQuestion.id]: trimmed });
   };
 
@@ -195,22 +226,19 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
 
   const restart = () => {
     setAnswers({});
+    setAmountError("");
     setStep(0);
     setComplete(false);
     setConfirming(false);
   };
 
   const sendToWhatsApp = () => {
-    const message = buildMessage(answers);
     const asset = answers.assetName || answers.asset;
     const actionType = answers.tradeType === "Buy crypto" ? "buy" : "sell";
-    const numericAmount = Number.parseFloat(answers.amount) || 0;
+    const numericAmount = Number(answers.amount);
 
     trackDeskEnquiry(asset, actionType, numericAmount);
     trackContactClick("WhatsApp", "W3C DESK - " + actionType.toUpperCase() + " " + asset);
-
-    const whatsappUrl = contact.whatsappUrl + "?text=" + encodeURIComponent(message);
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     setComplete(true);
   };
 
@@ -229,17 +257,24 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                 <FounderAvatar />
               </div>
               <h2 className="text-xs uppercase tracking-widest font-mono font-bold text-orange-400 text-center">CONFIRM YOUR TRADE REQUEST</h2>
-              <p className="text-muted-foreground mt-4 leading-relaxed">Review your details below. When you continue, your request will open in WhatsApp for the W3C team to review.</p>
+              <p className="text-muted-foreground mt-4 leading-relaxed">Review your enquiry before sending it. This is not a confirmed trade or an agreed rate. W3C will confirm the rate and settlement details with you first. Do not send NGN or crypto until both sides have agreed on the terms.</p>
               <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.02] divide-y divide-white/[0.08]">
                 <SummaryRow label="Trade" value={answers.tradeType} />
                 <SummaryRow label="Asset" value={answers.assetName || answers.asset} />
-                <SummaryRow label="Amount" value={answers.amount} />
+                <SummaryRow label="Amount" value={answers.amount + " " + (answers.assetName || answers.asset)} />
+                {answers.network && <SummaryRow label="Network" value={answers.network} />}
                 <SummaryRow label={answers.tradeType === "Buy crypto" ? "Receive in" : "Sending from"} value={answers.tradeType === "Buy crypto" ? answers.destination : answers.source} />
                 {answers.note && <SummaryRow label="Note" value={answers.note} />}
               </div>
-              <button type="button" onClick={sendToWhatsApp} className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#25D366] text-black font-bold text-sm hover:brightness-110 transition-all">
-                <SiWhatsapp className="w-4 h-4" /> Confirm Request & Continue to WhatsApp
-              </button>
+              <a
+                href={contact.whatsappUrl + "?text=" + encodeURIComponent(buildMessage(answers))}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={sendToWhatsApp}
+                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#25D366] text-black font-bold text-sm hover:brightness-110 transition-all"
+              >
+                <SiWhatsapp className="w-4 h-4" /> Send Enquiry on WhatsApp
+              </a>
               <button type="button" onClick={goBack} className="mt-5 inline-flex w-full items-center justify-center gap-2 text-sm font-semibold text-muted-foreground hover:text-white transition-colors">
                 <ArrowLeft className="w-4 h-4" /> Back
               </button>
@@ -268,18 +303,8 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                 Your trade request is ready.
               </h2>
               <p className="text-muted-foreground mt-4 leading-relaxed text-center">
-                Your details have been prepared for WhatsApp. The W3C team can review your request and confirm the agreed rate and next steps with you.
+                Your WhatsApp enquiry has been opened. The W3C team will review your request, confirm the rate and agree the NGN payment or crypto transfer details with you before the trade proceeds.
               </p>
-              <a
-                href={contact.whatsappUrl + "?text=" + encodeURIComponent(buildMessage(answers))}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackContactClick("WhatsApp", "W3C DESK Questionnaire")}
-                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#25D366] text-black font-bold text-sm hover:brightness-110 transition-all"
-              >
-                <SiWhatsapp className="w-4 h-4" />
-                Continue on WhatsApp
-              </a>
               <button type="button" onClick={restart} className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors">
                 <RotateCcw className="w-4 h-4" />
                 Start again
@@ -361,6 +386,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                           : "e.g. 100 TOKEN"
                   }
                   onContinue={submitInput}
+                  error={amountError}
                 />
               )}
 
@@ -508,11 +534,13 @@ function InputStep({
   placeholder,
   inputMode,
   onContinue,
+  error,
 }: {
   value: string;
   placeholder: string;
   inputMode: "text" | "decimal";
   onContinue: (value: string) => void;
+  error?: string;
 }) {
   const [draft, setDraft] = useState(value);
 
@@ -530,6 +558,7 @@ function InputStep({
         className="w-full rounded-2xl bg-white/[0.02] border border-white/10 px-5 py-4 sm:px-6 sm:py-5 text-white text-base placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-2 focus:ring-white/10"
         autoFocus
       />
+      {error && <p role="alert" className="mt-2 text-sm text-red-400">{error}</p>}
       <div className="mt-3 flex justify-end">
       <button
         type="button"
