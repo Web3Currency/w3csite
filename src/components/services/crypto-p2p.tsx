@@ -113,7 +113,7 @@ function buildAmountHelper(asset: string) {
   }
 }
 
-function buildMessage(answers: AnswerMap) {
+function buildMessage(answers: AnswerMap, quote?: MarketQuote | null) {
   const action = answers.tradeType === "Buy crypto" ? "BUY" : "SELL";
   const asset = answers.assetName || answers.asset;
   const location =
@@ -126,7 +126,7 @@ function buildMessage(answers: AnswerMap) {
   return [
     "Hello W3C DESK, I’d like to " + action + " " + answers.amount + " " + asset + " through W3C DESK.",
     answers.network ? "Network: " + answers.network : "",
-    answers.indicativeTotal ? "Indicative estimate: " + answers.indicativeTotal : "",
+    isPricedAsset && quoteTotal > 0 ? "Indicative estimate: " + money(quoteTotal, 2) + " (" + money(quoteUnit, 2) + " per " + asset + ")" : "",
     location,
     note ? "Additional note: " + note : "",
     "Please confirm the available rate and the next steps before I proceed.",
@@ -401,7 +401,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                 {answers.note && <SummaryRow label="Note" value={answers.note} />}
               </div>
               <a
-                href={contact.whatsappUrl + "?text=" + encodeURIComponent(buildMessage(answers))}
+                href={contact.whatsappUrl + "?text=" + encodeURIComponent(buildMessage(answers, marketQuote))}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={sendToWhatsApp}
@@ -597,7 +597,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                   <div className="mt-4 rounded-2xl border border-dashed border-white/20 p-4">
                     <label className="block text-sm font-semibold text-white mb-2">Other network / not sure</label>
                     <input value={answers.otherNetwork || ""} onChange={(event) => setAnswers({ ...answers, otherNetwork: event.target.value })} placeholder="Enter network name, or leave blank if unsure" className="w-full rounded-xl bg-white/[0.03] border border-white/10 px-4 py-3 text-white text-sm placeholder-white/30 focus:outline-none focus:border-white/30" />
-                    <button type="button" onClick={() => selectAnswer(answers.otherNetwork?.trim() || "Network to be confirmed with W3C")} className="mt-3 inline-flex rounded-xl px-4 py-2 text-sm font-bold text-black bg-white disabled:opacity-40" disabled={!answers.otherNetwork?.trim() && !networkMessage}>Continue</button>
+                    <button type="button" onClick={() => selectAnswer(answers.otherNetwork?.trim() || "Network to be confirmed with W3C")} className="mt-3 inline-flex rounded-xl px-4 py-2 text-sm font-bold text-black bg-white disabled:opacity-40" disabled={!answers.otherNetwork?.trim() && !networkMessage && gateNetworks.length <= 4}>Continue</button>
                   </div>
                 </div>
               )}
