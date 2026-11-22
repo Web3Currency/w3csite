@@ -424,3 +424,31 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
+
+/* W3C WhatsApp enquiry assistant: delayed floating entry and restrained pulse */
+@keyframes w3cWhatsAppEnter {
+  from { opacity: 0; transform: translate3d(0, 18px, 0) scale(.88); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes w3cWhatsAppPulse {
+  0% { transform: scale(1); opacity: .38; }
+  75%, 100% { transform: scale(1.55); opacity: 0; }
+}
+.w3c-wa-trigger {
+  animation: w3cWhatsAppEnter 650ms cubic-bezier(.2,.8,.2,1) both;
+}
+.w3c-wa-pulse {
+  border: 2px solid #25D366;
+  animation: w3cWhatsAppPulse 2.2s ease-out infinite;
+}
+.w3c-wa-dialog {
+  animation: w3cWhatsAppDialogIn 220ms cubic-bezier(.2,.8,.2,1) both;
+  transform-origin: bottom left;
+}
+@keyframes w3cWhatsAppDialogIn {
+  from { opacity: 0; transform: translate3d(0, 12px, 0) scale(.98); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .w3c-wa-trigger, .w3c-wa-pulse, .w3c-wa-dialog { animation: none !important; }
+}
