@@ -276,7 +276,9 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
 
   const currentQuestion = questions[step];
   const currentAnswer = currentQuestion ? answers[currentQuestion.id] : undefined;
-  const progress = currentQuestion ? Math.round(((step + 1) / questions.length) * 100) : 0;
+  const progress = answers.tradeType && currentQuestion
+    ? Math.round(((step + 1) / questions.length) * 100)
+    : 0;
 
   const advance = (nextAnswers: AnswerMap) => {
     setAnswers(nextAnswers);
@@ -484,14 +486,39 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
 
       <section className="py-20 md:py-28 bg-zinc-950 border-y border-white/[0.08]">
         <div className="container max-w-2xl mx-auto px-6">
-          <div className="flex items-center justify-center mb-8">
+          <div className="flex items-center justify-center mb-6">
             <span className={"text-xs uppercase tracking-widest font-mono font-bold " + brand.twText}>
               LET’S SORT OUT YOUR TRANSACTION
             </span>
           </div>
 
-          <div className="h-1 rounded-full bg-white/10 overflow-hidden mb-10">
-            <motion.div className={"h-full " + brand.twBg} animate={{ width: progress + "%" }} transition={{ duration: 0.25 }} />
+          <div className="flex items-center justify-between gap-4 mb-3 text-xs text-muted-foreground">
+            <span>
+              {answers.tradeType
+                ? `Step ${step + 1} of ${questions.length}`
+                : "Start with your transaction"}
+            </span>
+            <span className="text-right">
+              {answers.tradeType
+                ? `${progress}% complete`
+                : "A few questions to arrange your trade"}
+            </span>
+          </div>
+
+          <div
+            className="h-1 rounded-full bg-white/10 overflow-hidden mb-10"
+            role="progressbar"
+            aria-label="Transaction request progress"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={progress}
+          >
+            <motion.div
+              className={"h-full " + brand.twBg}
+              animate={{ width: progress + "%" }}
+              transition={{ duration: 0.25 }}
+              aria-hidden="true"
+            />
           </div>
 
           <AnimatePresence mode="wait" initial={false}>
