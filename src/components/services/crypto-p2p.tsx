@@ -247,7 +247,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
     const assetInputQuestion: Question = {
       id: "assetName",
       title: "What is the name of the asset?",
-      helper: "Type the exact token or asset name.",
+      helper: "Enter the token symbol exactly as listed on Gate.io, for example SOL or DOGE.",
       options: [],
     };
 
@@ -525,7 +525,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
               )}
 
               {currentQuestion.id === "assetName" && (
-                <InputStep inputMode="text" value={currentAnswer || ""} placeholder="e.g. TOKEN" onContinue={submitInput} />
+                <InputStep inputMode="text" value={currentAnswer || ""} placeholder="e.g. SOL" onContinue={submitInput} />
               )}
 
               {currentQuestion.id === "noteChoice" && (
@@ -578,7 +578,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                         </div>
                         <div className="mt-3 flex justify-between gap-3 text-sm"><span className="text-white/60">Rate per {answers.assetName || answers.asset}</span><strong className="text-white">{money(unit, 2)}</strong></div>
                         <div className="mt-2 flex justify-between gap-3 text-sm"><span className="text-white/60">Estimated {buying ? "cost" : "payout"}</span><strong className="text-emerald-300 text-base">{money(total, 2)}</strong></div>
-                        <p className="mt-2 text-xs text-white/45">Includes W3C’s ₦10 per-USDT spread. Indicative only; final rate is agreed on WhatsApp.</p>
+                        <p className="mt-2 text-xs text-white/45">Includes W3C’s ₦10 per-USDT spread. Indicative only; final rate is agreed on WhatsApp.</p>{marketQuote.updated && <p className="mt-1 text-[11px] text-white/35">TLT data updated: {new Date(marketQuote.updated).toLocaleString()}</p>}
                       </div>
                     );
                   })()}
