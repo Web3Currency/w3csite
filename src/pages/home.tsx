@@ -615,7 +615,7 @@ export default function Home() {
                 <div
                   ref={testimonialsScrollRef}
                   onScroll={handleTestimonialsScroll}
-                  className="flex w-full overflow-x-auto snap-x snap-mandatory gap-4 touch-pan-x scrollbar-hide scroll-smooth"
+                  className="flex w-full overflow-x-auto snap-x snap-mandatory gap-4 touch-pan-x scrollbar-hide"
                   style={{ scrollbarWidth: "none" }}
                 >
                   {carouselReviews.map((review, idx) => {
@@ -623,7 +623,7 @@ export default function Home() {
                     return (
                       <MotionGlassCard
                         key={`${review.id}-${idx}`}
-                        className="p-7 md:p-8 border-white/10 bg-white/[0.025] flex flex-col justify-between min-w-0 shrink-0 basis-full md:basis-[calc(50%-0.5rem)] xl:basis-[calc(33.333%-1rem)] snap-start min-h-[260px]"
+                        className="p-7 md:p-8 border-white/10 bg-white/[0.025] flex flex-col justify-between min-w-0 shrink-0 basis-full md:basis-[calc(50%-0.5rem)] xl:basis-[calc(33.333%-0.667rem)] snap-start min-h-[260px]"
                       >
                         <div>
                           <div className="flex gap-0.5 mb-4 text-amber-400" aria-label={`${review.rating} out of 5 stars`}>
@@ -644,7 +644,6 @@ export default function Home() {
                       </MotionGlassCard>
                     );
                   })}
-                </div>
                 </div>
                 {reviews.length > 1 && (
                   <div className="mt-6 flex items-center justify-center gap-4">
