@@ -393,6 +393,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                 <SummaryRow label="Trade" value={answers.tradeType} />
                 <SummaryRow label="Asset" value={answers.assetName || answers.asset} />
                 <SummaryRow label="Amount" value={answers.amount + " " + (answers.assetName || answers.asset)} />
+                {marketQuote && !marketQuote.error && answers.amount && answers.asset !== "Other asset" && <SummaryRow label="Indicative estimate" value={money((marketQuote.tokenUsdt || 1) * (answers.tradeType === "Buy crypto" ? marketQuote.nairaBuy : marketQuote.nairaSell) * Number(answers.amount), 2)} />}
                 {answers.indicativeUnitPrice && <SummaryRow label="Indicative unit price" value={answers.indicativeUnitPrice} />}
                 {answers.indicativeTotal && <SummaryRow label="Indicative total" value={answers.indicativeTotal} />}
                 {answers.network && <SummaryRow label="Network" value={answers.network} />}
@@ -558,6 +559,46 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                       }}
                     />
                   )}
+                </div>
+              )}
+
+              {currentQuestion.id === "network" && (
+                <div className="mt-8">
+                  {marketLoading && <p className="mb-4 text-sm text-white/60">Fetching current market rates…</p>}
+                  {!marketLoading && marketQuote?.error && <p className="mb-4 text-sm text-amber-300">{marketQuote.error}. W3C will confirm the rate on WhatsApp.</p>}
+                  {!marketLoading && marketQuote && !marketQuote.error && Number(answers.amount) > 0 && (() => {
+                    const buying = answers.tradeType === "Buy crypto";
+                    const unit = (marketQuote.tokenUsdt || 1) * (buying ? marketQuote.nairaBuy : marketQuote.nairaSell);
+                    const total = unit * Number(answers.amount);
+                    return (
+                      <div className="mb-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="text-sm font-semibold text-white">Indicative estimate</span>
+                          <span className="text-[11px] text-white/50">Data by tlt.ng · Gate.io</span>
+                        </div>
+                        <div className="mt-3 flex justify-between gap-3 text-sm"><span className="text-white/60">Rate per {answers.asset}</span><strong className="text-white">{money(unit, 2)}</strong></div>
+                        <div className="mt-2 flex justify-between gap-3 text-sm"><span className="text-white/60">Estimated {buying ? "cost" : "payout"}</span><strong className="text-emerald-300 text-base">{money(total, 2)}</strong></div>
+                        <p className="mt-2 text-xs text-white/45">Includes W3C’s ₦10 per-USDT spread. Indicative only; final rate is agreed on WhatsApp.</p>
+                      </div>
+                    );
+                  })()}
+                  {networkLoading && <p className="text-sm text-white/60">Loading supported networks from Gate.io…</p>}
+                  {!networkLoading && gateNetworks.length > 0 && (
+                    <div className="grid gap-3">
+                      {gateNetworks.slice(0, 4).map((network) => (
+                        <button key={network.chain} type="button" onClick={() => selectAnswer(network.chain)} className={"w-full text-left rounded-2xl border px-5 py-4 transition-all " + (currentAnswer === network.chain ? brand.twBorder + " " + brand.twBg + " text-white" : "border-white/10 bg-white/[0.02] text-white/90 hover:border-white/25")}>
+                          <span className="flex items-center justify-between gap-3"><span className="font-semibold">{network.label}</span><span className="text-xs text-white/45">{network.chain}</span></span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {gateNetworks.length > 4 && <p className="mt-3 text-xs text-white/50">Showing four commonly used options, based on a curated preference order. Gate.io does not rank networks by popularity.</p>}
+                  {networkMessage && <p className="mt-3 text-sm text-amber-300">{networkMessage}</p>}
+                  <div className="mt-4 rounded-2xl border border-dashed border-white/20 p-4">
+                    <label className="block text-sm font-semibold text-white mb-2">Other network / not sure</label>
+                    <input value={answers.otherNetwork || ""} onChange={(event) => setAnswers({ ...answers, otherNetwork: event.target.value })} placeholder="Enter network name, or leave blank if unsure" className="w-full rounded-xl bg-white/[0.03] border border-white/10 px-4 py-3 text-white text-sm placeholder-white/30 focus:outline-none focus:border-white/30" />
+                    <button type="button" onClick={() => selectAnswer(answers.otherNetwork?.trim() || "Network to be confirmed with W3C")} className="mt-3 inline-flex rounded-xl px-4 py-2 text-sm font-bold text-black bg-white disabled:opacity-40" disabled={!answers.otherNetwork?.trim() && !networkMessage}>Continue</button>
+                  </div>
                 </div>
               )}
 
