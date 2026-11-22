@@ -88,9 +88,9 @@ const sourceQuestions: Record<"buy" | "sell", Question> = {
 
 const networkQuestion: Question = {
   id: "network",
-  title: "Which network is your USDT or USDC on?",
-  helper: "Select the network you intend to use. If you are unsure, choose the last option and W3C can help confirm it.",
-  options: ["TRON (TRC20)", "Ethereum (ERC20)", "BNB Smart Chain (BEP20)", "Other / Not sure"],
+  title: "Which network is the crypto on?",
+  helper: "Choose the network you will use to send or receive the crypto.",
+  options: [],
 };
 
 const noteQuestion: Question = {
@@ -116,6 +116,11 @@ function buildAmountHelper(asset: string) {
 function buildMessage(answers: AnswerMap, quote?: MarketQuote | null) {
   const action = answers.tradeType === "Buy crypto" ? "BUY" : "SELL";
   const asset = answers.assetName || answers.asset;
+  const isPricedAsset = Boolean(quote && !quote.error && quote.nairaBuy > 0 && quote.nairaSell > 0);
+  const quoteUnit = isPricedAsset
+    ? (quote!.tokenUsdt || 1) * (action === "BUY" ? quote!.nairaBuy : quote!.nairaSell)
+    : 0;
+  const quoteTotal = quoteUnit * Number(answers.amount || 0);
   const location =
     answers.tradeType === "Buy crypto"
       ? "I’d like to receive the crypto in a " + answers.destination.toLowerCase() + "."
@@ -161,7 +166,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
         const naira = nairaJson?.data ?? nairaJson;
         const buy = Number(naira.buy ?? naira.buy_rate ?? naira.usdt_ngn_buy);
         const sell = Number(naira.sell ?? naira.sell_rate ?? naira.usdt_ngn_sell);
-        if (!(buy > 0) || !(sell > 0)) throw new Error("TLT returned an incomplete USDT/NGN quote");
+        if (!(buy > 0) || !(sell > 0)) throw new Error("Rate unavailable");
 
         let tokenUsdt = 1;
         let tokenUpdated: string | undefined;
@@ -186,7 +191,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
           tokenUpdated,
         });
       } catch (error) {
-        if (!cancelled) setMarketQuote({ nairaBuy: 0, nairaSell: 0, error: error instanceof Error ? error.message : "Unable to load live prices" });
+        if (!cancelled) setMarketQuote({ nairaBuy: 0, nairaSell: 0, error: "Rate currently unavailable" });
       } finally {
         if (!cancelled) setMarketLoading(false);
       }
@@ -221,7 +226,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
           if (!available.length) setNetworkMessage("Gate.io did not return an enabled network for this transaction direction. Please confirm the network with W3C before proceeding.");
         }
       } catch (error) {
-        if (!cancelled) setNetworkMessage(error instanceof Error ? error.message : "Could not retrieve network options. Please confirm with W3C.");
+        if (!cancelled) setNetworkMessage("Network options are currently unavailable. W3C can confirm the supported network with you on WhatsApp.");
       } finally {
         if (!cancelled) setNetworkLoading(false);
       }
@@ -565,7 +570,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
               {currentQuestion.id === "network" && (
                 <div className="mt-8">
                   {marketLoading && <p className="mb-4 text-sm text-white/60">Fetching current market rates…</p>}
-                  {!marketLoading && marketQuote?.error && <p className="mb-4 text-sm text-amber-300">{marketQuote.error}. W3C will confirm the rate on WhatsApp.</p>}
+                  {!marketLoading && marketQuote?.error && <p className="mb-4 text-sm text-amber-300">Rate currently unavailable. W3C will confirm the latest rate with you on WhatsApp.</p>}
                   {!marketLoading && marketQuote && !marketQuote.error && Number(answers.amount) > 0 && (() => {
                     const buying = answers.tradeType === "Buy crypto";
                     const unit = (marketQuote.tokenUsdt || 1) * (buying ? marketQuote.nairaBuy : marketQuote.nairaSell);
@@ -592,13 +597,15 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                       ))}
                     </div>
                   )}
-                  {gateNetworks.length > 4 && <p className="mt-3 text-xs text-white/50">Showing four commonly used options, based on a curated preference order. Gate.io does not rank networks by popularity.</p>}
+                  
                   {networkMessage && <p className="mt-3 text-sm text-amber-300">{networkMessage}</p>}
-                  <div className="mt-4 rounded-2xl border border-dashed border-white/20 p-4">
-                    <label className="block text-sm font-semibold text-white mb-2">Other network / not sure</label>
-                    <input value={answers.otherNetwork || ""} onChange={(event) => setAnswers({ ...answers, otherNetwork: event.target.value })} placeholder="Enter network name, or leave blank if unsure" className="w-full rounded-xl bg-white/[0.03] border border-white/10 px-4 py-3 text-white text-sm placeholder-white/30 focus:outline-none focus:border-white/30" />
-                    <button type="button" onClick={() => selectAnswer(answers.otherNetwork?.trim() || "Network to be confirmed with W3C")} className="mt-3 inline-flex rounded-xl px-4 py-2 text-sm font-bold text-black bg-white disabled:opacity-40" disabled={!answers.otherNetwork?.trim() && !networkMessage && gateNetworks.length <= 4}>Continue</button>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => selectAnswer("Other network / Not sure")}
+                    className={"mt-3 w-full text-left rounded-2xl border px-5 py-4 transition-all " + (currentAnswer === "Other network / Not sure" ? brand.twBorder + " " + brand.twBg + " text-white" : "border-white/10 bg-white/[0.02] text-white/90 hover:border-white/25")}
+                  >
+                    <span className="font-semibold">Other network / Not sure</span>
+                  </button>
                 </div>
               )}
 
