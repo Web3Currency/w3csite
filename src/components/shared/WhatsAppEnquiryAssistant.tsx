@@ -56,6 +56,7 @@ export function WhatsAppEnquiryAssistant({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [draft, setDraft] = useState("");
+  const [currentDate, setCurrentDate] = useState(() => new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" }).format(new Date()));
   const dialogRef = useRef<HTMLElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const conversationRef = useRef<HTMLDivElement>(null);
@@ -69,6 +70,12 @@ export function WhatsAppEnquiryAssistant({
     const timer = window.setTimeout(() => setIsVisible(true), Math.max(0, buttonAppearanceDelay));
     return () => window.clearTimeout(timer);
   }, [buttonAppearanceDelay]);
+
+  useEffect(() => {
+    const refreshDate = () => setCurrentDate(new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" }).format(new Date()));
+    const timer = window.setInterval(refreshDate, 60_000);
+    return () => window.clearInterval(timer);
+  }, []);
 
   const closeDialog = useCallback((reset = false) => {
     setIsOpen(false);
@@ -191,7 +198,7 @@ export function WhatsAppEnquiryAssistant({
               </div>
               <div className="min-w-0 flex-1">
                 <h2 id={titleId} className="truncate text-sm font-semibold text-white">{businessName}</h2>
-                <p id={descriptionId} className="mt-0.5 line-clamp-1 text-[11px] text-white/75">{businessDescription}</p>
+                <p id={descriptionId} className="mt-1 flex items-center gap-1.5 text-[11px] font-medium text-white/85"><span className="h-1.5 w-1.5 rounded-full bg-[#4ADE80] shadow-[0_0_8px_rgba(74,222,128,.85)]" aria-hidden="true" />Online</p>
               </div>
               <button
                 ref={closeButtonRef}
@@ -216,15 +223,13 @@ export function WhatsAppEnquiryAssistant({
 
             <div className="flex min-h-0 flex-1 flex-col bg-[#15151A]">
               <div ref={conversationRef} className="custom-scrollbar min-h-0 flex-1 space-y-3 overflow-y-auto px-3.5 py-4 overscroll-contain">
-                <div className="mx-auto w-fit rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] font-semibold tracking-[0.12em] text-white/45">
-                  W3C ENQUIRY DESK
+                <div className="mx-auto w-fit rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] font-medium text-white/45">
+                  {currentDate}
                 </div>
 
-                <div className="max-w-[94%] rounded-2xl rounded-tl-sm border border-white/[0.07] bg-[#202027] px-3.5 py-3 text-[12px] leading-[1.7] text-white/80 shadow-sm">
+                <div className="w3c-wa-message-bubble relative max-w-[94%] rounded-2xl rounded-tl-sm border border-white/[0.07] bg-[#202027] px-3.5 py-3 text-[12px] leading-[1.7] text-white/80 shadow-sm">
                   <p className="font-semibold text-white">Welcome to {businessName}.</p>
                   <p className="mt-1.5">{welcomeMessage}</p>
-                  <p className="mt-2 text-white/65">Choose the option that best describes your enquiry.</p>
-                  <p className="mt-2 text-[10px] text-white/35">W3C Enquiry Assistant</p>
                 </div>
 
                 <div className="space-y-2 pt-1">
