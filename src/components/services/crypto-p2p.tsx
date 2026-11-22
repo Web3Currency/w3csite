@@ -577,13 +577,10 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                     const total = unit * Number(answers.amount);
                     return (
                       <div className="mb-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-                        <div className="flex items-center justify-between gap-3">
-                          <span className="text-sm font-semibold text-white">Indicative estimate</span>
-                          <span className="text-[11px] text-white/50">Data by tlt.ng · Gate.io</span>
-                        </div>
+                        <div className="text-sm font-semibold text-white">Indicative estimate</div>
                         <div className="mt-3 flex justify-between gap-3 text-sm"><span className="text-white/60">Rate per {answers.assetName || answers.asset}</span><strong className="text-white">{money(unit, 2)}</strong></div>
                         <div className="mt-2 flex justify-between gap-3 text-sm"><span className="text-white/60">Estimated {buying ? "cost" : "payout"}</span><strong className="text-emerald-300 text-base">{money(total, 2)}</strong></div>
-                        <p className="mt-2 text-xs text-white/45">Includes W3C’s ₦10 per-USDT spread. Indicative only; final rate is agreed on WhatsApp.</p>{marketQuote.updated && <p className="mt-1 text-[11px] text-white/35">TLT data updated: {new Date(marketQuote.updated).toLocaleString()}</p>}
+                        <p className="mt-3 text-xs font-medium text-orange-400">Final rate is agreed on WhatsApp.</p>
                       </div>
                     );
                   })()}
