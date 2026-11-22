@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Building2, Globe, Mail, PenTool, MapPin, ImageUpscale, X, ChevronDown } from "lucide-react";
+import { ArrowRight, Building2, Globe, Mail, PenTool, MapPin, ImageUpscale, X } from "lucide-react";
 import { SiTelegram, SiWhatsapp } from "react-icons/si";
 import { Link } from "wouter";
 import { servicesContent } from "@/content/services";
@@ -38,29 +38,6 @@ export default function Services() {
 
   const [activeTab, setActiveTab] = useState<ServiceTab>(getTabFromUrl);
   const [inquiryService, setInquiryService] = useState<string | null>(null);
-  const serviceGuideCards = [
-    { title: "Choose a service and answer a few questions", description: "Each service uses a simple questionnaire. Your answers help JAKE understand what you need before you contact him. When you finish, your answers are prepared for the next conversation, so you do not have to explain everything again." },
-    { title: "Digital Solutions", description: "You answer what you need help with, what kind of situation you are in, and the result you want. If you are unsure, there is an option for that too." },
-    { title: "W3C DESK", description: "You choose whether you want to buy or sell crypto, select the asset, provide the amount and wallet type, add any note, review the request, and continue to WhatsApp." },
-    { title: "Website Design & Development", description: "You describe what kind of website you need, what it is for, your main goal, your content situation, and when you want to start. Your answers can then be sent to JAKE by WhatsApp, Telegram, or email." },
-    { title: "W3C Community", description: "You answer a short set of questions about your interests, experience, learning goals, connections, updates, opportunities, and the kind of help you need. Before joining, you review the community safety rules and then continue to WhatsApp." },
-    { title: "Other services", description: "You can also ask JAKE about CAC business name registration, domain and hosting, business email setup, logo and brand identity, Google Business Profile, professional image and document improvement, or another digital task that is not listed. Choose the service, make an inquiry, and continue through WhatsApp or Telegram." },
-  ];
-  const [serviceGuideIndex, setServiceGuideIndex] = useState(0);
-  const serviceGuideTimerRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    serviceGuideTimerRef.current = window.setInterval(() => {
-      setServiceGuideIndex((current) => (current + 1) % serviceGuideCards.length);
-    }, 7000);
-
-    return () => {
-      if (serviceGuideTimerRef.current !== null) {
-        window.clearInterval(serviceGuideTimerRef.current);
-      }
-    };
-  }, []);
-
   const tabsContainerRef = useRef<HTMLDivElement>(null);
   const serviceTabsSectionRef = useRef<HTMLElement>(null);
   const tabRefs = useRef<Record<ServiceTab, HTMLButtonElement | null>>({
@@ -106,21 +83,6 @@ export default function Services() {
     window.history.pushState({}, "", url);
     setActiveTab(tab);
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  };
-
-  const selectGuideTab = (tab: ServiceTab) => {
-    const url = new URL(window.location.href);
-    url.searchParams.set("tab", tab);
-    window.history.pushState({}, "", url);
-    setActiveTab(tab);
-
-    requestAnimationFrame(() => {
-      serviceTabsSectionRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-        inline: "nearest",
-      });
-    });
   };
 
   const getExtraIcon = (name: string) => {
@@ -304,53 +266,6 @@ export default function Services() {
         path="/services"
         schema={servicesSchema}
       />
-
-      {/* Service guide carousel appears before the sticky tabs. */}
-      <section aria-labelledby="service-questionnaire-guide" className="border-b border-white/[0.08] bg-zinc-950 py-10 md:py-14 overflow-hidden">
-        <div className="container max-w-5xl mx-auto px-6">
-          <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-            <div
-              className="flex transition-transform duration-700 ease-out"
-              style={{ transform: "translateX(-" + (serviceGuideIndex * 100) + "%)" }}
-            >
-              {serviceGuideCards.map((card, index) => (
-                <article key={card.title} className={"min-w-full p-7 sm:p-9 md:p-12 " + (index === 0 ? "bg-gradient-to-br from-emerald-500 via-orange-500 via-50% to-purple-600" : index === 1 ? "bg-gradient-to-br from-emerald-700 via-emerald-500 to-lime-400" : index === 2 ? "bg-gradient-to-br from-orange-700 via-orange-500 to-amber-400" : index === 3 ? "bg-gradient-to-br from-yellow-600 via-yellow-400 to-amber-200" : index === 4 ? "bg-gradient-to-br from-purple-800 via-purple-600 to-fuchsia-400" : "bg-gradient-to-br from-slate-700 via-slate-600 to-slate-400") + " text-white"} aria-hidden={serviceGuideIndex !== index}>
-                  <div className="max-w-3xl min-h-[250px] sm:min-h-[280px] md:min-h-[300px] flex flex-col">
-                    <h2 id={index === 0 ? "service-questionnaire-guide" : undefined} className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-tight drop-shadow-sm">
-                      {card.title}
-                    </h2>
-                    <p className="mt-4 max-w-3xl text-white leading-relaxed drop-shadow-sm">{card.description}</p>
-                    {index > 0 && (
-                      <button
-                        type="button"
-                        onClick={() => selectGuideTab((["consulting", "desk", "web", "community", "others"] as ServiceTab[])[index - 1])}
-                        className="mt-auto self-end inline-flex items-center gap-2 rounded-full px-4 py-2.5 bg-white/[0.05] border border-white/10 text-white font-bold text-sm backdrop-blur-md hover:bg-white/10 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-                      >
-                        <span>{["Find the Right Solution", "Start a Trade Request", "Plan My Website", "Enter the Community", "Explore Other Services"][index - 1]}</span>
-                        <ChevronDown className="w-4 h-4" />
-                      </button>
-                    )}
-                  </div>
-                </article>
-              ))}
-            </div>
-            <div className="flex items-center justify-end px-6 py-4 sm:px-8">
-              <div className="flex items-center gap-2" aria-label="Service guide carousel controls">
-                {serviceGuideCards.map((card, index) => (
-                  <button
-                    key={card.title}
-                    type="button"
-                    aria-label={"Show " + card.title}
-                    aria-current={serviceGuideIndex === index ? "true" : undefined}
-                    onClick={() => setServiceGuideIndex(index)}
-                    className={"h-1.5 rounded-full transition-all duration-300 " + (serviceGuideIndex === index ? "w-8 bg-white" : "w-2 bg-white/20 hover:bg-white/40")}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Functional sticky service tabs */}
       <section ref={serviceTabsSectionRef} className="sticky top-20 z-40 scroll-mt-20 bg-black/95 backdrop-blur-md border-b border-white/[0.08]" aria-label="Service navigation" role="tablist">
