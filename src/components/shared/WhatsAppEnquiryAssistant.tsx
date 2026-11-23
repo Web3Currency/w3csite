@@ -49,6 +49,28 @@ function normaliseWhatsAppNumber(number: string) {
   return number.replace(/[^\d]/g, "");
 }
 
+function playHandoffPop() {
+  try {
+    const audio = new window.AudioContext();
+    const oscillator = audio.createOscillator();
+    const gain = audio.createGain();
+    const now = audio.currentTime;
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(520, now);
+    oscillator.frequency.exponentialRampToValueAtTime(760, now + 0.075);
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.12, now + 0.012);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
+    oscillator.connect(gain);
+    gain.connect(audio.destination);
+    oscillator.start(now);
+    oscillator.stop(now + 0.17);
+    oscillator.onended = () => { void audio.close(); };
+  } catch {
+    // The handoff must still work when audio is unavailable.
+  }
+}
+
 export function WhatsAppEnquiryAssistant({
   businessName,
   businessDescription,
@@ -94,6 +116,7 @@ export function WhatsAppEnquiryAssistant({
       setSelectedIndex(null);
       setHandoffMetadata(detail.metadata ?? null);
       setExternalHandoff(true);
+      playHandoffPop();
       setIsOpen(true);
     };
     window.addEventListener("w3c:whatsapp-assistant:open", handleExternalHandoff);
