@@ -282,13 +282,15 @@ export function WhatsAppEnquiryAssistant({
                   {currentDate}
                 </div>
 
-                <div className="w3c-wa-message-bubble relative max-w-[94%] rounded-2xl rounded-tl-sm border border-white/[0.07] bg-[#202027] px-3.5 py-3 text-[12px] leading-[1.7] text-white/80 shadow-sm">
-                  <p className="font-semibold text-white">Welcome to W3C Digital Network.</p>
-                  <p className="mt-1.5">{welcomeMessage}</p>
-                  <div className="mt-1.5 flex justify-end">
-                    <time className="text-[9px] leading-none text-white/40" aria-label={"Message sent at " + currentTime + " West Africa Time"}>{currentTime}</time>
+                {!externalHandoff && (
+                  <div className="w3c-wa-message-bubble relative max-w-[94%] rounded-2xl rounded-tl-sm border border-white/[0.07] bg-[#202027] px-3.5 py-3 text-[12px] leading-[1.7] text-white/80 shadow-sm">
+                    <p className="font-semibold text-white">Welcome to W3C Digital Network.</p>
+                    <p className="mt-1.5">{welcomeMessage}</p>
+                    <div className="mt-1.5 flex justify-end">
+                      <time className="text-[9px] leading-none text-white/40" aria-label={"Message sent at " + currentTime + " West Africa Time"}>{currentTime}</time>
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {!externalHandoff && <div className="space-y-2 pt-1">
                   {enquiryOptions.map((option, index) => (
@@ -311,20 +313,23 @@ export function WhatsAppEnquiryAssistant({
 
                 {externalHandoff && (
                   <div className="max-w-[96%] rounded-2xl rounded-tl-sm border border-white/[0.07] bg-[#202027] px-3.5 py-3 text-[12px] leading-[1.7] text-white/85 shadow-sm">
-                    <p className="mb-2 font-semibold text-white">{businessName}</p>
-                    <p className="mb-2">I’ve prepared your W3C DESK request using the answers you provided. Here is the message ready for our WhatsApp team:</p>
                     <p className="whitespace-pre-wrap break-words">{draft}</p>
                     <div className="mt-2 flex justify-end"><time className="text-[9px] leading-none text-white/40">{currentTime}</time></div>
                   </div>
                 )}
 
                 {externalHandoff && (
-                  <div className="space-y-2 rounded-2xl border border-white/10 bg-[#202027] p-3 shadow-sm">
-                    <p className="text-[12px] font-semibold text-white">Would you like to continue to WhatsApp?</p>
-                    <button type="button" onClick={continueToWhatsApp} disabled={!draft.trim() || !safeNumber} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3 text-[12px] font-bold text-[#082b18] shadow-sm transition hover:bg-[#20c45d] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 focus-visible:ring-offset-[#202027]">
-                      <SiWhatsapp className="h-4 w-4" aria-hidden="true" /> Yes, continue to WhatsApp <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  <div className="space-y-2 pt-1">
+                    <p className="max-w-[94%] rounded-2xl rounded-tl-sm border border-white/[0.07] bg-[#202027] px-3.5 py-3 text-[12px] font-semibold text-white shadow-sm">
+                      How would you like to continue?
+                    </p>
+                    <button type="button" onClick={continueToWhatsApp} disabled={!draft.trim() || !safeNumber} className="flex w-fit max-w-[94%] items-center gap-2 rounded-2xl rounded-tl-sm border border-[#25D366]/25 bg-[#202027] px-3.5 py-3 text-left text-[12px] font-semibold text-white shadow-sm transition hover:bg-[#252b27] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]">
+                      <SiWhatsapp className="h-4 w-4 shrink-0 text-[#25D366]" aria-hidden="true" />
+                      Yes, continue to WhatsApp
                     </button>
-                    <button type="button" onClick={cancelExternalHandoff} className="w-full rounded-xl border border-white/10 px-4 py-3 text-[12px] font-semibold text-white/75 transition hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30">No, cancel and return to W3C</button>
+                    <button type="button" onClick={cancelExternalHandoff} className="block w-fit max-w-[94%] rounded-2xl rounded-tl-sm border border-white/[0.07] bg-[#202027] px-3.5 py-3 text-left text-[12px] font-semibold text-white/75 shadow-sm transition hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30">
+                      No, cancel
+                    </button>
                     {!safeNumber && <p className="text-[10px] text-red-300">WhatsApp number is not configured correctly.</p>}
                   </div>
                 )}
