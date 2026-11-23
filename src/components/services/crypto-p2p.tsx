@@ -144,7 +144,6 @@ function buildMessage(answers: AnswerMap, quote?: MarketQuote | null) {
     ...sharedDetails,
     cardLocation,
     note ? "Your additional note / question: " + note : "",
-    "Would you like W3C to confirm the available rate and next steps?",
     "",
     "Important: This is an enquiry only, not a confirmed trade or agreed rate. W3C will confirm the rate and settlement details with you first. Do not send NGN or crypto until both sides have agreed on the terms.",
   ].filter((line, index, lines) => line !== "" || (index > 0 && lines[index - 1] !== ""));
