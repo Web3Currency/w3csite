@@ -319,18 +319,19 @@ export function WhatsAppEnquiryAssistant({
                 )}
 
                 {externalHandoff && (
-                  <div className="space-y-2 pt-1">
-                    <p className="max-w-[94%] rounded-2xl rounded-tl-sm border border-white/[0.07] bg-[#202027] px-3.5 py-3 text-[12px] font-semibold text-white shadow-sm">
-                      How would you like to continue?
-                    </p>
-                    <button type="button" onClick={continueToWhatsApp} disabled={!draft.trim() || !safeNumber} className="flex w-fit max-w-[94%] items-center gap-2 rounded-2xl rounded-tl-sm border border-[#25D366]/25 bg-[#202027] px-3.5 py-3 text-left text-[12px] font-semibold text-white shadow-sm transition hover:bg-[#252b27] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]">
-                      <SiWhatsapp className="h-4 w-4 shrink-0 text-[#25D366]" aria-hidden="true" />
-                      Yes, continue to WhatsApp
-                    </button>
-                    <button type="button" onClick={cancelExternalHandoff} className="block w-fit max-w-[94%] rounded-2xl rounded-tl-sm border border-white/[0.07] bg-[#202027] px-3.5 py-3 text-left text-[12px] font-semibold text-white/75 shadow-sm transition hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30">
-                      No, cancel
-                    </button>
-                    {!safeNumber && <p className="text-[10px] text-red-300">WhatsApp number is not configured correctly.</p>}
+                  <div className="max-w-[96%] rounded-2xl rounded-tl-sm border border-white/[0.07] bg-[#202027] px-3.5 py-3 text-[12px] leading-[1.7] text-white/85 shadow-sm">
+                    <p className="font-semibold text-white">How would you like to continue?</p>
+                    <div className="mt-2 divide-y divide-white/[0.08]">
+                      <button type="button" onClick={continueToWhatsApp} disabled={!draft.trim() || !safeNumber} className="flex w-full items-center gap-2 py-2.5 text-left font-semibold text-white transition hover:text-[#4ADE80] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]">
+                        <SiWhatsapp className="h-4 w-4 shrink-0 text-[#25D366]" aria-hidden="true" />
+                        Yes, continue to WhatsApp
+                      </button>
+                      <button type="button" onClick={cancelExternalHandoff} className="block w-full py-2.5 text-left font-semibold text-white/70 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30">
+                        No, cancel
+                      </button>
+                    </div>
+                    {!safeNumber && <p className="pt-2 text-[10px] text-red-300">WhatsApp number is not configured correctly.</p>}
+                    <div className="mt-1 flex justify-end"><time className="text-[9px] leading-none text-white/40">{currentTime}</time></div>
                   </div>
                 )}
 
