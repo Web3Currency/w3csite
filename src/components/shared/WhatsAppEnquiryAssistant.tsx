@@ -171,19 +171,11 @@ export function WhatsAppEnquiryAssistant({
   }, [isOpen, closeDialog]);
 
   useEffect(() => {
-    if (!selectedIndex || selectedIndex < 0) {
-      if (selectedIndex === 0) {
-        const conversation = conversationRef.current;
-        if (conversation) {
-          window.requestAnimationFrame(() => conversation.scrollTo({ top: conversation.scrollHeight, behavior: "smooth" }));
-        }
-      }
-      return;
-    }
+    if (selectedIndex === null && !externalHandoff) return;
     const conversation = conversationRef.current;
     if (!conversation) return;
     window.requestAnimationFrame(() => conversation.scrollTo({ top: conversation.scrollHeight, behavior: "smooth" }));
-  }, [selectedIndex, draft]);
+  }, [selectedIndex, draft, externalHandoff]);
 
   const chooseEnquiry = (option: WhatsAppEnquiryOption, index: number) => {
     setSelectedIndex(index);
@@ -297,6 +289,7 @@ export function WhatsAppEnquiryAssistant({
                 {externalHandoff && (
                   <div className="max-w-[96%] rounded-2xl rounded-tl-sm border border-white/[0.07] bg-[#202027] px-3.5 py-3 text-[12px] leading-[1.7] text-white/85 shadow-sm">
                     <p className="mb-2 font-semibold text-white">{businessName}</p>
+                    <p className="mb-2">I’ve prepared your W3C DESK request using the answers you provided. Here is the message ready for our WhatsApp team:</p>
                     <p className="whitespace-pre-wrap break-words">{draft}</p>
                     <div className="mt-2 flex justify-end"><time className="text-[9px] leading-none text-white/40">{currentTime}</time></div>
                   </div>
