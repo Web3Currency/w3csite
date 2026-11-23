@@ -129,7 +129,7 @@ function buildMessage(answers: AnswerMap, quote?: MarketQuote | null) {
   const note = answers.note && answers.note.trim();
 
   return [
-    "Hello W3C DESK, I’d like to " + action + " " + answers.amount + " " + asset + " through W3C DESK.",
+    "I’d like to " + action + " " + answers.amount + " " + asset + " through W3C DESK.",
     answers.network ? "Network: " + answers.network : "",
     isPricedAsset && quoteTotal > 0 ? "Indicative estimate: " + money(quoteTotal, 2) + " (" + money(quoteUnit, 2) + " per " + asset + ")" : "",
     answers.indicativeUnitPrice ? "Indicative unit price: " + answers.indicativeUnitPrice : "",
@@ -137,7 +137,8 @@ function buildMessage(answers: AnswerMap, quote?: MarketQuote | null) {
     location,
     note ? "Additional note / question: " + note : "",
     "Please confirm the available rate and the next steps before I proceed.",
-    "This is an enquiry only, not a confirmed trade or agreed rate. W3C will confirm the rate and settlement details with you first. Do not send NGN or crypto until both sides have agreed on the terms.",
+    "",
+    "Important: This is an enquiry only, not a confirmed trade or agreed rate. W3C will confirm the rate and settlement details with you first. Do not send NGN or crypto until both sides have agreed on the terms.",
   ]
     .filter(Boolean)
     .join("\n");
