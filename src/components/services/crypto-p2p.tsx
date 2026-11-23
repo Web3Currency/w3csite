@@ -309,7 +309,8 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
     const actionType = nextAnswers.tradeType === "Buy crypto" ? "buy" : "sell";
     window.dispatchEvent(new CustomEvent("w3c:whatsapp-assistant:open", {
       detail: {
-        message: buildMessage(nextAnswers, marketQuote),
+        message: buildMessage(nextAnswers, marketQuote).assistantMessage,
+        whatsappMessage: buildMessage(nextAnswers, marketQuote).whatsappMessage,
         metadata: { asset, actionType, amount: Number(nextAnswers.amount) },
       },
     }));
