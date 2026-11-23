@@ -123,20 +123,20 @@ function buildMessage(answers: AnswerMap, quote?: MarketQuote | null) {
   const quoteTotal = quoteUnit * Number(answers.amount || 0);
   const location =
     answers.tradeType === "Buy crypto"
-      ? "I’d like to receive the crypto in a " + answers.destination.toLowerCase() + "."
-      : "I’m sending the crypto from a " + answers.source.toLowerCase() + ".";
+      ? "You’d like to receive the crypto in a " + answers.destination.toLowerCase() + "."
+      : "You’ll be sending the crypto from a " + answers.source.toLowerCase() + ".";
 
   const note = answers.note && answers.note.trim();
 
   return [
-    "I’d like to " + action + " " + answers.amount + " " + asset + " through W3C DESK.",
+    "You’d like to " + action.toLowerCase() + " " + answers.amount + " " + asset + " through W3C DESK.",
     answers.network ? "Network: " + answers.network : "",
     isPricedAsset && quoteTotal > 0 ? "Indicative estimate: " + money(quoteTotal, 2) + " (" + money(quoteUnit, 2) + " per " + asset + ")" : "",
     answers.indicativeUnitPrice ? "Indicative unit price: " + answers.indicativeUnitPrice : "",
     answers.indicativeTotal ? "Indicative total: " + answers.indicativeTotal : "",
     location,
-    note ? "Additional note / question: " + note : "",
-    "Please confirm the available rate and the next steps before I proceed.",
+    note ? "Your additional note / question: " + note : "",
+    "Would you like W3C to confirm the available rate and next steps?",
     "",
     "Important: This is an enquiry only, not a confirmed trade or agreed rate. W3C will confirm the rate and settlement details with you first. Do not send NGN or crypto until both sides have agreed on the terms.",
   ]
