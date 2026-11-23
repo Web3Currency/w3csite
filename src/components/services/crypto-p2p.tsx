@@ -132,6 +132,8 @@ function buildMessage(answers: AnswerMap, quote?: MarketQuote | null) {
     "Hello W3C DESK, I’d like to " + action + " " + answers.amount + " " + asset + " through W3C DESK.",
     answers.network ? "Network: " + answers.network : "",
     isPricedAsset && quoteTotal > 0 ? "Indicative estimate: " + money(quoteTotal, 2) + " (" + money(quoteUnit, 2) + " per " + asset + ")" : "",
+    answers.indicativeUnitPrice ? "Indicative unit price: " + answers.indicativeUnitPrice : "",
+    answers.indicativeTotal ? "Indicative total: " + answers.indicativeTotal : "",
     location,
     note ? "Additional note / question: " + note : "",
     "Please confirm the available rate and the next steps before I proceed.",
