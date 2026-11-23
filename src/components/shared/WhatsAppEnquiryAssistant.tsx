@@ -186,8 +186,8 @@ export function WhatsAppEnquiryAssistant({
     const message = draft.trim();
     if (!message || !safeNumber) return;
     const url = `https://wa.me/${safeNumber}?text=${encodeURIComponent(message)}`;
-    const whatsappWindow = window.open(url, "_blank", "noopener,noreferrer");
-    if (whatsappWindow && externalHandoff) {
+    window.open(url, "_blank", "noopener,noreferrer");
+    if (externalHandoff) {
       window.dispatchEvent(new CustomEvent("w3c:whatsapp-assistant:confirmed", { detail: handoffMetadata }));
       closeDialog(true);
     }
