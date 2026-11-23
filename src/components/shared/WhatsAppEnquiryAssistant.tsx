@@ -114,6 +114,8 @@ export function WhatsAppEnquiryAssistant({
     if (reset) {
       setSelectedIndex(null);
       setDraft("");
+      setExternalHandoff(false);
+      setHandoffMetadata(null);
     }
   }, []);
 
