@@ -1,14 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, RotateCcw } from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
 import { SEO } from "@/components/shared/seo";
 import { PageTransition } from "@/components/shared/page-transition";
 import { branding } from "@/config/branding";
-import { contact } from "@/config/contact";
 import { getServiceBrandColor } from "@/config/theme";
 import { trackContactClick, trackDeskEnquiry } from "@/lib/analytics";
-import { FounderAvatar } from "@/components/shared/founder-avatar";
 
 type AnswerMap = Record<string, string>;
 type MarketQuote = {
@@ -136,8 +133,9 @@ function buildMessage(answers: AnswerMap, quote?: MarketQuote | null) {
     answers.network ? "Network: " + answers.network : "",
     isPricedAsset && quoteTotal > 0 ? "Indicative estimate: " + money(quoteTotal, 2) + " (" + money(quoteUnit, 2) + " per " + asset + ")" : "",
     location,
-    note ? "Additional note: " + note : "",
+    note ? "Additional note / question: " + note : "",
     "Please confirm the available rate and the next steps before I proceed.",
+    "This is an enquiry only, not a confirmed trade or agreed rate. W3C will confirm the rate and settlement details with you first. Do not send NGN or crypto until both sides have agreed on the terms.",
   ]
     .filter(Boolean)
     .join("\n");
@@ -148,7 +146,6 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
   const [answers, setAnswers] = useState<AnswerMap>({});
   const [step, setStep] = useState(0);
   const [complete, setComplete] = useState(false);
-  const [confirming, setConfirming] = useState(false);
   const [amountError, setAmountError] = useState("");
   const [marketQuote, setMarketQuote] = useState<MarketQuote | null>(null);
   const [marketLoading, setMarketLoading] = useState(false);
@@ -291,7 +288,14 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
 
   const openConfirmation = (nextAnswers: AnswerMap) => {
     setAnswers(nextAnswers);
-    setConfirming(true);
+    const asset = nextAnswers.assetName || nextAnswers.asset || "crypto";
+    const actionType = nextAnswers.tradeType === "Buy crypto" ? "buy" : "sell";
+    window.dispatchEvent(new CustomEvent("w3c:whatsapp-assistant:open", {
+      detail: {
+        message: buildMessage(nextAnswers, marketQuote),
+        metadata: { asset, actionType, amount: Number(nextAnswers.amount) },
+      },
+    }));
   };
 
   const selectAnswer = (value: string) => {
@@ -347,12 +351,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
   const goBack = () => {
     if (complete) {
       setComplete(false);
-      setConfirming(true);
-      return;
-    }
-    if (confirming) {
-      setConfirming(false);
-      setStep(questions.length - 1);
+        setStep(questions.length - 1);
       return;
     }
     if (step > 0) setStep(step - 1);
@@ -366,64 +365,19 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
     setNetworkMessage("");
     setStep(0);
     setComplete(false);
-    setConfirming(false);
   };
 
-  const sendToWhatsApp = () => {
-    const asset = answers.assetName || answers.asset;
-    const actionType = answers.tradeType === "Buy crypto" ? "buy" : "sell";
-    const numericAmount = Number(answers.amount);
-
-    trackDeskEnquiry(asset, actionType, numericAmount);
-    trackContactClick("WhatsApp", "W3C DESK - " + actionType.toUpperCase() + " " + asset);
-    setComplete(true);
-  };
-
-  if (confirming) {
-    return (
-      <PageTransition>
-        <SEO
-          title={"Confirm W3C DESK Trade Request | " + branding.businessName}
-          description={"Review your W3C DESK trade request before continuing to WhatsApp."}
-          path="/services"
-        />
-        <section className="py-20 md:py-28 bg-zinc-950 border-y border-white/[0.08]">
-          <div className="container max-w-2xl mx-auto px-6">
-            <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 sm:p-10">
-              <div className="flex justify-center mb-6">
-                <FounderAvatar />
-              </div>
-              <h2 className="text-xs uppercase tracking-widest font-mono font-bold text-orange-400 text-center">CONFIRM YOUR TRADE REQUEST</h2>
-              <p className="text-muted-foreground mt-4 leading-relaxed">Review your enquiry before sending it. This is not a confirmed trade or an agreed rate. W3C will confirm the rate and settlement details with you first. Do not send NGN or crypto until both sides have agreed on the terms.</p>
-              <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.02] divide-y divide-white/[0.08]">
-                <SummaryRow label="Trade" value={answers.tradeType} />
-                <SummaryRow label="Asset" value={answers.assetName || answers.asset} />
-                <SummaryRow label="Amount" value={answers.amount + " " + (answers.assetName || answers.asset)} />
-                {marketQuote && !marketQuote.error && (answers.asset === "USDT" || Boolean(marketQuote.tokenUsdt)) && answers.amount && (answers.asset !== "Other asset" || answers.assetName) && <SummaryRow label="Indicative estimate" value={money((answers.asset === "USDT" ? 1 : marketQuote.tokenUsdt!) * (answers.tradeType === "Buy crypto" ? marketQuote.nairaBuy : marketQuote.nairaSell) * Number(answers.amount), 2)} />}
-                {answers.indicativeUnitPrice && <SummaryRow label="Indicative unit price" value={answers.indicativeUnitPrice} />}
-                {answers.indicativeTotal && <SummaryRow label="Indicative total" value={answers.indicativeTotal} />}
-                {answers.network && <SummaryRow label="Network" value={answers.network} />}
-                <SummaryRow label={answers.tradeType === "Buy crypto" ? "Receive in" : "Sending from"} value={answers.tradeType === "Buy crypto" ? answers.destination : answers.source} />
-                {answers.note && <SummaryRow label="Note" value={answers.note} />}
-              </div>
-              <a
-                href={contact.whatsappUrl + "?text=" + encodeURIComponent(buildMessage(answers, marketQuote))}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={sendToWhatsApp}
-                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#25D366] text-black font-bold text-sm hover:brightness-110 transition-all"
-              >
-                <SiWhatsapp className="w-4 h-4" /> Continue Transaction on WhatsApp
-              </a>
-              <button type="button" onClick={goBack} className="mt-5 inline-flex w-full items-center justify-center gap-2 text-sm font-semibold text-muted-foreground hover:text-white transition-colors">
-                <ArrowLeft className="w-4 h-4" /> Back
-              </button>
-            </motion.div>
-          </div>
-        </section>
-      </PageTransition>
-    );
-  }
+  useEffect(() => {
+    const handleWhatsAppConfirmed = (event: Event) => {
+      const detail = (event as CustomEvent<{ asset?: string; actionType?: "buy" | "sell"; amount?: number }>).detail;
+      if (!detail?.asset || !detail.actionType) return;
+      trackDeskEnquiry(detail.asset, detail.actionType, Number(detail.amount || 0));
+      trackContactClick("WhatsApp", "W3C DESK - " + detail.actionType.toUpperCase() + " " + detail.asset);
+      setComplete(true);
+    };
+    window.addEventListener("w3c:whatsapp-assistant:confirmed", handleWhatsAppConfirmed);
+    return () => window.removeEventListener("w3c:whatsapp-assistant:confirmed", handleWhatsAppConfirmed);
+  }, []);
 
   if (complete) {
     return (
@@ -443,7 +397,7 @@ export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: 
                 Your trade request is ready.
               </h2>
               <p className="text-muted-foreground mt-4 leading-relaxed text-center">
-                Your WhatsApp enquiry has been opened. The W3C team will review your request, confirm the rate and agree the NGN payment or crypto transfer details with you before the trade proceeds.
+                WhatsApp has opened with your prepared W3C DESK request. Review it in WhatsApp and press Send to deliver it to the W3C team. W3C will confirm the rate and settlement details before the trade proceeds.
               </p>
               <button type="button" onClick={restart} className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors">
                 <RotateCcw className="w-4 h-4" />
@@ -741,15 +695,6 @@ function NetworkSkeleton() {
         <div key={item} className="h-[58px] rounded-2xl border border-white/[0.07] bg-white/[0.03]" />
       ))}
       <p className="text-xs text-white/45">Preparing your rate estimate and supported networks…</p>
-    </div>
-  );
-}
-
-function SummaryRow({ label, value }: { label: string; value?: string }) {
-  return (
-    <div className="flex items-start justify-between gap-5 px-5 py-4">
-      <span className="text-sm text-muted-foreground">{label}</span>
-      <span className="text-sm font-semibold text-white text-right">{value || "Not provided"}</span>
     </div>
   );
 }
