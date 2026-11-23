@@ -113,6 +113,7 @@ function buildAmountHelper(asset: string) {
 
 function buildMessage(answers: AnswerMap, quote?: MarketQuote | null) {
   const action = answers.tradeType === "Buy crypto" ? "BUY" : "SELL";
+  const actionLower = action.toLowerCase();
   const asset = answers.assetName || answers.asset;
   const isStablecoin = asset.toUpperCase() === "USDT";
   const hasTokenPrice = isStablecoin || Boolean(quote?.tokenUsdt && quote.tokenUsdt > 0);
@@ -121,27 +122,40 @@ function buildMessage(answers: AnswerMap, quote?: MarketQuote | null) {
     ? (isStablecoin ? 1 : quote!.tokenUsdt!) * (action === "BUY" ? quote!.nairaBuy : quote!.nairaSell)
     : 0;
   const quoteTotal = quoteUnit * Number(answers.amount || 0);
-  const location =
-    answers.tradeType === "Buy crypto"
-      ? "You’d like to receive the crypto in a " + answers.destination.toLowerCase() + "."
-      : "You’ll be sending the crypto from a " + answers.source.toLowerCase() + ".";
-
+  const isBuy = answers.tradeType === "Buy crypto";
+  const cardLocation = isBuy
+    ? "You’d like to receive the crypto in a " + answers.destination.toLowerCase() + "."
+    : "You’ll be sending the crypto from a " + answers.source.toLowerCase() + ".";
+  const whatsappLocation = isBuy
+    ? "I’d like to receive the crypto in a " + answers.destination.toLowerCase() + "."
+    : "I’m sending the crypto from a " + answers.source.toLowerCase() + ".";
   const note = answers.note && answers.note.trim();
-
-  return [
-    "You’d like to " + action.toLowerCase() + " " + answers.amount + " " + asset + " through W3C DESK.",
+  const estimate = isPricedAsset && quoteTotal > 0 ? "Indicative estimate: " + money(quoteTotal, 2) + " (" + money(quoteUnit, 2) + " per " + asset + ")" : "";
+  const unitPrice = answers.indicativeUnitPrice ? "Indicative unit price: " + answers.indicativeUnitPrice : "";
+  const total = answers.indicativeTotal ? "Indicative total: " + answers.indicativeTotal : "";
+  const sharedDetails = [
     answers.network ? "Network: " + answers.network : "",
-    isPricedAsset && quoteTotal > 0 ? "Indicative estimate: " + money(quoteTotal, 2) + " (" + money(quoteUnit, 2) + " per " + asset + ")" : "",
-    answers.indicativeUnitPrice ? "Indicative unit price: " + answers.indicativeUnitPrice : "",
-    answers.indicativeTotal ? "Indicative total: " + answers.indicativeTotal : "",
-    location,
+    estimate,
+    unitPrice,
+    total,
+  ].filter(Boolean);
+  const assistantMessage = [
+    "You’d like to " + actionLower + " " + answers.amount + " " + asset + " through W3C DESK.",
+    ...sharedDetails,
+    cardLocation,
     note ? "Your additional note / question: " + note : "",
     "Would you like W3C to confirm the available rate and next steps?",
     "",
     "Important: This is an enquiry only, not a confirmed trade or agreed rate. W3C will confirm the rate and settlement details with you first. Do not send NGN or crypto until both sides have agreed on the terms.",
-  ]
-    .filter(Boolean)
-    .join("\n");
+  ].filter((line, index, lines) => line !== "" || (index > 0 && lines[index - 1] !== ""));
+  const whatsappMessage = [
+    "I’d like to " + actionLower + " " + answers.amount + " " + asset + " through W3C DESK.",
+    ...sharedDetails,
+    whatsappLocation,
+    note ? "Additional note / question: " + note : "",
+    "Please confirm the available rate and the next steps before I proceed.",
+  ].filter(Boolean).join("\n");
+  return { assistantMessage: assistantMessage.join("\n"), whatsappMessage };
 }
 
 export default function CryptoP2P({ onNavigateToTab }: { onNavigateToTab: (tab: "consulting" | "desk" | "web" | "community" | "others") => void }) {
