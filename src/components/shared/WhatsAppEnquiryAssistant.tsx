@@ -68,6 +68,8 @@ export function WhatsAppEnquiryAssistant({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [draft, setDraft] = useState("");
+  const [externalHandoff, setExternalHandoff] = useState(false);
+  const [handoffMetadata, setHandoffMetadata] = useState<Record<string, string | number> | null>(null);
   const [currentDate, setCurrentDate] = useState(getWestAfricaDate);
   const [currentTime, setCurrentTime] = useState(getWestAfricaTime);
   const dialogRef = useRef<HTMLElement>(null);
@@ -83,6 +85,20 @@ export function WhatsAppEnquiryAssistant({
     const timer = window.setTimeout(() => setIsVisible(true), Math.max(0, buttonAppearanceDelay));
     return () => window.clearTimeout(timer);
   }, [buttonAppearanceDelay]);
+
+  useEffect(() => {
+    const handleExternalHandoff = (event: Event) => {
+      const detail = (event as CustomEvent<{ message?: string; metadata?: Record<string, string | number> }>).detail;
+      if (!detail?.message?.trim()) return;
+      setDraft(detail.message.trim());
+      setSelectedIndex(null);
+      setHandoffMetadata(detail.metadata ?? null);
+      setExternalHandoff(true);
+      setIsOpen(true);
+    };
+    window.addEventListener("w3c:whatsapp-assistant:open", handleExternalHandoff);
+    return () => window.removeEventListener("w3c:whatsapp-assistant:open", handleExternalHandoff);
+  }, []);
 
   useEffect(() => {
     const refreshClock = () => {
@@ -176,8 +192,14 @@ export function WhatsAppEnquiryAssistant({
     const message = draft.trim();
     if (!message || !safeNumber) return;
     const url = `https://wa.me/${safeNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
+    const whatsappWindow = window.open(url, "_blank", "noopener,noreferrer");
+    if (whatsappWindow && externalHandoff) {
+      window.dispatchEvent(new CustomEvent("w3c:whatsapp-assistant:confirmed", { detail: handoffMetadata }));
+      closeDialog(true);
+    }
   };
+
+  const cancelExternalHandoff = () => closeDialog(true);
 
   const positionClass = isRight ? "right-5" : "left-5";
   const cardPositionClass = isRight ? "right-4 sm:right-5" : "left-4 sm:left-5";
@@ -251,7 +273,7 @@ export function WhatsAppEnquiryAssistant({
                   </div>
                 </div>
 
-                <div className="space-y-2 pt-1">
+                {!externalHandoff && <div className="space-y-2 pt-1">
                   {enquiryOptions.map((option, index) => (
                     <button
                       key={`${option.label}-${index}`}
@@ -268,9 +290,28 @@ export function WhatsAppEnquiryAssistant({
                       <ChevronRight className="h-4 w-4 shrink-0 text-white/35 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                     </button>
                   ))}
-                </div>
+                </div>}
 
-                {selectedIndex !== null && (
+                {externalHandoff && (
+                  <div className="max-w-[96%] rounded-2xl rounded-tl-sm border border-white/[0.07] bg-[#202027] px-3.5 py-3 text-[12px] leading-[1.7] text-white/85 shadow-sm">
+                    <p className="mb-2 font-semibold text-white">{businessName}</p>
+                    <p className="whitespace-pre-wrap break-words">{draft}</p>
+                    <div className="mt-2 flex justify-end"><time className="text-[9px] leading-none text-white/40">{currentTime}</time></div>
+                  </div>
+                )}
+
+                {externalHandoff && (
+                  <div className="space-y-2 rounded-2xl border border-white/10 bg-[#202027] p-3 shadow-sm">
+                    <p className="text-[12px] font-semibold text-white">Would you like to continue to WhatsApp?</p>
+                    <button type="button" onClick={continueToWhatsApp} disabled={!draft.trim() || !safeNumber} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3 text-[12px] font-bold text-[#082b18] shadow-sm transition hover:bg-[#20c45d] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 focus-visible:ring-offset-[#202027]">
+                      <SiWhatsapp className="h-4 w-4" aria-hidden="true" /> Yes, continue to WhatsApp <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </button>
+                    <button type="button" onClick={cancelExternalHandoff} className="w-full rounded-xl border border-white/10 px-4 py-3 text-[12px] font-semibold text-white/75 transition hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30">No, cancel and return to W3C</button>
+                    {!safeNumber && <p className="text-[10px] text-red-300">WhatsApp number is not configured correctly.</p>}
+                  </div>
+                )}
+
+                {!externalHandoff && selectedIndex !== null && (
                   <div className="space-y-2 rounded-2xl border border-white/10 bg-[#202027] p-3 shadow-sm">
                     <div className="flex items-center justify-between gap-2">
                       <label htmlFor="w3c-wa-message" className="text-[11px] font-semibold text-white">Your message</label>
