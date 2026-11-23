@@ -90,6 +90,7 @@ export function WhatsAppEnquiryAssistant({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [draft, setDraft] = useState("");
+  const [whatsappDraft, setWhatsappDraft] = useState("");
   const [externalHandoff, setExternalHandoff] = useState(false);
   const [handoffMetadata, setHandoffMetadata] = useState<Record<string, string | number> | null>(null);
   const [currentDate, setCurrentDate] = useState(getWestAfricaDate);
@@ -110,9 +111,10 @@ export function WhatsAppEnquiryAssistant({
 
   useEffect(() => {
     const handleExternalHandoff = (event: Event) => {
-      const detail = (event as CustomEvent<{ message?: string; metadata?: Record<string, string | number> }>).detail;
+      const detail = (event as CustomEvent<{ message?: string; whatsappMessage?: string; metadata?: Record<string, string | number> }>).detail;
       if (!detail?.message?.trim()) return;
       setDraft(detail.message.trim());
+      setWhatsappDraft(detail.whatsappMessage?.trim() || detail.message.trim());
       setSelectedIndex(null);
       setHandoffMetadata(detail.metadata ?? null);
       setExternalHandoff(true);
@@ -137,6 +139,7 @@ export function WhatsAppEnquiryAssistant({
     if (reset) {
       setSelectedIndex(null);
       setDraft("");
+      setWhatsappDraft("");
       setExternalHandoff(false);
       setHandoffMetadata(null);
     }
@@ -206,7 +209,7 @@ export function WhatsAppEnquiryAssistant({
   };
 
   const continueToWhatsApp = () => {
-    const message = draft.trim();
+    const message = (externalHandoff ? whatsappDraft : draft).trim();
     if (!message || !safeNumber) return;
     const url = `https://wa.me/${safeNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank", "noopener,noreferrer");
