@@ -239,7 +239,6 @@ export default function Contact() {
                   >
                     <SiWhatsapp className="mb-3 h-8 w-8 text-emerald-400" />
                     <span className="font-bold text-white">WhatsApp</span>
-                    <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">Quick and direct communication.</span>
                     <span className="mt-3 inline-flex items-center text-xs font-semibold text-[#c084fc] transition-colors group-hover:text-white">Chat on WhatsApp <ArrowRight className="ml-1 h-3 w-3" /></span>
                   </a>
 
@@ -252,7 +251,6 @@ export default function Contact() {
                   >
                     <SiTelegram className="mb-3 h-8 w-8 text-sky-400" />
                     <span className="font-bold text-white">Telegram</span>
-                    <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">Join updates and community discussions.</span>
                     <span className="mt-3 inline-flex items-center text-xs font-semibold text-[#c084fc] transition-colors group-hover:text-white">Join Telegram <ArrowRight className="ml-1 h-3 w-3" /></span>
                   </a>
 
@@ -263,7 +261,6 @@ export default function Contact() {
                   >
                     <Mail className="mb-3 h-8 w-8 text-red-500" />
                     <span className="font-bold text-white">Business Email</span>
-                    <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">For formal enquiries and business requests.</span>
                     <span className="mt-3 inline-flex items-center text-xs font-semibold text-[#c084fc] transition-colors group-hover:text-white">Email W3C <ArrowRight className="ml-1 h-3 w-3" /></span>
                   </a>
 
@@ -276,7 +273,6 @@ export default function Contact() {
                   >
                     <MessageCircle className="mb-3 h-8 w-8 text-[#c084fc]" />
                     <span className="font-bold text-white">Direct Contact (Jake)</span>
-                    <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">For priority or strategic conversations.</span>
                     <span className="mt-3 inline-flex items-center text-xs font-semibold text-[#c084fc] transition-colors group-hover:text-white">Contact Jake <ArrowRight className="ml-1 h-3 w-3" /></span>
                   </a>
                 </div>
