@@ -1,6 +1,10 @@
 import { useEffect, useRef } from "react";
-import { Map as MapLibreMap, Marker, AttributionControl } from "maplibre-gl";
+import { Map as MapLibreMap, Marker, AttributionControl, setWorkerUrl } from "maplibre-gl";
+import mapLibreWorkerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import "maplibre-gl/dist/maplibre-gl.css";
+
+// Vite must serve MapLibre's worker as a separate asset in production.
+setWorkerUrl(mapLibreWorkerUrl);
 
 export function W3CLocationMap() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
