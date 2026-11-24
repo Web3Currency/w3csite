@@ -217,7 +217,7 @@ export default function Contact() {
                   <h2 className="font-display text-lg font-bold text-white">Opening Hours</h2>
                   <p className="mt-1 flex flex-wrap items-center gap-2 text-sm text-white/85 sm:text-base">
                     Monday – Sunday:
-                    <span className="rounded-full bg-[#a855f7] px-3 py-1 font-bold text-white">24/7</span>
+                    <span className="font-bold text-white">24/7</span>
                   </p>
                 </div>
               </section>
@@ -227,7 +227,6 @@ export default function Contact() {
                   <h2 id="other-contact-heading" className="font-display text-2xl font-bold text-white sm:text-3xl">
                     Other Ways to Reach W3C
                   </h2>
-                  <p className="mt-1 text-sm text-white/60">Choose a channel that works best for you.</p>
                 </div>
 
                 <div className="grid grid-cols-1 gap-3">
@@ -241,7 +240,7 @@ export default function Contact() {
                     <SiWhatsapp className="mb-3 h-8 w-8 text-emerald-400" />
                     <span className="font-bold text-white">WhatsApp</span>
                     <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">Quick and direct communication.</span>
-                    <span className="mt-3 inline-flex items-center rounded-lg bg-[#a855f7]/10 px-3 py-2 text-xs font-semibold text-[#c084fc] transition-colors group-hover:bg-[#a855f7] group-hover:text-black">Chat on WhatsApp <ArrowRight className="ml-1 h-3 w-3" /></span>
+                    <span className="mt-3 inline-flex items-center text-xs font-semibold text-[#c084fc] transition-colors group-hover:text-white">Chat on WhatsApp <ArrowRight className="ml-1 h-3 w-3" /></span>
                   </a>
 
                   <a
@@ -254,7 +253,7 @@ export default function Contact() {
                     <SiTelegram className="mb-3 h-8 w-8 text-sky-400" />
                     <span className="font-bold text-white">Telegram</span>
                     <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">Join updates and community discussions.</span>
-                    <span className="mt-3 inline-flex items-center rounded-lg bg-[#a855f7]/10 px-3 py-2 text-xs font-semibold text-[#c084fc] transition-colors group-hover:bg-[#a855f7] group-hover:text-black">Join Telegram <ArrowRight className="ml-1 h-3 w-3" /></span>
+                    <span className="mt-3 inline-flex items-center text-xs font-semibold text-[#c084fc] transition-colors group-hover:text-white">Join Telegram <ArrowRight className="ml-1 h-3 w-3" /></span>
                   </a>
 
                   <a
@@ -265,7 +264,7 @@ export default function Contact() {
                     <Mail className="mb-3 h-8 w-8 text-red-500" />
                     <span className="font-bold text-white">Business Email</span>
                     <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">For formal enquiries and business requests.</span>
-                    <span className="mt-3 inline-flex items-center rounded-lg bg-[#a855f7]/10 px-3 py-2 text-xs font-semibold text-[#c084fc] transition-colors group-hover:bg-[#a855f7] group-hover:text-black">Email W3C <ArrowRight className="ml-1 h-3 w-3" /></span>
+                    <span className="mt-3 inline-flex items-center text-xs font-semibold text-[#c084fc] transition-colors group-hover:text-white">Email W3C <ArrowRight className="ml-1 h-3 w-3" /></span>
                   </a>
 
                   <a
@@ -278,7 +277,7 @@ export default function Contact() {
                     <MessageCircle className="mb-3 h-8 w-8 text-[#c084fc]" />
                     <span className="font-bold text-white">Direct Contact (Jake)</span>
                     <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">For priority or strategic conversations.</span>
-                    <span className="mt-3 inline-flex items-center rounded-lg bg-[#a855f7]/10 px-3 py-2 text-xs font-semibold text-[#c084fc] transition-colors group-hover:bg-[#a855f7] group-hover:text-black">Contact Jake <ArrowRight className="ml-1 h-3 w-3" /></span>
+                    <span className="mt-3 inline-flex items-center text-xs font-semibold text-[#c084fc] transition-colors group-hover:text-white">Contact Jake <ArrowRight className="ml-1 h-3 w-3" /></span>
                   </a>
                 </div>
               </section>
