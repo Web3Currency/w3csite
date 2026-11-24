@@ -135,69 +135,6 @@ export default function Contact() {
                 </div>
               </section>
 
-              <section id="other-contact-options" aria-labelledby="other-contact-heading">
-                <div className="mb-5 pl-4">
-                  <h2 id="other-contact-heading" className="font-display text-2xl font-bold text-white sm:text-3xl">
-                    Other Ways to Reach W3C
-                  </h2>
-                  <p className="mt-1 text-sm text-white/60">Choose a channel that works best for you.</p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                  <a
-                    href={contact.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackContactClick("WhatsApp", "W3C Contact Channel")}
-                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-4 text-center hover:bg-emerald-500/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-                  >
-                    <SiWhatsapp className="mb-3 h-8 w-8 text-emerald-400" />
-                    <span className="font-bold text-white">WhatsApp</span>
-                    <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">Quick and direct communication.</span>
-                    <span className="mt-3 inline-flex items-center rounded-lg bg-[#a855f7]/10 px-3 py-2 text-xs font-semibold text-[#c084fc] transition-colors group-hover:bg-[#a855f7] group-hover:text-black">Chat on WhatsApp <ArrowRight className="ml-1 h-3 w-3" /></span>
-                  </a>
-
-                  <a
-                    href={contact.telegramCommunityUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackContactClick("Telegram", "W3C Contact Channel")}
-                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-4 text-center hover:bg-sky-500/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
-                  >
-                    <SiTelegram className="mb-3 h-8 w-8 text-sky-400" />
-                    <span className="font-bold text-white">Telegram</span>
-                    <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">Join updates and community discussions.</span>
-                    <span className="mt-3 inline-flex items-center rounded-lg bg-[#a855f7]/10 px-3 py-2 text-xs font-semibold text-[#c084fc] transition-colors group-hover:bg-[#a855f7] group-hover:text-black">Join Telegram <ArrowRight className="ml-1 h-3 w-3" /></span>
-                  </a>
-
-                  <a
-                    href={`mailto:${contact.email}`}
-                    onClick={() => trackContactClick("Email", "W3C Contact Channel")}
-                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-4 text-center hover:bg-[#a855f7]/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7]"
-                  >
-                    <Mail className="mb-3 h-8 w-8 text-red-500" />
-                    <span className="font-bold text-white">Business Email</span>
-                    <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">For formal enquiries and business requests.</span>
-                    <span className="mt-3 inline-flex items-center rounded-lg bg-[#a855f7]/10 px-3 py-2 text-xs font-semibold text-[#c084fc] transition-colors group-hover:bg-[#a855f7] group-hover:text-black">Email W3C <ArrowRight className="ml-1 h-3 w-3" /></span>
-                  </a>
-
-                  <a
-                    href={contact.personalWhatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackContactClick("WhatsApp", "Direct Jake Contact Channel")}
-                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-4 text-center hover:bg-[#a855f7]/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7]"
-                  >
-                    <MessageCircle className="mb-3 h-8 w-8 text-[#c084fc]" />
-                    <span className="font-bold text-white">Direct Contact (Jake)</span>
-                    <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">For priority or strategic conversations.</span>
-                    <span className="mt-3 inline-flex items-center rounded-lg bg-[#a855f7]/10 px-3 py-2 text-xs font-semibold text-[#c084fc] transition-colors group-hover:bg-[#a855f7] group-hover:text-black">Contact Jake <ArrowRight className="ml-1 h-3 w-3" /></span>
-                  </a>
-                </div>
-              </section>
-            </div>
-
-            <aside className="space-y-3 lg:sticky lg:top-24">
               <section id="send-enquiry" className="scroll-mt-28 rounded-3xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 p-5 sm:p-6">
                 <div className="mb-5">
                   <h2 className="font-display text-2xl font-bold text-white">Send an Enquiry</h2>
@@ -266,6 +203,71 @@ export default function Contact() {
                 </div>
               </section>
 
+              <section id="other-contact-options" aria-labelledby="other-contact-heading">
+                <div className="mb-5 pl-4">
+                  <h2 id="other-contact-heading" className="font-display text-2xl font-bold text-white sm:text-3xl">
+                    Other Ways to Reach W3C
+                  </h2>
+                  <p className="mt-1 text-sm text-white/60">Choose a channel that works best for you.</p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                  <a
+                    href={contact.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackContactClick("WhatsApp", "W3C Contact Channel")}
+                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-4 text-center hover:bg-emerald-500/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+                  >
+                    <SiWhatsapp className="mb-3 h-8 w-8 text-emerald-400" />
+                    <span className="font-bold text-white">WhatsApp</span>
+                    <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">Quick and direct communication.</span>
+                    <span className="mt-3 inline-flex items-center rounded-lg bg-[#a855f7]/10 px-3 py-2 text-xs font-semibold text-[#c084fc] transition-colors group-hover:bg-[#a855f7] group-hover:text-black">Chat on WhatsApp <ArrowRight className="ml-1 h-3 w-3" /></span>
+                  </a>
+
+                  <a
+                    href={contact.telegramCommunityUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackContactClick("Telegram", "W3C Contact Channel")}
+                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-4 text-center hover:bg-sky-500/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+                  >
+                    <SiTelegram className="mb-3 h-8 w-8 text-sky-400" />
+                    <span className="font-bold text-white">Telegram</span>
+                    <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">Join updates and community discussions.</span>
+                    <span className="mt-3 inline-flex items-center rounded-lg bg-[#a855f7]/10 px-3 py-2 text-xs font-semibold text-[#c084fc] transition-colors group-hover:bg-[#a855f7] group-hover:text-black">Join Telegram <ArrowRight className="ml-1 h-3 w-3" /></span>
+                  </a>
+
+                  <a
+                    href={`mailto:${contact.email}`}
+                    onClick={() => trackContactClick("Email", "W3C Contact Channel")}
+                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-4 text-center hover:bg-[#a855f7]/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7]"
+                  >
+                    <Mail className="mb-3 h-8 w-8 text-red-500" />
+                    <span className="font-bold text-white">Business Email</span>
+                    <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">For formal enquiries and business requests.</span>
+                    <span className="mt-3 inline-flex items-center rounded-lg bg-[#a855f7]/10 px-3 py-2 text-xs font-semibold text-[#c084fc] transition-colors group-hover:bg-[#a855f7] group-hover:text-black">Email W3C <ArrowRight className="ml-1 h-3 w-3" /></span>
+                  </a>
+
+                  <a
+                    href={contact.personalWhatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackContactClick("WhatsApp", "Direct Jake Contact Channel")}
+                    className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-4 text-center hover:bg-[#a855f7]/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7]"
+                  >
+                    <MessageCircle className="mb-3 h-8 w-8 text-[#c084fc]" />
+                    <span className="font-bold text-white">Direct Contact (Jake)</span>
+                    <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">For priority or strategic conversations.</span>
+                    <span className="mt-3 inline-flex items-center rounded-lg bg-[#a855f7]/10 px-3 py-2 text-xs font-semibold text-[#c084fc] transition-colors group-hover:bg-[#a855f7] group-hover:text-black">Contact Jake <ArrowRight className="ml-1 h-3 w-3" /></span>
+                  </a>
+                </div>
+              </section>
+            </div>
+
+            <aside className="space-y-4">
+
+
               <section aria-label="Opening hours" className="flex items-center gap-4 rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 p-4 sm:p-5">
                 <Clock3 className="h-10 w-10 shrink-0 text-[#a855f7]" strokeWidth={1.8} />
                 <div className="h-12 w-px shrink-0 bg-white/25" />
@@ -276,6 +278,38 @@ export default function Contact() {
                     <span className="rounded-full bg-[#a855f7] px-3 py-1 font-bold text-white">24/7</span>
                   </p>
                 </div>
+              </section>
+
+              <section aria-labelledby="w3c-location-heading" className="overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.05] p-5 shadow-[0_8px_32px_rgba(0,0,0,0.12)] sm:p-6">
+                <div className="mb-3">
+                  <h2 id="w3c-location-heading" className="font-display text-lg font-bold text-white">Our Location</h2>
+                  <p className="mt-1 text-xs leading-relaxed text-white/60">Online operations based in Nigeria, serving clients digitally worldwide.</p>
+                </div>
+                <div className="relative overflow-hidden rounded-2xl bg-[#101018] px-2 py-3">
+                  <svg viewBox="0 0 360 350" role="img" aria-labelledby="africa-map-title africa-map-description" className="mx-auto block w-full max-w-[320px]">
+                    <title id="africa-map-title">Map of Africa highlighting Lagos, Nigeria</title>
+                    <desc id="africa-map-description">A stylised, non-interactive map of Africa with a location marker in southwestern Nigeria near Lagos.</desc>
+                    <defs>
+                      <linearGradient id="africaLand" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.32" />
+                        <stop offset="100%" stopColor="#6D35D4" stopOpacity="0.12" />
+                      </linearGradient>
+                    </defs>
+                    <g fill="none" stroke="#A78BFA" strokeOpacity="0.18" strokeWidth="1">
+                      <path d="M24 90H336M24 145H336M24 200H336M24 255H336" />
+                      <path d="M90 18V330M150 18V330M210 18V330M270 18V330" />
+                    </g>
+                    <path d="M178 22 L207 31 235 43 259 65 269 91 291 116 296 143 282 166 273 193 255 218 244 244 224 268 211 296 190 329 173 316 160 287 145 266 126 244 112 220 94 199 78 175 62 158 55 134 64 111 78 94 92 71 116 53 143 39 164 29Z" fill="url(#africaLand)" stroke="#A78BFA" strokeWidth="2.2" strokeLinejoin="round" />
+                    <path d="M178 22 L207 31 235 43 259 65 269 91 291 116 296 143 282 166 273 193 255 218 244 244 224 268 211 296 190 329 173 316 160 287 145 266 126 244 112 220 94 199 78 175 62 158 55 134 64 111 78 94 92 71 116 53 143 39 164 29Z" fill="none" stroke="#C4B5FD" strokeOpacity="0.5" strokeWidth="0.8" />
+                    <circle cx="137" cy="155" r="13" fill="#A78BFA" fillOpacity="0.18" />
+                    <circle cx="137" cy="155" r="6" fill="#C4B5FD" stroke="#FFFFFF" strokeWidth="2" />
+                    <path d="M145 151 L174 132" stroke="#C4B5FD" strokeWidth="1.5" strokeLinecap="round" />
+                    <rect x="171" y="115" width="112" height="30" rx="8" fill="#211936" stroke="#8B5CF6" strokeOpacity="0.65" />
+                    <text x="181" y="134" fill="#FFFFFF" fontSize="11" fontWeight="600">Lagos, Nigeria</text>
+                    <text x="180" y="342" textAnchor="middle" fill="#A1A1AA" fontSize="9" letterSpacing="2">AFRICA</text>
+                  </svg>
+                </div>
+                <p className="mt-3 text-[11px] leading-relaxed text-white/45">Illustrative regional marker only. W3C operates online; this is not a walk-in office or live tracking map.</p>
               </section>
             </aside>
           </div>
