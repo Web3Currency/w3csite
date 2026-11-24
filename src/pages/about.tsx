@@ -6,13 +6,14 @@ import { Link } from "wouter";
 import {
   ArrowRight,
   Users,
-  CheckCircle2,
-  ShieldCheck,
+  Puzzle,
+  MessageCircle,
   Wallet,
   Bot,
   LayoutTemplate,
   Compass,
   Globe,
+  Lightbulb,
 } from "lucide-react";
 import { branding } from "@/config/branding";
 
@@ -75,17 +76,17 @@ export default function About() {
     {
       title: "Clear Communication",
       body: "Keep people informed, explain things plainly and make expectations clear from the beginning.",
-      icon: ShieldCheck,
+      icon: MessageCircle,
     },
     {
       title: "Practicality Over Hype",
       body: "Focus on useful work and real outcomes rather than following trends for their own sake.",
-      icon: CheckCircle2,
+      icon: Puzzle,
     },
     {
       title: "Keep Improving",
       body: "Stay curious, learn continuously and refine the way things are built and delivered.",
-      icon: Compass,
+      icon: Lightbulb,
     },
   ];
 
