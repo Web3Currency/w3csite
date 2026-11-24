@@ -23,11 +23,19 @@ export function W3CLocationMap() {
       cooperativeGestures: true,
     });
 
-    // Keep country-name labels only. Hide state, city, road, POI and other symbol labels at every zoom.
+    // Keep country-name labels only and apply the brand purple to international borders.
+    // OpenFreeMap separates country boundaries (admin_level 2) from state boundaries (admin_level 4).
     map.on("style.load", () => {
       for (const layer of map.getStyle().layers) {
         if (layer.type === "symbol" && !/country/i.test(layer.id)) {
           map.setLayoutProperty(layer.id, "visibility", "none");
+        }
+
+        if (
+          layer.type === "line" &&
+          (layer.id === "boundary_country_z0-4" || layer.id === "boundary_country_z5-")
+        ) {
+          map.setPaintProperty(layer.id, "line-color", "#A855F7");
         }
       }
     });
