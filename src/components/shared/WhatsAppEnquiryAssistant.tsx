@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
-import { ArrowRight, ChevronRight, Minus, X } from "lucide-react";
+import { ArrowRight, ChevronRight, MessageCircle, Minus, X } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 
 export interface WhatsAppEnquiryOption {
@@ -375,7 +375,7 @@ export function WhatsAppEnquiryAssistant({
         ref={triggerRef}
         type="button"
         onClick={() => setIsOpen((current) => !current)}
-        className={`w3c-wa-trigger ${positionClass} fixed bottom-6 z-[75] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_30px_rgba(0,0,0,.35)] transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/35`}
+        className={`w3c-wa-trigger ${positionClass} fixed bottom-6 z-[75] flex h-14 w-14 items-center justify-center rounded-full bg-[#6D35D4] text-white shadow-[0_10px_30px_rgba(0,0,0,.35)] transition-transform hover:scale-105 hover:bg-[#5B2AB8] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#6D35D4]/35`}
         aria-label={isOpen ? "Close WhatsApp enquiry assistant" : buttonLabel}
         aria-expanded={isOpen}
         aria-haspopup="dialog"
@@ -383,7 +383,7 @@ export function WhatsAppEnquiryAssistant({
         tabIndex={isOpen ? -1 : 0}
       >
         <span className="w3c-wa-pulse pointer-events-none absolute inset-0 rounded-full" aria-hidden="true" />
-        <SiWhatsapp className="relative z-10 h-7 w-7" aria-hidden="true" />
+        <MessageCircle className="relative z-10 h-7 w-7" strokeWidth={2.4} aria-hidden="true" />
       </button>
     </>
   );
