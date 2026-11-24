@@ -13,6 +13,7 @@ import { SiWhatsapp, SiTelegram } from "react-icons/si";
 import { contact } from "@/config/contact";
 import { branding } from "@/config/branding";
 import { trackContactClick } from "@/lib/analytics";
+import { W3CLocationMap } from "@/components/shared/w3c-location-map";
 
 const enquiryCategories = [
   {
@@ -285,20 +286,9 @@ export default function Contact() {
                   <h2 id="w3c-location-heading" className="font-display text-lg font-bold text-white">Our Location</h2>
                   <p className="mt-1 text-xs leading-relaxed text-white/60">Online operations based in Nigeria, serving clients digitally worldwide.</p>
                 </div>
-                <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#101018]">
-                  <iframe
-                    title="OpenStreetMap showing Lagos, Nigeria within Africa"
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=-18%2C-35%2C52%2C38&amp;layer=mapnik&amp;marker=6.5244%2C3.3792"
-                    className="block h-[340px] w-full border-0 sm:h-[400px]"
-                    loading="lazy"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                  />
+                <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#100b1d]">
+                  <W3CLocationMap />
                 </div>
-                <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[11px] leading-relaxed text-white/50">
-                  <span>Location marker: Lagos, Nigeria</span>
-                  <a href="https://www.openstreetmap.org/?mlat=6.5244&amp;mlon=3.3792#map=5/6.5244/3.3792" target="_blank" rel="noopener noreferrer" className="text-[#c084fc] underline underline-offset-2 hover:text-white">View larger map</a>
-                </div>
-                <p className="mt-2 text-[11px] leading-relaxed text-white/45">W3C operates online. The map identifies our Lagos region, not a public walk-in office or live tracking location. Map data © OpenStreetMap contributors.</p>
               </section>
             </aside>
           </div>
