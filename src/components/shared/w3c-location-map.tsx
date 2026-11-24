@@ -23,6 +23,15 @@ export function W3CLocationMap() {
       cooperativeGestures: true,
     });
 
+    // Keep country-name labels only. Hide state, city, road, POI and other symbol labels at every zoom.
+    map.on("style.load", () => {
+      for (const layer of map.getStyle().layers) {
+        if (layer.type === "symbol" && !/country/i.test(layer.id)) {
+          map.setLayoutProperty(layer.id, "visibility", "none");
+        }
+      }
+    });
+
     const markerElement = document.createElement("div");
     markerElement.className = "w3c-map-marker";
     markerElement.setAttribute("role", "img");
