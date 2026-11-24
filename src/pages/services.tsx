@@ -268,9 +268,9 @@ export default function Services() {
       />
 
       {/* Functional sticky service tabs */}
-      <section ref={serviceTabsSectionRef} className="sticky top-20 z-40 scroll-mt-20 bg-black/95 backdrop-blur-md border-b border-white/[0.08]" aria-label="Service navigation" role="tablist">
-        <div className="w-full">
-          <div ref={tabsContainerRef} className="flex items-stretch overflow-x-auto scrollbar-hide whitespace-nowrap">
+      <section ref={serviceTabsSectionRef} className="sticky top-20 z-40 scroll-mt-20 bg-black/95 backdrop-blur-md border-b border-white/[0.08]" aria-label="Service navigation">
+        <div className="site-container">
+          <div ref={tabsContainerRef} role="tablist" className="flex items-stretch overflow-x-auto scrollbar-hide whitespace-nowrap">
             {tabs.map((tab) => {
               const active = activeTab === tab.id;
               return (
