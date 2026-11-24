@@ -6,10 +6,7 @@ import {
   Clock3,
   Mail,
   MessageCircle,
-  Network,
   Send,
-  ShieldCheck,
-  Zap,
   ChevronDown,
 } from "lucide-react";
 import { SiWhatsapp, SiTelegram } from "react-icons/si";
@@ -107,10 +104,6 @@ export default function Contact() {
 
         <div className="site-container relative z-10">
           <header id="contact-hero" className="mb-10 max-w-4xl sm:mb-12">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#a855f7]/[0.07] px-4 py-2 text-xs font-semibold text-[#c084fc]">
-              <MessageCircle className="h-4 w-4" />
-              Contact W3C Digital Network
-            </div>
             <h1 className="font-display text-4xl font-black leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
               How can W3C <span className="text-[#a855f7]">help you?</span>
             </h1>
@@ -182,7 +175,7 @@ export default function Contact() {
                     onClick={() => trackContactClick("Email", "W3C Contact Channel")}
                     className="group flex min-h-[190px] flex-col items-center rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 hover:bg-white/[0.07] hover:shadow-[0_12px_36px_rgba(0,0,0,0.18)] p-4 text-center hover:bg-[#a855f7]/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7]"
                   >
-                    <Mail className="mb-3 h-8 w-8 text-[#c084fc]" />
+                    <Mail className="mb-3 h-8 w-8 text-red-500" />
                     <span className="font-bold text-white">Business Email</span>
                     <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">For formal enquiries and business requests.</span>
                     <span className="mt-3 inline-flex items-center rounded-lg bg-[#a855f7]/10 px-3 py-2 text-xs font-semibold text-[#c084fc] transition-colors group-hover:bg-[#a855f7] group-hover:text-black">Email W3C <ArrowRight className="ml-1 h-3 w-3" /></span>
@@ -200,10 +193,6 @@ export default function Contact() {
                     <span className="mt-2 flex-1 text-xs leading-relaxed text-white/60">For priority or strategic conversations.</span>
                     <span className="mt-3 inline-flex items-center rounded-lg bg-[#a855f7]/10 px-3 py-2 text-xs font-semibold text-[#c084fc] transition-colors group-hover:bg-[#a855f7] group-hover:text-black">Contact Jake <ArrowRight className="ml-1 h-3 w-3" /></span>
                   </a>
-                </div>
-                <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-white/45">
-                  <span>Follow W3C updates:</span>
-                  <a href={contact.twitterUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackContactClick("X", "W3C Contact Social Link")} className="text-white/70 underline-offset-4 hover:text-[#c084fc] hover:underline">X (Twitter)</a>
                 </div>
               </section>
             </div>
@@ -272,8 +261,7 @@ export default function Contact() {
                   </button>
                 </form>
 
-                <div className="mt-4 flex items-start gap-3 text-xs leading-relaxed text-white/55">
-                  <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-[#a855f7]" />
+                <div className="mt-4 text-xs leading-relaxed text-white/55">
                   <p>Your details stay in your browser until you choose to send the email. See our <a href="/privacy" className="text-[#c084fc] underline underline-offset-2 hover:text-white">Privacy Policy</a>.</p>
                 </div>
               </section>
@@ -292,20 +280,6 @@ export default function Contact() {
             </aside>
           </div>
 
-          <section className="mt-10 grid gap-5 rounded-3xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 p-5 sm:grid-cols-3 sm:p-7">
-            <div className="flex items-center gap-4 sm:border-r sm:border-white/15 sm:pr-5">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#a855f7]/15 text-[#c084fc]"><Zap className="h-7 w-7" /></span>
-              <div><h3 className="font-bold text-white">Prompt Response</h3><p className="mt-1 text-xs leading-relaxed text-white/60">We aim to respond to enquiries as soon as possible.</p></div>
-            </div>
-            <div className="flex items-center gap-4 sm:border-r sm:border-white/15 sm:px-5">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#a855f7]/15 text-[#c084fc]"><ShieldCheck className="h-7 w-7" /></span>
-              <div><h3 className="font-bold text-white">Trusted & Secure</h3><p className="mt-1 text-xs leading-relaxed text-white/60">Your information is handled with care and confidentiality.</p></div>
-            </div>
-            <div className="flex items-center gap-4 sm:pl-5">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#a855f7]/15 text-[#c084fc]"><Network className="h-7 w-7" /></span>
-              <div><h3 className="font-bold text-white">The W3C Ecosystem</h3><p className="mt-1 text-xs leading-relaxed text-white/60">Digital services, Web3, AI, community and more — all in one network.</p></div>
-            </div>
-          </section>
         </div>
       </section>
     </PageTransition>
