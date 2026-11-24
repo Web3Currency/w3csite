@@ -464,3 +464,63 @@
   background: #202027;
   clip-path: polygon(100% 0, 100% 100%, 0 0);
 }
+
+
+/* W3C branded interactive location map */
+.w3c-location-map {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #100b1d;
+}
+.w3c-location-map::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(92, 36, 150, 0.12);
+  mix-blend-mode: color;
+}
+.w3c-location-map .maplibregl-ctrl-attrib {
+  padding: 2px 6px;
+  border-radius: 6px 0 0 0;
+  background: rgba(10, 7, 18, 0.82);
+  color: rgba(255,255,255,.62);
+  font-size: 9px;
+  line-height: 1.4;
+}
+.w3c-location-map .maplibregl-ctrl-attrib a {
+  color: rgba(255,255,255,.78);
+}
+.w3c-map-marker {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+}
+.w3c-map-marker__dot {
+  position: relative;
+  z-index: 2;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #fff;
+  border-radius: 9999px;
+  background: #ef3340;
+  box-shadow: 0 0 0 3px rgba(239,51,64,.22), 0 0 18px rgba(239,51,64,.9);
+}
+.w3c-map-marker__pulse {
+  position: absolute;
+  inset: 2px;
+  border: 2px solid rgba(239,51,64,.9);
+  border-radius: 9999px;
+  animation: w3cMapPulse 2.1s ease-out infinite;
+}
+@keyframes w3cMapPulse {
+  0% { transform: scale(.45); opacity: .95; }
+  100% { transform: scale(1.65); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .w3c-map-marker__pulse { animation: none; }
+}
