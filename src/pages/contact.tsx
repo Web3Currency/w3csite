@@ -204,6 +204,24 @@ export default function Contact() {
                 </div>
               </section>
 
+
+            </div>
+
+            <aside className="space-y-4">
+
+
+              <section aria-label="Opening hours" className="flex items-center gap-4 rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 p-4 sm:p-5">
+                <Clock3 className="h-10 w-10 shrink-0 text-[#a855f7]" strokeWidth={1.8} />
+                <div className="h-12 w-px shrink-0 bg-white/25" />
+                <div className="min-w-0">
+                  <h2 className="font-display text-lg font-bold text-white">Opening Hours</h2>
+                  <p className="mt-1 flex flex-wrap items-center gap-2 text-sm text-white/85 sm:text-base">
+                    Monday – Sunday:
+                    <span className="rounded-full bg-[#a855f7] px-3 py-1 font-bold text-white">24/7</span>
+                  </p>
+                </div>
+              </section>
+
               <section id="other-contact-options" aria-labelledby="other-contact-heading">
                 <div className="mb-5 pl-4">
                   <h2 id="other-contact-heading" className="font-display text-2xl font-bold text-white sm:text-3xl">
@@ -212,7 +230,7 @@ export default function Contact() {
                   <p className="mt-1 text-sm text-white/60">Choose a channel that works best for you.</p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                <div className="grid grid-cols-1 gap-3">
                   <a
                     href={contact.whatsappUrl}
                     target="_blank"
@@ -264,34 +282,16 @@ export default function Contact() {
                   </a>
                 </div>
               </section>
-            </div>
-
-            <aside className="space-y-4">
-
-
-              <section aria-label="Opening hours" className="flex items-center gap-4 rounded-2xl bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all duration-500 p-4 sm:p-5">
-                <Clock3 className="h-10 w-10 shrink-0 text-[#a855f7]" strokeWidth={1.8} />
-                <div className="h-12 w-px shrink-0 bg-white/25" />
-                <div className="min-w-0">
-                  <h2 className="font-display text-lg font-bold text-white">Opening Hours</h2>
-                  <p className="mt-1 flex flex-wrap items-center gap-2 text-sm text-white/85 sm:text-base">
-                    Monday – Sunday:
-                    <span className="rounded-full bg-[#a855f7] px-3 py-1 font-bold text-white">24/7</span>
-                  </p>
-                </div>
-              </section>
-
-              <section aria-labelledby="w3c-location-heading" className="overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.05] p-5 shadow-[0_8px_32px_rgba(0,0,0,0.12)] sm:p-6">
-                <div className="mb-3">
-                  <h2 id="w3c-location-heading" className="font-display text-lg font-bold text-white">Our Location</h2>
-                  <p className="mt-1 text-xs leading-relaxed text-white/60">Online operations based in Nigeria, serving clients digitally worldwide.</p>
-                </div>
-                <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#100b1d]">
-                  <W3CLocationMap />
-                </div>
-              </section>
             </aside>
           </div>
+
+          <section aria-labelledby="w3c-location-heading" className="mt-12 sm:mt-16">
+            <div className="mb-5">
+              <h2 id="w3c-location-heading" className="font-display text-2xl font-bold text-white sm:text-3xl">Our Location</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/60">Online operations based in Nigeria, serving clients digitally worldwide.</p>
+            </div>
+            <W3CLocationMap />
+          </section>
 
         </div>
       </section>
