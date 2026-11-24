@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import maplibregl from "maplibre-gl";
+import { Map as MapLibreMap, Marker, AttributionControl } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 export function W3CLocationMap() {
@@ -8,7 +8,7 @@ export function W3CLocationMap() {
   useEffect(() => {
     if (!mapContainer.current) return;
 
-    const map = new maplibregl.Map({
+    const map = new MapLibreMap({
       container: mapContainer.current,
       style: "https://tiles.openfreemap.org/styles/dark",
       center: [3.3792, 6.5244],
@@ -25,12 +25,12 @@ export function W3CLocationMap() {
     markerElement.setAttribute("aria-label", "W3C location marker: Lagos, Nigeria");
     markerElement.innerHTML = '<span class="w3c-map-marker__pulse"></span><span class="w3c-map-marker__dot"></span>';
 
-    new maplibregl.Marker({ element: markerElement, anchor: "center" })
+    new Marker({ element: markerElement, anchor: "center" })
       .setLngLat([3.3792, 6.5244])
       .addTo(map);
 
     map.addControl(
-      new maplibregl.AttributionControl({
+      new AttributionControl({
         compact: true,
         customAttribution: "© OpenStreetMap contributors",
       }),
