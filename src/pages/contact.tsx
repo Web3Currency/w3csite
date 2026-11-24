@@ -4,6 +4,7 @@ import { PageTransition } from "@/components/shared/page-transition";
 import {
   ArrowRight,
   Clock3,
+  Phone,
   Mail,
   MessageCircle,
   Send,
@@ -222,13 +223,21 @@ export default function Contact() {
                 </div>
               </section>
 
-              <section id="other-contact-options" aria-labelledby="other-contact-heading">
-                <div className="mb-5 pl-4">
-                  <h2 id="other-contact-heading" className="font-display text-2xl font-bold text-white sm:text-3xl">
-                    Other Ways to Reach W3C
-                  </h2>
+              <a
+                href="tel:+2347032754611"
+                onClick={() => trackContactClick("Phone", "W3C Contact Channel")}
+                aria-label="Call W3C at +234 703 275 4611"
+                className="flex items-center gap-4 rounded-2xl bg-white/[0.05] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.12)] backdrop-blur-sm transition-all duration-300 hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7] sm:p-5"
+              >
+                <Phone className="h-10 w-10 shrink-0 text-[#a855f7]" strokeWidth={1.8} />
+                <div className="h-12 w-px shrink-0 bg-white/25" />
+                <div className="min-w-0">
+                  <span className="block font-display text-lg font-bold text-white">Call Us</span>
+                  <span className="mt-1 block text-sm font-semibold tracking-wide text-white/85 sm:text-base">+234 703 275 4611</span>
                 </div>
+              </a>
 
+              <section id="other-contact-options" aria-label="Other contact options">
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-1">
                   <a
                     href={contact.whatsappUrl}
