@@ -285,31 +285,20 @@ export default function Contact() {
                   <h2 id="w3c-location-heading" className="font-display text-lg font-bold text-white">Our Location</h2>
                   <p className="mt-1 text-xs leading-relaxed text-white/60">Online operations based in Nigeria, serving clients digitally worldwide.</p>
                 </div>
-                <div className="relative overflow-hidden rounded-2xl bg-[#101018] px-2 py-3">
-                  <svg viewBox="0 0 360 350" role="img" aria-labelledby="africa-map-title africa-map-description" className="mx-auto block w-full max-w-[320px]">
-                    <title id="africa-map-title">Map of Africa highlighting Lagos, Nigeria</title>
-                    <desc id="africa-map-description">A stylised, non-interactive map of Africa with a location marker in southwestern Nigeria near Lagos.</desc>
-                    <defs>
-                      <linearGradient id="africaLand" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.32" />
-                        <stop offset="100%" stopColor="#6D35D4" stopOpacity="0.12" />
-                      </linearGradient>
-                    </defs>
-                    <g fill="none" stroke="#A78BFA" strokeOpacity="0.18" strokeWidth="1">
-                      <path d="M24 90H336M24 145H336M24 200H336M24 255H336" />
-                      <path d="M90 18V330M150 18V330M210 18V330M270 18V330" />
-                    </g>
-                    <path d="M178 22 L207 31 235 43 259 65 269 91 291 116 296 143 282 166 273 193 255 218 244 244 224 268 211 296 190 329 173 316 160 287 145 266 126 244 112 220 94 199 78 175 62 158 55 134 64 111 78 94 92 71 116 53 143 39 164 29Z" fill="url(#africaLand)" stroke="#A78BFA" strokeWidth="2.2" strokeLinejoin="round" />
-                    <path d="M178 22 L207 31 235 43 259 65 269 91 291 116 296 143 282 166 273 193 255 218 244 244 224 268 211 296 190 329 173 316 160 287 145 266 126 244 112 220 94 199 78 175 62 158 55 134 64 111 78 94 92 71 116 53 143 39 164 29Z" fill="none" stroke="#C4B5FD" strokeOpacity="0.5" strokeWidth="0.8" />
-                    <circle cx="137" cy="155" r="13" fill="#A78BFA" fillOpacity="0.18" />
-                    <circle cx="137" cy="155" r="6" fill="#C4B5FD" stroke="#FFFFFF" strokeWidth="2" />
-                    <path d="M145 151 L174 132" stroke="#C4B5FD" strokeWidth="1.5" strokeLinecap="round" />
-                    <rect x="171" y="115" width="112" height="30" rx="8" fill="#211936" stroke="#8B5CF6" strokeOpacity="0.65" />
-                    <text x="181" y="134" fill="#FFFFFF" fontSize="11" fontWeight="600">Lagos, Nigeria</text>
-                    <text x="180" y="342" textAnchor="middle" fill="#A1A1AA" fontSize="9" letterSpacing="2">AFRICA</text>
-                  </svg>
+                <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#101018]">
+                  <iframe
+                    title="OpenStreetMap showing Lagos, Nigeria within Africa"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-18%2C-35%2C52%2C38&amp;layer=mapnik&amp;marker=6.5244%2C3.3792"
+                    className="block h-[340px] w-full border-0 sm:h-[400px]"
+                    loading="lazy"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                  />
                 </div>
-                <p className="mt-3 text-[11px] leading-relaxed text-white/45">Illustrative regional marker only. W3C operates online; this is not a walk-in office or live tracking map.</p>
+                <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[11px] leading-relaxed text-white/50">
+                  <span>Location marker: Lagos, Nigeria</span>
+                  <a href="https://www.openstreetmap.org/?mlat=6.5244&amp;mlon=3.3792#map=5/6.5244/3.3792" target="_blank" rel="noopener noreferrer" className="text-[#c084fc] underline underline-offset-2 hover:text-white">View larger map</a>
+                </div>
+                <p className="mt-2 text-[11px] leading-relaxed text-white/45">W3C operates online. The map identifies our Lagos region, not a public walk-in office or live tracking location. Map data © OpenStreetMap contributors.</p>
               </section>
             </aside>
           </div>
