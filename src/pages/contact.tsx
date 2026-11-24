@@ -229,7 +229,7 @@ export default function Contact() {
                   </h2>
                 </div>
 
-                <div className="grid grid-cols-1 gap-3">
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                   <a
                     href={contact.whatsappUrl}
                     target="_blank"
