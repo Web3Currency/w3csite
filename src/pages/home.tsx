@@ -839,11 +839,11 @@ export default function Home() {
                 {cta.description}
               </p>
 
-              <div className="relative mt-8 pt-6 border-t border-white/[0.06] flex items-center justify-center gap-4">
+              <div className="relative mt-8 pt-6 border-t border-white/[0.06] flex items-center justify-start gap-4 text-left">
                 <FounderAvatar />
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 flex-1 text-left">
                   <div className="font-display font-bold text-white text-base leading-tight">{branding.founderName}</div>
-                  <div className="text-xs text-muted-foreground font-mono mt-1">Founder, {branding.businessName}</div>
+                  <div className="text-xs text-muted-foreground font-mono mt-1">{branding.businessName}</div>
                 </div>
                 <Link
                   href="/contact"
@@ -867,11 +867,11 @@ export default function Home() {
                   {cta.description}
                 </p>
                 
-                <div className="pt-6 border-t border-white/[0.06] flex flex-wrap items-center justify-center gap-4">
+                <div className="pt-6 border-t border-white/[0.06] flex flex-wrap items-center justify-start gap-4 text-left">
                   <FounderAvatar sizeClass="w-12 h-12" />
-                  <div>
+                  <div className="text-left">
                     <div className="font-display font-bold text-white text-base leading-tight">{branding.founderName}</div>
-                    <div className="text-xs text-muted-foreground font-mono mt-0.5">Founder, {branding.businessName}</div>
+                    <div className="text-xs text-muted-foreground font-mono mt-0.5">{branding.businessName}</div>
                   </div>
                 </div>
               </div>
